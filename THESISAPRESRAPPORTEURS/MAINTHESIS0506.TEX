@@ -1,0 +1,339 @@
+\documentclass[12pt]{book}
+\usepackage[intlimits,sumlimits,namelimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+%\usepackage{times}
+
+\usepackage[dvips]{graphicx}
+\usepackage{epsf}
+\usepackage{epsfig}
+\usepackage{fancyhdr}
+\usepackage{layout}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+\input{Macro.tex}
+\input{commandes.tex}
+
+%% ENTETE DE FRANCOIS
+%\documentclass[12pt,a4paper,twoside,final,notitlepage]{book}
+%\usepackage[dvips]{graphicx}
+%\usepackage[leqno]{amsmath}
+%\usepackage{a4}
+%\usepackage{epsf}
+%\usepackage{epsfig}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage{french}
+%\usepackage[T1]{fontenc}
+%\pagestyle{myheadings}
+%% FIN ENTETE DE FRANCOIS
+
+
+%\pagestyle{fancy}
+%\pagestyle{empty}
+%\pagestyle{myheadings}
+%\setcounter{part}{arabic}
+%\numberwithin{section}{chapter}
+%\numberwithin{equation}{chapter}
+%\numberwithin{theorem}{chapter}
+\begin{document} 
+\begin{titlepage}
+\title{
+\vspace{1cm}
+\begin{large}
+Analyse Mathématique et Numérique du Rayonnement Acoustique des Turbor\'eacteurs \\
+\end{large}
+}
+\author{Stefan Duprey\thanks{EADS-CCR Suresnes, D\'epartement Mod\'elisation Math\'ematique et Num\'erique; Institut Elie Cartan-INRIA Lorraine-Universit\'e Poincar\'e Nancy 1}
+\\
+}
+\date{} 
+\maketitle
+\end{titlepage}
+\pagestyle{empty}
+\input{remerciements}
+\newpage
+\pagestyle{myheadings}
+\tableofcontents
+\newpage
+\input{Introductionthesis}
+\input{problemepose}
+\input{modesaumoteur}
+\input{ecoulementconstant}
+\input{ondesavecheterogeneite}
+\input{ecoulementpotentiel}
+\input{numeriqueglobal}
+\newpage
+\input{Conclusionthesis}
+\begin{thebibliography}{1}
+\bibitem{TA}
+T.~Abboud,
+\newblock{\em Etude math\'ematique et num\'erique de quelques probl\`emes de diffraction d'ondes \'electromagn\'etiques.}
+\newblock Th\`ese de doctorat de l'\'ecole polytechnique, (1991), France.
+\bibitem{TAJCN}
+T.~Abboud et J.C.~N\'ed\'elec,
+\newblock{\em Electromagnetic waves in inhomogenous medium.}
+\newblock J. Math. Anal. Appl., 164 (1992), pp. 40-58.
+\bibitem{RJAWE}
+R.J.~Astley et W.~Eversman,
+\newblock{\em A finite element formulation of the eigenvalue problem in lined ducts with flow.}
+\newblock J. Sound Vibration, 65 (1979), pp. 61-74.
+\bibitem{BA}
+B.~Aublin,
+\newblock{\em Rayonnement et diffraction acoustique par un guide ouvert semi-infini.}
+\newblock Th\`ese de doctorat de l'universit\'e de Compi\`egne, France, 1996.
+\bibitem{CBDJ}
+C.~Bailly et D.~Juv\'e,
+\newblock{\em Numerical solution of acoustic propagation problems using linearized Euler equations.}
+\newblock AIAA J., 36 (1998), pp. 775-782.
+\bibitem{EBSFPJ}
+E.~B\'ecache, S.~Fauqueux et P.~Joly,
+\newblock{\em Stability of perfectly matched layers, group velocities and anisotropic waves.}
+\newblock J. Comp. Phys., 188 (2003), pp. 399-433.
+\bibitem{JPB}
+J.-P.~B\'erenger,
+\newblock{\em A perfectly matched layer for the absorption of electromagnetic waves.}
+\newblock J. Comput. Phys., 114 (1994), pp. 185-200.
+\bibitem{HBGWWW}
+H.~Berger, G.~Warnecke et W.L.~Wendland,
+\newblock{\em Coupling of FEM and BEM for transsonic flows.}
+\newblock The Mathematics of finite elements and applications, 95 (1994), pp. 323-350.
+\bibitem{MBSP}
+M.~Bernacki et S.~Piperno,
+\newblock{\em M\'ethode de type Galerkin discontinu appliqu\'ee aux \'equations d'Euler lin\'earis\'ees en \'ecoulement uniforme ou non.}
+\newblock INRIA, RR-5292, 2004.
+\bibitem{BDM}
+C.~Bernardi, M.~Dauge et Y.~Maday,
+\newblock {\em Spectral Methods for Axisymmetric Domains.}
+\newblock Series  "Series in Applied Mathematics", 3, Elsevier, 1999
+\bibitem{CBCBDJ}
+C.~Bogey, C.~Bailly et D.~Juv\'e,
+\newblock{\em Computation of flow noise using source terms in linearized Euler's equations.}
+\newblock AIAA J., 40 (2002), pp. 235-243.
+\bibitem{ASBBDLDELVP}
+A.-S.~Bonnet-Ben Dhia, L.~Dahi, E.~Lun\'eville et V.~Pagneux,
+\newblock{\em Acoustic Diffraction by a plate in a uniform flow.}
+\newblock Math. Models Methods Appl. Sci., 12 (2002), pp. 625-647.
+\bibitem{ADLB}
+A. De La~Bourdonnaye,
+\newblock{\em Some formulations coupling finite element and integral equation methods for Helmholtz equation and electromagnetism.}
+\newblock Numer. Math., 69 (1995), pp. 257-268. 
+\bibitem{MOBRGJPPPOPGP}
+M.O.~Bristeau, R.~Glowinski, J.~Periaux, P.~Perrier, O.~Pironneau et G.~Poirier,
+\newblock{\em On the numerical solution of nonlinear problems in fluid dynamics by least squares and finite element methods.}
+\newblock{Comput. Methods Appl. Mech. Engrg, 51 (1985), pp. 363-394.}
+\bibitem{HB}
+H.~Br\'ezis,
+\newblock{\em Analyse fonctionnelle.}
+\newblock Masson, Paris, France, 1998.
+\bibitem{MB}
+M.~Bruneau,
+\newblock{\em Manuel d'acoustique fondamentale.}
+\newblock Herm\`es, Paris, France, 1998.
+\bibitem{PGC}
+P.G.~Ciarlet,
+\newblock{\em The Finite Element Method for Elliptic Problems.}
+\newblock Series  "Studies in Mathematics and its Applications", North-Holland, Amsterdam, 1978. 
+\bibitem{JFCMPGT}
+J.F.~Ciavaldini, M.~Pogu et G.~Tournemine,
+\newblock{\em Existence aud regularity of stream functions for subsonic flows past profiles with a sharp trailing edge.}
+\newblock{Arch. Rat. Mech. Anal., 93 (1986), pp. 1-14.}
+\bibitem{MC}
+M.~Costabel,
+\newblock{\em Boundary integral operators on Lipschitz domains : Elementary results.}
+\newblock SIAM J. Math. Anal., 19 (1988), pp. 613-626.
+\bibitem{MCMD}
+M.~Costabel et M.~Dauge,
+\newblock{\em Weighted regularization of Maxwell equations in polyhedral domains.}
+\newblock Numer. Math., 93 (2002), pp. 239-277.
+\bibitem{JPC}
+J.P.~Coyette,
+\newblock{\em Manuel th\'eorique ACTRAN.}
+\newblock Free Field Technologies, Louvain-la-Neuve, Belgique, 2001.
+\bibitem{JPCBVDN}
+J.P.~Coyette et B. Van den~Nieuwenhof,
+\newblock{\em A conjugate infinite element method for half-space acoustic problems.}
+\newblock The J. of Acoustical American Society, 108 (2000), pp. 1464-1473.
+\bibitem{JPCBVDNBVDN}
+J.P.~Coyette et B. Van den~Nieuwenhof,
+\newblock{\em Treatment of frequency-dependent admittance boundary conditions in transient acoustic finite/infinite element models.}
+\newblock The J. of Acoustical American Society, 110 (2001), pp. 1743-1751.
+\bibitem{DGC}
+D.G.~Crighton,
+\newblock{\em Basic principles of aerodynamic noise generation.}
+\newblock Progress in Aerospace Sciences, 16 (1975), pp. 31-96.
+\bibitem{NC}
+N.~Curle,
+\newblock{\em The influence of solid boundaries upon aerodynamic sound.}
+\newblock Proceedings of the royal society of London, 231 (1955), pp. 505-514.
+\bibitem{IDRWE}
+I.~Danda Roy et W.~Eversman,
+\newblock{\em Improved finite element modeling of the turbofan engine inlet radiation problem.}
+\newblock J. Vib. Acoust., 117 (1995), pp. 109-115.
+\bibitem{LD}
+L.~Dahi,
+\newblock{\em Guidage et diffraction d'ondes acoustiques : \'etude math\'ematique et analyse num\'erique.}
+\newblock Th\`ese de doctorat de l'universit\'e Paris 6, Paris, 2001.
+\bibitem{ADIT}
+A.~Delnevo et I.~Terrasse,
+\newblock{\em Manuel th\'eorique ACTI3S, Justifications Th\'eoriques.}
+\newblock Technical report, Rapport interne Aerospatiale Matra-CCR, 2000. 
+\bibitem{WEDO}
+W.~Eversman et D.~Okunbor,
+\newblock{\em Aft fan duct acoustic radiation.}
+\newblock J. of Sound and Vibrations. 1997.
+\bibitem{REWS}
+R.~Ewert et W.~Schröder, 
+\newblock{\em Acoustic perturbation equations based on flow decomposition via source filtering.}
+\newblock J. Computat. Physics, 188 (2003), pp. 365-398.
+\bibitem{MR}
+B.~Mercier et G.~Raugel,
+\newblock{\em R\'esolution d'un probl\`eme aux limites dans un ouvert axisym\'etrique par \'el\'ements finis en (r,z) et s\'erie de Fourier en $\theta$.}
+\newblock R.A.I.R.O Analyse num\'erique, 16 (1982), pp. 405-461.
+\bibitem{VGPAR}
+V.~Girault et P.-A.~Raviart, 
+\newblock{\em Finite element methods for Navier-Stokes equations, theory and algorithms.}
+\newblock vol. 5 of Springer Series in computational mathematics, Springer-Verlag, Berlin, Germany, 1986.
+\bibitem{NG}
+N.~Gmati,
+\newblock{\em Guidage et diffraction d'ondes en milieu non born\'e.}
+\newblock Ph.D. thesis, Universit\'e Pierre et Marie Curie, Paris, 1992.
+\bibitem{PG}
+P.~Grisvard,
+\newblock{\em Elliptic problems in nonsmooth domains.}
+\newblock vol. 24 of Monographs and studies in mathematics, Pitman, London, 1985.
+\bibitem{MSH}
+M.S.~Howe,
+\newblock{\em Theory of vortex sound.}
+\newblock Cambridge texts in applied mathematics, Cambridge university press, 2003.
+\bibitem{TK}
+T.~Kato,
+\newblock{\em Perturbation theory for linear operators.}
+\newblock Springer-Verlag, New-York, NY, USA, 1976. 
+\bibitem{LK}
+Lord~Kelvin,
+\newblock{\em On vortex motion.}
+\newblock Transactions of the royal society of Edinburgh. 25 (1867), pp. 217-260.
+\bibitem{GL}
+G.~Legendre,
+\newblock{\em Rayonnement acoustique dans un fluide en \'ecoulement : analyse math\'ematique et num\'erique de l'\'equation de Galbrun.}
+\newblock Th\`ese de doctorat, Universit\'e Pierre et Marie Curie, Paris, France, 2003.
+\bibitem{VL}
+V.~Levillain,
+\newblock{\em Couplage \'el\'ements finis-\'equations int\'egrales pour la r\'esolution des \'equations de Maxwell en milieu h\'et\'erog\`ene.}
+\newblock Th\`ese de l'\'ecole polytechnique, France, 1991.
+\bibitem{SLHBSTADMR}
+S.~Lidoine, H.~Batard, S.~Troyes, A.~Delnevo et M.~Roger,
+\newblock{\em Acoustic radiation modelling of aeroengine intake, comparaison between analytical and numerical methods.}
+\newblock $7^{th}$ AIAA/CEAS Aeroacoustics conference, paper 2001-2140.
+\bibitem{MJL}
+M.J.~Lighthill,
+\newblock{\em On sound generated aerodynamically. Part one : general theory.}
+\newblock Proceedings of the royal society of London, 211 (1952), pp. 564-587.
+\bibitem{JLLEM}
+J.L.~Lions et E.~Magenes,
+\newblock{\em Probl\`emes aux limites non homog\`enes et applications.}
+\newblock Dunod, 1968, Paris.
+\bibitem{FMFD}
+F.~Mar\'echal et F.~Dubois,
+\newblock{\em Manuel th\'eorique A3DF. Diff\'erences finies pour la propagation acoustique en pr\'esence d'un \'ecoulement stationnaire uniforme.}
+\newblock Technical report, EADS-CCR, Juillet 2000.
+\bibitem{HJPMRO}
+H. J.-P.~Morand et R.~Ohayon,
+\newblock{\em Interactions fluides-structures.}
+\newblock Recherches en math\'ematiques appliqu\'ees , vol. 23, Masson, Paris, France, 1992.
+\bibitem{MKM}
+M.K.~Myers,
+\newblock{\em On the acoustic boundary condition in the presence of flow.}
+\newblock J. Sound Vibration, 71 (1980), pp. 429-434.
+\bibitem{FM}
+F.~Murat,
+\newblock{\em L'injection du c\^one positif de $H^{-1}$ dans $W^{-1,q}$ est compact pour tout $q<2$.}
+\newblock J. Math. Pures Appl., 60 (1981), pp. 309-322.
+\bibitem{JCN}
+J.-C.~N\'ed\'elec,
+\newblock{\em Ondes electromagn\'etiques et acoustiques.}
+\newblock Cours de D.E.A, Universit\'e Paris 6, 1993.
+\bibitem{JCNJCN}
+J.-C.~N\'ed\'elec,
+\newblock{\em Mixed finite elements in $\mathbb{R}^3$.}
+\newblock Numer. Math., 35 (1980), pp. 315-341.
+\bibitem{JN}
+J.~Ne$\check{c}$as,
+\newblock{\em Compacit\'e par entropie et ecoulements de fluides.}
+\newblock Notes de cours de Universit\'e Charles Pragues-E.N.S Paris, Masson, Paris, 1989. 
+\bibitem{VP}
+V.~Pagneux,
+\newblock{\em Propagation acoustique dans les guides \`a section variables et effets d'\'ecoulement.}
+\newblock Th\`ese de doctorat, Universit\'e du Maine, France, 1996.
+\bibitem{AVPWE}
+A.V.~Parrett et W.~Eversman,
+\newblock{\em Wave envelope and finite element approximation for turbofan noise radiation in flight.}
+\newblock AIAA J., 24 (1986), pp. 753-760. 
+\bibitem{JP}
+J.~Perriaux,
+\newblock{\em Three dimensional analysis of compressible potential flows with the FEM.}
+\newblock Method. Int. Jour. for Num. Math. in Engrg., 9 (1975).
+\bibitem{CPGE}
+C.~Peyret et G.~Elias,
+\newblock{\em Finite-element method to study harmonic aeroacoustics problems.}
+\newblock J. Acoust. Soc. Amer., 110 (2001), pp. 661-668.
+\bibitem{BP}
+B.~Poir\'ee,
+\newblock{\em Les \'equations de l'acoustique lin\'eaire et non lin\'eaire dans un \'ecoulement de fluide parfait.}
+\newblock Acustica, 57 (1985), pp. 5-25.
+\bibitem{PARJMT}
+P.-A.~Raviart et J.-M.~Thomas,
+\newblock{\em A mixed finite element method for second order elliptic problems.}
+\newblock Springer-Verlag, Berlin, Germany, 1977.
+\bibitem{FR}
+F.~Rellich,
+\newblock{\em Über das asymptotische Verhalten der lösungen von $\Delta u+\lambda u=0$ in unendlichen Gebieten.}
+\newblock Jahresber. Deutsch. Math. Verein., 53 (1943), pp. 57-65.
+\bibitem{GS}
+G.~Sylvand,
+\newblock{\em La méthode multipôle rapide en électromagnétisme : Performances, parallélisation, applications.}
+\newblock Thèse de doctorat, Université de Nice-Sophia Antipolis, Juin 2002.
+\bibitem{CKWT}
+C.K.W.~Tam,
+\newblock{\em Computational aeroacoustics : issues and methods.}
+\newblock AIAA J.,  33 (1995), pp. 1788-1796.
+\bibitem{CKWTCKWT}
+C.K.W.~Tam,
+\newblock{\em Advances in numerical boundary conditions for computational aeroacoustics.}
+\newblock J. Comput. Phys., 144 (1998), pp. 213-234.
+\bibitem{CKWTJCW}
+C.K.W.~Tam et J.C.~Webb,
+\newblock{\em Dispersion-relation-preserving finite difference schemes for computational acoustics.}
+\newblock J. Comput. Phys., 107 (1993), pp. 262-281.
+\bibitem{ITAT}
+I.~Terrasse et A.~Tillequin,
+\newblock {\em ELFI2R 3.1. Rapport sur la prise en compte des mat\'eriaux anisotropes.}
+\newblock Technical report, EADS-CCR, Janvier 2003.
+\bibitem{AT}
+A.~Tillequin,
+\newblock{\em Une m\'ethode de raccordement modal g\'en\'eralis\'ee pour les probl\`emes de jonction de guides d'ondes.}
+\newblock Rapport de recherche 345, ENSTA, Paris, France, 2001.
+\bibitem{JEFWDLH}
+J.E.~Ffowcs Williams et D.L. Hawkings,
+\newblock{\em Sound generation by turbulence and surfaces in arbitrary motion.}
+\newblock Philosophical transactions of the royal society of London, 264 (1969), pp. 321-342.
+\bibitem{KSY}
+K.S.~Yee,
+\newblock{\em Numerical Solution of Initial Boundary Value Problems in Isotropic Media.}
+\newblock IEEE Trans. Antennas Propagation, 1966.
+\end{thebibliography}
+%\newpage
+%\appendix
+%\input{OperateursSurfaciques}
+%\input{Sobolev}
+%\input{ElementsFinisRappel}
+%\include{RoutineVol}
+\end{document}

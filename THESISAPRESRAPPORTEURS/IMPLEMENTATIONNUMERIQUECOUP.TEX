@@ -1,0 +1,178 @@
+\subsection{Equations int\'egrales avec \'ecoulement}\label{implementationnumeriquecouplageintegralsubsection1}
+\noindent Les domaines consid\'er\'es ici sont les domaines transverses bidimensionnels. On se place ici dans l'espace physique et les variables physiques désignent les variables classiques.
+\newline L'application de la transform\'ee de Lorentz dans $\Omega$ complique l'\'equation aux d\'eriv\'ees partielles volumique (\ref{lorentztoutpartoutpartoupartou2r}), tandis qu'elle simplifie les op\'erateurs int\'egraux (\ref{retourauondeaxisymetrique2r}) en annulant l'\'ecoulement dans $\Omega_e$ (noyau de Green classique de l'\'equation de Helmholtz).
+\newline On d\'ecrit ici une m\'ethodologie permettant de garder le problème volumique physique initial simple, tout en couplant le probl\`eme \`a l'infini avec les classiques op\'erateurs int\'egraux de l'\'equation de Helmholtz.
+\subsubsection{Transformation de la d\'eriv\'ee conormale de bord du potentiel}\label{implementationnumeriquecouplageintegralsubsectionsub1}
+\noindent Soit $ \dsp \sigma\in I\rightarrow \left(r\left(\sigma\right),z\left(\sigma\right)\right)\in\Gamma_\infty $ un param\'etrage normal orient\'e comme celui du paragraphe (\ref{equationintegralesectionsub101}). La variable $\sigma$ d\'esigne une abscisse curviligne et le vecteur tangent normalis\'e $ \dsp \ovra{\tau}=\left( \dsp \frac{ \dsp \ud r(\sigma)}{ \dsp \ud \sigma}, \dsp \frac{ \dsp \ud z(\sigma)}{ \dsp \ud \sigma} \dsp \right)$ est tel que $\ovra{n}=\ovra{e}_\theta\wedge\ovra{\tau}$ soit sortant \`a $\Omega$ (param\'etrage orient\'e de bas en haut par rapport \`a l'orientation positive des $z$). La composition de ce param\'etrage par la transform\'ee de Lorentz : $ \dsp \sigma\in I\rightarrow \left(r\left(\sigma\right), \dsp \frac{ \dsp z\left(\sigma\right)}{ \dsp \sqrt{1-M_\infty^2}} \dsp \right)\in \dsp \Gamma_\infty'$ donne un param\'etrage de la surface g\'eom\'etriquement dilat\'ee par Lorentz. Mais ce param\'etrage n'est plus normal. Il garde la m\^eme orientation, mais le vecteur tangent doit \^etre renorm\'e. La nouvelle normale \`{a} $\Gamma_\infty'$ s'exprime en fonction de l'ancienne normale :
+\BEQ{nouvellenormale}
+\begin{array}{c}
+\dsp \ovra{\tau'}=\left(\begin{array}{c} \tau'_{r'}\\ \tau'_{z'}\end{array}\right)= \dsp \frac{1}{ \dsp \sqrt{ \dsp 1-M_\infty^2\tau_r^2}}\left(\begin{array}{c}  \dsp \sqrt{ \dsp 1-M_\infty^2}\tau_r \\ \tau_{z}\end{array}\right) \\
+\dsp \overrightarrow{n'}=\left(\begin{array}{c} n'_{r'}\\n'_{z'}\end{array}\right)=\frac{1}{ \dsp \sqrt{ \dsp 1-M_\infty^2 n_z^2}}\left(\begin{array}{c} n_r\\ n_z  \dsp \sqrt{ \dsp 1-M_\infty^2}\\ \end{array}\right) \\
+\end{array}
+\EEQ
+Appliquons maintenant la transformation de Lorentz \`{a} l'int\'{e}grale de bord apparaissant sur $\Gamma_\infty$, l\`a o\`u l'\'ecoulement est uniforme.
+Les deux \'etapes de la transformation de Lorentz (\ref{lorentzfrequent}) et (\ref{nouvelleinconnue}) s'\'ecrivent :
+\begin{displaymath}
+\begin{array}{l}
+\dsp I=\int_{\Gamma_\infty}\left[\frac{\partial\phi_a}{\partial n}\left(r,z\right)-\left(-ik_\infty\phi_a\left(r,z\right)+\overrightarrow{M_\infty}.[\ovra{\nabla}\phi_a]\left(r,z\right)\right)\overrightarrow{M_\infty}.\overrightarrow{n}\right]\overline{\psi}\left(r,z\right)\ r {\rm d}r{\rm d}z \\
+\end{array}
+\end{displaymath}
+Le th\'eor\`eme de changement de variable appliqu\'e \`a la dilatation g\'eom\'etrique de la transformation de Lorentz $L :\Gamma_\infty\rightarrow L\left(\Gamma_\infty\right)=\Gamma_\infty'$ donne :
+\begin{displaymath}
+\begin{array}{c}
+\dsp I=\int_{\Gamma_\infty'}[\frac{\partial\phi_a}{\partial n}\left(r',\sqrt{1-M_\infty^2}z'\right)-\left(-ik_\infty\phi_a\left(r',\sqrt{1-M_\infty^2}z'\right)\right.\\
+\dsp\left.\left. +\overrightarrow{M_\infty}.[\ovra{\nabla}\phi_a]\left(r',\sqrt{1-M_\infty^2}z'\right)\right)\overrightarrow{M_\infty}.\overrightarrow{n}\right)]\overline{\psi}\left(r',\sqrt{1-M_\infty^2}z'\right)\ r' \vert Jac\left(L^{-1}\right)\left(r',z'\right)\vert {\rm d}r'{\rm d}z' \\
+\end{array}
+\end{displaymath}
+Il vient :
+\begin{displaymath}
+\begin{array}{c}
+\dsp \frac{I}{\sqrt{1-M_\infty^2}}= \\
+\dsp \int_{\Gamma_\infty'}\left[\ovra{\nabla}\left(\phi_a\right)oL^{-1} . \ovra{n}o L^{-1}-\left(-ik_\infty\widetilde{\phi_a}+\overrightarrow{M_\infty}.\left[\ovra{\nabla}\phi_a\right]o L^{-1}\right)\overrightarrow{M_\infty}.\overrightarrow{n}oL^{-1}\right]\overline{\widetilde{\psi}}r'{\rm d}r'{\rm d}z' ,
+\end{array}
+\end{displaymath}
+o\`u l'on a pos\'e $\widetilde{\phi_a}=\phi_a o L^{-1}$. La d\'erivation des fonctions compos\'ees donne les \'egalit\'es :
+\begin{displaymath}
+\left\lbrace \begin{array}{c}
+\dsp <[\ovra{\nabla} \phi_a]oL^{-1},\ovra{n}oL^{-1}>=<\widetilde{\ovra{\nabla}}\widetilde{\phi_a},\left(\begin{array}{c}
+\dsp     n_roL^{-1}      \\
+\dsp \frac{n_zoL^{-1}}{\sqrt{1-M_\infty^2}}   \\
+\end{array}\right)>\\
+\dsp \dsp
+<\ovra{M_\infty},[\ovra{\nabla} \phi_a]o L^{-1}>=<\widetilde{\ovra{\nabla}}\widetilde{\phi_a},\left(
+\begin{array}{c}
+              0              \\
+            -\frac{M_\infty}{\sqrt{1-M_\infty^2}}         \\
+\end{array}\right)> \\
+\dsp
+<\ovra{M_\infty},\ovra{n}o L^{-1}>=\left(
+\begin{array}{c}
+              0              \\
+-M_\infty n_z o L^{-1}          \\
+\end{array}\right)\\
+\end{array}
+\right.
+\end{displaymath}
+Finalement, la d\'eriv\'ee conormale de bord s'\'ecrit dans l'espace de Lorentz :
+\begin{displaymath}
+\begin{array}{c}
+\dsp \frac{\widetilde{\partial} \widetilde{\phi_a}}{\widetilde{\partial}r'}.n_roL^{-1}+\left(\frac{1}{\sqrt{1-M_\infty^2}}\frac{\widetilde{\partial}\widetilde{\phi_a}}{\widetilde{\partial}z'}-[ik_\infty \widetilde{\phi_a}+\frac{M_\infty}{\sqrt{1-M_\infty^2}}\frac{\widetilde{\partial}\widetilde{\phi}}{\widetilde{\partial}z'}]M_\infty\right) n_z o L^{-1} \\
+\dsp\left. =\left[\frac{\widetilde{\partial} \widetilde{\phi_a}'}{\widetilde{\partial}r'}.n_roL^{-1}+\sqrt{1-M_\infty^2}n_z o L^{-1}\frac{\widetilde{\partial} \widetilde{\phi_a}'}{\widetilde{\partial}z'}\right]e^{\frac{ik_\infty M_\infty z'}{\sqrt{1-M_\infty^2}}}\right. ,
+\end{array}
+\end{displaymath}
+o\`u $\widetilde{\phi_a}'=\widetilde{\phi_a}e^{\frac{-ik_\infty
+M_\infty}{\sqrt{1-M_\infty^2}}z'}$ est le potentiel acoustique transform\'e (\ref{nouvelleinconnue}) dans l'espace de Lorentz. 
+\begin{displaymath}
+I=\sqrt{1-M_\infty^2}\int_{\Gamma_\infty'}\left[\frac{\widetilde{\partial} \widetilde{\phi_a}'}{\widetilde{\partial}r'}.n_roL^{-1}+\sqrt{1-M_\infty^2}n_z o L^{-1}\frac{\widetilde{\partial} \widetilde{\phi_a}'}{\widetilde{\partial}z'}\right]\overline{\widetilde{\psi}'}r'{\rm d}r'{\rm d}z'
+\end{displaymath}
+L'expression de la normale dans l'espace dilat\'e (\ref{nouvellenormale}) donne l'int\'egrale de bord dans l'espace de Lorentz :
+\BEQ{transformationintegraledebord}
+\begin{array}{c}
+\dsp \int_{\Gamma_\infty}\left[\frac{\partial\phi_a}{\partial n}-\left(-ik_\infty\phi_a+\overrightarrow{M_\infty}.\ovra{\nabla}\phi_a\right)\overrightarrow{M_\infty}.\overrightarrow{n}\right]\overline{\psi}\ r{\rm d}r{\rm d}z \\
+\dsp = \\
+\dsp \sqrt{1-M_\infty^2}\int_{\Gamma'_\infty}\sqrt{1-M_\infty^2 \widetilde{n}_z^2}\ \widetilde{\ovra{\nabla}}\widetilde{\phi_a}'.\ovra{n'} \overline{\widetilde{\psi}'}\ \ {\rm d}\gamma \\
+\end{array},
+\EEQ
+o\`u $\widetilde{\phi_a}'$, le potentiel acoustique transform\'e, v\'erifie l'\'equation de Helmholtz au-del\`a de $\Gamma_\infty '$. 
+\subsubsection{Couplage int\'egral avec \'ecoulement}\label{implementationnumeriquecouplageintegralsubsectionsub3}
+\noindent En absence d'\'ecoulement, la formulation sym\'etrique (\ref{formulationSscalaire}) couple la pression volumique int\'erieure ($ \dsp P^1$ par \'el\'ement volumique int\'erieur) \`a la vitesse normale surfacique ext\'erieure ($P^0$ par \'el\'ement surfacique ext\'erieur) :
+\begin{displaymath}
+(S)\displaystyle 
+\left\lbrace
+\begin{array}{l}
+\dsp \text{ Trouver }(p,\phi='v.n')\in H^1(\Omega)\times H^{-1/2}(\Gamma) \text{ tel que }\\
+\dsp \int_\Omega\Big[\ovra{\nabla}  p.\overline{\ovra{\nabla}  p^t}-k^2\ p \overline{p^t} \Big]=\frac{ik}{2}\int_\Gamma \phi\ \overline{p^t}-ik\int_\Gamma D^*\phi \ \overline{p^t}+\int_\Gamma N p\ \overline{p^t}\\
+\dsp \frac{1}{2}\int_\Gamma p\ \overline{\phi^t}-\int_\Gamma Dp.\ \overline{\phi^t}+ik\int_\Gamma S\phi.\overline{\phi^t}=0 \\
+\dsp \forall (p^t,\phi^t)\in H^1(\Omega)\times H^{1/2}(\Gamma)\\
+\end{array}
+\right.,
+\end{displaymath}
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=couplageess.eps,height=3.5cm,width=13.cm}
+\smallskip
+\end{center}
+La transformation de Lorentz transforme les quantités physiques suivantes :
+$$
+\left\lbrace
+\begin{array}{ccc}
+\dsp \frac{\partial\phi_a}{\partial n_{A_{0}}}=\frac{\partial\phi_a}{\partial n}-\left(-ik_\infty\phi_a+\overrightarrow{M_\infty}.\nabla\phi_a\right)\overrightarrow{M_\infty}.\overrightarrow{n} & \xrightarrow[]{Lorentz} & \widetilde{\nabla}\widetilde{\phi_a}'.n'\\\dsp \phi_a & \xrightarrow[]{Lorentz} & \widetilde{\phi_a}' \\
+\end{array}
+\right.,
+$$ o\`u le potentiel acoustique transform\'e $ \dsp \widetilde{\phi_a}'$ v\'{e}rifie l'\'{e}quation de Helmholtz dans le domaine $ \dsp \Omega_e'$ pour le nombre d'ondes d\'{e}phas\'{e} Doppler $k'_\infty$.
+ On couple le potentiel acoustique volumique int\'erieur $\phi_a$ ($ \dsp P^1$ par \'el\'ement int\'erieur) \`a la d\'eriv\'ee normale elliptique surfacique ext\'erieure $ \dsp \frac{\partial\phi_a}{\partial n_{A_{0}}}$ ($ \dsp P^0$ par \'el\'ement ext\'erieur) de telle sorte que, $ \dsp \widetilde{\phi_a}'$ et $ \dsp \widetilde{\nabla}\widetilde{\phi_a}'.n'$ soient coupl\'es {\it{via}} la formulation sym\'etrique $S$ dans l'espace de Lorentz :
+\BEQ{formvaraxiespacetransformeS}
+\left\{
+\begin{array}{l}
+\dsp \text{  Trouver  } \left(\phi_a,\widetilde{\lambda}'\right)\in H^1\left(\Omega\right)\times H^{-\frac{1}{2}}\left(\Gamma'_\infty\right)  \text{ tel que : }\\
+\dsp \int_\Omega
+\rho_0\ovra{\nabla}\phi_a\ovra{\nabla}\overline{\psi}-\int_\Omega\rho_0 k_0^2\phi_a\overline{\psi}\
++i\int_{\Omega}\rho_0 k_0\left(\ovra{M_0}.\ovra{\nabla}\overline{\psi}\
+\phi_a -\ovra{M_0}.\ovra{\nabla}\phi_a\ \overline{\psi}\right) \ \\
+\dsp-\int_{\Omega}\rho_0 \ovra{M_0}.\ovra{\nabla}\phi_a\
+\ovra{M_0}.\ovra{\nabla}\overline{\psi}\ -\frac{\sqrt{1-M_\infty^2}}{2}\int_{\Gamma'_\infty} \sqrt{1-M_\infty^2 \widetilde{n}_z^2}\widetilde{\lambda}' \overline{\widetilde{\psi}'} \ \ {\rm d}\gamma\\
+\dsp -\sqrt{1-M_\infty^2}\left(-\int_{\Gamma'_\infty}\sqrt{1-M_\infty^2 \widetilde{n}_z^2}\widetilde{D}^*\left(\widetilde{\lambda}'\right)\overline{\widetilde{\psi}'}+\int_{\Gamma'_\infty}\sqrt{1-M_\infty^2 \widetilde{n}_z^2} \widetilde{N}\left(\widetilde{\phi}_a'\right)\overline{\widetilde{\psi}'} \right) = 0\\
+\dsp \sqrt{1-M_\infty^2}\int_{\Gamma'_\infty}\sqrt{1-M_\infty^2 \widetilde{n}_z^2} \widetilde{D}\left(\widetilde{\phi}'_a\right) \overline{\widetilde{\lambda}'^t}-\frac{\sqrt{1-M_\infty^2}}{2}\int_{\Gamma'_\infty}\sqrt{1-M_\infty^2 \widetilde{n}_z^2} \widetilde{\phi}'_a\ \overline{\widetilde{\lambda}'^t}\\
+\dsp -\sqrt{1-M_\infty^2}\int_{\Gamma'_\infty}\sqrt{1-M_\infty^2 \widetilde{n}_z^2} \widetilde{S}\left(\widetilde{\lambda}'\right)\ \overline{\widetilde{\lambda}'^t}=0\\
+\dsp  \forall \left(\psi,\widetilde{\lambda}'^t\right) \in H^1\left(\Omega\right)\times  H^{-\frac{1}{2}}\left(\Gamma'_\infty\right)\\
+\end{array}
+\right.,
+\EEQ
+o\`u les op\'erateurs int\'egraux $S$, $D$, $D^*$ et $N$ sont d\'efinis au paragraphe (\ref{equationintegralesubsectionsub92}) par (\ref{definitiondesoperateursintegraux}). Ils sont index\'es par un tilda car ils vivent dans l'espace transform\'e pour un nombre d'ondes d\'ephas\'e Doppler. Les valeurs dans l'espace de Lorentz des variables transform\'ees aux degr\'es de libert\'e des fonctions de base pour le sommet $\widetilde{s}$ et l'ar\^ete $\widetilde{a}$ s'expriment en fonction des degr\'es de libert\'e des vraies variables physiques :
+\begin{displaymath}
+\left\{
+\begin{array}{l}
+\dsp \left[\widetilde{\phi_a}'\right]_{\widetilde{s}}=e^{-ik_\infty'M_\infty z'} \left[\phi_a\right]_s=\widetilde{\Theta}_{\widetilde{s}}\left[\phi_a\right]_s\\
+\dsp \left[\widetilde{\nabla}\widetilde{\phi_a}'.n'\right]_{\widetilde{a}}=\frac{\int_{\widetilde{a}}e^{-ik_\infty'M_\infty z'}}{\vert \widetilde{a}\vert}\left[\frac{\partial\phi_a}{\partial n_{A_{0}}}\right]_a =\widetilde{\Theta}_{\widetilde{a}}\left[\frac{\partial\phi_a}{\partial n_{A_{0}}}\right]_a \\
+\end{array}
+\right. ,
+\end{displaymath}
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=couplageessecoul.eps,height=4.cm,width=13.cm}
+\smallskip
+\end{center}
+Il suit la formulation variationnelle discr\`ete globale du probl\`eme acoustique dans l'espace physique :
+\BEQ{fortionnellecompletementfinalavecmodedansespacephysiquediscretisee}
+\left(
+\begin{array}{ccc}
+ A_{0m} - \overline{^t\widetilde{\Theta_{\widetilde{s}}}}\widetilde{N}\widetilde{\Theta_{\widetilde{s}}}   &  A_{0m}X_{mn}    &   \overline{^t\widetilde{\Theta_{\widetilde{s}}}} (-\frac{\widetilde{I}}{2}+\widetilde{D}^*)\widetilde{\Theta_{\widetilde{a}}}              \\
+ \overline{X_{mn'}^t}A_{0m} &  \overline{X_{mn'}^t}A_{0m}X_{mn} -\left[\mu^-_{mn}\right]   & 0  \\
+ \overline{^t\widetilde{\Theta_{\widetilde{a}}}}(-\frac{\widetilde{I}}{2}+\widetilde{D})\widetilde{\Theta_{\widetilde{s}}}  & 0 &   -\overline{^t\widetilde{\Theta_{\widetilde{a}}}} \widetilde{S}\widetilde{\Theta_{\widetilde{a}}} \\
+\end{array}
+\right)
+\EEQ
+\begin{displaymath}
+\times\left(
+\begin{array}{c}
+\phi_a(s)\\
+a^-_{mn} \\
+\frac{\partial \phi_a}{\partial n_{A_{0m}}}(a)\\
+\end{array}
+\right)=
+\left(
+\begin{array}{c}
+A_{0m}X_{mn'}\left(a^+_{mn}\right)   \\
+\left(-\overline{X_{mn'}^t}A_{0m}X_{mn'}+\left[\mu^+_m\right]\right)\left(a^+_{mn}\right) \\
+0 \\
+\end{array}
+\right),
+\end{displaymath}
+o\`u l'on a not\'e :
+\begin{displaymath}
+\begin{array}{ccc}
+\dsp  \phi_a(s)  & : &   \text{ Potentiel Acoustique par Sommet du Maillage}    \\
+\dsp   a^-_{mn}  & : &  \text{ Coefficients Modaux R\'efl\'echis}     \\
+\dsp \frac{\partial \phi_a}{\partial n_{A_{0m}}}(a) & : & \text{ D\'eriv\'ee Elliptique par Ar\^ete} \\
+\end{array}
+\end{displaymath}
+%% \begin{remark}
+%% {\rm \text{\newline} \\
+%% Les op\'erateurs int\'egraux sont pond\'er\'es par la fonction variable $\sqrt{1-M_\infty^2 \widetilde{n}_z^2}$. N\'eanmoins, la formulation variationnelle de l'op\'erateur singulier (\ref{formuvaropsingetdesbrouettes}) est toujours valable : les op\'erateurs int\'egraux du probl\`eme discret sont assembl\'es sur le profil discr\'etis\'e de $\Gamma_\infty'$ et cette fonction est alors constante par \'el\'ement.
+%% }
+%% \end{remark}
+\subsection{Détails de l'implémentation num\'erique}\label{acoustiquenumerqieu}
+\noindent Ce paragraphe d\'etaille la m\'ethodologie pratique d'impl\'ementation du logiciel PA2R, dont la th\'eorie et la discr\'etisation ont \'et\'e expos\'ees aux paragraphes pr\'ec\'edents.
+\newline Chacune des matrices de la formulation (\ref{fortionnellecompletementfinalavecmodedansespacephysiquediscretisee}) est assembl\'ee s\'epar\'ement. Ceci est r\'ealis\'e par une s\'eparation du maillage volumique global (obtenu par le logiciel commercial IDEAS) ayant servi au calcul de l'\'ecoulement en trois maillages s\'epar\'es distincts : le maillage modal, le maillage volumique et le maillage int\'egral. Chaque maillage a ses degr\'es de libert\'e propre et sa propre num\'erotation.
+\newline La condition de Dirichlet nulle sur l'axe est r\'ealis\'ee en annulant les lignes et les colonnes des degr\'es de libert\'e correspondants.
+\newline L'inversion de la matrice totale (\ref{fortionnellecompletementfinalavecmodedansespacephysiquediscretisee}) est r\'ealis\'ee par un compl\'ement de Schur. La premi\`ere \'etape du compl\'ement de Schur consiste en l'inversion de la matrice strictement volumique creuse $A_{0m}$ (ce qui permet l'utilisation du solveur creux parall\`ele MUMPS d\'evelopp\'e au CERFACS). Cette premi\`ere \'etape correspond en terme d'\'equations aux d\'eriv\'ees partielles \`a un probl\`eme de Dirichlet pur (les degr\'es de libert\'e modaux et int\'egraux sont mis \`a z\'ero) pour l'op\'erateur volumique compact. Ce probl\`eme est bien pos\'e sauf pour un nombre d\'enombrable de fréquence sans points d'accumulation. L'interpr\'etation des \'etapes ult\'erieures en terme d'\'equations aux d\'eriv\'ees partielles n'a pas encore \'et\'e mise \`a jour. Le caractère bien posé du probl\`eme est un sujet ouvert. 
+\newline L'assemblage de chaque matrice est parall\`elis\'e {\it{via}} le logiciel d'alg\`ebre lin\'eaire parall\`ele MPF d\'evelopp\'e \`a EADS-CCR. Les donn\'ees de l'\'ecoulement porteur provenant du solveur fluide sont vues par tous les processeurs. Le post-traitement des donn\'ees acoustiques (obtention de la pression acoustique, de l'intensit\'e en d\'ecibels sur le maillage et des diagrammes de rayonnement) se fait apr\`es rapatriement des donn\'ees acoustiques {\it{ via}} l'utilisation d'ex\'ecutables annexes.
+\newline

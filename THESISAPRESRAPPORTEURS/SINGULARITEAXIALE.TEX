@@ -1,0 +1,178 @@
+\chapter[Résultats num\'eriques]{Résultats num\'eriques}\label{partnumerique}
+\noindent Ce chapitre présente les résultats numériques issus du code développé PA2R.
+\newline Les deux premiers paragraphes proposent des alternatives théoriques et numériques à la méthodologie actuelle du code PA2R :
+\begin{itemize}
+\item Un élément fini naturel conforme dans les espaces de Sobolev axisymétriques à poids propose une alternative aux éléments finis classiques utilisés pour la propagation acoustique volumique.
+\item Une condition rayonnante approchée de type Robin est proposée comme une alternative aux conditions intégrales complexes.
+\end{itemize}
+Les paragraphes suivants présentent la démarche de validation et étudient les résultats produits :
+\begin{itemize}
+\item Les cas-tests analytiques de validation des différents modules du code PA2R sont détaillés.
+\item Le code PA2R est ensuite validé comparativement au code ACTI3S sur une même géométrie.
+\item Les résultats originaux sont finalement commentés.
+\end{itemize}
+\section{Singularit\'e axiale}\label{singulariteaxialesection1}
+\subsection{Probl\'ematique}\label{singulariteaxialesectionsub1}
+\noindent Les domaines consid\'er\'es ici sont les domaines transverses bidimensionnels. 
+\newline
+La formulation variationnelle (\ref{formulationSscalaireaxi}) est \'etablie dans des espaces de Sobolev axisym\'etriques transverses \`a poids (\ref{definitionH1axiazimutal}). L'utilisation d'\'el\'ements finis classiques $H^1$-conformes continus est {\it{a priori}} impossible pour les modes azimutaux $m$ non nuls \`a cause du terme singulier sur l'axe $m^2\dsp \int_{\Omega}\frac{p_m\overline{p^t_m}}{r} \ {\rm d}r{\rm d}z$.
+ \newline \\ \\ \\ \\ \\ \\
+Plusieurs alternatives se présentent pour évincer cette singularité :
+\begin{itemize}
+\item Pour le cas de l'\'equation de Helmholtz homog\`ene, une premi\`ere m\'ethode consiste \`a utiliser une formulation analogue \`a la formulation $(C)$ (\ref{formulationC}), mais n'utilisant que des op\'erateurs diff\'erentiels d'ordre 1.
+\newline  Les int\'egrales axisym\'etriques volumiques ne sont alors plus singuli\`eres :
+\BEQ{nouvelleformuaxipremierordressanssingu}
+\displaystyle
+\left\lbrace
+\begin{array}{l}
+\dsp \frac{ik}{2}\left[-\int_\Omega \ovra{\overrightarrow{\nabla}} p \overline{\ovra{v}^t}+\int_\Omega \overline{p{\rm div}\ovra{v}^t}\right]-k^2\int_\Omega \ovra{v}\overline{\ovra{v}^t}\\
+\dsp =-ik\int_\Gamma D^*(\ovra{v}.\ovra{n})\overline{p^t}+\int_\Gamma Np.\overline{p^t}, \\
+\\
+\dsp \frac{ik}{2}\left[-\int_\Omega{\rm div}\ovra{v}\overline{p^t}+\int_\Omega\ovra{v}\overline{\ovra{\overrightarrow{\nabla}} p^t}\right]   
+-\int_\Omega k^2 \ovra{v}.\overline{\ovra{v^t}}\\ 
+\dsp =ik\int_\Gamma Dp \ovra{v^t}.\ovra{n}-\int_\Gamma k^2 S(\ovra{v}.\ovra{n})\ovra{v^t}.\ovra{n}, \\
+\forall (p^t,\ovra{v^t})\in H^1(\Omega)\times H^{\rm div}(\Omega) \\
+\end{array}
+\right.
+\EEQ
+Cette m\'ethode est impossible \`a r\'ealiser en pr\'esence d'un \'ecoulement variable sans faire appara\^itre des d\'eriv\'ees de l'\'ecoulement porteur.
+\newline Elle fait, de plus, appara\^itre une inconnue vectorielle volumique non naturelle : elle est num\'eriquement couteuse.
+\item Une deuxi\`eme approche consiste en l'utilisation d'\'el\'ements finis classiques continus $H^1$-conformes, $P^1$ par \'el\'ements, auxquels une condition de Dirichlet num\'erique nulle sur l'axe est impos\'ee.
+\newline La connaissance {\it{a posteriori}} du comportement de la solution au niveau de l'axe pour les modes azimutaux non nuls est ici détournée en une condition de bord "numérique".
+\newline Cette approche est d\'etaill\'ee dans le paragraphe suivant. Le code actuel utilise pour l'instant uniquement ces \'el\'ements finis classiques.
+\item On propose dans ce paragraphe l'alternative d'un \'el\'ement fini axisym\'etrique naturel dans les espaces de Sobolev \`a poids (\ref{definitionH1axiazimutal}), o\`u le probl\`eme est naturellement bien pos\'e.
+\newline L'impl\'ementation de ce nouvel \'el\'ement fini axisym\'etrique dans le code global n'est pas finalis\'ee : un travail suppl\'ementaire au niveau des conditions int\'egrales est n\'ecessaire.
+\newline Les résultats présentés sont obtenus à l'aide d'un code prototype développé en SCILAB.
+\newline Le problème simplifié du Laplacien axisymétrique est traité pour simplifier la démarche en éliminant les termes volumiques inutiles.
+\end{itemize}
+\subsection{El\'ement fini axisym\'etrique}\label{singulariteaxialesectionsub2}
+\subsubsection{Probl\'ematique}\label{qfopijfazeopjiga}
+\begin{center}
+\epsfig{file=dessinsinguaxiale.eps,height=5cm,width=7cm}
+\newline
+Géométrie
+\end{center}
+\noindent Les domaines consid\'er\'es ici sont des domaines transverses bidimensionnels. 
+\newline  Nous consid\'erons le probl\`eme mod\`ele de Dirichlet-Neumann pour le Laplacien en domaine axisym\'etrique $\Omega\times\left[0,2\pi\right]$. L'ouvert $\Omega \subset \ ]0,+\infty[\times \mathbb{R}$ (constitu\'e des points $(r,z)$ tel que $r>0$, $z\in\mathbb{R}$) est connexe, born\'e et de fronti\`ere $\partial \Omega$ de classe $C^1$ par morceaux, se d\'ecomposant en trois parties $\Gamma_0$, $\Gamma_N$ et $\Gamma_D$, d'int\'erieurs disjoints : $\partial \Omega=\Gamma_0 \cup \Gamma_N \cup \Gamma_D$, o\`u $\Gamma_0=\partial \Omega \cap \left\lbrace r=0 \right\rbrace$.
+Le probl\`eme mod\`ele pos\'e dans $\Omega\times\left[0,2\pi\right]$ :
+\BEQ{Problememodeldecompanal}
+\left\lbrace
+\begin{array}{ll}
+\dsp -\frac{1}{r}\frac{\partial}{\partial r}\left(r \frac{\partial u}{\partial r}\right)-\frac{\partial ^2 u}{\partial z^2} -\frac{1}{r^2}\frac{\partial ^2 u}{\partial \theta^2} = f\left(r,z\right)e^{i \theta}, & \forall \left(r,z,\theta\right)\in \Omega\times\left[0,2\pi\right] \\
+\dsp \frac{\partial u}{\partial n}= g\left(r,z\right)e^{i \theta} ,&\forall \left(r,z,\theta\right)\in \Gamma_N\times\left[0,2\pi\right]\\
+\dsp u=0, & \forall \left(r,z,\theta\right)\in \Gamma_D\times\left[0,2\pi\right] \\
+\end{array}
+\right. ,
+\EEQ
+est \'equivalent au probl\`eme pos\'e dans le domaine transverse $\Omega$ :
+\BEQ{problemecontinu}
+\left\lbrace
+\begin{array}{ll}
+\dsp -\frac{1}{r}\frac{\partial}{\partial r}\left(r \frac{\partial u}{\partial r}\right)-\frac{\partial ^2 u}{\partial z^2} +\frac{u}{r^2} = f\left(r,z\right), & \forall \left(r,z\right)\in \Omega \\
+\dsp \frac{\partial u}{\partial n}=  g\left(r,z\right), & \forall \left(r,z\right)\in\Gamma_N  \\
+\dsp u = 0, & \forall \left(r,z\right) \in \Gamma_D \\
+\end{array}
+\right.
+\EEQ
+\subsubsection{Probl\`eme continu}\label{singulariteaxialesubsubsectionsubsub1}
+\noindent
+$\bullet$\quad Dans la suite, on note $ \dsp \vert\vert u\vert\vert_{L^2\left(\Omega\right)}=\sqrt{\int_\Omega \vert u\vert^2{\rm d}x}$ la norme $ \dsp L^2$ d'une fonction $u$ de carr\'e int\'egrable. Pour toute fonction mesurable, d\'efinie sur $\dsp ]0,+\infty[\times \mathbb{R} $ par $ \dsp u:\left(r,z\right)  \dsp \mapsto   \dsp u\left(r,z\right)$, on note $ \dsp u_{\sqrt{\ }}$ la fonction $ \dsp u_{\sqrt{\ }}\left(r,z \right)\equiv\frac{u\left(r,z\right)}{\sqrt{r}}$ et $u^{\sqrt{\ }}$ la fonction $ \dsp u^{\sqrt{\ }}\left(r,z \right)\equiv\sqrt{r}u\left(r,z\right)$.
+On consid\`ere les espaces de Sobolev \`a poids suivants :
+\vskip -0.5cm
+\BEQ{definitionL2axi}
+\dsp L^2_{a}\left( \Omega \right)=\left\{u:\Omega \rightarrow \mathbb{R} \text{, tel que } u^{\sqrt{\ }}\in L^2\left(\Omega\right)\right\}.
+\EEQ 
+\BEQ{definitionH1axi}
+\dsp H^1_{a}\left( \Omega \right)=\{u\in L^2_{a}\left( \Omega\right)\text{, tel que }  u_{\sqrt{\ }}\in L^2\left( \Omega \right),\overrightarrow{\nabla} u\in L^2_{a}\left(\Omega\right) \}.
+\EEQ
+\vskip -0.25cm
+\noindent On pose $\vert\vert u\vert\vert_{L^2_{a}\left(\Omega \right)}=\vert\vert u^{\sqrt{\ }} \vert\vert _{L^2\left(\Omega \right)}$, $\vert\vert u\vert\vert_{H^1_{a}\left(\Omega \right)} =\sqrt{ \vert\vert u \vert\vert^2_{L^2_a\left(\Omega \right)} +\vert\vert \overrightarrow{\nabla} u \vert\vert^2 _{L_a^2\left(\Omega \right)}+  \vert\vert u_{\sqrt{\ }} \vert\vert^2 _{L^2\left(\Omega \right)}}$ comme normes respectives.
+Avec les notations pr\'ec\'edentes, pour $\Gamma \subset \partial \Omega $, on note $L^2_a\left(\Gamma,\partial \Omega\right)$ l'ensemble des fonctions $u:\partial \Omega \rightarrow \mathbb{R}$ mesurables, nulles hors de $\Gamma$ et telles que $u^{\sqrt{\ }} \in L^2\left(\Gamma\right)$. 
+\newline
+$\bullet$\quad On note $C_a^\infty\left(\overline{\Omega}\right)$ l'ensemble des restrictions \`a $\Omega$ des fonctions ind\'efiniment d\'erivables et \`a support compact sur $]0,+\infty[\times \mathbb{R}$. Suivant B. Mercier et G. Raugel \cite{MR}, cet ensemble est dense dans $H^1_{a}\left( \Omega \right)$. De plus, l'application trace not\'ee $\gamma_0$, qui \`a $v\in C_a^\infty\left(\overline{\Omega}\right)$ associe ses valeurs au bord $\gamma_0v:\partial \Omega\rightarrow \mathbb{R}$, se prolonge de mani\`ere unique en une application lin\'eaire continue de $H^1_{a}\left( \Omega \right)$ dans $L^{2}_{a}\left( \partial \Omega, \partial \Omega\right)$. Toute fonction $u\in H^1_{a}\left( \Omega \right)$ v\'erifie $\gamma_0 u=0$ sur l'axe. On note $H^1_{0,a}\left( \Omega \right)$ l'espace de Hilbert tel que  $\gamma_0 u=0$ sur $\Gamma_D$. Gr\^ace \`a la compacit\'e de $H^1_{a}\left( \Omega \right)$ dans $L^2_{a}\left(\Omega \right)$, il est facile de montrer que la semi-norme $\vert \ \ \vert_{H^1_a\left(\Omega\right)}$ d\'efinie par :
+\vskip -0.25cm
+\BEQ{definitiondelaseminorme}
+ \vert u\vert_{H^1_{a}\left( \Omega \right)}=\sqrt{\vert\vert \overrightarrow{\nabla} u \vert\vert^2 _{L_a^2\left(\Omega \right)}+  \vert\vert u_{\sqrt{\ }} \vert\vert^2 _{L^2\left(\Omega \right)}}, \ \ \ u\in  H^1_{0,a}\left( \Omega \right).
+\EEQ
+est une norme sur $H^1_{0,a}\left( \Omega \right)$, si la mesure de $\Gamma_0$ est non nulle. On se donne $ f\in L^2_a\left( \Omega \right)$ et $g\in L^2_a\left(\Gamma_N , \partial \Omega\right)$. On introduit la forme bilin\'eaire $a(u,v)$, d\'efinie sur $H^1_{0,a}\left( \Omega \right)$ par $\dsp a\left(u,v\right)= \int_{\Omega} \overrightarrow{\nabla} u \overrightarrow{\nabla} v \ \dsp r{\rm d}r{\rm d}z+\int_{\Omega } u v \ \dsp\frac{{\rm d}r{\rm d}z}{r}$ et la forme lin\'eaire $\dsp\ell \left(v\right)=\dsp\int_{ \Omega }  f v \ \dsp r{\rm d}r{\rm d}z+\dsp\int_{\Gamma_N} g v \ \dsp r{\rm d}\gamma$.
+Le probl\`eme (\ref{problemecontinu}) se formule variationnellement :
+\vskip -0.5cm
+\BEQ{problememodelformulevariationnellement}
+\dsp \text{ Trouver }u\in H^1_{0,a}\left( \Omega \right)\text{, tel que : }
+\dsp a\left(u,v\right)=\ell \left(v\right)  , \ \ \forall v\in \ H^1_{0,a}\left(\Omega \right).
+\EEQ
+La forme bilin\'eaire $a\left(.,.\right)$ est coercive et le probl\`eme (\ref{problememodelformulevariationnellement}) admet une unique solution dans $H^1_{0,a}\left( \Omega \right)$.
+\vskip -0.5cm
+\subsubsection{Discr\'etisation conforme}\label{singulariteaxialesectionsubsub2}
+\vskip -0.5cm
+\noindent
+$\bullet$\quad Soit $\mathcal{T}$ une triangulation r\'eguli\`ere de $\Omega$ avec les conditions classiques de compatibilit\'e d'intersection expos\'ees par exemple dans Ciarlet \cite{PGC}. On note $\mathcal{T}^0$ (resp. $\mathcal{T}^1$, $\mathcal{T}^2$) l'ensemble des sommets de cette triangulation (resp. ar\^etes, triangles). On d\'esigne par $P^1$ l'espace des polyn\^omes de degr\'e total inf\'erieur ou \'egal \`a un. Dans l'article de B. Mercier et G. Raugel, la solution $u$ est approch\'ee dans un espace $H_\mathcal{T}$ d'\'el\'ements finis classiques $P^1$ continus avec une condition de Dirichlet nulle sur l'axe et sur $\Gamma_D$ :
+\BEQ{definitiondelespacediscretMR}
+\dsp H_\mathcal{T} =\left\lbrace u\in \dsp C^0\left(\overline{\Omega}\right) \text{, } u_{\dsp | K}\dsp\in P^1, \ \forall K\in \mathcal{T}^2 \text{, }u_{|\Gamma_0}=0\text{, }u_{|\Gamma_D}=0\right\rbrace .
+\EEQ
+La conformit\'e $H_\mathcal{T}\subset H^1_{0,a}\left(\Omega\right)$ impose une condition de Dirichlet discrÃ¨te sur l'axe. L'espace continu $ H^1_{0,a}\left(\Omega\right)$ est alors remplac\'e par l'espace discret $H_\mathcal{T}$ dans la formulation (\ref{problememodelformulevariationnellement}) et nous cherchons $u_\mathcal{T}\in H_\mathcal{T}$ tel que :
+\vskip -0.5cm
+\BEQ{methodemercierraugel}
+\dsp a\left(u_\mathcal{T},v\right)=\ell \left(v\right) , \ \ \forall v\in  H_\mathcal{T}.
+\EEQ
+Dans le m\^eme travail, ces auteurs montrent que $\vert\vert u-u_\mathcal{T}\vert\vert_{H^1_a\left(\Omega\right)}$ tend vers z\'ero \`a l'ordre un relativement \`a la mesure $h_\mathcal{T}$ de la plus grande ar\^ete du maillage.
+\newline
+$\bullet$\quad Nous proposons ici un espace "naturel" de discr\'etisation, en r\'ef\'erence \`a l'espace fonctionnel $H^1_a\left(\Omega \right)$ o\`u le probl\`eme (\ref{problememodelformulevariationnellement}) est bien pos\'e. Nous consid\'erons l'espace discret suivant :
+\BEQ{definitiondelespacediscret}
+\dsp X_\mathcal{T} =\left\lbrace u\in C^0\left(\overline{\Omega}\right) \text{,  } {\dsp u_{\sqrt{\ }}}_{\dsp| K}\dsp \in P^1, \ \forall K\in \mathcal{T}^2 \text{, }u_{|\Gamma_D}=0 \right\rbrace .
+\EEQ
+Une fonction $\widetilde{u}_{\mathcal{T}}\in X_\mathcal{T}$ est de la forme :
+\BEQ{nouvelelementfiniaxi}
+\widetilde{u}_{\mathcal{T}}(r,z)=\widetilde{\alpha}\sqrt{r}+\widetilde{\beta} r\sqrt{r}+\widetilde{\gamma} \sqrt{r}z, \   \forall K  \in \mathcal{T}^2,    
+\EEQ
+o\`u $(\widetilde{\alpha},\widetilde{\beta},\widetilde{\gamma})\in\mathbb{R}^3$, alors qu'une fonction $u_{\mathcal{T}}\in H_\mathcal{T}$ est de la forme $u_{\mathcal{T}}(r,z)=\alpha +\beta r+\gamma z$.
+Cet espace discret $X_\mathcal{T}$ est naturellement inclus dans l'espace fonctionnel de r\'ef\'erence : $X_\mathcal{T}\subset H^1_{0,a}\left(\Omega\right)$. Pour la formulation discr\`ete de (\ref{problememodelformulevariationnellement}), l'espace continu $ H^1_{0,a}\left(\Omega\right)$ est remplac\'e par l'espace discret $X_\mathcal{T}$ et nous cherchons $\widetilde{u}_\mathcal{T}\in  X_\mathcal{T}$ tel que :
+\vskip -0.5cm
+\BEQ{methodeduboisduprey}
+\dsp  a\left(\widetilde{u}_\mathcal{T},v\right)=\ell \left(v\right), \ \ \forall v\in X_\mathcal{T} .
+\EEQ
+Par rapport au choix ant\'erieur de Mercier-Raugel, nous disposons donc de{\bf{ plus}} de degr\'es de libert\'e : pour chaque sommet $S$ de l'axe $\mathcal{T}^0\cap\Gamma_0$, la fonction de base correspondante $\phi_S\in X_\mathcal{T}$ induit un degr\'e de libert\'e sur l'axe (c'est le coefficient $\widetilde{\alpha}$ de $\sqrt{r}$ dans (\ref{nouvelelementfiniaxi})), m\^eme si la valeur correspondante de la fonction est nulle. Citons ici le travail de N. Gmati \cite{NG}, qui introduit une fonction auxiliaire non singuli\`ere sur l'axe, reformule le laplacien axisym\'etrique en prenant cette fonction comme inconnue et r\'esout le probl\`eme discret ainsi obtenu avec des \'el\'ements finis classiques. Depuis, l'analyse num\'erique dans l'espace de Sobolev \`a poids $H^1_a$ d'une approche spectrale fond\'ee sur une approximation polynomiale de haut degr\'e a \'et\'e d\'evelopp\'ee par C. Bernardi, M. Dauge et Y. Maday \cite{BDM}.
+\vskip -0.5cm
+\subsubsection{Cas-test analytique}\label{singulariteaxialesectionsubsub3}
+\vskip -0.5cm
+\noindent
+$\bullet$\quad
+On suppose dans cette partie que $\Omega=]0,1[^2$ et $\Gamma_D=\varnothing $. On introduit deux param\`etres r\'eels $\alpha >0 , \ \beta > 0$, un second membre $f$ donn\'e par :
+\vskip -0.5cm
+\BEQ{uniquesolutionanalytique}
+\dsp f\left(r,z\right)\equiv\dsp  r^{\alpha}\left[\dsp\left(\alpha^2-1\right)\dsp\frac{z^\beta}{r^2}+\dsp\beta(\dsp\beta-1)z^{\beta-2}\right] .
+\EEQ
+\noindent
+et une donn\'ee de Neumann $g$ telle que $ g(r,z)=\alpha $ si $r=1$, $-\beta r^\alpha z^{\beta -1}$ si $z=0$, $\beta r^\alpha$ si $z=1$.
+La solution du probl\`eme (\ref{problememodelformulevariationnellement}) s'exprime simplement : $u\left(r,z\right)\equiv r^\alpha z^\beta $.
+\newline
+$\bullet$\quad Nous pr\'esentons \`a la figure 1 les courbes d'isovaleurs (et leur zoom au niveau de l'axe) des solutions approch\'ees du probl\`eme (\ref{problememodelformulevariationnellement}) pour $\dsp u\left(r,z\right)\equiv r^{1/4} z^\beta $ par la m\'ethode de Mercier-Raugel et l'approche proposée dans cette Note pour trois valeurs enti\`eres : $\beta=0$, $\beta=1$ et $\beta=2$ et pour un maillage triangulaire r\'egulier \`a $31\times 31$ degr\'es de libert\'e. Les num\'eros sur les axes pr\'esentent les indices discrets de maille. La colonne de droite est un agrandissement de la partie encadr\'ee et permet une visualisation plus pr\'ecise des isovaleurs au niveau de l'axe. La condition de Dirichlet impos\'ee pour le sch\'ema Mercier-Raugel introduit des effets d'axe bien connus des praticiens. En revanche, notre approche est d\'ej\`a pr\'ecise avec ce maillage assez grossier : les degr\'es de libert\'e naturels sur l'axe suppriment les effets d'axe et l'erreur est suffisamment petite pour que notre solution approch\'ee soit graphiquement confondue avec la solution analytique.
+\vskip -1.cm
+\smallskip  
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=isoetzoom.eps,height=18.cm,width=15cm}
+\smallskip
+\vskip -0.75cm
+Fig. 1. \quad Isovaleurs et zoom au niveau de l'axe $u\left(r,z\right)\equiv r^{\frac{1}{4}}z^\beta$; nous comparons les r\'esultats de Mercier-Raugel $(\footnotesize{MR})$ et notre approche $(\footnotesize{DD})$.
+\end{center}
+\smallskip
+\smallskip  
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=isoetconv.eps,height=5.5cm,width=13.5cm}
+\vskip -0.25cm
+Fig. 2. \quad Convergence en maillage des isovaleurs $\dsp u\left(r,z\right)\equiv r^{1/4}$; nous comparons les r\'esultats de Mercier-Raugel $(\footnotesize{MR})$ et notre approche $(\footnotesize{DD})$.
+\smallskip
+\end{center}
+\smallskip\smallskip\smallskip\smallskip\smallskip\smallskip\smallskip\smallskip\smallskip
+\vskip -2.3cm
+\smallskip  
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=courbeconvergence.eps,height=13.5cm,width=15cm}
+Fig. 3. \quad Courbes de convergence pour diverses normes $\dsp u\left(r,z\right)\equiv r^{\alpha}z^\beta $; nous comparons les r\'esultats de Mercier-Raugel $(\footnotesize{MR})$ et notre approche $(\footnotesize{DD})$.
+\smallskip
+\end{center}
+$\bullet$\quad Nous pr\'esentons \`a la figure 2 les isovaleurs des solutions approch\'ees du probl\`eme (\ref{problememodelformulevariationnellement}) pour $\dsp u\left(r,z\right)\equiv r^{1/4}$ par notre m\'ethode et celle de Mercier-Raugel pour deux maillages triangulaires r\'eguliers \`a $31\times 31$ et $71\times 71$ sommets. La figure de gauche correspond au maillage triangulaire $31\times 31$ et celle de droite au maillage $71\times 71$. Les d\'efauts d'axe s'ammenuisent par raffinement du maillage. Nous observons que notre approche est d\'ej\`a tr\`es pr\'ecise avec le maillage le plus grossier et l'erreur est suffisamment petite pour que notre solution approch\'ee soit graphiquement confondue avec la solution analytique.
+\newline
+$\bullet$\quad Nous pr\'esentons \`a la figure 3 les courbes de convergence de l'erreur pour diverses normes en fonction du pas de maillage pour $\alpha=1/4$, $\alpha=1/3$, $\alpha=2/3$ et $\beta=0$, $\beta=1$, $\beta=2$. Les figures de gauche (resp. du milieu, de droite) correspondent \`a la norme $\dsp L^2$  (resp. semi-norme $\dsp H^1$ donn\'ee par (\ref{definitiondelaseminorme}), norme $\ell^\infty$).
+La pr\'esentation des r\'esultats par une \'echelle logarithmique permet la lecture des ordres de convergence {\it via} la pente des droites. Par exemple, notre sch\'ema pour $\beta=0$ et $\alpha=2/3$ converge en norme $L^2$ (premi\`ere figure) avec un ordre proche de 3. On constate exp\'erimentalement que, de fa\c con g\'en\'erale, la m\'ethode que nous proposons ici a le m\^eme ordre de convergence que la m\'ethode de Mercier-Raugel. Par contre \`a maillage donn\'e, l'erreur avec notre m\'ethode est beaucoup plus petite que celle obtenue avec le savoir-faire ant\'erieur.
+

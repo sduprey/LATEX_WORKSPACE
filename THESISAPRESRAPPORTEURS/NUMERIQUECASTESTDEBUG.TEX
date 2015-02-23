@@ -1,0 +1,78 @@
+\section{Cas-tests Analytiques}\label{numeriquecastestdebugsection2}
+\subsection{Validation des Equations Integrales sans Ecoulement}
+\subsubsection{Expression Analytique}\label{numeriquecastestdebugsectionsub21}
+Soit $\phi_a$ la solution du prob\`eme de Helmholtz ext\'erieur \`a la boule unit\'e $B$ (S d\'esigne la sph\`ere unit\'e) avec une condition de Neumann. 
+\BEQ{problemehelmholtzneumann}
+\left\lbrace
+\begin{array}{ll}
+\dsp  \Delta \phi_a+ k^2 \phi_a= 0 , & \forall x\in \mathbb{R}^3\backslash B \\
+\dsp  \lim_{R\rightarrow \infty}\int_{S_R}\vert \frac{\partial \phi_a}{\partial n}-i k \phi_a\vert^2\rightarrow 0 &\\
+\dsp  \frac{\partial \phi_a}{\partial n}=\sum_{l=0}^{+\infty}\sum_{m=-l}^{m=+l}\phi_{l,m}Y_{l,m}\left(\theta,\phi\right), & \forall x\in S\\
+\end{array}
+\right.
+\EEQ
+La solution de (\ref{problemehelmholtzneumann}) existe et est unique. Son expression analytique :
+\BEQ{expressionanalytiquesolutionproblemehelmholtzneumann}
+\phi_a=\sum_{l=0}^{+\infty}\sum_{m=-l}^{m=+l}\phi_{l,m}\frac{h_{l}^{(1)}\left(kr\right)}{k\left[\frac{d}{dr}h_{l}^{(1)}\right]\left(k\right)}\left(r\right)Y_{l,m}\left(\theta,\phi\right)
+\EEQ
+Le probl\`eme suivant :
+\BEQ{problemehelmholtzneumannprobpratiquepremier}
+\left\lbrace
+\begin{array}{l}
+\dsp \Delta \phi_a+k^2 \phi_a = 0 \\
+\dsp \phi_a\text{  v\'erifie la condition de Sommerfeld \`a l'infini }\\
+\dsp \frac{\partial \phi_a}{\partial n}=Y_{0,0}\left(\theta,\phi\right)\\
+\end{array}
+\right.
+\EEQ
+a une unique solution analytique :
+\BEQ{ecrituredelafonctionupourlepremierproblemepratique}
+\begin{array}{l}
+\dsp \phi_a=-\frac{h_0^{(1)}\left(kr\right)}{kh_0^{(1)'(k)}}Y_{0,0}\left(\theta,\phi\right) \\
+\dsp \phi_a=\frac{e^{ik(r-1)}}{r}\left[1+ik\right]\sqrt{\frac{1}{4\pi}}\frac{1}{1+k^2} \\
+\end{array},
+\EEQ
+o\`u l'on a not\'e :
+\BEQ{definitionanalytiquesfonctionsdecrivantlasolutionpratiquepremier}
+\left\lbrace
+\begin{array}{l}
+\dsp Y_{0,0}\left(\theta,\phi\right)=\sqrt{\frac{1}{4\pi}} \\
+\dsp h_0^{(1)}\left(r\right)=\frac{e^{ir}}{r} \\
+\end{array}
+\right.
+\EEQ
+Le probl\`eme suivant :
+\BEQ{problemehelmholtzneumannprobpratiquesecond}
+\left\lbrace
+\begin{array}{l}
+\dsp \Delta \phi_a+k^2 \phi_a = 0 \\
+\dsp \phi_a  \text{ v\'erifie la condition de Sommerfeld \`a l'infini }\\
+\dsp \frac{\partial \phi_a}{\partial n}=Y_{1,1}\left(\theta,\phi\right)\\
+\end{array}
+\right.
+\EEQ
+a une unique solution analytique :
+\BEQ{ecrituredelafonctionupourlesecondproblemepratique}
+\begin{array}{l}
+\dsp \phi_a=-\frac{h_1^{(1)}\left(kr\right)}{kh_1^{(1)'(k)}}Y_{1,1}\left(\theta,\phi\right)\\
+\dsp \phi_a=i\sqrt{\frac{3}{8\pi}}e^{i\phi}{\rm sin}\theta e^{ik(r-1)}\left(\frac{1}{r^2}-\frac{ik}{r}\right)\frac{1}{2-2ik-k^2} \\
+\dsp \phi_a=\sqrt{\frac{3}{8 \pi}}e^{i\phi}{\rm sin}\theta e^{ik(r-1)}\left(\frac{i}{r^2}+\frac{k}{r}\right)\frac{\left[(2-k^2)+2ik\right]}{\left[(2-k^2)^2+4k^2\right]}\\
+\end{array},
+\EEQ
+o\`u l'on a not\'e :
+\BEQ{definitionanalytiquesfonctionsdecrivantlasolutionpratiquesecond}
+\left\lbrace
+\begin{array}{l}
+\dsp Y_{1,1}\left(\theta,\phi\right)=i\sqrt{\frac{3}{8\pi}}e^{i\phi}{\rm sin}\theta \\
+\dsp h_1^{(1)}\left(r\right)=e^{ir}\left(\frac{1}{r^2}-\frac{i}{r}\right) \\
+\end{array}
+\right.
+\EEQ
+\subsubsection{R\'esultats Num\'eriques Harmoniques Sph\'eriques}\label{numeriquecastestdebugsectionsub22}
+\smallskip  
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=visurobintanaletcompglob.epsf,height=10.cm,width=14.cm}
+\smallskip
+\qquad Harmoniques sphériques
+\smallskip
+\end{center}

@@ -1,0 +1,474 @@
+\documentclass[a4,dvips,francais]{seminar}
+
+\usepackage{semcolor}
+
+\newcommand{\SlideColours}[1]{%
+\slideframe[\psset{fillcolor=#1,fillstyle=solid}]{scplain}}
+
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{babel}
+\usepackage{graphicx}
+\usepackage{pstcol}
+\usepackage{semcolor}
+\input{seminar.bug}
+\input{seminar.bg2}
+\usepackage{pst-grad}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{floatflt}
+\usepackage{psfrag}
+\usepackage{pslatex}
+
+\newcommand{\cb}{{ \textcolor{blue}{$\bullet$} }}
+\renewcommand{\emph}[1]{{\bfseries \itshape #1}}
+
+\addtolength{\slidewidth}{2cm}
+
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\newcommand{\Header}[3]{%
+  \fancyhead[L]{\scriptsize\textbf{#1}}
+  \fancyhead[C]{\scriptsize\textbf{#2}}
+  \fancyhead[R]{\scriptsize\textbf{#3 \thepage}} }
+  \makeatletter
+
+\newcommand{\Footer}[2]{%
+  \fancyfoot[L]{\scriptsize\textbf{#1}}
+  \fancyfoot[R]{\scriptsize\textbf{#2}}}
+
+\def\headrule{%
+  \if@fancyplain\headrulewudth\plainheadrulewidth\fi
+\vskip 0.6mm
+\hrule\@height\headrulewidth\@width\headwidth \vskip 0.25mm
+\hrule\@height\headrulewidth\@width\headwidth \vskip -1.5mm}
+\makeatother
+
+\renewcommand{\headrulewidth}{0.15mm}
+\renewcommand{\footrulewidth}{0.15mm}
+
+\renewcommand{\headwidth}{\textwidth}
+
+\autoslidemarginstrue
+
+\definecolor{Bleu} {rgb}{1.0,1.0,1.0}
+\definecolor{Cyan} {rgb}{1.0,1.0,1.0}
+\definecolor{Red}  {rgb}{1.0,0.0,0.0}
+\definecolor{Green}{rgb}{0.0,0.5,0.0}
+
+\slideframe[\psset{fillstyle=gradient,gradmidpoint=1,
+                   gradbegin=Bleu,gradend=Cyan}]{scplain}
+
+\newcommand{\Zib}{{$\leadsto$}}
+\newcommand{\Div}{\mbox{div}}  
+\newcommand{\grad}{\mbox{{\bf grad}}}  
+\newcommand{\lap}{{\mathbf{\Delta}}}  
+\newcommand{\mr}[1]{{\mathrm{#1}}}  
+
+\newcommand{\Prob}[1]{{\mathbb P}\left( #1 \right)}
+
+\newcommand{\heading}[1]{%
+  \begin{center}
+    \psshadowbox[framearc=0.4]{%
+      \large\textbf{#1}}
+  \end{center}}
+
+\Footer{}
+       {Copyright EADS CCR}
+
+\Header{Arbres de défaillance}
+       {}
+       {-- 27 février 2006 -- \ } 
+
+\begin{document}
+
+\newsavebox{\Tableau}
+
+\slidepagestyle{fancy}
+
+\SlideColours{green}
+
+%%%%%%%%%
+% Titre 
+%%%%%%%%% 
+ 
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{
+    \centering{\parbox{8cm}{\centering{L'approche bayésienne en fiabilité \ :\\
+	  \textit{exemple d'un système à trois composants}}}}
+}
+\vspace*{\fill} 
+
+\end{slide}
+
+%%%%%%%%%%%%%%
+% Plan
+%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\textcolor{blue}{Plan}}
+\vspace*{\fill}
+	\textbf{
+    \begin{itemize}
+      \item I. Le théorème de Bayes
+      \item II. L'approche bayésienne
+      \item III. Exemple d'un système à trois composants
+    \end{itemize}
+  }
+\vspace*{\fill}
+\end{slide} 
+
+%%%%%%%%%%%%%%
+% Introduction
+%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\textcolor{blue}{Introduction}}
+\vspace*{\fill}
+\begin{itemize}
+  \item Approche fréquentielle classique \ :
+  	\begin{itemize}
+  		\item Evalue le maximum de vraissemblance d'un évènement donné;
+  		\item Pas d'information sur les causes.
+  	\end{itemize}
+  \item Fiabilité \ : importance des causes de défaillance.
+  \item Besoin d'une autre approche.
+  \item $\Rightarrow$ choix de l'approche bayésienne.
+\end{itemize}
+\vspace*{\fill}
+\end{slide} 
+
+%%%%%%%%%%%%%%%
+% Théorème
+%%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\centering{\textcolor{blue}{I. Le théorème de bayes}}}
+\vspace*{\fill}
+\begin{itemize}
+  \item Soit A et B deux évènements, on a la relation \ : \\
+  \vspace*{\fill} 
+  \heading{\centering{\textcolor{red}{$\Prob{A|B}=\frac{\Prob{B|A}\Prob{A}}{\Prob{B}}$}}}
+  \vspace*{\fill} 
+  \item Autres présentations \ :
+    \begin{itemize}
+    	\item Soit A et B deux évènements, on a la relation \ : \\
+  		\vspace*{\fill} 
+\heading{\centering{$\Prob{A|B}=\frac{\Prob{B|A}\Prob{A}}{\Prob{B|A}\Prob{A}+\Prob{B|A^{c}}\Prob{A}^{c}}$}}
+    	\vspace*{\fill} 
+
+      \item Soit $\{A_{i}\}$ un système complet et B un évènement, on a alors la relation \ :\\
+  		\vspace*{\fill} 
+\heading{\centering{$\Prob{A_{i}|B}=\frac{\Prob{B|A_{i}}\Prob{A_{i}}}{\sum_{j}\Prob{B|A_{j}}\Prob{A_{j}}}$}}
+  		\vspace*{\fill} 
+    \end{itemize}
+\end{itemize}
+
+\vspace*{\fill}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%
+% Approche bayes 1
+%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\centering{\textcolor{blue}{II. Approche bayésienne}}}
+\vspace*{\fill}
+\textcolor{blue}{1. Un exemple pour commencer \ : les " faux positifs" médicaux.}
+
+\begin{itemize}
+  \item Un test permet de dépister une maladie.
+  \item On sait qu'a priori la maladie touche une personne sur mille.
+  \item On observe les résultats suivant sur le test \ :
+  	\begin{itemize}
+  		\item Si un patient a contracté la maldie, le test est positif avec une probabilité $0,99$.
+  		\item Si un patient est sain, le test est négatif avec une probabilité $0,95$.
+  	\end{itemize}
+  \item Un patient veut connaître la probabilité a posteriori qu'il soit malade si le résultat du test est positif.
+  \item On considère les évènements \ :
+  	\begin{itemize}
+  		\item A \ : le patient a contracté la maladie.
+  		\item B \ : le test est positif.
+  	\end{itemize}
+  \item On applique le théorème de Bayes \ :
+  	\begin{align}
+  		\Prob{A|B}  & =\frac{0,99\times0,001}{0,99\times0.001+0,05\times0,999}, \nonumber \\
+  								& \approx 0,019 \nonumber
+  	\end{align}
+  \item L'approche bayésienne nous apprend que le test n'est pas suffisamment fiable.
+\end{itemize}
+
+\vspace*{\fill}
+\end{slide}
+
+%%%%%%%%%%%%%%%
+% 2 présentation
+%%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\centering{\textcolor{blue}{II. Approche bayésienne}}}
+\textcolor{blue}{2. L'analyse bayésienne.}
+\vspace*{\fill}
+
+\begin{itemize}
+	\item soit les évènements \ :
+		\begin{itemize}
+			\item Théorie \ : la théorie H est vraie.
+			\item Données \ : certaines données ont été observées.
+		\end{itemize}
+	\item Le théorème de Bayes s'écrit \ :
+
+  \vspace*{\fill} 
+\heading{\centering{$\Prob{\mbox{Théorie}|\mbox{Données}}=\frac{\Prob{\mbox{Théorie}}\times\Prob{\mbox{Données}|\mbox{Théorie}}}{\Prob{\mbox{Données}}}$}}
+  \vspace*{\fill} 
+	
+	\item Estime la \textbf{probabilité a posteriori} d'une théorie au vu de résultats d'observations, si l'on peut calculer les prédictions de la théorie $\Prob{\mbox{Données}|\mbox{Théorie}}$, appelé \textbf{vraissemblance} et si l'on connaît la \textbf{probabilité a priori} de la théorie $\Prob{\mbox{Théorie}}$.
+	\item Permet de comparer plusieurs théories.
+	\item L'approche bayésienne compare des hypothèses aux données réelles.
+	\item Elle dépend des données examinées et des données et connaissances antérieures.
+\end{itemize}
+
+\vspace*{\fill}
+\end{slide}
+
+
+%%%%%%%%%%%%%%%
+% Présentation suite
+%%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\centering{\textcolor{blue}{II. Approche bayésienne}}}
+\textcolor{blue}{3. Les réseaux bayésiens}
+\vspace*{\fill}
+\begin{itemize}
+  \item A chaque noeud du réseau est associée une variable aléatoire discréte et une loi de 		probabilité est associée à chaque noeud sans parent.
+  \item A l'ensemble des arcs pointant sur un noeud on associe une table de probabilité 			conditionnelle.
+  \item L'état d'un noeud conditionnellement à ses noeuds parents est indépendant des 				autres noeuds du réseau.
+\end{itemize}
+\vspace*{\fill}
+\end{slide}
+
+%%%%%%%%%%%%%%%
+% 4. exemple
+%%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\centering{\textcolor{blue}{III. Exemple d'un système à trois composants}}}
+\vspace*{\fill}
+
+\begin{itemize}
+\item Soit le système suivant \ :
+\end{itemize}
+
+%\smallskip  
+%\begin{center}
+%\qquad \qquad \qquad %\epsfig{file=/arbre_de_defaillance/fault_tree.epsf,height=10cm,width=10cm}
+%\epsfig{file=/fault_tree.epsf,height=10cm,width=10cm}
+%\smallskip
+%\end{center}
+
+\begin{center}
+Fig. 1. \quad Arbre de défaillance du système à trois composants.
+\end{center}
+\smallskip
+
+\begin{itemize}
+\item Le réseau bayésien correspondant est le suivant \ :
+\end{itemize}
+
+%\smallskip  
+%\begin{center}
+%\qquad \qquad \qquad \epsfig{file=/arbre_de_defaillance/RB.epsf,height=5cm,width=8cm}
+%\qquad \qquad \qquad \epsfig{file=/RB.epsf,height=5cm,width=8cm}
+%\smallskip
+%\end{center}
+
+\begin{center}
+Fig. 2. \quad Réseau bayésien correspondant.
+\end{center}
+
+\vspace*{\fill}
+\end{slide}
+
+%%%%%%%%%%%%%%%
+% exemple
+%%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\centering{\textcolor{blue}{III. Exemple d'un système à trois composants}}}
+\vspace*{\fill}
+
+\begin{itemize}
+\item On obtient la table de probabilité conditionnelle suivante \ :
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\cline{2-9}
+      	\multicolumn{1}{c|}{}& \multicolumn{4}{c|}{$X_{1}=0$} 	& \multicolumn{4}{c|}{$X_{1}=1$} \\
+\cline{2-9}
+        \multicolumn{1}{c|}{}& \multicolumn{2}{c|}{$X_{2}=0$} 	& \multicolumn{2}{c|}{$X_{2}=1$}  & \multicolumn{2}{c|}{$X_{2}=0$} 	& \multicolumn{2}{c|}{$X_{2}=1$} \\
+\cline{2-9}
+\multicolumn{1}{c|}{} & $X_{3}=0$ & $X_{3}=1$ & $X_{3}=0$ & $X_{3}=1$ & $X_{3}=0$& $X_{3}=1$ & $X_{3}=0$& $X_{3}=1$ \\
+\hline
+$\phi=0$ & $1$ & $1$ & $1$ & $0$ & $1$& $0$ & $1$& $0$\\
+\hline
+$\phi=1$ & $0$ & $0$ & $0$ & $1$ & $0$& $1$ & $0$& $1$\\
+\hline
+\end{tabular}\\
+\end{center}
+
+\vspace*{\fill}
+\end{slide}
+
+%%%%%%%%%%%%%%%
+% Description
+%%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\centering{\textcolor{blue}{III. Exemple d'un système à trois composants}}}
+\vspace*{\fill}
+
+Approche possible \ :
+\begin{itemize}
+  \item On connaît $p_{1}=\Prob{X_{1}=1},p_{2}=\Prob{X_{2}=1}$ et $p_{3}=\Prob{X_{3}=1}$ connues a priori.
+  \item On considère $\Prob{\phi=1}$ connue a priori.
+  \item Les vraissemblances $\Prob{\phi=1|X_{1}=1}, \Prob{\phi=1|X_{2}=1}$ et $\Prob{\phi=1|X_{3}=1}$ peuvent être obtenues par simulation, mais aussi par un calcul direct.
+  \item On peut ainsi déterminer, par exemple, la probabilité a posteriori $\Prob{X_{1}=1|\phi=1}$ que le composant $1$ fonctionne quand le système fonctionne, ou encore $\Prob{X_{1}=0|\phi=0}$, la probabilité que la défaillance du composant $1$ soit l'une des causes de la défaillance du système.
+\end{itemize}
+
+\vspace*{\fill}
+\end{slide}
+
+%%%%%%%%%%%%%%%
+% Description
+%%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\centering{\textcolor{blue}{III. Exemple d'un système à trois composants}}}
+\vspace*{\fill}
+
+Autre approche possible \ :
+\begin{itemize}
+	\item soit les évènements \ :
+		\begin{align}
+		E_{1}=X_{1}\cap X_{2}\cap X_{3} \nonumber \\
+		E_{2}=X_{1}\cap X_{2}\cap X^{c}_{3} \nonumber \\
+		. \nonumber \\
+		. \nonumber \\
+		. \nonumber \\
+		E_{3}=X^{c}_{1}\cap X^{c}_{3}\cap X^{c}_{3} \nonumber
+		\end{align}
+	\item On connaît a priori $\Prob{E_{k}=1}$ pour $k$ compris entre $1$ et $8$.
+	\item Le tableau de probabilité conditionnelle donne $\Prob{\phi=1|E_{k}=1}$ pour $k$ compris entre $1$ et $8$.
+	\item On calcul \ :
+	$$\Prob{\phi=1}=\sum^{8}_{k=1}\Prob{\phi=1|E_{k}=1}\Prob{E_{k}=1}$$
+	\item On peut ainsi déterminer les causes du fonctionnement ou de la défaillance du système.
+	\item méthode trés lourde à mettre en oeuvre ($2^{n}$ possibilités pour $n$ composants).
+\end{itemize}
+	
+\vspace*{\fill}
+\end{slide}
+
+%%%%%%%%%%%%%%%
+% Conclusion
+%%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\centering{\textcolor{blue}{Conclusion}}}
+\vspace*{\fill}
+
+\begin{itemize}
+  \item L'approche bayésienne permet d'obtenir des informations supplémentaires.
+  \item Elle aide à la prise de décision en sélectionnant la théorie la plus probable pour expliquer ce qui est observé.
+  \item L'aspect "rasoir d'Ockham" de l'approche bayésienne est parfois considéré comme subjectif.
+\end{itemize}
+
+\vspace*{\fill}
+\end{slide}
+
+%%%%%%%%%%%%%%%
+% Bibliographie
+%%%%%%%%%%%%%%%
+
+\begin{slide} 
+\vspace*{\fill} 
+\heading{\centering{\textcolor{blue}{Bibliographie}}}
+\vspace*{\fill}
+\addcontentsline{toc}{chapter}{Bilbliographie}
+
+\begin{thebibliography}{9}
+\bibitem{wikipedia}
+	wikipedia.
+	\emph{Théorème de Bayes}.
+	Article de l'encyclopédie en ligne.
+\bibitem{cosmo}
+	Alain Bouquet.
+	\emph{Méthodes bayésiennes en analyse statistique}.
+	article en ligne\ : http://cdinfo.in2p3.fr/Experiences/Cosomologie/Techniques/bayes1.html
+\bibitem{Weber-RB}
+	P. Weber.
+	\emph{RB et sûreté de fonctionnement}.
+	Deuxième journée de rencontre sur les réseaux bayésiens.
+\bibitem{conception produit-Guerin}
+	F. Guérin et B. Dumon.
+	\emph{Essai de fiabilité dans le processus de conception produit}.
+	Institut des Sciences et Tcheniques de l'Ingénieur d'Angers, 2003.
+\bibitem{optimisation-Bruxelle}
+	C. Bruxelle.
+	\emph{Optimisation et faisabilité - Chapitre 4: analyse sous risque et incertitude}.
+	Cours donnés de 1999 à 2002.
+\bibitem{application proba-edf}
+	M. Bouissou.
+	\emph{Application des probabilités dans l'industrie\ : calculs de fiabilité des systèmes}.
+	EDF/ dpt R\& D-MRI, journée académique \emph{"le hazard"}, IREM de Lille.
+\bibitem{these Efaga}
+	E. D. Efaga.
+	\emph{Analyse des données du retour d'expérience pour l'organisation de la maintenance des équipements de production des PME/PMI dans le cadre de la MBF (Maintenance Basée sur la Fiabilité}.
+	Université Strasbourg I, Université Yaoundé I, 2004.
+\bibitem{federal aviation administration}
+	Federal Aviation Administration.
+	\emph{Guide to reusable launch and reentry vehicle reliability analysis}.
+	Washington, 2005.
+\bibitem{Asland fault tree}
+	J. Asland \& al.
+	\emph{A systematic inclusion of diagnosis in performance in fault tree analysis}.
+	Linköpings university (Sweeden), 2005.
+\bibitem{Tallon-bayes elargi}
+	J.-M. Tallon \& J.-C. Vergnaud.
+	\emph{Représentations de l'incertitude scientifique\ : pour un bayésanisme élargi}.
+	EUREQua, CNRS-Université Paris I.
+\bibitem{Serene-edf}
+	M. Bouissou.
+	\emph{Argumentaires de sûreté\ : comment formaliser les évoluations des experts avec la méthode SERENE}.
+	EDF, journée du 26 janvier 1999 à la Défense.
+\bibitem{waller}
+	H. F. Martz \& R. A. Waller.
+	\emph{Bayesian Reliability Analysis of Complex Series/Parallel Systems of Binomial Subsystems and Components}.
+	TECHNOMETRICS, 1990.
+\bibitem{DESS}
+	O. Biard, C. Deschamps, S. Maillet.
+	\emph{Méthodes Bayésiennes}.
+	Cours, DESS QUASSI-ISTIA, 2002.
+
+\end{thebibliography}
+
+\vspace*{\fill}
+\end{slide}
+
+
+\end{document}

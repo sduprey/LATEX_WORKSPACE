@@ -1,0 +1,196 @@
+\subsubsection{Existence}\label{reductionborneetexistencesubsectionsub1}
+\noindent Les domaines consid\'er\'es ici sont les domaines cart\'esiens tridimensionnels correspondant à ceux du paragraphe (\ref{unicitesommerfeldsubsectionsub1}) (l'axe de propagation $z$ correspond à l'axe précédemment nommé $x$ et les axes transverses $(r,\theta)$ correspondent à l'axe précedemment nommé $y$). Le cas tridimensionnel est de nouveau considéré, car à l'extérieur les équations ne sont pas compliquées par la transformée de Lorentz. On gagne de plus en généralité en exprimant l'opérateur Dirichlet-Neumann tridimensionnel à l'infini.
+\newline Les variables physiques transform\'ees sont toujours not\'ees comme les anciennes.
+\newline L'existence du probl\`eme acoustique transform\'e (\ref{lorentzglobaldeuxdimensionsdeux}), (\ref{condtransparoirigide}) et (\ref{condtransparoimodale}) est d\'emontr\'e dans ce paragraphe. Il suffit de prouver que l'on est dans le cadre de l'alternative de Fredholm pour obtenir l'existence, sachant que l'on a d\'emontr\'e l'unicit\'e dans le paragraphe pr\'ec\'edent.
+\newline Le probl\`eme pos\'e dans le domaine $\overline{\Omega\cup\Omega_e}\backslash\left(\Gamma_R\cup\Gamma_M\right)$ est ramen\'e au domaine born\'e $\Omega$ par un op\'erateur Dirichlet-Neumann à l'infini. L'\'equivalence des deux probl\`emes est prouv\'ee. Le domaine $\Omega$ est born\'e et r\'egulier : on utilise l'injection compacte de $H^1\left(\Omega\right)$ dans $L^2\left(\Omega\right)$ pour prouver la compacit\'e de l'op\'erateur diff\'erentiel volumique. Les propri\'et\'es des op\'erateurs Dirichlet-Neumann "modaux et infini" ramenant le domaine global $\overline{\Omega_M\cup\Omega\cup\Omega_e}\backslash\Gamma_R$ \`a $\Omega$ prouve alors que le probl\`eme rel\`eve de l'alternative de Fredholm.
+\newline La d\'emarche est classique et s'inspire de la th\`ese de T. Abboud \cite{TA} (ou encore l'article \cite{TAJCN}), qui prouve l'existence et l'unicit\'e du probl\`eme similaire pr\'ec\'edement pr\'esent\'e (\ref{helmholtzdecoupleprobtypeheterogeneitelocal}).
+\paragraph{R\'eduction \`a un domaine born\'e : }\label{reductionborneetexistencesubsectionsubsub1}
+\noindent \\ Le Laplacien en coordonn\'ees sph\'eriques s'\'ecrit :
+\BEQ{Laplacienencoordonneesspheriques}
+\Delta \phi_a =\frac{1}{r^2}\frac{\partial }{\partial r}\left(r^2 \frac{\partial \phi_a}{\partial r} \right)+\frac{1}{r^2}\Delta_{LB} \phi_a,
+\EEQ
+o\`u $\Delta_{LB}$ est l'op\'erateur de Laplace-Beltrami agissant sur les fonctions d\'efinies sur la sph\`ere unit\'e S :
+\BEQ{DefinitionoperateurLaplaceBeltrami}
+\Delta_{LB}\phi_a=\frac{1}{{\rm sin}^2\theta}\frac{\partial^2 \phi_a}{\partial \phi^2}+\frac{1}{{\rm sin}\theta}\frac{\partial}{\partial \theta}\left({\rm sin}\theta\frac{\partial \phi_a}{\partial \theta} \right)
+\EEQ
+$\Delta_{LB}$ est inversible et d'inverse compact sur $H^1\left(S\right)\slash \mathbb{R}$. Les harmoniques sph\'eriques $Y_{l,m}\left(\theta,\phi\right)$ forment la base propre d\'enombrable de $\Delta_{LB}$.
+A $l$ fix\'e, les $\left(Y_{l,m}\right)_{-l\le m\le l}$ forment un espace propre de dimension $2l+1$ associ\'e \`a la valeur propre $l(l+1)$ de $-\Delta_{LB}$ :
+\BEQ{vecteurproprelaplacienspherique}
+-\Delta_{LB}Y_{l,m}=l(l+1)Y_{l,m}
+\EEQ
+Les harmoniques sph\'eriques se d\'efinissent analytiquement :
+\BEQ{definitionanalytiqueharmoniquespherique}
+Y_{l,m}\left(\theta,\phi\right)=\left(-1\right)^m i^l\left[\frac{l+1/2}{2\pi}\frac{\left(l-m\right)!}{\left(l+m\right)!}\right]^{\frac{1}{2}}e^{im\phi}P_l^m\left({\rm cos}\theta\right),
+\EEQ
+o\`u $P_l^m$ sont les polyn\^omes de Legendre associ\'es, dont l'expression analytique s'obtient par r\'ecurrence :
+\BEQ{definitionanalytiquepolynomedelegendreassociee}
+\left\lbrace
+\begin{array}{ll}
+\dsp P_l^m\left(x={\rm cos}\theta\right)=\frac{(-1)^{l}}{2^l l!}\left({\rm sin}\theta\right)^{m}\left(\frac{{\rm d}}{{\rm d}x}\right)^{l+m}\left(1-x^2\right)^l, & \forall 0\le m\le l \\
+\dsp P_l^m\left(x={\rm cos}\theta\right)=\frac{(-1)^{l+m}}{2^l l!}\frac{(l+m)!}{(l-m)!}\left({\rm sin}\theta\right)^{-m}\left(\frac{{\rm d}}{{\rm d}x}\right)^{l-m}\left(1-x^2\right)^l , & \forall -l\le m\le 0\\
+\end{array}
+\right.
+\EEQ
+$\left(\nabla Y_{l,m},\overrightarrow{rot} Y_{l,m} \right)$ forment une base orthogonale de $TL^2\left(S\right)$, l'ensemble des champs vectoriels tangents de carr\'e int\'egrable d\'efinis sur la sph\`ere unit\'e $S$.
+On cherche une solution \`a variables s\'epar\'ees de l'\'equation de Helmholtz \`a l'ext\'erieur de la boule $B_R$ de rayon $R$ ($S_R$ d\'esigne la sph\`ere associ\'ee), o\`u le rayon $R$ est choisi assez grand pour que $\Gamma_\infty\subset B_R$ (le potentiel transform\'e v\'erifie alors l'\'equation de Helmholtz pour le nombre d'ondes $k'_\infty$) :
+\BEQ{solutionavariablessepareesdecomposeesurlesharmoniquesspheriques}
+ \dsp \phi_a\left(r,\theta,\phi\right)=\sum_{l=0}^{+\infty}\sum_{m=-l}^{m=+l}h_{l,m}\left( k'_\infty r\right)Y_{l,m}\left(\theta,\phi\right)
+\EEQ
+La partie radiale de chaque coefficient de la d\'ecomposition de la solution v\'erifie l'\'equation diff\'erentielle :
+\BEQ{equationradialedonnantlesfonctionsdehankel}
+ \dsp \frac{1}{r^2}\frac{\ud}{\ud r}\left( \dsp r^2\frac{\ud }{\ud r}h_{l,m} \right)+\left(1- \dsp \frac{l(l+1)}{r^2}\right)h_{l,m}=0
+\EEQ
+Les solutions de cette \'equation sont les fonctions de Hankel (ou encore Bessel sph\'eriques), qui se r\'epartissent en deux classes de solutions. Leur expression analytique se d\'eduit par r\'ecurrence :
+\BEQ{definition}
+\left\lbrace
+\begin{array}{l}
+ \dsp h_l^{(1)}(r)=(-r)^l\left(\frac{1}{r}\frac{d}{dr}\right)^l\left(\frac{e^{ir}}{r}\right)\\
+ \dsp h_l^{(2)}(r)=(-r)^l\left(\frac{1}{r}\frac{d}{dr}\right)^l\left(\frac{e^{-ir}}{r}\right)\\
+\end{array}
+\right.
+\EEQ
+Seule la famille $(1)$ v\'erifie la condition de Sommerfeld : $\dsp \lim_{R\rightarrow \infty}\int_{S_R}\vert \frac{\partial \phi_a}{\partial n}-ik_\infty'\phi_a \vert^2\rightarrow 0$ .
+La solution du prob\`eme de Helmholtz ext\'erieur avec une condition de Dirichlet :
+\BEQ{problemehelmholtzdirichlet}
+\left\lbrace
+\begin{array}{ll}
+\dsp  \Delta \phi_a+ (k'_\infty)^2 \phi_a = 0 , & \forall x\in \mathbb{R}^3\backslash B_R \\
+\dsp  \phi_a=\sum_{l=0}^{+\infty}\sum_{m=-l}^{m=+l}\phi_{l,m}Y_{l,m}\left(\theta,\phi\right), & \forall x\in S_R\\
+\dsp  \lim_{R\rightarrow \infty}\int_{S_R}\vert \frac{\partial \phi_a}{\partial n}-i k'_\infty\phi_a \vert^2\rightarrow 0 &\\
+\end{array}
+\right.
+\EEQ
+existe et est unique. Son expression analytique s'\'ecrit :
+\BEQ{expressionanalytiquesolutionproblemehelmholtzdirichletchlet}
+ \dsp \phi_a=\sum_{l=0}^{+\infty}\sum_{m=-l}^{m=+l}\phi_{l,m}\frac{h_{l}^{(1)}\left(k_\infty' r\right)}{h_{l}^{(1)}\left( k'_\infty R\right)}\left(r\right)Y_{l,m}\left(\theta,\phi\right)
+\EEQ
+On d\'efinit l'op\'erateur Dirichlet-Neumann $T_R$, qui \`a une fonction $ \dsp \phi_a\in H^{\frac{1}{2}}\left(S_R\right)$ associe la trace sur $S_R$ de la d\'eriv\'ee normale de l'unique solution du probl\`eme (\ref{problemehelmholtzdirichlet}) pour cette fonction comme condition de Dirichlet.
+L'op\'erateur $T_R$, qui, \`a toute fonction r\'eguli\`ere $ \dsp \phi_a\left(R,\theta,\phi\right)=\sum_{l=0}^\infty\sum_{m=-l}^{m=l}\phi_{l,m}Y_{l,m}\left(\theta,\phi\right)$ sur $S_R$, associe :
+\BEQ{defopdirneumspherinf}
+\dsp T_R\left(\phi_a\right)=\dsp \sum_{l,m}k_\infty '\dsp \frac{ \dsp \frac{\dsp \ud}{\dsp \ud r}\dsp  h_l^{(1)}\left(k_\infty 'R \right)}{\dsp h_l^{(1)}\dsp \left(k_\infty'R \right)\dsp }\phi_{l,m}Y_{l,m}\left(\theta,\phi\right)
+\EEQ
+se prolonge de mani\`ere unique en un op\'erateur continu de $H^{\frac{1}{2}}\left(S_R\right)$ dans $H^{-\frac{1}{2}}\left(S_R\right)$. L'op\'erateur $T_R$ a les propri\'et\'es suivantes :
+\newline
+$\bullet$ \BEQ{fredindicezero}
+ \dsp -\Re e\left(\langle T_R\left(\phi_a\right),\phi_a \rangle_{L^2\left(S_R\right)}\right)\ge \frac{1}{R}\vert\vert \phi_a \vert\vert_{L^2\left(S_R\right)}, \ \forall \phi_a\in H^{\frac{1}{2}}\left(S_R\right)
+\EEQ
+\newline
+$\bullet$ Pour toute fonction $\phi_a\in H^1_{loc}\left(\overline{\Omega\cup\Omega_e}\backslash\overline{B_R}\right)$ satisfaisant l'\'equation de Helmholtz dans $\overline{\Omega\cup\Omega_e}\backslash\overline{B_R}$ avec second membre nul et v\'erifiant la condition de Sommerfeld, sa trace sur $S_R$ v\'erifie :
+\BEQ{lepourquoidudirichlettoneumann}
+ \dsp \frac{\partial \phi_a}{\partial n}=T_R\left(\phi_a\right), \text{  sur  }S_R 
+\EEQ
+ Le probl\`eme suivant :
+\BEQ{reductionaundomaineborneproblemenonborne}
+\left\lbrace
+\begin{array}{ll}
+\dsp \text{ Trouver }\phi_a \in H^1_{loc}\left(\overline{\Omega\cup\Omega_e}\backslash \left(\Gamma_R\cup\Gamma_M\right)\right) \text{ tel que : }& \\
+\dsp A_L (\phi_a) = 0, &   \text{  dans  }\overline{\Omega\cup\Omega_e}\backslash \left(\Gamma_R\cup\Gamma_M\right) \\
+\dsp \frac{\partial \left(\phi_a-\phi_{a,inc}\right)}{\partial n_L}=T_{LM}\left(\phi_a-\phi_{a,inc}\right), &  \text{  sur  }\Gamma_M \\
+\dsp \frac{\partial \phi_a}{\partial n_L}=0, &  \text{  sur  }\Gamma_R \\
+\dsp \lim_{_R\rightarrow \infty}\int_{S_R}\vert \frac{\partial \phi_a}{\partial n} - i k'_\infty \phi_a\vert^2 \ud \gamma =0 & \\
+\end{array}
+\right.
+\EEQ
+est \'equivalent au probl\`eme dans le domaine born\'e et r\'egulier $\Omega$ :
+\BEQ{reductionaundomaineborneproblemeborne}
+\left\lbrace
+\begin{array}{ll}
+\dsp \text{ Trouver }\phi_a \in H^1\left(\Omega\right) \text{ tel que : }  & \\
+\dsp A_L( \phi_a) = 0 , &  \text{  dans  } \Omega \\
+\dsp \frac{\partial \left(\phi_a-\phi_{a,inc}\right)}{\partial n_L}=T_{LM}\left(\phi_a-\phi_{a,inc}\right), &  \text{  sur  }\Gamma_M \\
+\dsp \frac{\partial \phi_a}{\partial n_L}=0, &  \text{  sur  }\Gamma_R \\
+\dsp \frac{\partial \phi_a}{\partial n}=T_R\left(\phi_a\right) , &  \text{  sur  }  S_R  \\
+\end{array}
+\right.
+\EEQ
+\paragraph{Alternative de Fredholm : }\label{reductionborneetexistencesubsectionsubsub2}
+\noindent \\ Le probl\`eme pos\'e dans le domaine born\'e $\Omega$ (\ref{reductionaundomaineborneproblemeborne}) se formule variationnellement :
+\BEQ{formuvariadeuxopdedirichlet}
+\left\lbrace
+\begin{array}{l}
+\dsp \text{ Trouver }\phi_a \in H^1\left(\Omega\right) \text{ tel que : }  \\
+\dsp a_L(\phi_a,\psi)-\langle T_{LM}\left(\phi_a\right),\psi\rangle_{L^2\left(\Gamma_M\right)}
+-\langle T_{R}\left(\phi_a\right),\psi\rangle_{L^2\left(S_R\right)}=L_{inc}\left(\psi \right)\\
+\forall \psi \in H^1\left(\Omega \right)\\
+\end{array}
+\right.
+\EEQ
+Les param\`etres fluides $\rho_0$, $k_0$ et $\overrightarrow{M}_0$ sont de régularité : $W^{1,\infty}\left(\Omega\right)$. L'\'equation aux d\'eriv\'ees partielles volumique (\ref{lorentzglobaldeuxdimensionsdeux}) s'explicite sous la forme synth\'etique :
+\BEQ{ecritureformelleedppottransforme}
+A_L\left(\phi_a\right) ={\rm div}\left(A(x,y,z)\ovra{\nabla} \phi_a\right)+g_1(x,y,z)\frac{\partial \phi_a}{\partial x}
++g_2(x,y,z)\frac{\partial \phi_a}{\partial y}+g_3(x,y,z)\phi_a,
+\EEQ
+o\`u les fonctions $g_i(x,y,z)$ sont \`a valeurs complexes et born\'ees dans $\Omega$ : $ L^\infty\left(\Omega\right)$.
+Le probl\`eme (\ref{formuvariadeuxopdedirichlet}) rel\`eve de l'alternative de Fredholm.
+La forme hermitienne du membre de gauche de (\ref{formuvariadeuxopdedirichlet}) se d\'ecompose en deux formes hermitiennes : une coercive $b\left(\phi_a,\psi\right)$ et une compacte $c\left(\phi_a,\psi\right)$.
+\BEQ{definitiondesdeuxsousformeshermitiennes}
+\begin{array}{l}
+\dsp b\left(\phi_a,\psi\right)=\int_\Omega  A(x,y,z)\ovra{\nabla}\phi_a.\overline{\ovra{\nabla}\psi} +\int_\Omega \phi_a\overline{\psi}-\langle T_{LM}\left(\phi_a\right),\psi\rangle_{L^2\left(\Gamma_M\right)}-\langle T_{R}\left(\phi_a\right),\psi\rangle_{L^2\left(S_R\right)}\\
+\dsp c\left(\phi_a,\psi\right)=\int_\Omega g_1(x,y,z) \frac{\partial \phi_a}{\partial x}\overline{\psi}+\int_\Omega g_2(x,y,z) \frac{\partial \phi_a}{\partial y}\overline{\psi}+\int_\Omega \left(g_3(x,y,z)-1\right)\phi_a \overline{\psi} 
+\end{array}
+\EEQ
+L'op\'erateur associ\'e \`a la forme sesquilin\'eaire $b( . \ , \ .  ) $ est coercif.
+L'op\'erateur associ\'e \`a la forme sesquilin\'eaire $c(  . \ , \ .  ) $ est compact.
+Le probl\`eme acoustique rel\`eve de l'alternative de Fredholm et l'existence d\'ecoule de l'unicit\'e prouv\'ee pr\'ec\'edement. 
+\newline
+Preuve de la coercivit\'e de $b$ : 
+\newline
+Analysons la partie r\'eelle de $b(\phi_a,\phi_a)$.
+\newline
+L'in\'egalit\'e (\ref{fredindicezero}) pour la partie réelle de l'op\'erateur Dirichlet-Neumann \`a l'infini s'écrit :
+\begin{displaymath}
+-\Re e\left(\langle T_R\left(\phi_a\right),\phi_a \rangle_{L^2\left(S_R\right)}\right)\ge \frac{1}{R}\vert\vert \phi_a \vert\vert_{L^2\left(S_R\right)}, \ \forall \phi_a\in H^{\frac{1}{2}}\left(S_R\right)
+\end{displaymath}
+L'in\'egalit\'e correspondante pour la partie réelle de l'op\'erateur Dirichlet-Neumann modal de Lorentz s'obtient en exprimant :
+\begin{displaymath}
+-\Re e\left(\langle T_{LM}\left(\phi_a\right),\phi_a \rangle_{L^2\left(\Gamma_M\right)}\right)=-\Re e\left( \sum_{(m,n)\in \mathbb{Z}\times\mathbb{N}}\mu_{mn}^-\vert \langle \phi_a, \Xi_{rmn} \rangle_{L^2\left(\Gamma_M\right)} \vert ^2 \right)
+\end{displaymath}
+et en utilisant les propri\'et\'es (\ref{constantedefinitionoperateurdirichletneumannespacelorentz}) des constantes $\mu_{mn}^-$ de l'op\'erateur Dirichlet-Neumann $T_{LM}$ :
+\begin{displaymath}
+\begin{array}{c}
+ \dsp -\Re e \dsp\left(\langle T_{LM}\left(\phi_a\right),\phi_a \rangle_{L^2\left(\Gamma_M\right)}\right)
+= \dsp \sum_{\dsp \left(m,n\right)\in\mathbb{E}}\rho_M \sqrt{(1-M_M^2)k_{rmn}^2-k^2_M }\vert \dsp \langle \phi_a, \dsp \Xi_{rmn}  \dsp\rangle \dsp\vert ^2\\
+\end{array},
+\end{displaymath}
+o\`u $\mathbb{E}=\left\lbrace\left(m,n\right)\in \mathbb{Z}\times\mathbb{N}\backslash \left\lbrace \left(m',n'\right)\backslash k_{rm'n'}>\left[\frac{k_M}{\sqrt{1-M_M^2}}\right]\right\rbrace \right\rbrace$ désigne l'ensemble des indices discrets correspondant à des modes propagatifs. Et donc :\BEQ{proprieteessentielleoperateurdirichletneumannmodal}
+-\Re e\left(\langle T_{LM}\left(\phi_a\right),\phi_a \rangle_{L^2\left(\Gamma_M\right)}\right)\ge 0,
+\EEQ
+La matrice $A$ \'etant sym\'etrique et d\'efinie-positive dans tout le domaine $\Omega$, les in\'egalit\'es (\ref{fredindicezero}) et (\ref{proprieteessentielleoperateurdirichletneumannmodal}) donnent la coercivit\'e de $b$ :
+\BEQ{coercivitedeb}
+\vert b\left(\phi_a,\phi_a\right)\vert\ge  \Re e\left(b\left(\phi_a,\phi_a\right)\right)\ge C\left(\Omega,\rho_0,\ovra{M_0}\right) \vert \vert \phi_a \vert \vert^2_{H^1\left(\Omega\right)},\  \forall \phi_a \in H^1\left(\Omega\right)
+\EEQ
+Preuve de la compacit\'e de $c$ :
+\newline
+Montrons la compacit\'e de $c$ terme par terme.
+L'op\'erateur $C_1$ est d\'efini par la premi\`ere int\'egrale de $c$ et le th\'eor\`eme de repr\'esentation de Riesz :
+\BEQ{definitionoperateurderiveeordreun}
+C_1 :
+\left\lbrace
+\begin{array}{ccc}
+\dsp H^1\left(\Omega \right) & \rightarrow & H^1\left(\Omega \right) \\ 
+     \phi_a & \rightarrow & C_1(\phi_a) \\
+\end{array}
+\right. \text{ tel que : }
+\EEQ
+\begin{displaymath}
+\forall \psi\in\Omega, \ \ \ \langle C_1(\phi_a),\psi \rangle_{H^1\left(\Omega \right)}=\int_\Omega g_1(x,y,z) \frac{\partial \phi_a}{\partial x}\overline{\psi}
+\end{displaymath}
+Cet op\'erateur est continu de $H^1\left(\Omega \right)$ dans $H^1\left(\Omega \right)$ :
+\begin{displaymath}
+\vert\vert C_1(\phi_a) \vert\vert^2_{H^1\left(\Omega \right)}=\langle g_1(x,y,z)\frac{\partial \phi_a}{\partial x},C_1(\phi_a)\rangle_{L^2\left(\Omega \right)}
+\end{displaymath}
+\begin{displaymath}
+\vert\vert C_1(\phi_a) \vert\vert^2_{H^1\left(\Omega \right)} \le \sup_\Omega\left\lbrace \vert g_1(x,y,z)\vert\right\rbrace \vert\vert \phi_a \vert\vert_{H^1\left(\Omega \right)}\vert\vert C_1(\phi_a) \vert\vert_{L^2\left(\Omega\right)} 
+\end{displaymath}
+\BEQ{inegalitedecompacitepourc1}
+\vert\vert C_1(\phi_a) \vert\vert^2_{H^1\left(\Omega \right)} \le \vert\vert g_1\vert\vert_{L^\infty\left(\Omega\right)} \vert\vert \phi_a \vert\vert_{H^1\left(\Omega \right)} \vert\vert C_1(\phi_a)  \vert\vert_{L^2\left(\Omega \right)}
+\EEQ
+La continuit\'e de $C_1$ dans $H^1\left(\Omega \right)$ est imm\'ediate \`a partir de (\ref{inegalitedecompacitepourc1}).
+\newline
+Soit $\left(\phi_{an}\right)_{n\in \mathbb{N}}$ une suite born\'ee de $H^1\left(\Omega\right)$. Par continuit\'e de $C_1$, la suite $\left(C_1(\phi_{an})\right)_{n\in \mathbb{N}}$ est born\'ee dans $H^1\left(\Omega\right)$. $\Omega$ \'etant born\'e et r\'egulier, on peut en extraire une sous-suite  $\left(C_1(\phi_{an_k})\right)_{n_k\in \mathbb{N}}$ qui converge fortement dans $L^2\left(\Omega\right)$. On \'ecrit en utilisant (\ref{inegalitedecompacitepourc1}) :
+\begin{displaymath}
+\vert\vert C_1(\phi_{an_k})-C_1(\phi_{am_k}) \vert\vert^2_{H^1\left(\Omega \right)}\le \vert\vert g_1\vert\vert_{L^\infty\left(\Omega\right)} \vert\vert \phi_{an_k}-\phi_{am_k} \vert\vert_{H^1\left(\Omega \right)}\vert\vert C_1(\phi_{an_k})-C_1(\phi_{am_k}) \vert\vert_{L^2\left(\Omega\right)}
+\end{displaymath}
+$\left(C_1(\phi_{an_k})\right)_{n_k\in \mathbb{N}}$ est donc de Cauchy dans $H^1\left(\Omega\right)$ et converge fortement dans l'espace complet $H^1\left(\Omega\right)$ : l'op\'erateur $C_1$ est un op\'erateur compact dans $H^1\left(\Omega \right)$.
+\newline
+Les deux derni\`eres int\'egrales de $c$ se traitent de la m\^eme mani\`ere. L'op\'erateur associ\'e \`a la forme sesquilin\'eaire $c$ est compact.

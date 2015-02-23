@@ -1,0 +1,110 @@
+\subsection{Couplage modes-volume}\label{youplamodetheorie}
+\subsubsection{Op\'erateur Dirichlet-Neumann}\label{qsfdazefqsfd}
+\noindent Les domaines consid\'er\'es ici sont des domaines transverses bidimensionnels.
+\newline Le probl\`eme consid\'er\'e est le probl\`eme acoustique v\'erifi\'e par le mode azimutal $m$ du potentiel acoustique.
+\newline Ce paragraphe d\'etaille l'obtention de l'op\'erateur Dirichlet-Neumann pour un guide d'ondes cylindrique en \'ecoulement, qui permet de formuler un probl\`eme acoustique \'equivalent en domaine modal born\'e dans l'optique d'une formulation variationnelle et d'un traitement num\'erique.
+\newline La d\'emonstration de ces r\'esultats est connue et peut \^etre trouv\'ee dans la th\`ese de L. Dahi \cite{LD} (ou encore l'article \cite{ASBBDLDELVP}). Ces références \'etudient la perturbation des modes de conduit en \'ecoulement uniforme par la pr\'esence d'une plaque et de son sillage de vorticit\'e. Le traitement num\'erique du probl\`eme n\'ecessite l'introduction d'un probl\`eme \'equivalent en domaine born\'e \`a l'aide d'un op\'erateur Dirichlet-Neumann en écoulement.
+\newline Le moteur est mod\'elis\'e comme un guide d'ondes cylindrique infini. La source acoustique du moteur est une somme {\it{a priori}} infinie d\'enombrable de modes incidents port\'es par le mode azimutal $ \dsp m$ :
+\BEQ{sourceincidentemodem}
+\dsp \phi_{am,inc}\text{ incident }\Leftrightarrow \dsp \phi_{am,inc}=\sum_{n\in\mathbb{N}}\langle\phi_{am,inc},\Xi_{rmn}\rangle_{L^2\left(\Gamma_M\right)} \Xi_{rmn}\left(r\right)e^{i\beta_{mn}^+ z}
+\EEQ
+Les coefficients modaux incidents $ \dsp a_{mn}^+=\langle\phi_{am,inc},\Xi_{rmn}\rangle_{L^2\left(\Gamma_M\right)}$ sont les donn\'ees du probl\`eme.
+L'op\'erateur Dirichlet-Neumann modal $ \dsp T_{Mm}$ se d\'efinit \`a l'aide des constantes $ \dsp \mu_{mn}^\pm$ :
+\BEQ{constanteoperateurdirichletneumannelliptiquemeodemomodem}
+\left\lbrace
+\begin{array}{l}
+\dsp \forall  k_{rmn}\leq \left[\frac{k_M}{\sqrt{1-M_M^2}}\right]
+, \ 
+\left\lbrace
+\begin{array}{l}
+\dsp\mu_{mn}^+=-\rho_M i\sqrt{k_M^2-\left(1-M_M^2\right)k_{rmn}^2} \\
+\dsp\mu_{mn}^-=+\rho_M i\sqrt{k_M^2-\left(1-M_M^2\right)k_{rmn}^2} \\
+\end{array}
+\right.
+\\
+\dsp \forall k_{rmn}>\left[\frac{k_M}{\sqrt{1-M_M^2}}\right], \
+\left\lbrace
+\begin{array}{l}
+\dsp\mu_{mn}^+=+\rho_M\sqrt{\left(1-M_M^2\right)k_{rmn}^2-k_M^2} \\
+\dsp\mu_{mn}^-=-\rho_M\sqrt{\left(1-M_M^2\right)k_{rmn}^2-k_M^2} \\
+\end{array}
+\right.
+\\
+\end{array}
+\right. ,
+\EEQ
+que l'on peut d\'efinir sous la forme synth\'etique $ \dsp \mu_{mn}^\pm=\rho_M (M_M^2-1)i\beta_{mn}^\pm+\rho_M i k_M M_M$ \`a l'aide des constantes propagatives axiales $ \dsp \beta_{mn}^\pm$ d\'efinies en (\ref{definitiondesnombresaxiauxglobalavecladeterminationcomplexedelaracine}).
+L'op\'erateur Dirichlet-Neumann modal $T_{Mm}$ s'\'ecrit :
+\BEQ{definitionoperateurmodalespacephysiquemodem}
+\left\lbrace
+\begin{array}{c}
+T_{Mm} :H^{\frac{1}{2}}\left(\Gamma_M\right)\rightarrow H^{-\frac{1}{2}}\left(\Gamma_M\right)\\
+\phi_{am}\rightarrow \sum_{n\in\mathbb{N}} \mu_{mn}^-\langle\phi_{am},\Xi_{rmn}(r)\rangle_{L^2\left(\Gamma_M\right)}\Xi_{rmn}(r)\\
+\end{array}
+\right.
+\EEQ
+Le probl\`eme v\'erifi\'e par le potentiel acoustique total au mode azimutal $m$ $\phi_{am}=\phi_{am,inc}+\phi_{am,diff}$ :
+\BEQ{probacoustiqueaxisymetriquecompletavecconditionsauxbordsrappelnumerodeuxaxisym}
+\left\lbrace
+\begin{array}{ll}
+\text{ Trouver }\phi_{am} \in H^1_{am,loc}\left(\mathbb{R}^2\backslash\overline{\Omega_i}\right) \\
+\dsp A_{0m}\left(\phi_{am}\right)=0  ,& \text{ dans }   \mathbb{R}^2\backslash\overline{\Omega_i} \\
+\dsp \frac{\partial \phi_{am}}{\partial n_{A_{Om}}}=0  ,& \text{ sur }  \Gamma_R \\
+\dsp \phi_{am} - \phi_{am,inc} \text{ est r\'efl\'echi dans le guide d'ondes }  \\
+\dsp \phi_{am} \text{ v\'erifie la condition de Sommerfeld \`a l'infini} \\
+\end{array}
+\right.
+\EEQ
+est \'equivalent au probl\`eme en domaine modal born\'e :
+\BEQ{probacoustiqueaxisymetriquecompletavecconditionsauxbordsrappelnumerodeuxreduitmodal}
+\left\lbrace
+\begin{array}{l}
+\dsp \text{ Trouver }\phi_{am} \in 
+H^1_{am,loc}\left(\left(\overline{\Omega}\cup\Omega_e\right)\backslash\left(\Gamma_R\cup\Gamma_M\right)\right) \\
+\dsp \begin{array}{ll}
+\dsp A_{0m}\left(\phi_{am}\right)=0, & \text{dans }  \left(\overline{\Omega}\cup\Omega_e\right)\backslash\left(\Gamma_R\cup\Gamma_M\right)  \\
+\dsp \frac{\partial \phi_{am}}{\partial n_{A_{Om}}}=0 ,& \text{sur }  \Gamma_R \\
+\dsp \frac{\partial \left(\phi_{am}- \phi_{am,inc}\right)}{\partial n_{A_{Om}}}=T_{Mm}\left(\phi_{am} - \phi_{am,inc}\right) ,& \text{sur } \Gamma_M \\
+\end{array} \\
+\dsp \phi_{am} \text{ v\'erifie la condition de Sommerfeld \`a l'infini} \\
+\end{array}
+\right.,
+\EEQ
+o\`u $\dsp \frac{\partial}{\partial n_{A_{Om}}}$ est la d\'eriv\'ee conormale associ\'ee \`a l'op\'erateur elliptique $A_{0m}$ et $H^1_{am,loc}$ d\'esigne l'espace de Sobolev \`a poids d\'efini par (\ref{definitionH1axiazimutal}).  
+\subsubsection{Formulation variationnelle au moteur}\label{dsfoaijefaeg}
+\noindent Le probl\`eme azimutal pour le potentiel acoustique (\ref{probacoustiqueaxisymetriquecompletavecconditionsauxbordsrappelnumerodeuxreduitmodal}) se formule variationnellement. Nous supposons ici le domaine born\'e : $\Omega_e=\varnothing$ par commodit\'e pour ne pas compliquer inutilement le probl\`eme avec les termes de bord \`a l'infini qui ne correspondent pas \`a ce paragraphe et seront explicit\'es dans le paragraphe (\ref{implementationnumeriquecouplageintegralsubsectionsub3}). Les espaces fonctionnels se d\'efinissent \`a l'aide des espaces de Sobolev \`a poids (\ref{definitionL2axiazimutal}) et (\ref{definitionH1axiazimutal}) :
+\BEQ{vraiespacesfoncH1aximodal}
+\begin{array}{c}
+\dsp H^1_{am-mod}\left(\Omega\right)= \\
+\dsp \{\phi_{am}\in H^1_{am}\left(\Omega\right),\text{  tel que }\left[\phi_{am}\right]_{|\Gamma_M}=\sum_{n\in \mathbb{N}}a_{mn}^+\Xi_{rmn}(r,z)+\sum_{n\in \mathbb{N}}a_{mn}^-\Xi_{rmn}(r,z) \} \\
+\end{array}
+\EEQ
+On note $H^1_{am-\Gamma_M}\left(\Omega\right)$ l'espace fonctionnel $H^1_{am}\left(\Omega\right)$, dont les \'el\'ements ont une trace nulle sur la surface modale $\Gamma_M$. La formulation variationnelle du probl\`eme continu (\ref{probacoustiqueaxisymetriquecompletavecconditionsauxbordsrappelnumerodeuxreduitmodal}) s'\'ecrit \`a l'aide d'un rel\`evement de la condition de Dirichlet modale (ce rel\`evement s'interpr\`ete num\'eriquement en une fonction nulle sur tous les degr\'es de libert\'e int\'erieurs du domaine et \'egale \`a $\sum_{n\in \mathbb{N}}a_{mn}^+\Xi_{rmn}(r,\theta)+\sum_{n\in \mathbb{N}}a_{mn}^-\Xi_{rmn}(r,\theta)$ sur les degr\'es de libert\'e modaux). Ce rel\`evement est not\'e abusivement $\sum_{n\in \mathbb{N}}a_{mn}^+\Xi_{rmn}(r,\theta)+\sum_{n\in \mathbb{N}}a_{mn}^-\Xi_{rmn}(r,\theta)$.
+Le probl\`eme (\ref{probacoustiqueaxisymetriquecompletavecconditionsauxbordsrappelnumerodeuxreduitmodal}) se formule variationnellement :
+\BEQ{formvaraximodalecontinu}
+\left\{\begin{array}{l}
+\dsp \text{ Etant donn\'e } \left(a_{mn}^+\right)_{n\in\mathbb{N}}\in \mathbb{C}^{\mathbb{N}}, \\
+\dsp \text{ Trouver } \
+\phi_{am} \in H^1_{am-\Gamma_{M}}(\Omega) \text{ et } \left(a_{mn}^-\right)_{n\in\mathbb{N}}\in \mathbb{C}^{\mathbb{N}}\text{ tel que :} \\
+\dsp a_{0m}\left(\phi_{am},\psi_m \right)+\sum_{n\in \mathbb{N}}a_{mn}^-a_{0m}\left(\Xi_{rmn}, \psi_m \right) -\sum_{n\in \mathbb{N}}a_{mn}^-\mu_{mn}^-\int_{\Gamma_M}\Xi_{rmn}\overline{\psi_m}\\
+\dsp = -\sum_{n\in \mathbb{N}}a_{mn}^+a_{0m}\left(\Xi_{rmn},\psi_m\right)+\sum_{n\in \mathbb{N}}a_{mn}^+\mu_{mn}^+\int_{\Gamma_M}\Xi_{rmn}\overline{\psi_m}\\
+\dsp \forall \psi_m\in  H^1_{am-mod}(\Omega) \\
+\end{array}
+\right.,
+\EEQ
+o\`u $a_{0m}\left( \ . \ , \ . \ \right)$ d\'esigne la forme hermitienne associ\'ee \`a l'op\'erateur volumique $A_{0m}$ d\'efinie en (\ref{probacmod}) :
+\BEQ{formebilineaireassocieaxiespacereelphysique}
+\begin{array}{c}
+\dsp a_{0m}\left(\phi_{am},\psi_{m}\right)=\\
+\dsp\int_\Omega
+\rho_0\ovra{\nabla}\phi_{am}\ovra{\nabla}\overline{\psi_m}\ r{\rm d}r{\rm d}z+m^2\int_{\Omega}\rho_0\frac{1}{r}\phi_{am}\overline{\psi_m}\
+ {\rm d}r{\rm d}z\\
+\dsp -\int_{\Omega}\rho_0 k_0^2\phi_{am}\overline{\psi_m}\ r{\rm d}r{\rm d}z-\int_{\Omega}\rho_0\overrightarrow{M}_0.\ovra{\nabla}\phi_{am}\
+\overrightarrow{M}_0.\ovra{\nabla}\overline{\psi_m}\ r{\rm d}r{\rm d}z \\
+\dsp
++\int_{\Omega}\rho_0ik_0\left(\overrightarrow{M}_0.\ovra{\nabla}\overline{\psi_m}\
+\phi_{am} -\overrightarrow{M}_0.\ovra{\nabla}\phi_{am}\ \overline{\psi_m}\right) \ r{\rm d}r{\rm d}z 
+\\
+\end{array}
+\EEQ 
+Les $a_{mn}^-$ sont les inconnues modales du syst\`eme et sont plac\'ees dans le membre de gauche. Les $a_{mn}^+$ sont les sources connues du syst\`eme et sont plac\'ees dans le membre de droite.

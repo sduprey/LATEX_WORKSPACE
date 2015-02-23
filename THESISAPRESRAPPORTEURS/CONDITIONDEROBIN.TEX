@@ -1,0 +1,46 @@
+\section{Condition de Robin}\label{numeriquecastestdebugsection1}
+\subsection{Problématique}
+\noindent Ce paragraphe présente une condition rayonnante approchée : la condition de Robin. Ce traitement alternatif aux équations intégrales complexes est implémenté dans le code PA2R et tous les résultats présentés ultérieurement ont également été réalisés avec cette condition.
+\subsection{Intégrale de bord dans l'espace de Lorentz}\label{numeriquecastestdebugsectionsub1}
+\noindent Dans l'espace transform\'e de Lorentz, le potentiel acoustique transform\'e v\'erifie l'\'equation des ondes. On impose au potentiel acoustique transform\'e une condition sortante approch\'ee de Robin :
+\BEQ{conditionabsorbanteapprocheederobindanslespacetransforme}
+\dsp \frac{\widetilde{\partial} \widetilde{\phi}'_a}{\widetilde{\partial} n'}=ik'_\infty\widetilde{\phi}'_a, \ \forall x\in \Gamma'_\infty
+\EEQ
+Cette condition de Robin s'exprime dans l'espace physique de r\'ef\'erence :
+\BEQ{conditionderobinespacephysiquedereference}
+\dsp \frac{\partial \phi_a}{\partial n_L}=ik_\infty\frac{\sqrt{1-M_\infty^2 n_z^2}}{\sqrt{1-M_\infty^2}}\phi_a, \ \forall x\in \Gamma_\infty
+\EEQ
+L'int\'egrale de bord se r\'e\'ecrit :
+\BEQ{integraledebordsereecrivant}
+\int_{\Gamma_\infty} \frac{\partial \phi_a}{\partial n_L}\overline{\psi} \ r{\rm d}r{\rm d}z=
+\frac{ik_\infty}{\sqrt{1-M_\infty^2}}\int_{\Gamma_\infty}\sqrt{1-M_\infty^2  n_z^2}\phi_a\overline{\psi} \ r{\rm d}r{\rm d}z
+\EEQ
+%% \subsection{R\'esultats Num\'eriques}\label{numeriquecastestdebugsectionsub2}
+%% \smallskip  \vskip -3.5 cm
+%% \begin{center}
+%% \qquad \qquad \qquad \epsfig{file=zerodeuxzerotroiskR40potentieldeux.eps,height=12.5cm,width=10.cm}
+%% \smallskip \vskip -0.35 cm
+%% \quad Ecoulement Porteur $M_M=0,3$ $M_\infty=0,2$ et Acoustique Mode Plan $kR=30$
+%% \smallskip
+%% \end{center}
+%% \smallskip  \vskip -8. cm
+%% \begin{center}
+%% \qquad \qquad \qquad \epsfig{file=comparaison0203k40.eps,height=7.5cm,width=8.25cm}
+%% \smallskip \vskip -0.35 cm
+%% \quad Comparaison Potentiel $M_M=0,3$ $M_\infty=0,2$-Uniforme $M=0,2$
+%% \smallskip
+%% \end{center}
+%% \paragraph{Premi\`ere Planche : }
+%% \noindent \\
+%% La premi\`ere planche pr\'esente les r\'esultats de la propagation acoustique d'un mode plan $kR=30$ sur un \'ecoulement porteur de Mach Moteur $M_M=0,3$ pour un Mach Infini $M_\infty=0,2$.
+%% \newline Les deux figures sup\'erieures repr\'esentent de gauche \`a droite le nombre de Mach $\vert\ovra{M_0}\vert$ "zoom\'e" sur la l\`evre de la nacelle et la pression $p_0$ de l'\'ecoulement porteur \`a l'avant de la nacelle. Les isovaleurs du nombre de Mach \`a gauche permettent la visualisation du point d'arr\^et (l\`a o\`u l'\'ecoulement s'annule) au niveau de la l\`evre de la nacelle. L'\'ecoulement est acc\'el\'er\'e (resp. d\'ec\'el\'er\'e) sur la partie int\'erieure (resp. ext\'erieure) de la l\`evre de la nacelle. L'acc\'el\'eration se traduit par une augmentation du nombre de Mach et une d\'epressurisation (ph\'enom\`ene Ventury). La d\'ec\'el\'eration se traduit par une chute du nombre de Mach et une pressurisation.
+%% \newline Les deux figures du milieu repr\'esentent de gauche \`a droite la partie r\'eelle du potentiel acoustique $\Re e\left(\phi_a \right)$ et son module $\vert \phi_a \vert$ \`a l'avant de la nacelle.
+%% \newline Les deux figures du bas repr\'esente de gauche \`a droite la partie r\'eelle de la vitesse acoustique axiale $\Re e\left(v_{az}\right)$ et radiale $\Re e\left(v_{ar}\right)$ \`a l'avant de la nacelle.
+%% \paragraph{Deuxi\`eme Planche : }
+%% \noindent \\
+%% La deuxi\`eme planche pr\'esente la comparaison des r\'esultats de la premi\`ere planche avec la propagation acoustique d'un mode plan $kR=30$ sur un \'ecoulement uniforme de r\'ef\'erence au nombre de Mach constant $M=0,2$.
+%% \newline Les deux figures sup\'erieures repr\'esentent de gauche \`a droite la diff\'erence relative (l'\'ecoulement constant est pris comme r\'ef\'erence) du nombre de Mach de l'\'ecoulement potentiel ($M_M=0,3$ et $M_\infty=0,2$) par rapport au nombre de Mach de l'\'ecoulement uniforme de r\'ef\'erence $M=0,2$ : $\dsp \frac{\vert\vert\ovra{M}_{0}\vert-\vert\ovra{M}_{0,ref}\vert\vert}{\vert \ovra{M}_{0,ref}\vert}$ et la diff\'erence absolue de la partie r\'eelle du potentiel acoustique propag\'e sur l'\'ecoulement potentiel ($M_M=0,3$ et $M_\infty=0,2$) par rapport \`a la partie r\'eelle du potentiel acoustique propag\'e sur l'\'ecoulement uniforme de r\'ef\'erence $M=0,2$ : $\dsp\vert\Re e\left(\phi_a\right)-\Re e\left(\phi_{a,ref}\right)\vert$. Le d\'ephasage visualis\'e dans la figure de droite s'explique par la diff\'erence d'acc\'el\'eration au moteur entre les deux \'ecoulements qui fait na\^itre un effet Doppler de d\'ephasage.
+%% \newline Les deux figures inf\'erieures repr\'esentent de gauche \`a droite la diff\'erence absolue du module du potentiel acoustique propag\'e sur un \'ecoulement potentiel ($M_M=0,3$ et $M_\infty=0,2$) par rapport au module du potentiel acoustique propag\'e sur l'\'ecoulement uniforme de r\'ef\'erence $M=0,2$ : $\dsp\vert\vert\phi_a\vert-\vert\phi_{a,ref}\vert\vert$ et la diff\'erence relative des m\^emes quantit\'es (l'\'ecoulement constant est pris comme r\'ef\'erence) : $\dsp\frac{\vert\vert\phi_a\vert-\vert\phi_{a,ref}\vert\vert}{\vert\phi_{a,ref}\vert}$.
+%% \newline 
+%% En propagation guid\'ee, l'intensit\'e est directement proportionnelle \`a $\vert \phi_a\vert ^2$ comme le prouve (\ref{jauriapaspensequejautriaalaspecifier}). L'adimensionnement choisi pour le code num\'erique expos\'e dans les paragraphes (\ref{mecaflusubsectionsub133}) et (\ref{acoussurecoulsubsectionsub163}), combin\'e \`a la loi logaritmique de l'intensit\'e en d\'ecibels (\ref{coefmodepour100dB}) et \`a la directe proportionnalit\'e de l'intensit\'e \`a $\vert \phi_a\vert ^2$ en propagation guid\'ee, comme le prouve (\ref{jauriapaspensequejautriaalaspecifier}), donne l'expression de l'intensit\'e en dBs : $IdB=20{\rm log}\left(Z_\infty \vert\phi_a\vert\right)$, o\`u $Z_\infty$ est une constante fix\'e par les param\`etres \`a l'infini et l'intensit\'e de r\'ef\'erence.
+%% \newline Un calcul imm\'ediat montre que pour une diff\'erence relative de $0,3$ pour le module du potentiel acoustique entraine une diff\'erence de ${\rm max}\{\vert 20{\rm log}\left(1\pm 0,3\right)\vert\} =4 dBs$.

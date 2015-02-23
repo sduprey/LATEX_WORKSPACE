@@ -1,0 +1,223 @@
+\chapter[Enjeux et probl\`emes]{Enjeux et probl\`emes}\label{Enjeux et Probl\`emes}
+\noindent Ce chapitre détaille dans un premier temps la physique de la distinction en zones propres d'un écoulement autour d'une nacelle.
+\newline Fort de cette décomposition, le domaine précis d'étude du manuscrit est explicité.
+\newline Les conditions de bord fermant le domaine d'étude et les hypothèses inhérentes à la réalisation d'un code ciblé sur une zone propre précise sont exposées.
+\newline Les équations globales et linéarisées du problème sont détaillées.
+\newline Le plan du document est finalement exposé dans ses détails, de la démonstration mathématique de l'existence et l'unicité à la description des résultats de la discrétisation numérique proposée.
+\section{Classification en zones propres}\label{problemeposesection3}
+\noindent De r\'ecents progr\`es dans l'\'etude de la g\'en\'eration et de la propagation du son par un \'ecoulement quelconque (les ouvrages de r\'ef\'erence de M.S. Howe \cite{MSH} et de D.G. Crighton \cite{DGC}, par exemple, dressent un bilan des principales avanc\'ees cons\'ecutives aux travaux pionniers de N. Curle \cite{NC}, de M.J. Lighthill \cite{MJL} et de J.E. Ffowcs Williams et D.L. Hawkings \cite{JEFWDLH}, ainsi que des nouvelles applications physiques r\'esultantes) ont conduit \`a une classification nouvelle d'un \'ecoulement quelconque en zones "g\'eographiques" de complexit\'e acoustique croissante. 
+\newline Ce paragraphe explicite succinctement la physique et la g\'eom\'etrie propres de chaque zone de cette classification dans le cadre de l'\'ecoulement \`a l'avant de la nacelle d'un turbor\'eacteur. 
+\subsection{G\'eom\'etrie des zones propres}
+\begin{center}
+\epsfig{file=ddmgeometrienumerounfinal.eps,height=7.1cm,width=14.50cm}
+\begin{displaymath}
+\begin{array}{ll}
+\dsp \textbf{1} : & \text{ zone de cr\'eation du bruit a\'erodynamique} \\
+\dsp \textbf{2} : & \text{ zone de lin\'earisation} \\
+\dsp \textbf{3} : & \text{ zone de propagation lin\'eaire sur un \'ecoulement uniforme} \\
+\end{array}
+\end{displaymath}
+\end{center}
+\noindent Le rep\`ere cylindrique $(r,\theta,z)$ est le rep\`ere du r\'ef\'erentiel de l'avion, qui vole \`a vitesse constante.
+$\Omega_i$ d\'esigne la nacelle consid\'er\'ee comme un objet acoustiquement rigide \`a sym\'etrie de r\'evolution d'axe $z$. La surface $\Gamma_R$ d\'esigne la surface rigide de la nacelle. La surface $\Gamma_M$ est une surface fictive situ\'ee assez loin du moteur pour se trouver dans la zone \textbf{2} (elle se trouve à l'origine $z=0$ du référentiel fixe à l'avion). Le zoom pointe sur le ph\'enom\`ene de couche limite.
+\subsection{Distinction des zones propres}
+\noindent $\bullet$ La zone \textbf{1} correspond \`a la zone de cr\'eation du bruit a\'erodynamique. Cette zone comprend l'int\'erieur du moteur, le jet \`a l'arri\`ere de la nacelle et les couches limites. Cette zone est la plus complexe. Elle n\'ecessite l'\'equation compl\`ete de Navier-Stokes (terme non lin\'eaire+terme visqueux) et une \'equation \'energ\'etique compl\`ete reliant temp\'erature et entropie. Les nombres de Mach au niveau des pales sont transsoniques et des ondes de choc peuvent appara\^itre. L'acoustique est non-lin\'eaire. L'analogie de Lighthill sugg\`ere de consid\'erer les perturbations tourbillonaires et les non lin\'earit\'es comme des sources acoustiques quadripolaires. Il y a interaction entre \'ecoulement et acoustique : on parle d'\textbf{a\'eroacoustique}. Les approches num\'eriques de cette zone sont tr\`es couteuses et encore incapables de traiter l'avion tout entier. 
+\newline $\bullet$ La zone \textbf{2} correspond \`a l'acoustique lin\'eaire. Les nombres de Mach sont suppos\'es suffisamment faibles pour que l'acoustique puisse \^etre consid\'er\'ee comme une perturbation lin\'eaire petite devant l'\'ecoulement porteur. L'acoustique est un phénomène linéaire découplé de l'écoulement qui devient simple porteur. Cette zone exclut les perturbations a\'erodynamiques et les couches limites : la viscosit\'e de l'\'equation de Navier-Stokes est n\'eglig\'ee (\'equation d'Euler) et l'\'equation thermodynamique se réduit \`a une condition isentropique pour le fluide que l'on suppose parfait.
+\newline Pour toute grandeur physique totale de l'\'ecoulement global (porteur+acoustique), sa valeur
+moyenne dans le temps est introduite : ces valeurs moyennes temporelles sont stationnaires, car le r\'{e}gime permanent est \'{e}tabli et l'avion vole \`a vitesse constante. Ces valeurs sont celles de
+l'\'{e}coulement fluide porteur, o\`{u} se propagent les ondes acoustiques. Les variables acoustiques (resp. les variables de l'\'ecoulement porteur) sont obtenues en lin\'{e}arisant l'\'{e}quation d'Euler et l'\'equation \'energ\'etique d'isentropie \`a l'ordre 1 (resp. \`a l'ordre 0). La linéarisation introduit deux \'echelles physiques distinctes  : une pour l'écoulement et une pour l'acoustique. Les variables physiques correspondantes sont indic\'ees par $a$ (resp. $0$) pour les variables acoustiques (resp. pour les variables de l'\'ecoulement porteur).
+\newline Une hypoth\`ese est ajout\'ee au mod\`ele. L'\'equation d'Euler propage les perturbations tourbillonaires créées par la viscosit\'e et l'\'ecoulement porteur est {\it{a priori}} rotationnel (ainsi que la perturbation acoustique). L'influence des rotationnalit\'es de l'\'ecoulement porteur sur la propagation de la perturbation acoustique du moteur est ici n\'eglig\'ee par rapport \`a la simple propagation potentielle (sur la partie de l'\'ecoulement d\'erivant d'un gradient dans la d\'ecomposition de Hodge) : l'\'ecoulement porteur est suppos\'e potentiel et irrotationnel. La perturbation acoustique est aussi suppos\'ee potentielle.
+\newline $\bullet$ La s\'eparation entre la zone \textbf{2} et la zone \textbf{3} concerne uniquement la complexité de l'écoulement porteur : la zone \textbf{2} correspond à un écoulement potentiel quelconque vérifiant l'ordre 0 stationnaire des équations d'Euler et d'isentropie pour un \'ecoulement potentiel. La zone \textbf{3} correspond à l'écoulement potentiel le plus simple possible  : l'écoulement uniforme. L'uniformit\'e de l'\'ecoulement permet d'exhiber la fonction de Green de l'\'equation aux d\'eriv\'ees partielles de la zone \textbf{3}, puisque celle-ci est \`a coefficients constants. L'\'equation volumique est \'equivalente \`a une \'equation surfacique sur le bord du domaine.
+\subsection{Zones d'\'etude}
+\noindent La distinction physique des différentes zones explicit\'ee, le cadre de travail peut \^etre maintenant d\'efini : seul le traitement des zones \textbf{2} et \textbf{3} est envisag\'e dans ce document. 
+\newline La zone \textbf{1} n\'ecessite l'utilisation de codes de m\'ecanique des fluides complexes. Les r\'esultats issus de calculs d'un logiciel de m\'ecanique des fluides ou de mesures physiques dans la zone \textbf{1} sont ici des \textbf{donn\'ees} du probl\`eme : ces donn\'ees acoustiques provenant de la zone \textbf{1} sont exprim\'ees sur la surface fictive $\Gamma_M$, permettant ainsi de borner le domaine d'\'etude int\'eressant ce document et form\'e uniquement des zones \textbf{2} et \textbf{3} ($\Gamma_M$ est suppos\'ee assez loin du moteur pour \^etre situ\'ee dans la zone \textbf{2}, cette hypoth\`ese est n\'ecessaire pour l'expression des sources acoustiques provenant du moteur).
+\section{Distinction entre domaines de calcul et zones propres}\label{problemeposesection1}
+\noindent Ce paragraphe d\'etaille le lien entre les domaines géographiques effectifs de calcul et les zones propres physiques réelles qui ne sont en fait pas les m\^emes pour des raisons d'implémentation numérique.
+\subsection{Définition g\'eom\'etrique des domaines de calcul}
+\begin{center}
+\epsfig{file=geometrienumerounfinal.eps,height=5.25cm,width=14.50cm}
+Domaines de d\'efinition des \'equations
+\end{center}
+\noindent $\Omega_i$ d\'esigne toujours la nacelle rigide, \`a laquelle on a ajout\'e l'int\'erieur du moteur (zone \text{1} et une partie de la zone \textbf{2} jusqu'\`a la surface fictive $\Gamma_M$). 
+\newline $\Omega$ est le domaine proche de la nacelle, o\`u l'acoustique est suppos\'ee lin\'eaire et o\`u l'\'ecoulement porteur potentiel est suppos\'e variable : les \'equations de $\Omega$ correspondent \`a la physique propre de la zone \textbf{2}.
+\newline $\Omega_e$ est le domaine, o\`u l'\'ecoulement potentiel porteur est partout uniforme (\'egal \`a l'oppos\'e de la vitesse de l'avion) : les \'equations de $\Omega_e$ correspondent \`a la physique propre de la zone \textbf{3}.
+\newline Le domaine de d\'efinition $\Omega$ des équations linéarisées coïncide avec le domaine r\'eel de la zone propre \textbf{2} seulement \`a l'avant de la nacelle.
+\newline Le domaine de d\'efinition $\Omega_e$ de propagation acoustique sur un écoulement constant coincide totalement avec la zone propre \textbf{3}.
+\newline Par abus de notation, les domaines tridimensionnels cart\'esiens (resp. surfaces de bord bidimensionnelles cart\'esiennes) obtenus par r\'evolution des domaines transverses : $\Omega_i$, $\Omega$ et $\Omega_e\subset\mathbb{R}^2$ (resp. des surfaces de bord monodimensionnelles transverses correspondantes $\Gamma_M$, $\Gamma_{M'}$, $\Gamma_R$ et $\Gamma_\infty$) sont désignés de la m\^eme fa\c con que ceux-ci (resp. celles-ci).
+\newline Dans certains paragraphes, o\`u des distinctions sont n\'ecessaires, de nouvelles conventions d'\'ecriture sont ajout\'ees : la g\'eom\'etrie de la situation est explicit\'ee au d\'ebut de chaque nouveau paragraphe. 
+\subsection{Hypothèses inhérentes au modèle}
+\noindent L'impl\'ementation d'un code num\'erique global \'evitant la zone \textbf{1} (et donc l'arrière de la nacelle à cause de la discontinuité de jet) n\'ecessite d'imposer \`a l'arri\`ere de la nacelle une fausse zone propre \textbf{2}, d'où la d\'efinition du domaine de calcul effectif $\Omega$ de la zone \textbf{2}. En effet, la résolution de l'écoulement porteur potentiel découlant d'un problème de Neumann sans second membre (un flux constant est impos\'e sur $\Gamma_M$ et $\Gamma_\infty$ de telle sorte que l'\'ecoulement soit uniforme \`a leur niveau), il est nécessaire d'introduire la surface $\Gamma_{M'}$ et de prolonger $\Omega$ à l'arrière de la nacelle pour avoir un problème de Neumann bien posé, dont le flux global est nul. 
+\newline
+\noindent Cet écoulement porteur potentiel à l'arrière est irréaliste. Néanmoins, seule la propagation acoustique à l'intérieur du conduit avant principal (la soufflante et pas les conduits secondaires) et son rayonnement à l'avant nous intéressent : l'effet de l'écoulement irréaliste à l'arrière de la nacelle est négligé dans le cadre de la propagation acoustique du bruit tonal du moteur à l'avant de la nacelle.
+\newline
+\noindent L'impl\'ementation d'un code num\'erique global \'evitant la zone \textbf{1} nécessite également d'occulter les phénomènes complexes de couche limite. Les couches limites sont remplacées par des conditions de bord simplifiées : on impose une condition glissante de flux nul pour l'écoulement porteur et une condition de réflexion totale pour l'acoustique.
+\section{Equations g\'en\'erales}\label{problemeposesection2}
+\noindent Ce paragraphe pr\'esente les \'equations de l'\'ecoulement total dans $\Omega$ (physique de la zone \textbf{2}) et leur lin\'earisation. Une d\'emarche identique peut \^etre trouv\'ee dans le manuel th\'eorique du logiciel ACTRAN \cite{JPC} d\'evelopp\'e par la soci\'et\'e Free Field Technologies, qui r\'esout exactement le m\^eme probl\`eme physique cibl\'e sur la zone \textbf{2} avec \'egalement l'hypoth\`ese suppl\'ementaire de potentialit\'e pour l'\'ecoulement porteur et la perturbation acoustique. 
+\subsection{Equations de l'\'ecoulement total}
+\noindent Dans le domaine cart\'esien $\Omega_{tot}=\left(\overline{\Omega}\cup\Omega_e\right)\backslash\left(\Gamma_R\cup\Gamma_M\cup\Gamma_{M'} \right)\subset \mathbb{R}^3$, le fluide est de l'air, que
+l'on assimile \`{a} un gaz parfait caract\'{e}ris\'{e} par le rapport des
+chaleurs sp\'{e}cifiques $\gamma=1,4$. On suppose l'\'{e}coulement
+isentropique et isenthalpique : la viscosit\'{e} est n\'eglig\'ee et le fluide est suppos\'e ne pas conduire la chaleur. L'\'{e}coulement est suppos\'e potentiel : sa vitesse d\'erive d'un potentiel et l'\'ecoulement est irrotationnel. On d\'{e}signe respectivement par $\dsp
+\overrightarrow{v}$, $\dsp p$, $\dsp \rho$ et $\dsp \phi$ : la
+vitesse, la pression, la densit\'{e} volumique, le potentiel des
+vitesses de la particule de fluide se trouvant en
+$\overrightarrow{x}$ \`{a} l'instant t. $\dsp a$ d\'esigne la vitesse du son \`a l'int\'erieur de l'\'ecoulement. De ces hypoth\`eses physiques d\'{e}coulent les quatre \'{e}quations suivantes :
+\newline $\bullet$ L'\'{e}quation d'Euler des fluides non visqueux :
+\BEQ{eultot} \dsp \frac{\ud}{\ud
+t}\overrightarrow{v}\left(\overrightarrow{x},t\right)+\frac{\ovra{\nabla}
+p\left(\overrightarrow{x},t\right)}{\rho\left(\overrightarrow{x},t\right)}=0,
+\ \ \forall \overrightarrow{x}\in\Omega_{tot}, \ \ \forall t\geq 0, \EEQ
+o\`u $\dsp \frac{\ud}{\ud t}$ d\'esigne la d\'eriv\'ee particulaire (vision eul\'erienne).
+\newline $\bullet$ L'\'{e}quation de conservation de la masse  :
+\BEQ{masstot} \dsp \frac{\partial}{\partial
+t}\rho\left(\overrightarrow{x},t\right)+{\rm
+div}\left(\rho\left(\overrightarrow{x},t\right)\overrightarrow{v}\left(\overrightarrow{x},t\right)\right)=0,
+\ \ \forall \overrightarrow{x}\in\Omega_{tot}, \ \ \forall t\geq 0 \EEQ
+$\bullet$ La conservation de l'entropie et la loi des gaz
+parfaits  : \BEQ{entroparftot} \dsp
+\frac{p\left(\overrightarrow{x},t\right)}{\rho\left(\overrightarrow{x},t\right)^{\gamma}}=cte=K,
+\ \ \forall \overrightarrow{x}\in\Omega_{tot}, \ \ \forall t\geq 0 \EEQ
+$\bullet$ L'irrotationnalit\'{e} de l'\'{e}coulement et le
+potentiel des vitesses d\'{e}coulant  : \BEQ{irrottot} \dsp
+\overrightarrow{v}\left(\overrightarrow{x},t\right)=\ovra{\nabla} \phi
+\left(\overrightarrow{x},t\right), \ \ \forall
+\overrightarrow{x}\in\Omega_{tot}, \ \ \forall t\geq 0 \EEQ 
+$\bullet$ La d\'{e}finition thermodynamique de la vitesse du son  :
+\BEQ{vitsontot} \dsp
+a\left(\overrightarrow{x},t\right)^2=\left(\frac{\partial
+p}{\partial\rho}\right)_{s\text{ fix\'{e}e
+}}=K\gamma\rho(\overrightarrow{x},t)^{\gamma-1}, \ \ \forall
+\overrightarrow{x}\in\Omega_{tot}, \ \ \forall t\geq 0 \EEQ
+Etablissons maintenant la relation de Bernoulli. L'\'{e}quation de conservation de la masse se réécrit en fonction de $\phi$ et
+$\rho$  :
+$$
+\frac{\partial\rho}{\partial
+t}+\rho\Delta\phi+\ovra{\nabla}\phi.\ovra{\nabla}\rho=0, \ \ \forall
+\overrightarrow{x}\in\Omega_{tot}, \ \ \forall t\geq 0
+$$
+L'\'{e}quation d'Euler se réécrit en fonction de $\phi$ et $\rho$  :
+$$
+\ovra{\nabla}(\frac{\partial\phi}{\partial
+t}+\frac{\vert\ovra{\nabla}\phi\vert^2}{2})+\frac{\ovra{\nabla} p}{\rho}=0, \ \
+\forall \overrightarrow{x}\in\Omega_{tot}, \ \ \forall t\geq 0
+$$
+L'isentropie et la loi des gaz parfaits donnent  :
+$$
+\frac{\ovra{\nabla} p}{\rho}=\frac{\ovra{\nabla} a^2}{\gamma -1}, \ \ \forall
+\overrightarrow{x}\in\Omega_{tot}, \ \ \forall t\geq 0
+$$
+En substituant l'\'equation pr\'ec\'edente dans l'\'{e}quation d'Euler, on obtient la relation de Bernoulli.
+\newline
+Le potentiel des vitesses de l'\'{e}coulement v\'{e}rifie dans
+l'espace et dans le temps, o\`{u} $F(t)$ est une fonction uniforme en
+espace  : \BEQ{bernoutot} \frac{\partial\phi}{\partial
+t}+\frac{\vert\ovra{\nabla}\phi\vert^2}{2}+\frac{a^2}{\gamma -1}=F(t), \ \ \forall \overrightarrow{x}\in\Omega_{tot}, \ \ \forall t\geq 0 \EEQ
+\subsection{Equations lin\'earis\'ees}
+\subsubsection{Equations de l'\'ecoulement porteur}
+\noindent L'\'{e}coulement fluide porteur est stationnaire (l'avion vole \`{a}
+vitesse constante). Les \'equations de l'\'{e}coulement porteur dans le domaine cart\'esien $\Omega\subset \mathbb{R}^3$ s'obtiennent à partir de la linéarisation au premier ordre des \'{e}quations de l'\'{e}coulement global (\ref{eultot}), (\ref{masstot}), (\ref{entroparftot}), (\ref{irrottot}), (\ref{vitsontot}) :
+\newline $\bullet$ L'irrotationnalit\'{e} de l'\'{e}coulement porteur et le
+potentiel des vitesses d\'{e}coulant : 
+\BEQ{irrotport} \dsp
+\overrightarrow{v_0}\left(\overrightarrow{x}\right)=\ovra{\nabla} 
+\phi_0 \left(\overrightarrow{x}\right),\ \ \forall
+\overrightarrow{x}\in\Omega \EEQ
+$\bullet$ La conservation de l'entropie et la loi des gaz
+parfaits : 
+\BEQ{entroparfport} \dsp
+\frac{p_0\left(\overrightarrow{x}\right)}{\rho_0(\overrightarrow{x})^\gamma}=cte,
+\ \ \forall \overrightarrow{x}\in\Omega \EEQ
+$\bullet$ L'\'{e}quation d'Euler pour les
+fluides non visqueux stationnaires : 
+\BEQ{eulport} \dsp
+\frac{\ovra{\nabla}\left(\vert \ovra{v_0}\left(\overrightarrow{x}\right) \vert^2 \right)}{2}+\overrightarrow{{\rm rot}}\left(
+\overrightarrow{v_0}\left(\overrightarrow{x}\right)\right)\wedge  \overrightarrow{v_0}\left(\overrightarrow{x}\right) +
+\frac{\ovra{\nabla}\left(p_0\left(\overrightarrow{x}\right)\right)}{\rho_0\left(\overrightarrow{x}\right)}=0, \ \
+\forall\overrightarrow{x}\in\Omega,
+ \EEQ
+ o\`u le terme rotationnel dispara\^it du fait de la potentialit\'e.
+\newline $\bullet$
+La d\'{e}finition thermodynamique de la vitesse du son :
+\BEQ{vitsonport} \dsp
+a_0\left(\overrightarrow{x}\right)^2=\left(\frac{\partial
+p_0}{\partial\rho_0}\right)_{s\text{ fix\'{e}e}}\left(\overrightarrow{x}\right)=cste\ \gamma\rho_0\left(\overrightarrow{x}\right)^{\gamma-1}=\frac{\gamma
+p_0\left(\overrightarrow{x}\right)}{\rho_0\left(\overrightarrow{x}\right)},
+\ \ \forall\overrightarrow{x}\in\Omega \EEQ
+$\bullet$ L'\'{e}quation de conservation de la masse :
+\BEQ{massport} \dsp {\rm
+div}\left(\rho_0\left(\overrightarrow{x}\right)
+\ovra{\nabla} 
+\phi_0\left(\overrightarrow{x}\right)\right)=0, \ \
+\forall\overrightarrow{x}\in\Omega \EEQ
+\subsubsection{Equations de l'acoustique}
+\noindent Dans le domaine cart\'esien $\Omega_{tot}$, l'\'{e}coulement total est la somme de l'\'{e}coulement
+potentiel stationnaire porteur et d'une perturbation acoustique,
+dont les grandeurs acoustiques correspondantes sont index\'{e}es par $a$. Le bruit
+du moteur est suppos\'e monofr\'{e}quentiel et la perturbation acoustique est suppos\'ee harmonique de pulsation $\omega$ (convention $\dsp e^{-i\omega t}$) : 
+\BEQ{linearisation}
+\dsp \left\{
+\begin{array}{ll}
+\dsp u\left(\overrightarrow{x},t\right)=\ovra{v_0}\left(\overrightarrow{x}\right)+\ovra{v_a}\left(\overrightarrow{x}\right)e^{-i\omega t},&\ \ \forall \overrightarrow{x}\in\Omega_{tot},\ \ \forall t\ge 0\\
+\dsp \rho\left(\overrightarrow{x},t\right)=\rho_0\left(\overrightarrow{x}\right)+\rho_a\left(\overrightarrow{x}\right)e^{-i\omega t},&\ \ \forall \overrightarrow{x}\in\Omega_{tot},\ \ \forall t\ge 0 \\
+\dsp p\left(\overrightarrow{x},t\right)=p_0\left(\overrightarrow{x}\right)+p_a\left(\overrightarrow{x}\right)e^{-i\omega t},&\ \ \forall \overrightarrow{x}\in\Omega_{tot},\ \ \forall t\ge 0\\
+\end{array}
+\right.
+\EEQ
+La perturbation acoustique harmonique se propageant sur
+l'\'{e}coulement porteur potentiel est d\'{e}termin\'{e}e par l'ordre 1 des \'{e}quations de l'\'{e}coulement total (\ref{eultot}), (\ref{masstot}), (\ref{entroparftot}), (\ref{irrottot}), (\ref{vitsontot}) :
+\newline $\bullet$ La perturbation acoustique est irrotationnelle :
+\BEQ{irrotac} \dsp
+\ovra{v_a}\left(\overrightarrow{x}\right)e^{-i\omega t}
+=\ovra{\nabla} \phi_a
+\left(\overrightarrow{x}\right)e^{-i\omega t},\ \ \forall
+\overrightarrow{x}\in\Omega_{tot},\ \ \forall t\ge 0 \EEQ
+$\bullet$ La lin\'{e}arisation de la loi de conservation de l'entropie :
+ \BEQ{entroparfac} \dsp
+p_a\left(\overrightarrow{x}\right)e^{-i\omega
+t}=a_0\left(\overrightarrow{x}\right)^2\rho_a\left(\overrightarrow{x}\right)e^{-i\omega
+t}, \ \ \forall \overrightarrow{x}\in\Omega_{tot},\ \ \forall t\ge 0\EEQ
+$\bullet$  La lin\'{e}arisation de la loi de conservation de la
+ masse :
+ \BEQ{eulac} \dsp
+-i\omega\rho_a\left(\overrightarrow{x}\right)+{\rm
+div}\left(\rho_0\left(\overrightarrow{x}\right)\ovra{\nabla}\phi_a\left(\overrightarrow{x}\right)\right)+{\rm
+div}\left(\rho_a\left(\overrightarrow{x}\right)
+\ovra{v_0}\left(\overrightarrow{x}\right)\right)=0 \EEQ
+$\bullet$ La lin\'{e}arisation du th\'{e}or\`{e}me de Bernoulli \rfb{bernoutot} :
+\BEQ{bernouac} \dsp
+\rho_a\left(\overrightarrow{x}\right)=-\frac{\rho_0}{a_0^2}(-i\omega
+\phi_a\left(\overrightarrow{x}\right)+\ovra{v_0}\left(\overrightarrow{x}\right).\ovra{\nabla}\phi_a\left(\overrightarrow{x}\right)) \EEQ
+\begin{remark}\label{demarchedepassageaucomplexe}
+\text{\newline}
+{\rm 
+\newline $\bullet$
+Dans la relation de Bernoulli (\ref{bernoutot}) pour le champ total, la fonction $F(t)$ est
+uniforme en espace et ne d\'{e}pend que du temps. On se place en r\'egime harmonique \'etabli et cette fonction $F$ est une constante compl\`{e}te qui dispara\^{i}t avec l'ordre $\dsp 0$.
+\newline
+$\bullet$ Le bruit du moteur est monofréquentiel (pulsation $\omega$ de rotation des pales) et on cherche le potentiel acoustique en régime harmonique \'etabli sous la forme :
+\BEQ{passagealavariablecomplexe}
+\dsp \phi_a\left(x,t\right)=a\left(x\right){\rm cos}\left(\omega t-\psi\left(x\right)\right)=\Re e\left(\phi_a\left(x\right)e^{-i\omega t}\right),
+\EEQ
+o\`{u} $\dsp \phi_a\left(x\right)=a\left(x\right)e^{i\psi \left(x\right)}$ est maintenant une
+fonction \`{a} valeurs complexes ($a\left(x\right)$ (resp. $\psi\left(x\right)$) est une fonction \`a valeurs dans $\mathbb{R}_+$ (resp. $\mathbb{R}$)). Si la source $f(x)cos(\omega t)$ est \`{a} valeurs r\'{e}elles, par lin\'earit\'e, $\Re
+e(\phi_a(x)e^{-i\omega t})$ d\'{e}finit la solution r\'{e}elle associ\'{e}e. Toute variable physique dépendant linéairement du potentiel acoustique s'obtient par la partie réelle de sa valeur complexe associée.}
+\end{remark}
+\section{Plan du document}
+\noindent Ce paragraphe d\'etaille le plan complet de ce manuscrit.\\
+\newline Le chapitre \ref{Moteur : un Mod\`ele de Guide d'Ondes} de ce manuscrit détaille la modélisation de la source de bruit tonal du moteur et la condition de bord acoustique à imposer sur $\Gamma_M$ pour prendre en compte les données acoustiques sources provenant de la zone \textbf{1} et ainsi fermer le domaine géométrique d'étude. Les hypoth\`eses physiques de linéarisation de la zone \textbf{2} et le placement de la surface fictive $\Gamma_M$ permettent l'expression de la perturbation acoustique tonale du moteur sous la forme de modes acoustiques de conduit guidés en écoulement uniforme. La condition de bord acoustique s'exprime à l'aide d'un opérateur Dirichlet-Neumann en présence d'écoulement.\\
+\newline Le chapitre \ref{Ecoulement Constant} traite de l'écoulement potentiel le plus simple, globalement uniforme (même s'il viole les conditions aux limites) : la zone \text{2} est inexistante et seule la zone \text{3} à l'extérieur de la nacelle est considérée. L'\'{e}coulement est alors ramen\'{e} \`{a} z\'{e}ro par une transformation alg\'{e}brique de Lorentz. Le probl\`eme est \'equivalent \`a la question de la diffraction d'une onde acoustique en domaine homog\`ene non borné. La transformatée de Lorentz de la condition de bord acoustique au moteur en écoulement permet de retrouver la condition habituelle d'un guide d'ondes sans écoulement {\it via} le classique opérateur Dirichlet-Neumann. L'existence et l'unicité de la solution transformée soumise à une condition de Sommerfeld ne sont pas abordées ici : elles découlent naturellement du cas plus général traité dans les chapitres suivants. L'\'equation volumique en domaine non born\'e est ramen\'ee \`a une \'equation int\'egrale sur la surface finie de la nacelle à l'aide du classique noyau de Green de l'équation de Helmholtz. L'approche num\'erique dans le cas d'une g\'eom\'etrie axisym\'etrique est d\'etaill\'ee.
+\\
+\newline
+Le chapitre \ref{ecoulementpotentielpart} aborde le cadre général d'un \'ecoulement potentiel variable localement et uniforme \`a l'infini.
+\newline
+Le probl\`eme classique de la diffraction d'une onde acoustique par un objet dur entour\'e d'une anisotropie locale est trait\'e dans un premier temps.
+L'\'equation volumique en domaine non born\'e est ramen\'ee à une \'equation volumique locale autour de l'h\'et\'erog\'en\'eit\'e {\it{via}} le couplage avec une \'equation int\'egrale. Cette équation intégrale est posée sur une surface fictive entourant l'h\'et\'erog\'en\'eit\'e. Elle s'exprime à l'aide du classique noyau de Green de l'équation de Helmholtz. La discrétisation num\'erique dans le cas d'une g\'eom\'etrie axisym\'etrique est d\'etaill\'ee.
+\newline
+L'existence et l'unicité du problème continu global fluide-acoustique sont ensuite prouvées en appliquant la transformation de Lorentz dans l'espace entier. La transformée de Lorentz annule l'écoulement à l'infini, là où celui-ci est uniforme et modifie l'équation aux dérivées partielles là où l'écoulement est variable. La condition de Sommerfeld classique appliquée au potentiel acoustique transformé fournit l'unicité du problème. L'existence découle alors de l'unicité d'après l'alternative de Fredholm.
+\newline
+La m\'ethodologie du cas simple de la diffraction d'une onde acoustique en milieu homogène non borné par une anisotropie locale, combin\'ee \`a celle du traitement par la transformée de Lorentz de l'\'ecoulement partout uniforme, est exploit\'ee pour déterminer le couplage en écoulement permettant de traiter le cas g\'en\'eral de la perturbation potentielle locale.
+\\
+\newline Le chapitre \ref{partnumerique} pr\'esente les r\'esultats num\'eriques du nouveau code produit et nomm\'e PA2R. La m\'ethodologie de validation du nouveau code est pr\'esent\'ee dans un premier temps.
+\newline Une premi\`ere validation analytique des différents modules est r\'ealis\'ee : l'écoulement porteur, la condition modale en présence d'écoulement et la condition intégrale en présence d'écoulement sont validés à l'aide de cas-tests analytiques, dont la solution est connue.
+\newline Une validation finale est effectu\'ee avec la comparaison au logiciel ACTI3S d\'evelopp\'e \`a EADS-CCR. Cette validation s'effectue uniquement pour un écoulement constant (seul cas traité par ACTI3S) et concerne le code acoustique global : condition modale en écoulement + propagation acoustique volumique + condition intégrale en écoulement.
+\newline Les r\'esultats originaux en pr\'esence d'un \'ecoulement potentiel variable sont ensuite comment\'es. La comparaison des diagrammes de rayonnement en champ lointain pour des écoulements potentiels variables (l'accélération au moteur est successivement augmentée) permet de conclure à la nécessité de prendre en compte l'écoulement porteur non-linéaire et ses effets, qui peuvent se traduire par des différences supérieures à 5 dB pour certaines directivités du diagramme de rayonnement en champ lointain.

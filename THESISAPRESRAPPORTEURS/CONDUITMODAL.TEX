@@ -1,0 +1,211 @@
+\subsection{Validation des conditions modales}\label{numeriquecastestdebugsection3}
+\begin{center}
+\epsfig{file=castestmodaldeux.eps,height=5.cm,width=14.cm}
+Bouchon d'aspirine avec \'ecoulement
+\end{center}
+\noindent Les domaines consid\'er\'es ici sont bidimensionnels transverses.
+\newline On propose ici le cas-test d'un tube d'aspirine infini dans le sens des $z<0$, de diam\`etre unitaire, et bouch\'e en $z=L$ (condition de r\'eflexion pour les ondes). La surface fictive modale $\Gamma_M$ est plac\'ee \`a l'origine. Nous introduisons un \'ecoulement uniforme (qu'importe son orientation). Tout se passe comme si le fond du bouchon d'aspirine \'etait transparent pour l'\'ecoulement, alors que les ondes acoustiques y sont r\'efl\'echies.
+\newline Ce cas-test physiquement absurde, mais poss\'edant une solution analytique, va nous permettre de tester la condition modale en pr\'esence d'\'ecoulement sur $\Gamma_M$.
+\subsubsection{Op\'erateur Dirichlet-Neumann et bilan d'\'energie}\label{numeriquecastestdebugsectionsub31}
+\noindent On consid\`ere le probl\`eme suivant :
+\BEQ{definitionproblemeanalytiquemodal}
+\left\lbrace
+\begin{array}{ll}
+\dsp \text{ Trouver } \phi_a\in H^1\left(\Omega\right)\text{ tel que }& \\
+\dsp \Delta\phi_a-M^2\frac{\partial^2\phi_a}{\partial
+z^2}-2ikM\frac{\partial\phi_a}{\partial z
+}+k^2\phi_a=0, &\forall x\in \Omega\\
+\dsp \frac{\partial \left(\phi_a-\phi_{a,inc}\right)}{\partial n_{A_0}}=T_M\left(\phi_a-\phi_{a,inc}\right) ,&\forall x\in \Gamma_M \\
+\dsp \frac{\partial \phi_a}{\partial n_{A_0}}=0,&\forall x\in \Gamma_R \\
+\end{array}
+\right.,
+\EEQ
+o\`u $T_M$ est l'op\'erateur Dirichlet-Neumann modal avec \'ecoulement (\ref{definitionoperateurmodalespacephysiquemodem}).
+%La condition modale est \'equivalente \`a $\phi_a-\phi_{a,inc}$ r\'efl\'echi dans le guide d'ondes avec \'ecoulement.
+Les coefficients modaux r\'efl\'echis et incidents v\'erifient l'\'egalit\'e d'\'energie suivante :
+\BEQ{premiereegaliteenergie}
+\left\lbrace
+\begin{array}{c}
+\dsp \sum_{k_{rmn}\le \left[k\right]} \vert a_{mn,\Phi}^+\vert^2  =\sum_{k_{rmn}\le \left[k\right]}\vert a_{mn,\Phi}^-\vert^2 -\sum_{k_{rmn}>\left[k\right]} 2\Im m \left(  a_{mn,\Phi}^+\overline{a_{mn,\Phi}^-}\right) \\
+\dsp \text{et} \\
+\dsp \int_\Omega \vert \nabla \phi_a \vert^2-k^2 \int_\Omega \vert \phi_a \vert^2-M^2 \int_\Omega \vert\frac{\partial \phi_a}{\partial z} \vert^2-2kM\int_\Omega\Im m\left(\frac{\partial\overline{\phi_a}}{\partial z}\phi_a\right)=\\
+\dsp \frac{2S\left(\Gamma_M \right)}{k}\left[\sum_{k_{rmn}>\left[k\right]}\left(\vert a_{mn,\Phi}^+\vert^2- \vert a_{mn,\Phi}^-\vert^2\right)+ 2\Im m\left(\sum_{k_{rmn}\le \left[k\right]} a_{mn,\Phi}^+\overline{a_{mn,\Phi}^-}\right)\right] \\
+\end{array}
+\right. ,
+\EEQ
+o\`u $\dsp a_{mn,\Phi}^\pm= \frac{\vert \mu_{mn}^\pm \vert}{\vert \zeta_{mn}^\pm \vert}a_{mn}^\pm$ est la quantit\'e physique li\'ee au coefficient modal renormalis\'e pour le bilan d'\'energie. Ce bilan d'énergie théorique est un premier moyen de valider les résultats numériques obtenus en vérifiant leur concordance.
+\newline
+Preuve de (\ref{premiereegaliteenergie}) :
+\begin{displaymath}
+\int_\Omega \vert \nabla \phi_a \vert^2 -k^2\int_\Omega \vert \phi_a \vert^2 -M^2 \int_\Omega \vert\frac{\partial \phi_a}{\partial z} \vert^2-2kM\int_\Omega\Im m\left(\frac{\partial\overline{\phi_a}}{\partial z}\phi_a\right) =\int_{\Gamma_M} \frac{\partial \phi_a}{\partial n_{A_0}}\overline{\phi_a}
+\end{displaymath}
+\begin{displaymath}
+\int_{\Gamma_M}\frac{\partial \phi_a}{\partial n_{A_0}}\overline{\phi_a}=\int_{\partial \Omega}\sum_{(m,n)\in \mathbb{Z}\times\mathbb{N}}\left(a^+_{mn}\mu^+_{mn}\Xi_{rmn}+a^-_{mn}\mu^-_{mn}\Xi_{rmn}\right)\overline{\left(a^+_{mn}\Xi_{rmn}+a^-_{mn}\Xi_{rmn}\right)}
+\end{displaymath}
+\begin{displaymath}
+=\sum_{(m,n)}\left(\mu_{mn}^+\vert a^+_{mn}\vert^2+\mu_{mn}^-\vert a^-_{mn}\vert^2+\mu_{mn}^+a_{mn}^+\overline{a_{mn}^-}+\mu_{mn}^-a_{mn}^-\overline{a_{mn}^+}\right)\vert\vert \Xi_{m,n} \vert\vert^2_{L^2(\Omega)}
+\end{displaymath}
+\begin{displaymath}
+\begin{array}{c}
+%\dsp =\frac{2S\left(\Gamma_M \right)}{k}\sum_{(m,n)}\left(\frac{\mu_{mn}^+}{\vert \mu_{mn}^+\vert}\vert a^+_{mn,\Phi}\vert^2+\frac{\mu_{mn}^-}{\vert \mu_{mn}^- \vert}\vert a^-_{mn,\Phi}\vert^2+\frac{\mu_{mn}^+}{\vert \mu_{mn}^+ \vert }a_{mn,\Phi}^+\overline{a_{mn,\Phi}^-}+\frac{\mu_{mn}^-}{\vert \mu_{mn}^-\vert}a_{mn,\Phi}^-\overline{a_{mn,\Phi}^+}\right) \\
+\dsp =\frac{2S\left(\Gamma_M \right)}{k}\left[-i\ \sum_{k_{rmn}\le\left[k\right]}\left(\vert a_{mn,\Phi}^+\vert^2- \vert a_{mn,\Phi}^-\vert^2\right)+\sum_{k_{rmn}>\left[k\right]}\left(\vert a_{mn,\Phi}^+\vert^2- \vert a_{mn,\Phi}^-\vert^2\right) \right. \\
+\dsp  \left.
+-i\ \sum_{k_{rmn}\le\left[k\right]}\left( a_{mn,\Phi}^+\overline{a_{mn,\Phi}^-}-a_{mn,\Phi}^-\overline{a_{mn,\Phi}^+}\right)
++\sum_{k_{rmn}>\left[k\right]}\left( a_{mn,\Phi}^+\overline{a_{mn,\Phi}^-}-a_{mn,\Phi}^-\overline{a_{mn,\Phi}^+}\right)\right] \\
+\end{array}
+\end{displaymath}
+\begin{displaymath}
+\begin{array}{c}
+\dsp =-i\ \frac{2S\left(\Gamma_M \right)}{k}\left[\sum_{k_{rmn}\le\left[k\right]}\left(\vert a_{mn,\Phi}^+\vert^2- \vert a_{mn,\Phi}^-\vert^2\right)+i\ \sum_{k_{rmn}>\left[k\right]}\left(\vert a_{mn,\Phi}^+\vert^2- \vert a_{mn,\Phi}^-\vert^2\right) \right. \\
+\dsp  \left.
++\sum_{k_{rmn}\le\left[k\right]}2i\Im m \left(  a_{mn,\Phi}^+\overline{a_{mn,\Phi}^-}\right)   
+-\sum_{k_{rmn}>\left[k\right]}2   \Im m \left(  a_{mn,\Phi}^+\overline{a_{mn,\Phi}^-}\right)    \right] \\
+\end{array}
+\end{displaymath}
+En distinguant partie r\'eelle et partie imaginaire, l'\'egalit\'e ci-dessus donne l'\'egalit\'e d'\'energie (\ref{premiereegaliteenergie}).
+\subsubsection{Expression analytique}\label{numeriquecastestdebugsectionsub32zcDScSDF}
+\paragraph{Mode propagatif : }
+\noindent \\
+On se fixe un mode via deux entiers naturels $m',n'$.
+\BEQ{definitioncastestanalytiquepremierprobleme}
+\left\lbrace
+\begin{array}{l}
+\dsp a_{mn}^+=0 \ \ \, \forall \left(m,n\right)\in \mathbb{Z}\times\mathbb{N}\backslash \left\lbrace (m',n')\right\rbrace \\
+\dsp a_{m'n'}^+=1  \\
+\dsp k=\frac{2\pi}{\lambda}\text{ est suppos\'e assez grand pour que le mode m'n' soit propagatif}
+\end{array}
+\right.,
+\EEQ
+La solution est cherch\'ee sous la forme de l'onde incidente plus une onde r\'efl\'echie. On cherche $\beta\in \mathbb{C}$, tel que :
+\BEQ{formechercheepremiercastestmodalanalytique}
+\begin{array}{l}
+ \dsp \phi_a=\dsp \phi^+_{m'n'}+\beta \dsp \phi^-_{m'n'}\\
+\end{array}
+\EEQ
+\BEQ{formechercheepremiercastestmodalanalytiquepouetpouet}
+\begin{array}{l}
+\dsp \phi^+_{m'n'}= \frac{J_{m'}\left(k_{rm'n'}r \dsp \right)}{ \dsp\sqrt{\vert \zeta_{m'n'}^+\vert\frac{ \dsp \vert\vert \dsp  J_{m'}\left(k_{rm'n'}r \dsp \right)\vert\vert^2_{ \dsp L^2\left(\Gamma_M\right)}}{ \dsp S\left(\Gamma_M\right)}}}e^{i\frac{kM+\sqrt{k^2-(1-M^2)k_{rm'n'}^2}}{1-M^2}z}\\  
+\dsp \phi^-_{m'n'}= \frac{ \dsp J_{m'}\left(k_{rm'n'}r \dsp \right) }{ \dsp \sqrt{ \dsp\vert \zeta_{m'n'}^-\vert \frac{ \dsp \vert\vert \dsp  J_{m'}\left( \dsp k_{rm'n'}r\right)\vert\vert^2_{ \dsp L^2\left(\Gamma_M\right)}}{ \dsp S\left(\Gamma_M\right)}}}e^{i\frac{kM-\sqrt{k^2-(1-M^2)k_{rm'n'}^2}}{1-M^2}z}\\ 
+\end{array}
+\EEQ
+La condition de r\'eflexion rigide permet d'identifier $\beta$ :
+\BEQ{condrigidedonnantbeta}
+\frac{\partial \phi_a}{\partial n_{A_0}}_{|L}=0\Longrightarrow \beta=e^{2i\frac{\sqrt{k^2-(1-M^2)k_{rm'n'}^2}}{1-M^2}L}
+\EEQ
+Dans le cas d'un Mach nul pour le mode plan $(m',n')=(0,0)$ et une longueur d'ondes dont la dimension de la cavit\'e en est un multiple $L=n\times\lambda$, alors $\beta=1$.
+$\vert \beta \vert=1$ est toujours vrai. La solution du probl\`eme (\ref{definitioncastestanalytiquepremierprobleme}) est analytique et donn\'ee par (\ref{formechercheepremiercastestmodalanalytique}).
+Donnons l'expression analytique de la solution pour le mode $00$, qui est toujours propagatif \`a Mach nul pour $L=\lambda$ :
+\BEQ{exempledesolutionsanalytiques}
+\Re e\left(\phi_a\right)=\sqrt{\frac{2}{\pi}}\frac{1}{kR}2{\rm cos}\left(kz \right)
+\EEQ
+\paragraph{Mode \'evanescent : }
+\noindent \\
+On se fixe un mode via deux entiers naturels $m',n'$.
+\BEQ{definitioncastestanalytiquedeuxiemeprobleme}
+\left\lbrace
+\begin{array}{l}
+\dsp a_{mn}^+=0 \ \ \, \forall \left(m,n\right)\in \mathbb{Z}\times\mathbb{N}\backslash \left\lbrace (m',n')\right\rbrace \\
+\dsp a_{m'n'}^+=1  \\
+\dsp k=\frac{2\pi}{\lambda}\text{ est suppos\'e assez petit pour que le mode m'n' soit \'evanescent}
+\end{array}
+\right.
+\EEQ
+La condition de r\'eflexion implique un coefficient de r\'eflexion nul :
+\BEQ{condrigidedonnantbetapourlesmodesevanescents}
+\dsp \frac{ \dsp \partial \phi_a}{\partial n}_{ \dsp |L}=0 \dsp \Longrightarrow \beta=e^{ \dsp -2\frac{\sqrt{(1-M^2)k_{rm'n'}^2-k^2}}{1-M^2} L}<<1
+\EEQ
+La solution du problème (\ref{definitioncastestanalytiquedeuxiemeprobleme}) est analytique et s'obtient en n\'egligeant l'onde r\'efl\'echie.
+\subsubsection{R\'esultats num\'eriques}
+\begin{center}
+\epsfig{file=conduitmodal.eps,height=6.cm,width=14.5cm}
+\end{center}
+Les r\'esultats ci-dessus sont pr\'esent\'es pour un maillage structur\'e de diam\`etre inf\'erieur \`a 1 cm.
+\newline Chaque graphique repr\'esente la partie r\'eelle du potentiel acoustique dans le conduit modal.
+\newline Les r\'esultats sont présentés pour un mode azimutal $m=5$, $n=5$ et pour un nombre d'onde $kR=6\pi$.
+\newline Les modes présentés sont renormalisés comme explicité au chapitre \ref{Moteur : un Mod\`ele de Guide d'Ondes} (attention les couleurs changent de valeurs à chaque graphique). 
+\paragraph{R\'esultats num\'eriques sans \'ecoulement : }\label{numeriquecastestdebugsectionsub33}
+\noindent \\ Nous pr\'esentons ci-dessous le coefficient modal du retour du mode plan sur lui-m\^eme pour un maillage structur\'e de diamètre 4 cm (le conduit fait 2 m) en l'absence d'\'ecoulement :
+\BEQ{toutpremiercasmodaldeux}
+\left\lbrace
+\begin{array}{l}
+\dsp \lambda=L \\
+\dsp  k=\pi\\
+\dsp  f=\frac{a}{2} \\
+\end{array}
+\right.\Rightarrow \beta=1.
+\EEQ 
+\begin{displaymath}
+\begin{array}{lll}
+THEORIE   & F(1,1)=1. &\\
+PA2R      & F(1,1)=9.99966\times 10^{-1}&-i\ 8.23800\times 10^{-3} \\
+ACTI3S    & F(1,1)=1.00056\times 10^{0}&-i\ 1.63131\times 10^{-3} \\
+\end{array}
+\end{displaymath}
+\BEQ{toutpremiercasmodalquatre}
+\left\lbrace
+\begin{array}{l}
+\dsp \lambda=8L \\
+\dsp  k=\frac{\pi}{8}\\
+\dsp  f=\frac{a}{16} \\
+\end{array}
+\right.\Rightarrow \beta=i
+\EEQ
+\begin{displaymath}
+\begin{array}{lll}
+THEORIE   & F(1,1)=i &\\
+PA2R      & F(1,1)= 2.66247\times 10^{-5}&+i\ 9.99999\times 10^{-1} \\
+ACTI3S    & F(1,1)=-3.40934\times 10^{-4}&+i\ 1.00049\times 10^{0} \\
+\end{array}
+\end{displaymath}
+\BEQ{toutpremiercasmodalcinq}
+\left\lbrace
+\begin{array}{l}
+\dsp \lambda=16L \\
+\dsp  k=\frac{\pi}{16}\\
+\dsp  f=\frac{a}{32} \\
+\end{array}
+\right.\Rightarrow \beta=e^{\frac{i\pi}{4}}
+\EEQ
+\begin{displaymath}
+\begin{array}{ll}
+THEORIE & F(1,1)=7.07106\times 10^{-1}+i\ 7.07106\times 10^{-1} \\
+PA2R    & F(1,1)=7.07110\times 10^{-1}+i\ 7.07102\times 10^{-1} \\
+ACTI3S  & F(1,1)=7.07520\times 10^{-1}+i\ 7.07899\times 10^{-1} \\
+\end{array}
+\end{displaymath} 
+Les r\'esultats sont exacts \`a $10^{-4}$ près jusqu'au plus grand nombre d'ondes $k=\pi$.
+\paragraph{R\'esultats num\'eriques avec \'ecoulement : }\label{numeriquecastestdebugsectionsub33}
+\noindent \\ Nous pr\'esentons ci-dessous le coefficient modal du retour du mode plan sur lui-m\^eme pour un maillage structur\'e de diamètre 4 cm en pr\'esence d'\'ecoulement :
+\BEQ{toutpremiercasmodalquatreecoul}
+\left\lbrace
+\begin{array}{l}
+\dsp \lambda=8L \\
+\dsp  k=\frac{\pi}{8}\\
+\dsp  f=\frac{a}{16} \\
+\dsp  M=0.1          \\
+\end{array}
+\right.\Rightarrow \beta=e^{i\frac{\pi}{2\left(1-M^2\right)}}
+\EEQ
+\begin{displaymath}
+\begin{array}{ll}
+THEORIE   & F(1,1)=-1.58659\times 10^{-2}+i\ 9.99874\times 10^{-1}\\
+PA2R      & F(1,1)=-1.58658\times 10^{-2}+i\ 9.99874\times 10^{-1}\\
+\end{array}
+\end{displaymath}
+\BEQ{toutpremiercasmodalcinqecoul}
+\left\lbrace
+\begin{array}{l}
+\dsp \lambda=16L \\
+\dsp  k=\frac{\pi}{16}\\
+\dsp  f=\frac{a}{32} \\
+\dsp  M=0.1          \\
+\end{array}
+\right.\Rightarrow \beta=e^{i\frac{\pi}{4\left(1-M^2\right)}}
+\EEQ
+\begin{displaymath}
+\begin{array}{ll}
+THEORIE    & F(1,1)=7.01474\times 10^{-1}+i\ 7.12694\times 10^{-1} \\
+PA2R       & F(1,1)=7.01479\times 10^{-1}+i\ 7.12689\times 10^{-1} \\
+\end{array}
+\end{displaymath} 
+\newline La convergence en maillage est \'egalement constat\'ee.

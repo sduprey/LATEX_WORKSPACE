@@ -1,0 +1,201 @@
+\section{Du continu au discret}
+\subsection{Couplage num\'erique modes-volume}\label{couplagemodalvolumiquesubsection1}
+\begin{center}
+\epsfig{file=modalrelevementelementpresentation.eps,height=4.2cm,width=15.cm}
+Rel\`evement modal discret
+\end{center}
+\noindent Les domaines consid\'er\'es sont les domaines de coupe transverses bidimensionnels. Soit $\mathcal{T}$ une triangulation r\'eguli\`ere de $\Omega$. On note $\mathcal{T}^0$ (resp. $\mathcal{T}^1$, $\mathcal{T}^2$) l'ensemble des sommets de cette triangulation (resp. ar\^etes, triangles). Les sommets se situant sur la surface modale $\Gamma_M$ sont not\'es : $\mathcal{T}^0_M$. Les sommets non modaux sont not\'es : $\mathcal{T}^0_{\overline{M}}$. La formulation variationnelle (\ref{formvaraximodalecontinu}) est discr\'etis\'ee avec des \'el\'ements finis classiques continus, $H^1$-conformes et $P^1$ par élément triangulaire. La fonction de base du degr\'e de libert\'e (resp. les coordonn\'ees) correspondant au sommet $j\in\mathcal{T}^0$ est not\'ee $\phi_j$ (resp. $s_j$). Le degré de liberté correspondant au sommet $j$ est noté abusivement $j$. La solution discr\`ete du probl\`eme continu (\ref{formvaraximodalecontinu}) a pour inconnues les degr\'es de libert\'e non modaux et les coefficients modaux r\'efl\'echis $\phi_a=\sum_{j\in\mathcal{T}^0_{\overline{M}}}u_j \phi_j+\sum_{n\in \mathbb{N}}a_{mn}^-\Xi_{rmn}$, o\`u $u_j=\phi_a (s_j)$ est la valeur de la fonction discr\`ete au degr\'e de libert\'e $j$. L'espace des fonctions-tests se composent des fonctions de base \'el\'ements finis pour les degr\'es de libert\'e non modaux $\psi_i,\ i\in\mathcal{T}^0_{\overline{M}}$ et des fonctions de base $\Xi_{rmn'}$ pour la surface modale $\Gamma_M$ (changement de base discret).
+\newline Les termes numériques provenant de la formulation variationnelle (\ref{formvaraximodalecontinu}) sont examinés un par un :
+\subsubsection{Fonctions-tests int\'erieures \'el\'ements Finis}
+\noindent \\
+Exhibons les termes matriciels provenant des fonctions-tests \'el\'ements finis int\'erieurs $\psi_i$ :
+\BEQ{termesmatriciels}
+\left\lbrace
+\begin{array}{c}
+\dsp a_{0m}\left(\phi_j,\psi_i\right) \\
+\dsp \sum_{n\in \mathbb{N}}a_{mn}^- a_{0m}\left(\Xi_{rmn}, \psi_i \right) \\
+\dsp \sum_{n\in \mathbb{N}}a_{mn}^+ a_{0m}\left(\Xi_{rmn}, \psi_i \right) \\
+\end{array}
+\right.
+\EEQ
+\subsubsection{Fonctions-tests modales}
+\noindent \\
+Exhibons les termes matriciels provenant des fonctions-tests modales $\Xi_{rmn'}$ :
+\BEQ{termesmatricielsdeux}
+\left\lbrace
+\begin{array}{c}
+\dsp a_{0m}\left(\phi_{j},\Xi_{rmn'} \right)\\
+\dsp \sum_{n\in \mathbb{N}}a_{mn}^-a_{0m}\left(\Xi_{rmn},\Xi_{rmn'}\right) \\
+\dsp \sum_{n\in \mathbb{N}}a_{mn}^+a_{0m}\left(\Xi_{rmn},\Xi_{rmn'}\right) \\
+\dsp \sum_{n\in \mathbb{N}}a_{mn}^-\mu_{mn}^-\int_{\Gamma_M}\Xi_{rmn}\overline{\Xi_{rmn'}}\\
+\dsp \sum_{n\in \mathbb{N}}a_{mn}^+\mu_{mn}^+\int_{\Gamma_M}\Xi_{rmn}\overline{\Xi_{rmn'}}\\
+\end{array}
+\right.
+\EEQ
+\subsubsection{Equation matricielle discr\`ete}
+\noindent \\
+Les modes relev\'es discrets sont d\'ecompos\'es sur les fonctions de base des degr\'es de libert\'e de la triangulation $\mathcal{T}$ :
+\BEQ{decompositionmodalesurelementsfinis}
+\begin{array}{l}
+\Xi_{rmn}=\sum_{j\in\mathcal{T}^0_{M} }\Xi_{rmn}(s_j) \phi_j \\
+\end{array}
+\EEQ
+A chaque mode azimutal fix\'{e} $m$, il faut prendre en compte une infinit\'e d\'enombrable de modes r\'efl\'echis. On ne peut traiter num\'eriquement qu'un nombre fini de modes r\'efl\'echis : on se restreint aux modes propagatifs, qui sont en nombre fini et qui seuls v\'ehiculent l'énergie. De-m\^eme la source incidente ne peut se d\'ecomposer num\'eriquement que sur un nombre fini de modes : on se limite uniquement aux modes propagatifs et l'on r\'esout un probl\`eme pour chaque mode propagatif incident (les modes \'evanescents, rapidement att\'{e}nu\'{e}s, ne sont pas pertinents dans l'\'{e}tude du rayonnement ext\'{e}rieur). La lin\'earit\'e du probl\`eme permet de recomposer la solution pour toute source incidente propagative par combinaison.
+On d\'esigne par $X_{mn}$ (resp. $X_{mn'}$) les matrices, dont les colonnes repr\'esentent les vecteurs des valeurs nodales des modes transverses sur lesquels la partie diffract\'ee de la solution est cherch\'ee (resp. des fonctions-tests mode transverse) pour chaque $n\in\mathbb{N}$ propagatif (resp. chaque $n'\in\mathbb{N}$ propagatif) du mode azimutal m en cours. On d\'esigne par $\Xi_{rm.\mathcal{T}^0_M}$ les degr\'es de libert\'e modaux des \'el\'ements finis $H^1$-conformes :
+\BEQ{nouvellebase}
+\overline{^tX_{mn}}=
+\begin{array}{cc}
+&\begin{array}{c}
+\dsp  \Xi_{rm.\mathcal{T}^0_M}  \\
+\end{array}\\
+\begin{array}{c}
+\dsp  n_1    \\
+\dsp  n_2    \\
+\dsp  \vdots \\
+\dsp  n_k    \\
+\end{array}&\left(
+\begin{array}{c}
+\dsp \overline{\Xi_{rmn_1}} \\
+\dsp \overline{\Xi_{rmn_2}} \\
+\dsp \vdots        \\
+\dsp \overline{\Xi_{rmn_k}} \\ 
+\end{array}\right)
+\\
+\end{array},\ \
+\overline{^tX_{mn'}}=
+\begin{array}{cc}
+&\begin{array}{c}
+\dsp  \Xi_{rm.\mathcal{T}^0_M}  \\
+\end{array}\\
+\begin{array}{c}
+\dsp  n'_1    \\
+\dsp  n'_2    \\
+\dsp  \vdots \\
+\dsp  n'_k    \\
+\end{array}&\left(
+\begin{array}{c}
+\dsp \overline{\Xi_{rmn'_1}} \\
+\dsp \overline{\Xi_{rmn'_2}} \\
+\dsp \vdots        \\
+\dsp \overline{\Xi_{rmn'_k}} \\ 
+\end{array}\right)
+\\
+\end{array}
+\EEQ
+L'impl\'ementation des matrices de couplage se traduit par un produit matrice-vecteur :
+\begin{displaymath}
+\left(
+\begin{array}{l}
+\sum_{n\in \mathbb{N}}a_{mn}^-a_{0m}\left(\Xi_{rmn},\Xi_{rmn'_1}\right) \\
+\sum_{n\in \mathbb{N}}a_{mn}^-a_{0m}\left(\Xi_{rmn},\Xi_{rmn'_2}\right) \\
+\vdots \\
+\sum_{n\in \mathbb{N}}a_{mn}^-a_{0m}\left(\Xi_{rmn},\Xi_{rmn'_k}\right) \\
+\end{array}
+\right)
+=
+\end{displaymath}
+\begin{displaymath}
+\begin{array}{cc}
+&\begin{array}{c}
+\dsp  \Xi_{rm.\mathcal{T}^0_M}  \\
+\end{array}\\
+\begin{array}{c}
+%\dsp n' \\
+\dsp  n'_1    \\
+\dsp  n'_2    \\
+\dsp  \vdots \\
+\dsp  n'_k    \\
+\end{array}&\left(
+\begin{array}{c}
+%\dsp \overline{\Xi_{rmn'}} \\
+\dsp \overline{\Xi_{rmn'_1}} \\
+\dsp \overline{\Xi_{rmn'_2}} \\
+\dsp \vdots        \\
+\dsp \overline{\Xi_{rmn'_k}} \\ 
+\end{array}\right)
+\\
+\end{array}
+.
+\left[a_{0m}\left(\phi_j,\psi_i\right)\right]
+.
+\begin{array}{cc}
+&\begin{array}{cccc}
+\dsp  n_1 & n_2 & \ldots & n_k  \\
+\end{array}\\
+&\left(
+\begin{array}{cccc}
+\dsp \Xi_{rmn_1} & \Xi_{rmn_2} & \ldots  & \Xi_{rmn_k} \\ 
+\end{array}\right)
+\\
+\end{array}
+\left(
+\begin{array}{l}
+a^-_{mn_1} \\
+a^-_{mn_2} \\
+\vdots     \\
+a^-_{mn_k} \\
+\end{array}
+\right)
+\end{displaymath}
+L'obtention des termes de couplage de la formulation variationnelle (\ref{formvaraximodalecontinu}) se r\'ecapitule :
+\BEQ{obtentionnumeriquedesdifferentstermes}
+\left\lbrace
+\begin{array}{l}
+\dsp \left( \sum_{n\in \mathbb{N}}a_{mn}^- a_{0m}\left(\Xi_{rmn}, \psi_i \right)\right)_{(i)}=\left[a_{0m}\left(\phi_j,\psi_i\right)\right]_{(i,j)}.X_{mn}\times \left(a_{mn}^-\right)_{(n)} \\
+\dsp \left( \sum_{n\in \mathbb{N}}a_{mn'}^+a_{0m}\left(\Xi_{rmn'}, \psi_i  \right) \right)_{(i)}=\left[a_{0m}\left(\phi_j,\psi_i\right)\right]_{(i,j)}.X_{mn}\times \left(a_{mn}^+\right)_{(n)}  \\
+\dsp \left(\sum_{n\in \mathbb{N}}a_{mn}^-a_{0m}\left(\Xi_{rmn},\Xi_{rmn'_1}\right)\right)_{(n')}=\overline{X_{mn'}^t}.\left[a_{0m}\left(\phi_j,\psi_i\right)\right]_{(i,j)}.X_{mn}\times \left(a_{mn}^-\right)_{(n)} \\
+\dsp \left(\sum_{n\in \mathbb{N}}a_{mn}^+a_{0m}\left(\Xi_{rmn},\Xi_{rmn'_1}\right)\right)_{(n')}=\overline{X_{mn'}^t}.\left[a_{0m}\left(\phi_j,\psi_i\right)\right]_{(i,j)}.X_{mn}\times \left(a_{mn}^+\right)_{(n)}  \\ 
+\dsp  \left(a_{0m}\left(\phi_{j},\Xi_{rmn'}\right)\right)_{(n')} =\overline{X_{mn'}^t}.\left[a_{0m}\left(\phi_j,\psi_i\right)\right]_{(i,j)}\\
+\end{array}
+\right. 
+\EEQ
+Les termes de couplage provenant des matrices de bord sont calcul\'es analytiquement. Les modes transverses de conduit $\Xi_{rmn}$ sont orthogonaux ($\Xi_{rmn}$  et $\Xi_{rmn'}$ sont orthogonales d\`es que $(m,n)\neq (m',n')$) et la renormalisation des modes (\ref{renormalisationfoncbasenumeroun}) donne l'expression analytique de $\vert\vert \Xi_{rmn} \vert\vert_{L^2\left(\Gamma_M\right)}$ :
+\BEQ{matricedebordsmodales}
+\begin{array}{l}
+\dsp \left(\sum_{n\in \mathbb{N}}a_{mn}^-\mu_{mn}^-\int_{\Gamma_M}\Xi_{rmn}\overline{\Xi_{rmn'}}\right)_{(n')}=\dsp \frac{S\left(\Gamma_M\right)}{2\pi}\left[\dsp \frac{\mu^-_{mn}}{\vert\zeta^-_{mn}\vert}\delta_{nn'}\right]_{\dsp (n'n)}\times \left(a_{mn}^-\right)_{(n)}      \\
+\dsp \left(\sum_{n\in \mathbb{N}}a_{mn}^+\mu_{mn}^+\int_{\Gamma_M}\Xi_{rmn}\overline{\Xi_{rmn'}}\right)_{(n')}=\dsp \frac{S\left(\Gamma_M\right)}{2\pi}\left[\dsp \frac{\mu^+_{mn}}{\vert\zeta^+_{mn}\vert}\delta_{nn'}\right]_{\dsp (n'n)}\times \left(a_{mn}^+\right)_{\dsp (n)}  \\
+\end{array}
+\EEQ
+On note les matrices de bord modales :
+\BEQ{matricemodaledetermesdebord}
+\dsp \left[\mu^-_m\right]_{(n'n)}=\frac{S\left(\Gamma_M\right)}{2\pi}\begin{array}{cc}
+&\begin{array}{ccc}
+\dsp n_1 & \ldots  & n_k   \\
+\end{array}\\
+\begin{array}{c}
+\dsp   n'_1      \\
+\dsp   \vdots    \\
+\dsp   n'_k      \\
+\end{array}&\left(\begin{array}{ccc}
+\dsp \dsp   \frac{\mu^-_{mn_1}}{\vert\zeta^-_{mn_1}\vert}   &     0       &  0         \\
+\dsp   0          & \dsp  \frac{\mu^-_{mn_.}}{\vert\zeta^-_{mn_.}\vert}    &  0         \\
+\dsp   0          &      0      &  \dsp  \frac{\mu^-_{mn_k}}{\vert\zeta^-_{mn_k}\vert}  \\
+\end{array}\right)
+\\
+\end{array}
+\EEQ
+La formulation variationnelle (\ref{formvaraximodalecontinu}) du probl\`eme continu (\ref{probacoustiqueaxisymetriquecompletavecconditionsauxbordsrappelnumerodeuxreduitmodal}) restreint aux espaces fonctionnels discrets $H^1$-conformes admet la formulation matricielle suivante ( o\`u l'on utilise les notations (\ref{obtentionnumeriquedesdifferentstermes}) et (\ref{matricemodaledetermesdebord})) :
+\BEQ{matriceapreschangementdebase}
+\left(
+\begin{array}{cc}
+ A_{0m}             &  A_{0m}.X_{mn}                        \\
+ \overline{X_{mn'}^t}.A_{0m} &  \overline{X_{mn'}^t}.A_{0m}.X_{mn} -\left[\mu^-_{m}\right]\\
+\end{array}
+\right)
+\left(
+\begin{array}{l}
+u_j \\
+a^-_{mn} \\
+\end{array}
+\right)
+\EEQ
+\begin{displaymath}
+=
+\left(
+\begin{array}{c}
+\left[A_{0m}\right].X_{mn}\left(a^+_{mn}\right)   \\
+\left(\overline{X_{mn'}^t}.[-A_{0m}].X_{mn}+\left[\mu^+_m\right]\right)\left(a^+_{mn}\right)\\
+\end{array}
+\right),
+\end{displaymath}
+o\`u $A_{0m}=\left(a_{0m}\left(\phi_j,\psi_i\right)\right)_{ij}$ est la matrice volumique obtenue \`a partir de la forme hermitienne (\ref{formebilineaireassocieaxiespacereelphysique}). La matrice issue de la discr\'etisation du probl\`eme continu n'a plus de degr\'es de libert\'e modaux type \'el\'ements finis. Ils sont remplac\'es par les coefficients de r\'eflexion $a^-_{mn}$.

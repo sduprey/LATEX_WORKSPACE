@@ -1,0 +1,74 @@
+\subsubsection{Formulation axisym\'etrique}\label{pareilenaxisubsectionsub1}
+\noindent Nous \'enon\c cons ci-dessous l'analogue axisym\'etrique du paragraphe pr\'ec\'edent (\ref{unicitesommerfeldsubsection1}).
+\newline Les domaines consid\'er\'es sont maintenant les domaines de coupe transverses bidimensionnels, que l'on note par abus de notation comme les domaines tridimensionnels cart\'esiens.
+\newline Les domaines et les variables physiques transform\'es sont toujours not\'es par abus de notation comme les anciens.
+\newline
+$\bullet$ Le mode azimutal $m$ du potentiel acoustique total transform\'e $\phi_{am}$ dans l'espace de Lorentz cylindrique v\'erifie l'\'equation aux d\'eriv\'ees partielles volumique :\BEQ{lorentztoutpartoutpartoupartou2r}
+\left\{
+\begin{array}{l}
+\dsp\frac{1}{r}\frac{\partial}{\partial r}\left(r\rho_0\frac{\partial\phi_{am}}{\partial r}\right) +\frac{1}{1-M_\infty^2}\frac{\partial}{\partial z} \left(\rho_0\frac{\partial \phi_{am}}{\partial z}\right)\\
+\dsp -\frac{1}{\sqrt{1-M_\infty^2}}\frac{\partial}{\partial r}\left(\rho_0M_{0r}M_{0z}\frac{\partial \phi_{am}}{\partial z}\right)-\frac{1}{\sqrt{1-M_\infty^2}}\frac{\partial}{\partial z}\left(\rho_0 M_{0z} M_{0r}\frac{\partial \phi_{am}}{\partial r}\right) \\
+\dsp-\frac{1}{1-M_\infty^2}\frac{\partial}{\partial z}\left(\rho_0 M_{0z}^2\frac{\partial \phi_{am}}{\partial z}\right)-\frac{\partial}{\partial r}\left(\rho_0 M_{0r}^2\frac{\partial \phi_{am}}{\partial r}\right)\\ 
+\dsp +\rho_0\left( \frac{ik_\infty M_\infty}{\left(1-M_\infty\right)^{\frac{3}{2}}}\left(1-M_{0z}^2\right)+\frac{ik_0 M_{0z}}{\sqrt{1-M_\infty^2}}-\frac{M_{0r}M_{0z}}{r \sqrt{1-M_\infty^2}}\right)\frac{\partial \phi_{am}}{\partial z}\\
+\dsp +\rho_0\left(-\frac{M_{0r}^2}{r}+ik_0M_{0r}-\frac{ik_\infty M_\infty M_{0r}M_{0z}}{1-M_\infty^2}\right)\frac{\partial \phi_{am}}{\partial r}\\
+\dsp+\frac{\partial}{\partial r}\left(i k_0\rho_0 M_{0r}\phi_{am}\right)+\frac{ik_\infty M_\infty}{\left(1-M_\infty^2\right)^{\frac{3}{2}}}\frac{\partial \left(\rho_0\phi_{am}\right)}{\partial z}-\frac{ik_\infty M_\infty}{1-M_\infty^2}\frac{\partial}{\partial r}\left(\rho_0 M_{0r}M_{0z}\phi_{am}\right)\\
+\dsp +\frac{1}{\sqrt{1-M_\infty^2}}\frac{\partial}{\partial z}\left(\rho_0 ik_0 M_{0z}\phi_{am}\right)-\frac{ik_\infty M_\infty}{\left(1-M_\infty^2\right)^{\frac{3}{2}}}\frac{\partial}{\partial z}\left(\rho_0 M_{0z}^2\phi_{am}\right)\\
+\dsp +\rho_0\left(-\frac{m^2}{r^2}-\frac{k_\infty^2 M_\infty^2}{\left(1-M_\infty^2\right)^2}\left(1-M_{0z}^2\right)
++\frac{ik_0 M_{0r}}{r}\right)\phi_{am}\\
+\dsp +\rho_0\left( -ik_\infty\frac{M_{0r}M_{0z}M_\infty}{r\left(1-M_\infty^2\right)}+k_0^2-\frac{2k_\infty M_\infty k_0 M_{0z}}{\left(1-M_\infty^2\right)}\right)\phi_{am}=0\\
+\end{array}\right.,
+\EEQ
+que l'on note par l'op\'erateur volumique $A_{Lm}\left(\phi_a\right)=0$.
+\newline
+$\bullet $ L'\'equation aux d\'eriv\'ees partielles (\ref{lorentztoutpartoutpartoupartou2r}) est elliptique.
+\newline
+$\bullet $ Les conditions aux limites du potentiel transform\'e s'\'ecrivent  :
+\begin{enumerate} 
+\item 
+\BEQ{condtransparoirigide2r}
+\left\{
+\begin{array}{ll}
+\dsp \frac{1}{\sqrt{1-M_\infty^2}}M_{0z} \ovra{n}.\overrightarrow{e_z}+M_{0r}\ovra{n}.\overrightarrow{e_r}=0&,\forall x\in \Gamma_R\\
+\dsp \frac{\partial \phi_{am}}{\partial n_{A_{Lm}}}=0 &,\forall x\in \Gamma_R \\ 
+\end{array}
+\right.
+\EEQ
+\item 
+\BEQ{condtransparoimodale2r}
+\begin{array}{ll}
+\dsp \frac{\partial\left( \phi_{am}-\phi_{am,inc}\right)}{\partial n_{A_{Lm}}}=T_{LMm}\left(\phi_{am}-\phi_{am,inc} \right) &,\forall x\in \Gamma_M \\
+\end{array},
+\EEQ
+\end{enumerate}
+o\`u $T_{LMm}$ d\'esigne l'op\'erateur Dirichlet-Neumann dans l'espace de Lorentz et s'obtient en appliquant la transformation de Lorentz \`a l'op\'erateur Dirichlet-Neumann (\ref{definitionoperateurmodalespacephysiquemodem}) permettant de borner le domaine modal du probl\`eme continu non transform\'e (\ref{probacoustiqueaxisymetriquecompletavecconditionsauxbordsrappelnumerodeuxreduitmodal}) :
+\BEQ{definitionoperateurmodalespacephysique2r}
+\left\lbrace
+\begin{array}{c}
+T_{LMm} :H^{\frac{1}{2}}\left(\Gamma_M\right)\rightarrow H^{-\frac{1}{2}}\left(\Gamma_M\right)\\
+\phi_{am}\rightarrow \sum_{n\in\mathbb{N}}\mu_{mn}^-\left(\phi_a,\Xi_{rmn}\right)_{L^2\left(\Gamma_M\right)}\Xi_{rmn} \\
+\end{array}
+\right.,
+\EEQ
+o\`u l'on a not\'e :
+\BEQ{constantedefinitionoperateurdirichletneumannespacelorentz2r}
+\left\lbrace
+\begin{array}{ll}
+\dsp \gamma_{mn}^\pm=-k'_\infty M_\infty+\sqrt{1-M_\infty^2}\beta^\pm_{mn} &\text{ : les constantes de propagation axiales } \\
+\dsp \mu_{mn}^\pm= i\rho_M\left(k_M M_M-\left(1-M_M^2\right)\beta^\pm_{mn}\right) &\text{ : les coefficients de l'opérateur }T_{LMm} \\
+\end{array}
+\right.
+\EEQ
+ \newline
+$\bullet $ L'\'equation (\ref{lorentztoutpartoutpartoupartou2r}) \'equivaut \`{a} la classique \'equation
+de Helmholtz avec un simple d\'ephasage Doppler en dehors du domaine perturb\'e :
+\BEQ{retourauondeaxisymetrique2r}
+\dsp \frac{1}{r}\frac{\partial}{\partial r}\left(r \frac{\partial \phi_{am}}{\partial r}\right)-\frac{m^2}{r^2}\phi_{am}+\frac{\partial^2\phi_{am}}{\partial z^2}+\frac{k_\infty^2}{1-M_\infty^2}\phi_{am}=0
+\EEQ
+\newline
+$\bullet $ Le th\'eor\`eme de Rellich implique l'unicit\'e du potentiel transform\'e v\'erifiant la condition de Sommerfeld :
+\BEQ{conditiondeSommerfeld2r}
+\lim_{R\rightarrow +\infty}\int_{S_R}\vert \frac{\partial \phi_{am}}{\partial n}-i\frac{k_\infty}{\sqrt{1-M_\infty^2}}\phi_{am}\vert^2 \ud \gamma =0,
+\EEQ
+o\`u $S_R$ (resp. $B_R$) d\'esigne la sph\`ere (resp. la boule) de rayon R et d'origine nulle avec $R$ choisi de telle sorte que $\Gamma_\infty\subset B_R$.
+\newline
+$\bullet $ Le probl\`eme acoustique global transform\'e rel\`eve de l'alternative de Fredholm et l'existence du potentiel acoustique transform\'e d\'ecoule de l'unicit\'e impliqu\'ee par la condition de Sommerfeld.

@@ -1,0 +1,300 @@
+\chapter[Ecoulement potentiel]{Ecoulement potentiel}\label{ecoulementpotentielpart}
+\noindent Ce chapitre traite le problème général d'un écoulement potentiel localement variable.
+\newline Le cas simplifié de la diffraction d'une onde acoustique par un objet dur entouré d'une anisotropie locale est considéré dans un premier temps.
+\newline Le problème continu général fluide-acoustique est étudié ensuite mathématiquement.
+\newline Une discrétisation naturelle en éléments finis du problème global est finalement proposée.
+\section{Un premier probl\`eme simplifi\'e}\label{DiffractionparunLocale}
+\subsection{Probl\'ematique}\label{troiscouplagessectionsub111}
+\begin{center}
+\epsfig{file=geoeqint2avecheterogeneite.eps,height=7cm,width=7.3cm}
+\newline
+G\'eom\'etrie
+\end{center}
+\noindent On expose dans ce paragraphe un cas classique de traitement num\'erique de la diffraction en domaine non born\'e d'une onde acoustique incidente par un objet acoustiquement dur entour\'e d'une anisotropie locale.
+\newline Plusieurs formulations numériques possibles sont proposées.
+\newline La d\'emarche suivie s'inspire de celle d'un probl\`eme electromagn\'etique similaire exposé dans la th\`ese de V. Levillain \cite{VL} (ou encore l'article \cite{ADLB}).
+\newline Les domaines sont ici cart\'esiens et tridimensionnels. $\Omega_i$ est l'objet acoustiquement dur et le domaine borné $\Omega$ est le siège de la perturbation locale anisotrope du milieu. On considère le problème suivant en notant $\Omega_{tot}=\left(\overline{\Omega}\cup\Omega_e\right)\backslash \partial \Omega_i$ :
+\BEQ{helmholtzdecoupleprobtypeheterogeneitelocal}
+\dsp
+\left\lbrace
+\begin{array}{ll}
+\dsp \text{ Trouver }(p,\overrightarrow{v})\in H^1_{loc}\left(\Omega_{tot}\right)\times H^{div}_{loc}\left(\Omega_{tot}\right)\text{ tel que :}\\
+\displaystyle ik\overrightarrow{v}(x)=A(x)\ovra{\nabla}  p(x)  &,\forall x\in \Omega_{tot}    \\
+\dsp ikp(x)={\rm div}(\overrightarrow{v}(x))         &,\forall x\in \Omega_{tot}\\
+\dsp \lim_{R\rightarrow +\infty}\int_{S_R}\vert \frac{\partial p}{\partial n} -ik p\vert^2 \ud \gamma =0 & \\
+\end{array}
+\right.,
+\EEQ
+o\`u $A(x)\in L^\infty \left(\Omega_{tot},\mathcal{L}\left(\mathbb{C}^3\right)\right)$ est un tenseur d'anisotropie localement variable dans $\Omega$, \'egal \`a l'identit\'e dans $\Omega_e$ et elliptique dans $\Omega_{tot}$ ($\exists c>0, \ A\ge cI$ dans $\Omega_{tot}$). $\Gamma$ est une surface fictive plac\'ee \`a la limite de l'h\'et\'erog\'en\'eit\'e. Le probl\`eme (\ref{helmholtzdecoupleprobtypeheterogeneitelocal}) est \'equivalent au probl\`eme d\'ecompos\'e :
+\BEQ{helmholtzdecoupleprobtypeheterogeneitelocaldecouple}
+\left\lbrace
+\begin{array}{ll}
+\dsp\left(1\right)&\left\lbrace\begin{array}{ll}
+\dsp \text{ Trouver } (p_1,\overrightarrow{v}_1)\in H^1\left(\Omega\right)\times H^{div}\left(\Omega\right)\text{ tel que :}\\
+\displaystyle ik\overrightarrow{v}_1(x)=A(x)\ovra{\nabla}  p_1(x)  &,\forall x\in \Omega \\
+\dsp ikp_1(x)={\rm div}(\overrightarrow{v}_1(x))         &,\forall x\in \Omega \\
+\end{array}
+\right. \\
+\dsp &
+ \begin{array}{llll}
+\dsp & p_1(x)=p_2(x) ,& & \ \ \forall x\in \Gamma \\
+\dsp & \overrightarrow{v}_1(x). \overrightarrow{n}(x)=\overrightarrow{v}_2(x). \overrightarrow{n}(x) ,&  & \ \ \forall x\in \Gamma \\
+\end{array}\\
+\dsp
+\left(2\right)&\left\lbrace
+\begin{array}{ll}
+\dsp \text{ Trouver } (p_2,\overrightarrow{v}_2)\in H^1_{loc}\left(\Omega_e\right)\times H^{div}_{loc}\left(\Omega_e\right)\text{ tel que :}\\
+\displaystyle ik\overrightarrow{v}_2(x)=\ovra{\nabla}  p_2(x)  &,\forall x\in \Omega_e \\
+\dsp ikp_2(x)={\rm div}(\overrightarrow{v}_2(x))         &,\forall x\in \Omega_e \\
+\dsp  \lim_{R\rightarrow +\infty}\int_{S_R}\vert \frac{\partial p}{\partial n} -ik p\vert^2 \ud \gamma =0  & \\
+\end{array}
+\right. \\
+\end{array}
+\right.
+\EEQ
+Le projecteur de Calder\'on int\'erieur pour un probl\`eme int\'erieur arbitraire nul appliqu\'e au probl\`eme (2) de (\ref{helmholtzdecoupleprobtypeheterogeneitelocaldecouple}) donne : 
+\BEQ{equationintegralenumerodeudeudued}
+\left\{
+\begin{array}{ll}
+\dsp -N\left(p_2\right)+\left(\frac{I}{2}+D^*\right)\left(\frac{\partial p_2}{\partial n}\right)=0 &, \forall x \in \Gamma \\
+\dsp \left(\frac{I}{2}-D\right)\left(p_2\right)+S\left(\frac{\partial p_2}{\partial n}\right)=0 &, \forall x \in \Gamma  \\
+\end{array}
+\right.
+\EEQ
+Le probl\`eme (\ref{helmholtzdecoupleprobtypeheterogeneitelocal}) se r\'e\'ecrit finalement :
+\BEQ{ramassisdequationfinale}
+\left\lbrace
+\begin{array}{ll}
+\dsp \text{ Trouver } (p_1,\overrightarrow{v}_1)\in H^1\left(\Omega\right)\times H^{div}\left(\Omega\right)\text{ tel que :}\\
+\displaystyle ik(x)\overrightarrow{v}_1(x)=A(x)\ovra{\nabla}  p_1(x)  &,\forall x\in \Omega \\
+\dsp ik(x)p_1(x)={\rm div}(\overrightarrow{v}_1(x))         &,\forall x\in \Omega \\
+\dsp -N\left(p_1\right)+\left(\frac{I}{2}+D^*\right)\left(\frac{\partial p_1}{\partial n}\right)=0 &, \forall x \in \Gamma \\
+\dsp \left(\frac{I}{2}-D\right)\left(p_1\right)+S\left(\frac{\partial p_1}{\partial n}\right)=0 &, \forall x \in \Gamma  \\
+\end{array}
+\right.
+\EEQ
+Le problème complet est ramené au domaine borné $\Omega$ et à sa frontière $\Gamma$. L'indice $1$ est oublié.
+\subsection{Formulation \'energétique}\label{troiscouplagessectionsub112}
+\noindent Les équations de Helmholtz, scalaire pour la pression et vectorielle pour la vitesse, s'\'ecrivent dans le domaine cart\'esien $\Omega$ :
+\BEQ{eqhelmholtzscaletvectavecanisotropie}
+\left\lbrace
+\begin{array}{ll}
+\dsp {\rm div}\left(A\ovra{\nabla} p\right)+k^2p=0 &\text{ dans }\Omega \\
+\dsp \ovra{\nabla}{\rm div}\left(\ovra{v}\right)+k^2A^{-1}\ovra{v}=0 &\text{ dans }\Omega \\
+\end{array}
+\right.
+\EEQ
+Elles se formulent variationnellement dans le domaine borné $\Omega$ :
+\BEQ{formulationvariationnelleclassiquepressionhelmholtz}
+\left\lbrace
+\begin{array}{l}
+\dsp \text{ Trouver }\left(p,\ovra{v}\right)\in H^{1}(\Omega)\times H^{div}(\Omega)\text{ tel que : }\\
+\dsp \int_\Omega\left[A\ovra{\nabla}p.\overline{\ovra{\nabla}p^t}-k^2\ p\ \overline{p^t}\right]=\int_\Gamma \frac{\partial p}{\partial n} \ \overline{p^t}=ik\int_\Gamma \ovra{v}.\ovra{n} \ \overline{p^t}\\
+\dsp \int_\Omega\left[{\rm div}(\ovra{v})\overline{{\rm div}(\ovra{v^t})}-k^2A^{-1}\ovra{v}.\overline{\ovra{v^t}}\right]=\int_\Gamma {\rm div(\ovra{v})} \overline{\ovra{v^t}.\ovra{n}}=ik\int_\Gamma p\ \overline{\ovra{v^t}.\ovra{n}}\\
+\dsp \forall \left(p^t,\ovra{v}^t\right)\in H^{1}(\Omega)\times H^{div}(\Omega)\\
+\end{array}
+\right.
+\EEQ
+Les équations intégrales sur $\Gamma$ de (\ref{ramassisdequationfinale}) sont exprimées variationnellement en prenant comme inconnue auxiliaire $\phi =\ovra{v}.\ovra{n}$ :
+\BEQ{formulationvariationnelleintegralenumerodeuxpouettpout}
+\left\lbrace
+\begin{array}{ll}
+\text{ Trouver } \left(p,\phi\right) \in H^{\frac{1}{2}}(\Gamma)\times H^{-\frac{1}{2}}(\Gamma)\text{ tel que :}&\\
+\dsp \int_\Gamma D\left(p\right) \ \overline{\phi^t}-\frac{1}{2}\int_\Gamma p\ \overline{\phi^t}-ik \int_\Gamma S\left(\phi\right)\ \overline{\phi^t}=0, & \forall \phi^t\in H^{-\frac{1}{2}}(\Gamma)\\
+\dsp \frac{1}{2}\int_\Gamma \phi \ \overline{p^t} + \int_\Gamma D^*\left(\phi\right) \overline{p^t}-\frac{1}{ik}\int_{\Gamma}N\left(p\right)\overline{p^t}=0,&
+\dsp \forall p^t\in H^{\frac{1}{2}}(\Gamma)\\
+\end{array}
+\right.
+\EEQ
+La combinaison de (\ref{formulationvariationnelleclassiquepressionhelmholtz}) et (\ref{formulationvariationnelleintegralenumerodeuxpouettpout}) donne la formulation \textbf{(C)} :
+\BEQ{formulationC}
+\displaystyle 
+\left\lbrace
+\begin{array}{l}
+\dsp \text{ Trouver }(p,\ovra{v})\in H^1(\Omega)\times H^{{\rm div}}(\Omega) \text{ tel que : }\\
+\dsp \frac{1}{2}\int_\Omega\left[A\ovra{\nabla}  p.\overline{\ovra{\nabla}  p^t}-k^2\ p \overline{p^t} \right]=-ik\int_\Gamma D^*\left(\ovra{v}.\ovra{n}\right) \ \overline{p^t}+\int_\Gamma N \left(\ovra{v}.\ovra{n}\right)\ \overline{p^t}\\
+\dsp \frac{1}{2}\int_\Omega\left[{\rm div}(\ovra{v})\overline{{\rm div}(\ovra{v^t})}-k^2A^{-1}\ovra{v}.\overline{\ovra{v^t}}\right]=ik\int_\Gamma D\left(p\right) \overline{\ovra{v^t}.\ovra{n}}
+- k^2 \int_\Gamma S\left(\ovra{v}.\ovra{n}\right)\overline{\ovra{v^t}.\ovra{n}}\\
+\dsp \forall \left(p^t,\ovra{v}^t\right)\in H^1(\Omega)\times H^{{\rm div}}(\Omega)\\
+\end{array}
+\right.,
+\EEQ
+A partir des propri\'et\'es des opérateurs volumiques non homogènes associés à la pression et à la vitesse acoustiques en domaine borné, ainsi que celles des op\'erateurs intégraux surfaciques, \cite{VL} montre l'existence et l'unicit\'e de la solution de cette formulation. Elle n'est cependant pas propice à la résolution numérique car elle nécessite deux inconnues volumiques dont une vectorielle.
+\subsection{Formulation symétrique}\label{troiscouplagessectionsub113}
+\noindent Une formulation alternative avec une seule inconnue volumique scalaire est possible.
+On utilise l'artifice suivant dans la première équation de (\ref{formulationvariationnelleclassiquepressionhelmholtz}) :
+\begin{displaymath}
+\dsp ik\int_\Gamma \phi\ \overline{p^t} =\underbrace{\frac{ik}{2}\int_\Gamma \phi \ \overline{p^t}}_{I}+\frac{ik}{2}\int_\Gamma \phi\ \overline{p^t}
+\end{displaymath}
+La formulation (S)-scalaire s'écrit :
+\BEQ{formulationSscalaire}
+(S)\displaystyle 
+\left\lbrace
+\begin{array}{l}
+\dsp \text{ Trouver }(p,\ \phi)\in H^1(\Omega)\times H^{-1/2}(\Gamma) \text{ tel que }\\
+\dsp \int_\Omega\left[A\ovra{\nabla}  p.\overline{\ovra{\nabla}  p^t}-k^2 p \overline{p^t} \right]=\frac{ik}{2}\int_\Gamma \phi\overline{p^t}-ik\int_\Gamma D^*\left(\phi\right)\overline{p^t}+\int_\Gamma N \left(p\right) \overline{p^t}\\
+\\
+\dsp \frac{1}{2}\int_\Gamma p \overline{\phi^t}-\int_\Gamma D\left(p\right) \overline{\phi^t}+ik\int_\Gamma S\left(\phi\right)\overline{\phi^t}=0 \\
+\\
+\dsp \forall (p^t,\ \phi^t)\in H^1(\Omega)\times H^{-1/2}(\Gamma)\\
+\end{array}
+\right.,
+\EEQ
+Cette formulation est sym\'etrique et ne possède qu'une inconnue volumique scalaire : elle se pr\^ete \`a une r\'esolution num\'erique. Elle couple la pression volumique int\'erieur $p\in H^1(\Omega)$, $P^1$ par \'el\'ements volumiques (\'el\'ements finis classiques continus $H^1$-conformes), \`a la vitesse normale surfacique ext\'erieure $\phi\in H^{-1/2}(\Gamma)$, $P^0$ par \'el\'ements finis surfaciques (\'el\'ements finis classiques $L^2$-conformes).
+\smallskip 
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=couplageess.eps,height=3.7cm,width=13.cm}
+\smallskip
+\end{center}
+\subsection{Formulation axisym\'etrique}\label{troiscouplagessectionsub114}
+\subsubsection{Généralités}\label{troiscouplagessectionsubsub1141}
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=ondeavecheterogeneitedeux.eps,height=5cm,width=7cm}
+\smallskip\newline
+\quad Géométrie
+\smallskip
+\end{center}
+\noindent Un traitement particulier est possible lors d'une configuration \`a géométrie axisym\'etrique.
+\newline Ce probl\`eme se pr\'esente lorsque l'on \'etudie la diffraction d'une onde acoustique par un objet axisymétrique entouré d'une h\'et\'erog\'en\'eit\'e \'egalement axisym\'etrique.
+\newline Les domaines sont ici bidimensionnels. Ce sont les domaines transverses de coupe de l'objet, de l'h\'et\'erog\'en\'eit\'e et du domaine ext\'erieur, qui sont not\'es par abus de notation comme les anciens domaines tridimensionnels ($\Omega_i,\ \Omega,\ \Omega_e,\ \Omega_{tot}=\left(\overline{\Omega}\cup\Omega_e\right)\backslash \partial \Omega_i\subset\mathbb{R}^2$). 
+\newline Il faut ici conserver une notation du domaine cart\'esien ext\'erieur \`a l'objet, que l'on notera $\Omega_{tot,xyz}$.
+\newline
+Les op\'erateurs diff\'erentiels d'ordre $1$ s'\'ecrivent en coordonn\'ees cylindriques :
+\BEQ{operateurdifferentielordreun}
+\left\lbrace
+\begin{array}{l}
+\dsp \ovra{\nabla}  p(r,z,\theta)=\frac{\partial p}{\partial r}(r,z,\theta)\ovra{e_r}+\frac{1}{r}\frac{\partial p}{\partial \theta}(r,z,\theta)\ovra{e_\theta}+\frac{\partial p}{\partial z}(r,z,\theta)\ovra{e_z}\\
+\dsp {\rm div}(\ovra{v})(r,z,\theta)=\frac{\partial v_r}{\partial r} (r,z,\theta)+\frac{1}{r}\frac{\partial v_\theta}{\partial \theta}(r,z,\theta)+\frac{\partial v_z}{\partial z}(r,z,\theta) \\
+\end{array}
+\right.
+\EEQ
+L'\'equation de Helmholtz scalaire anisotrope en coordonn\'ees cylindriques s'\'ecrit :
+\BEQ{helmholtzcylindriqueproblememodele}
+\frac{1}{r}\frac{\partial }{\partial r}\left(r a\left(r,z\right)\frac{\partial p}{\partial r}\right)+\frac{a\left(r,z\right)}{r^2}\frac{\partial^2 p}{\partial \theta^2}+\frac{\partial}{\partial z}\left( a\left(r,z\right)\frac{\partial p}{\partial z}\right)+k^2 p=0,
+\EEQ
+o\`u $A(x)=a(r,z)I$ par simplicit\'e, variant localement dans $\Omega$ ($a(r,z)=1$ dans $\Omega_e$). Le probl\`eme physique de la diffraction d'une onde par l'objet et l'h\'et\'erog\'en\'eit\'e s'\'ecrit :
+\BEQ{diffractionacousaxisym} 
+\left\{
+\begin{array}{l}
+\dsp \frac{1}{r}\frac{\partial }{\partial r}\left(r a\left(r,z\right)\frac{\partial p}{\partial r}\right)+\frac{a\left(r,z\right)}{r^2}\frac{\partial^2 p}{\partial \theta^2}+\frac{\partial}{\partial z}\left( a\left(r,z\right)\frac{\partial p}{\partial z}\right)+k^2 p=0,\text{  dans } \Omega_{tot}\times[0,2\pi]\\
+\dsp\frac{\partial p}{\partial n}=g_{inc},\ \ \forall (r,z,\theta)\in\partial\Omega_{i}\times[0,2\pi]\\
+\dsp \lim_{\vert x\vert\rightarrow\infty}\vert x\vert
+(\frac{\partial p}{\partial\vert x\vert}-ik p)=0  \\
+\end{array}
+\right.
+\EEQ
+Le probl\`eme est pos\'e en terme de champ diffract\'e. Le terme $g_{inc}$ provient de l'onde incidente et de la condition acoustiquement dure \`a la surface de l'objet. 
+La condition de Sommerfeld \`a l'infini permet de s\'electionner l'onde sortante du probl\`eme et de retrouver la causalit\'e temporelle perdue lors du passage en fr\'equentiel.
+\subsubsection{Espaces de Sobolev axisym\'etriques}\label{sobolevaxiespaces}
+\noindent A toute fonction cart\'esienne $\widetilde{u}$ d\'efinie \`a l'ext\'erieur de l'objet dans $\Omega_{tot,xyz}$, on associe la fonction $u$ d\'efinie sur $\dsp \Omega_{tot}\times\left[0,2\pi\right]$ par le
+changement de variables suivant : $\dsp u(r,z,\theta)=\widetilde{u}(x,y,z)=\widetilde{u}(r{\rm
+cos}\theta,r{\rm sin}\theta,z)$. Si $\widetilde{u}$ est continue, alors $u$
+est continue et  $2\pi$-p\'eriodique. Le th\'eor\`eme d'int\'egration des fonctions compos\'ees donne pour toute
+fonction  $L^2\left(\Omega_{tot,xyz}\right)$ du domaine ext\'erieur à l'objet :
+$$
+\dsp \int\vert \widetilde{u}(x,y,z)\vert^2 \ \ {\rm d}x{\rm d}y{\rm d}z=\int_{\Omega_{tot}\times\left[0,2\pi\right]}\vert u(r,\theta,z)\vert^2 \ \ r {\rm d}r {\rm d}\theta {\rm d}z
+$$
+On d\'eduit de cette formule les images des espaces $L^2\left(\Omega_{tot,xyz}\right)$ et
+$H^1\left(\Omega_{tot,xyz}\right)$ du domaine ext\'erieur à l'objet et leurs normes respectives :
+\BEQ{definitionL2axi}
+\begin{array}{c}
+\dsp L^2_{a}\left(\Omega_{tot}\times\left[0,2\pi\right]\right)=\{u \text{  mesurable et tel que : } \ \ \sqrt{r}u\in L^2\left(\Omega_{tot,xyz}\right)\},\\
+\dsp \vert\vert u\vert\vert^2_{L^2_{a}\left(\Omega_{tot}\times\left[0,2\pi\right]\right)}=\int_{\left(\Omega_{tot}\times\left[0,2\pi\right]\right)\times[0,2\pi]}\vert u(r,\theta,z)\vert^2 \ \ r {\rm d}r  {\rm d}z {\rm d}\theta\\
+\end{array}
+\EEQ
+\BEQ{definitionH1axi}
+\begin{array}{c}
+\dsp H^1_{a}\left(\Omega_{tot}\times\left[0,2\pi\right]\right)=\{u\in L^2_{a}\left(\Omega_{tot}\times\left[0,2\pi\right]\right), \ \/ \frac{\partial u}{\partial r},\ \ \frac{1}{r}\frac{\partial u}{\partial \theta}, \ \  \frac{\partial u}{\partial z}\in L^2_{a}\left(\Omega_{tot}\times\left[0,2\pi\right]\right) \},\\
+\dsp \vert\vert u\vert\vert_{H^1_{a}\left(\Omega_{tot}\times\left[0,2\pi\right]\right)}^2 =\int_{\left(\Omega_{tot}\times\left[0,2\pi\right]\right)\times[0,2\pi]}\left[ \vert u\vert^2+\vert\frac{\partial u}{\partial r} \vert^2+ \vert\frac{1}{r}\frac{\partial u}{\partial \theta} \vert^2+ \vert\frac{\partial u}{\partial z}\vert^2 \right] \ r {\rm d}r{\rm d}z  {\rm d}\theta  \\
+\end{array}
+\EEQ
+\subsubsection{D\'ecomposition de Fourier et espaces de Sobolev \`a poids transverses}
+\noindent La d\'ecomposition spectrale des op\'erateurs auto-adjoints compacts permet de décomposer toute fonction de $L^2_{a}\left(\Omega_{tot}\times\left[0,2\pi\right]\right)$ en s\'erie de Fourier angulaire en $\theta $ :
+\BEQ{decompositionaxi}
+u(r,\theta,z)=\frac{1}{\sqrt{2\pi}}\sum_{m\in Z}u_m(r,z)e^{im\theta}
+\EEQ
+Les coefficients de Fourier sont donn\'es par le produit scalaire :
+\BEQ{coefdecompaxi}
+u_m(r,z)=\langle u,\frac{1}{\sqrt{2\pi}}e^{im\theta}\rangle_{L^2(0,2\pi)}=
+\frac{1}{\sqrt{2\pi}}\int_0^{2\pi} u(r,\theta,z)e^{-im\theta}{\rm
+d}\theta
+\EEQ
+La vitesse acoustique vectorielle se d\'ecompose sur les modes de Fourier angulaires :
+\begin{displaymath}
+\ovra{v}=\sum_{m\in\mathbb{Z}}\ovra{v}_m(r,z)e^{im\theta}
+\end{displaymath}
+La continuit\'e sur l'axe implique la nullit\'e de certaines composantes vectorielles pour certains modes :
+\BEQ{particulariteaxi}
+\left \{
+\begin{array}{c}
+\dsp \ovra{v}_m^z(0,z)=0 , \forall m\neq 0\\
+\dsp \ovra{v}_m^r(0,z)=0 , \forall m\neq \pm 1\\
+\dsp \ovra{v}_m^\theta(0,z)=0 , \forall m\pm 1\\
+\end{array}
+\right.
+\EEQ
+L'espace \`a poids transverse \'equivalent $L^2$ est not\'e par abus de notation comme l'espace \`a poids avec la variable suppl\'ementaire (\ref{definitionL2axi}) :
+\BEQ{definitionL2axiazimutal}
+\begin{array}{c}
+\dsp L^2_{a}\left(\Omega_{tot}\right)=\{u(r,z) \text{ mesurable et tel que : } \ \sqrt{r}u\in L^2\left(\Omega_{tot}\right)\}\\
+\dsp \vert\vert u\vert\vert^2_{L^2_{a}\left(\Omega_{tot}\right)}=\int_{\Omega_{tot}}\vert u(r,z)\vert^2 \ \ r {\rm d}r{\rm d}z\\
+\end{array}
+\EEQ
+La décomposition de Fourier en modes azimutaux oblige à distinguer les espaces fonctionnels à poids pour chaque mode azimutal :
+\BEQ{definitionH1axiazimutal}
+\begin{array}{c}
+\dsp H^1_{am}\left(\Omega_{tot}\right)=\{u(r,z)\in L^2_{a}\left(\Omega_{tot}\right) \text{ tel que } \ \/ \frac{\partial u}{\partial r},\ \ m\frac{u}{r}, \ \  \frac{\partial u}{\partial z}\in L^2_{a}\left(\Omega_{tot}\right) \},\\
+\dsp \vert\vert u\vert\vert_{H^1_{am}\left(\Omega_{tot}\right)}^2 =\int_{\Omega_{tot}}\left[ \vert u\vert^2+\vert\frac{\partial u}{\partial r} \vert^2+ m^2\vert\frac{u}{r}\vert^2+ \vert\frac{\partial u}{\partial z}\vert^2 \right] \ r {\rm d}r {\rm d}z\\
+\end{array}
+\EEQ
+\subsubsection{Formulation variationnelle volumique et d\'ecouplage modal}\label{subsubsection]1142}
+\noindent L'axisym\'etrie permet la d\'ecomposition du probl\`eme initial en une s\'erie d\'enombrable de probl\`emes :
+\BEQ{problemeparmodes} 
+\left\{
+\begin{array}{l}
+\dsp\sum_{m\in \mathbb{Z}}\left[\frac{1}{r}\frac{\partial}{\partial r}\left(ra(r,z)\frac{\partial p_m(r,z)}{\partial r}\right)+\frac{\partial}{\partial z}\left(a(r,z)\frac{\partial p_m(r,z)}{\partial z}\right)+(k^2-\frac{m^2}{r^2})p_m(r,z)\right]e^{im\theta}=0 \\
+\dsp \forall (r,z,\theta)\in \Omega_{tot} \times \left[0,2\pi\right]\\
+\dsp \sum_{m\in \mathbb{Z}}\left[\frac{\partial_m}{\partial_m n}\right]\left(p_m(r,z)\right)e^{im\theta}=g_{inc}, \ \forall (r,z,\theta)\in \partial\Omega_{i}\times\left[0,2\pi\right]\\
+\dsp \lim_{\vert x\vert\rightarrow\infty}\vert x\vert
+(\frac{\partial p_m}{\partial\vert x\vert}-ik_\infty p_m)=0 \\
+\end{array}
+\right.
+\EEQ
+La formulation variationnelle du problème (\ref{problemeparmodes}) est établie en prenant des fonctions tests axisymétriques portées uniquement par le mode m  : $p^t=p_m^t(r,z)e^{im\theta}$ (resp. $\phi^t=\phi^t_m(r,z)e^{im\theta}$). Le découplage des modes de Fourier volumiques est immédiat. Le découplage des opérateurs intégraux s'obtient par la même démarche que le paragraphe (\ref{equationintegralesection10}). La formulation (S)-scalaire (\ref{formulationSscalaire}) s'\'ecrit pour le  mode azimutal $m\in \mathbb{Z}$ : 
+\BEQ{formulationSscalaireaxi}
+(S)\displaystyle 
+\left\lbrace
+\begin{array}{l}
+\dsp \text{ Trouver }(p_m,\phi_m)\in H^1_{am}\left(\Omega\right)\times H^{-1/2}(\Gamma) \text{ tel que : }\\
+\dsp \int_{\Omega}a(r,z)\frac{\partial p_m}{\partial r}\overline{\frac{\partial p^t_m}{\partial r}}  \ r{\rm d}r{\rm d}z+ \int_{\Omega}a(r,z)\frac{\partial p_m}{\partial z}\overline{\frac{\partial p^t_m}{\partial z}} \ r{\rm d}r{\rm d}z \\
+\dsp -\int_{\Omega}k^2\ p_m \overline{p^t_m} \ \ r{\rm d}r{\rm d}z+ m^2\int_{\Omega}a(r,z)\frac{p_m\overline{p^t_m}}{r} \ {\rm d}r{\rm d}z\\
+\dsp -\frac{ik}{4\pi}\int_\Gamma \phi_m\ \overline{p^t_m}+\frac{ik}{2\pi}\int_\Gamma D_m^*(\phi_m) \ \overline{p^t_m}-\frac{1}{2\pi}\int_\Gamma N_m (p_m)\ \overline{p^t_m}\\
+\dsp =\int_{\partial\Omega_{i}}\langle g_{inc},e^{im\theta} \rangle p^t_m \ r {\rm d}r{\rm d}z \\
+\\
+\dsp \frac{1}{2}\int_\Gamma p_m\ \overline{\phi_m^t}-\int_\Gamma D_m( p_m).\ \overline{\phi_m^t}+ik\int_\Gamma S_m(\phi_m).\overline{\phi^t_m}=0 \\
+\\
+\dsp \forall (p^t_m,\phi^t_m)\in H^1_{am}\left(\Omega\right)\times H^{-1/2}(\Gamma)\\
+\end{array}
+\right.,
+\EEQ
+o\`u les op\'erateurs int\'egraux azimutaux sont d\'etaill\'es au paragraphe (\ref{equationintegralesection10}).
+La forme matricielle num\'erique s'\'ecrit :
+\BEQ{Smatricielleaxisymetrqiue}
+\begin{array}{cc}
+&\begin{array}{ccc}
+\dsp p_{mP^1.vol}&  p_{mP^1.sur}&   \phi_{mP^0.sur}  \\
+\end{array}\\
+\begin{array}{c}
+\dsp   p^t_{mP^1.vol}      \\
+\dsp   p^t_{mP^1.sur}      \\
+\dsp   \phi^t_{mP^0.sur}   \\
+\end{array}&\left(
+\begin{array}{ccc}
+A_{m} &  A_{m}         &       0                 \\
+A_{m} &  A_{m}-\frac{1}{2\pi}N_m     &  \frac{ik}{2\pi}(-\frac{I}{2}+D_m^*) \\
+0       & \frac{ik}{2\pi}(-\frac{I}{2}+D_m) &       \frac{k^2}{2\pi}S_m            \\
+\end{array}\right)
+\\
+\end{array},
+\EEQ
+où $p_{mP^1.vol}$ (resp. $p_{mP^1.sur}$) désigne les degrés de liberté de la pression volumique $P^1$ par élément triangulaire (resp. les degrés de liberté de la pression surfacique $P^1$ par élément poutre ) et où $\phi_{mP^0.sur}$ désigne les degrés de liberté de la vitesse normale surfacique constante par élément poutre.

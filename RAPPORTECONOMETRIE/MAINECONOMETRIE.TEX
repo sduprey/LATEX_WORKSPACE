@@ -1,0 +1,93 @@
+\documentclass[12pt]{book}
+\usepackage[intlimits,sumlimits,namelimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+%\usepackage{times}
+
+\usepackage[dvips]{graphicx}
+\usepackage{epsf}
+\usepackage{epsfig}
+\usepackage{fancyhdr}
+\usepackage{layout}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+\input{Macro.tex}
+\input{commandes.tex}
+
+%% ENTETE DE FRANCOIS
+%\documentclass[12pt,a4paper,twoside,final,notitlepage]{book}
+%\usepackage[dvips]{graphicx}
+%\usepackage[leqno]{amsmath}
+%\usepackage{a4}
+%\usepackage{epsf}
+%\usepackage{epsfig}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage{french}
+%\usepackage[T1]{fontenc}
+%\pagestyle{myheadings}
+%% FIN ENTETE DE FRANCOIS
+
+
+%\pagestyle{fancy}
+%\pagestyle{empty}
+%\pagestyle{myheadings}
+%\setcounter{part}{arabic}
+%\numberwithin{section}{chapter}
+%\numberwithin{equation}{chapter}
+%\numberwithin{theorem}{chapter}
+\begin{document} 
+\begin{titlepage}
+\title{
+\vspace{1cm}
+\begin{huge}
+\begin{center}
+\epsfig{file=CNAM.eps,height=10.00cm,width=8cm}
+\vspace{2cm}
+\\
+{\bf Rapport d'économétrie}\\
+Processus autorégressifs composés\\
+Modèle affine de crédit\\
+Application à l'analyse du risque de crédit\\
+\end{center}
+\end{huge}
+}
+\author{Stefan Duprey et Donald Kenfack\thanks{stefan.duprey@yahoo.fr;donald.kenfack@sgcib.com}}
+\date{} 
+\maketitle
+\end{titlepage}
+\pagestyle{empty}
+\newpage
+\pagestyle{myheadings}
+\tableofcontents
+\newpage
+\input{Introductioneconometrie}
+\input{car}
+\input{amcra}
+\input{rcalcul}
+\newpage
+\input{Conclusioneconometrie}
+\begin{thebibliography}{1}
+\bibitem{MGP}
+A. MONTFORT, C. GOUERIOUX et V. POLIMENIS.
+\newblock{\em Affine models for credit risk analysis.}
+\newblock Journal of Financial Econometrics, (2006), France.
+\bibitem{JDG}
+J. JASIAK, S. DAROLLES et C. GOUERIOUX.
+\newblock{\em Compound autoregressive models.}
+\newblock  (2002).
+\end{thebibliography}
+%\newpage
+%\appendix
+%\input{OperateursSurfaciques}
+%\input{Sobolev}
+%\input{ElementsFinisRappel}
+%\include{RoutineVol}
+\end{document}

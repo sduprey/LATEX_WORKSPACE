@@ -1,0 +1,455 @@
+\documentclass[a4, 14pts]{seminar}
+\usepackage[dvips]{pstcol}
+\usepackage{semcolor}
+\usepackage{sem-page}
+\usepackage{slidesec}
+\input{seminar.bug}
+\input{seminar.bg2}
+\usepackage{semhelv}
+\usepackage{subfigure}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{longtable,array,enumerate}
+
+
+\usepackage{multicol}
+
+\usepackage[intlimits,sumlimits,namelimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\usepackage[dvips]{graphicx}
+\usepackage{epsf}
+\usepackage{epsfig}
+\usepackage{fancyhdr}
+\usepackage{layout}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+
+\usepackage{url}
+\usepackage{xspace}
+
+\usepackage[landscape]{geometry}
+\usepackage{pdflscape}
+
+%\usepackage{pdflscape}
+
+\newtheorem{corollary}{Corollaire}[section]
+\newtheorem{definition}[corollary]{D\'{e}finition}
+\newtheorem{equations}[corollary]{Equations}
+\newtheorem{example}[corollary]{Exemple}
+\newtheorem{lemma}[corollary]{Lemme}
+\newtheorem{proposition}[corollary]{Proposition}
+\newtheorem{remark}[corollary]{Remarque}
+\newtheorem{theorem}[corollary]{Th\'{e}or\`{e}me}
+%%% The above 7 commands are used in the following way:
+%%% The definition environment, for example, is created by
+%%% \begin{definition}\label{xxx}. . .\end{definition}
+\newcommand{\mylabel}[1]{\label{#1}
+            \ifx\undefined\stillediting
+            \else \fbox{$#1$}\fi }
+\newcommand{\BE}{\begin{equation}}
+\newcommand{\BEQ}[1]{\BE\mylabel{#1}}
+\newcommand{\EEQ}{\end{equation}}
+\newcommand{\rfb}[1]{\mbox{\rm
+   (\ref{#1})}\ifx\undefined\stillediting\else:\fbox{$#1$}\fi}
+\newcommand{\half}   {{\frac{1}{2}}}
+\newenvironment{matr}[1]{\left[ \begin{array}{#1}}{\end{array}
+                         \right]}
+%
+\newfont{\Blackboard}{msbm10 scaled 1200}
+\newcommand{\bl}[1]{\mbox{\Blackboard #1}}
+\newfont{\roma}{cmr10 scaled 1200}
+
+\newcommand{\propp}{{\hskip -2.2mm{\bf .}\hskip 3mm}}
+
+\newcommand{\ovra}{\overrightarrow}
+% fin des commandes de Marius
+
+\fancyhf{}
+\renewcommand\headrulewidth{0.2mm}
+\renewcommand\footrulewidth{0.2mm}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\ROT}{{\text{Rot}}}
+\newcommand{\Rot}{\vec{\text{Rot}}}
+\newcommand{\rot}{\vec{\text{rot}}}
+
+\newcommand{\dsp}{\displaystyle}
+
+\newcommand\eads{\textsf{CNAM}\xspace}
+\newcommand\eadsccr{\textsf{CNAM Paris}\xspace}
+
+\fancyhead[L]{\theslideheading}
+\fancyhead[R]{\textcolor{blue}{\eadsccr \thepage }}
+\fancyfoot[R]{\textcolor{blue}{}}
+\fancyfoot[L]{\textcolor{blue}{Paris, le \today }}
+\renewcommand\headwidth{\textwidth}
+\autoslidemarginstrue
+
+
+%\newslideframe{%
+ %  myscshadow}[\SemcolorFrameOps
+%   \psset{shadowcolor=green}]{\psshadowbox{#1}}
+\newcommand{\ud}{\mathrm{d}}
+
+\newcommand{\ds}{\displaystyle}
+%\slideframe{myscshadow}
+%\setlength\slideframewidth{.5pt}
+%\setlength\footskip{1cm}
+%\setlength\headsep{1cm}
+
+%\renewcommand\makeslideheading[1]{\par
+%   \framebox{\theslidesection. #1}\par
+%}
+%\renewcommand\makeslidesubheading[1]{\par
+%   \leavevmode\hspace*{1cm}%
+%   \alph{slidesubsection}. #1\par
+%}
+
+\definecolor{Pink}{rgb}{1.,0.,0.2}
+\definecolor{Mygreen}{rgb}{0.3,0.7,0.6}
+
+\renewcommand\makeslideheading[1]{\par
+   \fcolorbox{black}{Pink}{\color{yellow}\theslidesection. #1}\par
+}
+\renewcommand\makeslidesubheading[1]{\par
+   \leavevmode\hspace*{1cm}%
+   \textcolor{Mygreen}{\alph{slidesubsection}. #1}\par
+}
+
+\makeatletter
+\renewcommand\slide@contents{\par
+   \begin{center}
+        \Large \bfseries\textcolor{blue}{Plan}
+   \end{center}
+  \def\l@slide##1##2##3{%
+    \@undottedtocline{1}{1.5em}{2.3em}{\slidenumberline{##1.}{##2}}{}}%
+  \def\l@subslide##1##2##3{%
+    \@undottedtocline{1}{1.5em}{3.3em}{\slidenumberline{\@alph{##1})}{##2}}{}}%
+  \@startlos
+}
+\makeatother
+
+%\slideframe{none}
+
+%\XgrDefinitFormat{*}{line=0,mark=0,ll=1}
+%\XgrDefinitFormat{pr}{}
+%\XgrDefinitFormat{ks}{line=-1,mark=8,ll=0.4}
+
+\begin{document}
+%\begin{landscape}
+\slidepagestyle{fancy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{slide}
+%\begin{landscape}
+\thispagestyle{plain}
+\begin{figure}[ht]\begin{center}\includegraphics[height=3cm]{CNAM.eps}\end{center}\end{figure}
+\begin{center}
+\textcolor{blue}{\large Processus autorégressifs composés}\\
+\textcolor{blue}{\large Modèle affine de crédit}\\
+\textcolor{blue}{\large Application à l'analyse du risque de crédit}\\
+\vspace{0.25 cm}
+\textbf{KENFACK Donald et DUPREY Stéfan}\\
+\small{\textbf{Rapport d'économétrie}\\ 
+\textbf{Master Finance de marché }\\
+\textbf{Conservatoire Nationnal des Arts et Métiers - Paris}\\
+\date{}
+}
+%\eadsccr
+\end{center}
+%\end{landscape}
+\end{slide}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\small{
+\begin{slide}
+\slidecontents
+\renewcommand\theslideheading{Plan de l'Expos\'e}
+\end{slide}
+\begin{slide}
+\slideheading{Introduction générale}
+\textbf{\textcolor{blue}{\large Objectif : proposer un modèle de risque de crédit se voulant une alternative fiable, robuste et plus complète que l'état de l'art "industriel"}}
+\small{
+\newline $\bullet$ Dans un premier temps, nous élaborons un état de l'art des différentes techniques utilisées par l'industrie banquaire et les instances régulatrices pour analyser les risques de crédit. 
+\newline $\bullet$ Fort de cette vision, nous introduisons la modélisation autorégressive affine de crédit, discutons ces avantages et inconvénient et proposons l'application à des case concrets.
+\newline $\bullet$ Nous analysons ensuite plus précisément les propriétés mathématiques des processus autorégressifs composés.
+\newline $\bullet$ Nous finissons en exposant des cas de calcul concret implémentés à l'aide du logiciel R. Nous présentons la décomposition du spread des paniers first-to-default, la prise en compte d'effet de cycle et enfin un calcul original : le rendement d'obligations d'entreprises risquées avec taux de recouvrement.
+}
+\end{slide}
+\begin{slide}
+\slideheading{Etat de l'art industriel de la modélisation du risque de crédit}
+\textbf{\textcolor{blue}{\large Les différents modèles les plus courants}}\newline
+\end{slide}
+\begin{slide}
+\textbf{Modèle KMV}\newline
+\end{slide}
+\begin{slide}
+\slideheading{Processus autorégressifs composés : analyse mathématique}
+\textbf{\textcolor{blue}{\large Log-Laplace transformée conditionnelle : fonction affine des valeurs passées du processus}}
+\newline\textbf{Définition : }\newline
+Soit $(Y_t,t\geq 0)$ un processus à n dimensions et notons $\underline{Y_{t-1}}$ l'ensemble des informations jusqu'à et incluant $t-1$. Le processus Y est un processus autorégressif d'ordre p {\bf CAR(p)} si et seulement si la distribution conditionnelle de $Y_t$ sachant $\underline{Y_{t-1}}$ admet une transformée de Laplace conditionnelle du type :
+\BEQ{definitionCAROrdreP}
+E\left[exp(u'Y_t)|\underline{Y_{t-1}}\right]=exp\left[-a_1'(u)Y_{t-1}-...-a_p'(u)Y_{t-p}+b(u)\right]
+\EEQ, où $a_p \neq 0$.
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Equivalence CAR(p) et CAR(1)}}
+\newline\textbf{Proposition : }\newline
+Le processus $(Y_t,t\geq 0)$ est un processus $CAR(p)$ si et seulement si le processus $\widetilde{Y}_t=\left(Y'_{t},Y'_{t-1},\hdots,Y'_{t-p}\right)$ est un processus $CAR(1)$.
+\BEQ{definitionNouvelleFonction}
+a(v)=\left(
+\begin{array}{c}
+\dsp a_1(v_1)+v_2 \\
+\dsp  \vdots  \\
+\dsp a_{p-1}(v_1)+v_p   \\
+\dsp a_{p}(v_1)\\
+\end{array}
+\right)
+\EEQ
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Processus autorégressifs composés à valeurs entières et thématique de file d'attente :}}\newline
+$Y_t=Z_t+\epsilon_t$ avec $Z_t=\rho Y_{t-1}$. Problème $Z_t$ pas entier !
+\BEQ{definitionAppellationCompose}
+Y_t=\sum_{i=1}^{Y_{t-1}}Z_{i,t}+\epsilon_t
+\EEQ, où les variables $Z_{i,t}$ suivent une loi de Bernouilli
+$\mathbb{B}(1,\rho)$. Dans ce cas :
+\begin{displaymath}
+E[exp(-uY_t)|Y^{t-1}]=exp(-a(u)Y_{t-1}+b(u))
+\end{displaymath}
+\textbf{\textcolor{blue}{\large Processus autorégressifs composés à valeurs positives}}\newline
+On donne une condition nécessaire et suffisante sur la transformée de Laplace d'une variable aléatoire pour qu'elle soit positive.
+\BEQ{completeMonotinicite}
+\forall j\in \mathbb{N}, (-1)^j\frac{\ud^j}{\ud u^j}\left[exp(b(u))\right]\geq 0
+\EEQ 
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Distribution invariante, prévision et stationnarité}}\newline
+\newline\textbf{Proposition : }\newline
+La distribution invariante $E[\exp\left(-u'Y_t\right)|\underline{Y}_{t-1}]=\exp[c(u)]$ vérifie :
+\begin{displaymath}
+b(u)=c(u)-c(a(u))
+\end{displaymath}
+Un processus stochastique CAR(1) vérifie :
+\BEQ{previsionHorizonQuelconque}
+E[exp(-uY_{t+h})|Y^{t}]=exp(-a^{oh}(u)Y_{t}+\sum_{k=0}^{h-1}b(a^{ok}(u)))\\
+\EEQ
+Soit un processus CAR(1) admettant une log-Laplace transformée invariante c.
+La transformée de Laplace conditionnelle tend vers une limite indépendante de la variable conditionnante si et seulement si :
+\BEQ{ergodicite}
+\lim_{h\rightarrow \infty}a^{oh}(u)=0, \ \forall u.
+\EEQ
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Réversibilité temporelle d'un processus autorégressif composé}}\newline
+\newline\textbf{Proposition : }\newline
+Le processus CAR(1) est réversible si et seulement si la fonction $\psi(u,v)=c(a(u)+v)+c(u)-c(a(u))$ est une fonction symétrique de u et v. La démonstration est immédiate en exprimant la symétrie de la transformée de Laplace de la distribution jointe de ($Y_t,Y_{t-1}$) par la propriété de Markov. Quand le processus $Y_t$ est réversible :
+\begin{displaymath}
+i) a(u) =\left( \frac{\ud c}{\ud u}\right)^{-1}\left[\frac{\ud a}{\ud u}(0)\left(\frac{\ud c}{\ud u}(u)-\frac{\ud c}{\ud u}(0) \right)+\frac{\ud c}{\ud u}(0)\right]
+\end{displaymath}
+ii) La fonction $\gamma(u)=\frac{\ud^2 c}{\ud u^2}o(\frac{\ud c}{\ud u})^{-1}$ est quadratique.
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Opérateur espérance conditionnelle}}\newline
+\newline\textbf{Proposition : }\newline
+\BEQ{momentsConditionnels}
+E[Y_t^n|Y_{t-1}]=P_n(Y_{t-1})
+\EEQ
+, où $P_n$ est un polynôme de degré n dont le coefficient de plus haut degré est $[\frac{\ud a}{\ud u}(0)]^n$. Considérons l'opérateur d'espérance conditionnelle $\psi \rightarrow T\psi $ défini par :
+\BEQ{definitionOperateurConditionnel}
+T\psi(y)=E[\psi(Y_t)|Y_{t-1}=y]
+\EEQ
+Cet opérateur admet les valeurs propres réels $\lambda_n=[\frac{\ud a}{\ud u}(0)]^n$, $n\geq 0$ et pour fonctions propres associées des polynômes $P_n$ de degré $n$.
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Expression des densités conditionnelles dans le cas de la réversibilité}}\newline
+\newline\textbf{Proposition : }\newline
+Supposons $\vert \frac{\ud a}{\ud u}(0) \vert < 1$. Pour un processus CAR(1) stationnaire et réversible, les fonctions propres $P_n$, $n\geq 0$, de l'opérateur espérance conditionnelle sont orthogonales pour le produit scalaire associé à la distribution invariante $f$. De plus :
+\BEQ{densiteReversibleStationnaire}
+f\left(y_t\vert y_{t-1}\right)=f(y_t)\left[1+\sum_{n=1}^{\infty}\left[\frac{\ud a}{\ud u}(0)\right]^n P_n(y_t)P_n(y_{t-1})\right]
+\EEQ, où $P_n$ est la base orthogonale des fonctions polynômiales propre de l'opérateur conditionnel d'espérance.
+\BEQ{densiteReversibleStationnaireHorizonH}
+f_h\left(y_t\vert y_{t-h}\right)=f(y_t)\left[1+\sum_{n=1}^{\infty}\left[\frac{\ud a}{\ud u}(0)\right]^{hn} P_n(y_t)P_n(y_{t-h})\right]
+\EEQ
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Représentation espace-états, filtrage et lissage}}\newline
+\BEQ{nonlinearrepresentation}
+Y_t = Z_t + \epsilon_t 
+\EEQ
+\BEQ{nonlinearrepresentationdeux}
+Z_t=\alpha (Y_{t-1},\eta_t)
+\EEQ
+\newline\textbf{Proposition : }\newline
+{\small
+\begin{enumerate}
+\item Les variables $Z_t$, $t$ variant, sont indépendants conditionnellement au processus observable.
+\item La distribution conditionnelle de $Z_t$ sachant toutes les valeurs de $Y_t$ coïncide avec la distribution conditionnelle de $Z_t$ sachant $Y_{t-1}$ et $Y_t$ seulement (réversibilité et propriété de Markov). Cette distribution filtrante est donnée par :
+\BEQ{filteringdistribution}
+l(z_t \vert y_{t-1},y_t)= \frac{g(z_t\vert y_{t-1}) h(y_t-z_t)}{\int g(z\vert y_{t-1}) h(y_t-z)\ud z}
+\EEQ
+\item La distribution lissante de $\epsilon_t$ suit directement puisque $\epsilon_t=y_t-z_t$.
+\end{enumerate}
+}
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Les différents processus CAR réversibles classés selon l'équation caractéristique $\beta_0 +\beta_1 x+\beta_2 x^2$ associé à l'équation de Ricatti}}
+\small{
+\newline $\bullet$  $\beta_1=\beta_2=0$ : les processus de Poisson composés
+\newline $\bullet$  $\beta_2=0$ : les processus gaussiens autorégressifs.
+\newline $\bullet$  $\beta_2\neq 0$ et $\beta_1^2-4\beta_0\beta_2 = 0$ : les processus $\gamma$-composés.
+\newline $\bullet$  $\beta_2\neq 0$ et $\beta_1^2-4\beta_0\beta_2 > 0$ : les processus de Bernouilli à régime changeant.
+\newline $\bullet$  $\beta_2\neq 0$ et $\beta_1^2-4\beta_0\beta_2 < 0$  : processus à $\gamma$ fonction quadratique et racines complexes conjuguées.
+}
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{Inférence statistique : modèle contraint}}
+\BEQ{unconstrainedModelisaiont}
+E[\exp(-uY_t)|Y_{t-1}]=L^o(u,y)=\exp (-a(u)y+b(u))
+\EEQ
+\newline\textbf{Proposition : }\newline
+\BEQ{constrainedEstimator}
+\left[\hat{a}_T(u),\hat{b}_T(u)\right]=\ arg \ \min_{a,b}\sum_{t=1}^{T}\left[\exp(-u y_t)-\exp(ay_{t-1}+b)\right]^2,
+\EEQ
+Sous les hypothèses de régularité standards et sous la condition que le processus CAR(1) soit bien défini, l'estimateur $\left[\hat{a}_T(u),\hat{b}_T(u)\right]'$ est asymptotiquement normal et tel que :
+\BEQ{normalConvergence}
+\sqrt{T}\left(\left(
+\begin{array}{c}
+\dsp \hat{a}_T(u) \\
+\dsp  \hat{b}_T(u)\\
+\end{array}
+\right)-\left(
+\begin{array}{c}
+\dsp a(u) \\
+\dsp  b(u)\\
+\end{array}
+\right)\right)\rightarrow N\left(0,\Omega(u)\right),
+\EEQ
+où $\Omega(u)=J^{-1}(u)I(u)J^{-1}(u)$
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{Inférence statistique : modèle non contraint}}
+\newline\textbf{Proposition : }\newline
+{\small
+La transformée de Laplace non contrainte peut être estimée par l'estimateur de Nadaraya-Watson :
+\BEQ{}
+\hat{L}_T(u,y)=\frac{\sum_{t=2}^{T}\exp (-uy_t)K_{h_T}(y_{t-1}-y)}{\sum_{t=2}^{T}K_{h_T}(y_{t-1}-y)}, \ \ u\in I, y\ variant,
+\EEQ
+L'estimateur est consistent et asymptotiquement normal 
+\BEQ{nadarayaconvergence}
+\sqrt{Th_T}\left[\hat{L}_T(u,y)-L(u,y)\right]\rightarrow N(0,\Sigma(u,y)),
+\EEQ
+où :
+\BEQ{defSigma}
+\Sigma(u,y)=\frac{1}{f(y)}\int K^2(v) dv V\left[\exp (-u Y_t)|Y_{t-1}=y\right]
+\EEQ
+\begin{displaymath}
+\frac{L(2u,y)-[L(u,y)]^2}{f(y)}\int K^2(v) dv 
+\end{displaymath}
+La qualité de l'estimation peut alors être évaluée en considérant le résidu fonctionnel de $\hat{L}_T(u,y)-\hat{L}^0_T(u,y)$, u et y variant.
+}
+\end{slide}
+\begin{slide}
+\slideheading{Application "FTD Basket", "Cycle effect" et "Loss given Default"}
+\textbf{\textcolor{blue}{\large Les processus $\gamma$-composés}}\newline
+On peut démontrer que la log-transformée de Laplace de ce processus s'écrit :
+\BEQ{logtransformeeGammaa}
+E_{t-1}\left[\exp (u Y_t)\right]=(1-uc_t)^{-\delta}\exp\left(\frac{c_t u}{1-c_t u}\beta_t Y_{t-1}\right).
+\EEQ
+La log-transformée de Laplace vérifie donc l'hypothèse affine avec pour fonction $a(u)=\frac{c_t u}{1-c_t u}\beta_t$ et $b(u)=-\delta\log (1-c_t u)$.\newline
+Dans le cadre où $c$, $\delta$ et $\gamma$ sont des constantes, la prévision de Y à l'ordre h est donné par la formule analytique suivante :
+\BEQ{ORDREHPREVISIONGAMMA}
+E_{t}\left[\exp (u Y_{t+h})\right]=\exp\left(Y_t\frac{\rho^h u}{1-uc\frac{1-\rho^h}{1-\rho}}-\delta\log\left(1-uc\frac{1-\rho^h}{1-\rho}\right)\right)
+\EEQ
+\end{slide}
+%%%%%%%%%%%%%%%%%%%
+\begin{slide}
+\textbf{\textcolor{blue}{\large Résultats Corporate Bonds}}
+\begin{center}
+\epsfig{file=CorporateBondTermStructure.eps,height=6.cm,width=10.750cm}
+\end{center}
+\end{slide}
+\begin{slide}
+\begin{center}
+\epsfig{file=CorporateBondDecomposition.eps,height=6.cm,width=10.750cm}
+\end{center}{\tiny
+\begin{displaymath}
+s_i(t,t+h)-\pi_i(t,t+h)=-\log \left\{1+\frac{Cov_t (M_{t,t+1}1_{\tau_i >t+1})}{E_t(M_{t,t+1})E_t(1_{\tau_i >t+1})}\right\}
+\end{displaymath} 
+}
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Résultats First-To-Default basket}}
+\begin{center}
+\epsfig{file=FirstToDefaultBasketTermStructure.eps,height=6.cm,width=10.750cm}
+\end{center}
+\end{slide}
+\begin{slide}
+\begin{center}
+\epsfig{file=FirstToDefaultBasketDecomposition.eps,height=6.cm,width=10.750cm}
+\end{center}
+{\tiny
+\begin{displaymath}
+s(t,t+h)=\pi*(t,t+h)+(\pi(t,t+h)-\pi*(t,t+h))+(s(t,t+h)-\pi(t,t+h))
+\end{displaymath} 
+}
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Résultats Cycle effects}}
+\begin{center}
+\epsfig{file=CycleCorporateBondYield.eps,height=6.cm,width=10.750cm}
+\end{center}
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Modélisation du taux de recouvrement}}\newline
+{\tiny
+\begin{displaymath}
+C*_i(t,t+h)=\sum_{k=1}^{h}E_t\left\{\Pi_{j=0}^{k-2}M_{t+j,t+j+1}\pi_{t+j,t+j+1}M_{t+k-1,t+k}\left(1-\pi_{t+k-1,t+k}\right)R_{t+k-1,t+k}\right\}
+\end{displaymath}
+\begin{displaymath}
++ E_{t}\left\{\Pi_{j=0}^{h-1}(M_{t+j,t+j+1}\pi_{t+j,t+j+1})\right\},
+\end{displaymath}
+}
+{\small
+\textbf{Hyopthèse : }
+Les taux de recouvrement pour les différentes entreprises sont indépendants conditionnellement aux facteurs $Z$ et $Z_i$. Le taux de recouvrement pour l'entreprise i est tel que :
+\BEQ{tauxDeRecouvrement}
+R_{t+j,t+j+1}= \exp(-(\delta_{t+1} + \epsilon'_{t+1} Z_{t+1}+\theta'_{t+1}Zi_{t+1}))=\exp(-\omega'_t),
+\EEQ
+où $\omega'_t= \delta_t + \epsilon'_t Z_t + \theta'_t Zi_t$ est l'intensité de recouvrement et  $\delta_t$,  $\epsilon'_t$ , $\theta'_t$ des fonctions de l'information contenue dans les facteurs  $Z_t$ et $Z_i$. Ce sont aussi des paramètres de sensibilités pour le recouvrement.
+Les taux de recouvrement étant compris entre 0 et 1, les sensibilités de recouvrement doivent vérifier comme les intensités de survie : $\omega'_t\ge 0$. 
+}
+\end{slide}
+\begin{slide}
+\textbf{\textcolor{blue}{\large Résultats Loss Given Default}}
+\begin{center}
+\epsfig{file=CorporateBondRecoveryPrice.eps,height=6.cm,width=10.750cm}
+\end{center}
+\end{slide}
+\begin{slide}
+\begin{center}
+\epsfig{file=CorporateBondRecoveryYield.eps,height=6.cm,width=10.750cm}
+\end{center}
+\end{slide}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{slide}
+\slideheading{Conclusion}
+\end{slide}
+}}
+%\end{landscape}
+\end{document}

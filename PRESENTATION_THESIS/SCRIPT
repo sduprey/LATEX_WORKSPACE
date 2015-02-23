@@ -1,0 +1,10 @@
+#!/bin/bash
+
+FICHIERS=`ls *.bmp`
+
+for FICHIER in ${FICHIERS}
+do
+	echo converstion de ${FICHIER}
+	BASE=`basename ${FICHIER} .bmp`
+	convert ${FICHIER} ${BASE}.eps
+done

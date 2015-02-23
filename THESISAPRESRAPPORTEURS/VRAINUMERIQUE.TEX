@@ -1,0 +1,260 @@
+\section{Validation comparative}
+\subsection{Probl\'ematique}
+\begin{center}
+\epsfig{file=problemetotaldeux.eps,height=5.cm,width=7.cm}
+\newline
+Probl\`eme g\'en\'eral
+\end{center}
+\noindent Ce paragraphe d\'etaille la validation du code num\'erique complet (condition modale + partie volumique + condition int\'egrale).
+\noindent Le maillage repr\'esent\'e ci-dessus poss\`ede 6085 sommets. Les cas de calcul de validation sont effectu\'es pour un $kR=2$, pour lequel ce maillage a un raffinement sup\'erieur \`a $\frac{\lambda}{10}$.
+\newline Cette validation se base sur les r\'ef\'erences produites par le code ACTI3S d\'evelopp\'e \`a EADS-CCR, dont la m\'ethodologie th\'eorique est d\'etaill\'ee aux paragraphes (\ref{equationintegralesubsectionsub94}) et (\ref{equationintegralesubsectionsub95}) de la partie (\ref{Ecoulement Constant}). Ce logiciel permet le calcul du rayonnement acoustique d'une source modale se propageant sur un \'ecoulement au plus uniforme.
+\newline Les premi\`eres validations sont faites en l'absence d'\'ecoulement. 
+\newline Les coefficients modaux de r\'eflexion sont compar\'es, ainsi que les champs acoustiques \`a l'ext\'erieur de la nacelle. La convergence en maillage est prouv\'ee pour les deux codes.
+\newline Les validations suivantes sont faites pour un \'ecoulement constant $M=0,1$. La m\^eme d\'emarche que pour le cas sans \'ecoulement est suivie.
+\subsection{Ecoulement porteur nul}
+\subsubsection{Un mode non singulier : le mode plan}\label{Un mode non singulier : le mode plansansecoul}
+\noindent Ci-dessous est pr\'esent\'e le coefficient de retour du mode $m=0,\ n=0$ sur lui-m\^eme en l'absence d'\'ecoulement pour le code PA2R (l'\'ecoulement porteur ne provient plus du solveur fluide, mais est "rentr\'e en dur"). La premi\`ere ligne correspond \`a un maillage \`a 6085 \text{ddls} et les deux derni\`eres lignes correspondent \`a ce m\^eme maillage que l'on a successivement raffin\'e en d\'ecomposant chaque triangle en 4 sous-triangles.
+\begin{displaymath}
+\text{PA2R, m=0, n=0}\left\lbrace
+\begin{array}{lll}
+\dsp  6085   &  \text{ddls} & -2.00150\times 10^{-1}-i\ 9.09183\times 10^{-2} \\
+\dsp 23123   &  \text{ddls} & -1.99342\times 10^{-1}-i\ 9.24564\times 10^{-2} \\
+\dsp 86752   &  \text{ddls} & -1.99844\times 10^{-1}-i\ 9.36297\times 10^{-2} \\
+\dsp 312318  &  \text{ddls} & -1.99837\times 10^{-1}-i\ 9.36476\times 10^{-2} \\
+\end{array}
+\right.
+\end{displaymath}
+Ci-dessous est pr\'esent\'e le coefficient de retour du mode $m=0,\ n=0$ sur lui-m\^eme en l'absence d'\'ecoulement pour le code ACTI3S. La premi\`ere ligne correspond au maillage dont la trace sur la surface transverse de la nacelle correspond au premier maillage ci-dessus et les deux derni\`eres lignes correspondent \`a ce m\^eme maillage que l'on a successivement raffin\'e en d\'ecomposant chaque triangle en 4 sous-triangles.
+\begin{displaymath}
+\text{ACTI3S, m=0, n=0}\left\lbrace
+\begin{array}{lll}
+\dsp  17137 &  \text{ddls} & -1.99854\times 10^{-1}-i\ 9.35946\times 10^{-2} \\
+\dsp  62455 &  \text{ddls} & -1.99837\times 10^{-1}-i\ 9.36477\times 10^{-2} \\
+\dsp 226747 &  \text{ddls} & -1.99837\times 10^{-1}-i\ 9.36477\times 10^{-2} \\
+\end{array}
+\right.
+\end{displaymath}
+La convergence en maillage des coefficients de r\'eflexion est constat\'ee pour les deux codes. Sur les maillages les plus raffin\'es, les coefficients de r\'eflexion coïncident \`a $10^{-6}$ pr\`es. PA2R gagne environ un chiffre \`a chaque raffinement, alors qu'ACTI3S semble converger plus rapidement (5 chiffres fix\'es d\`es la deuxi\`eme it\'eration).
+\subsubsection{Un mode singulier : le mode $m=1$, $n=0$}\label{Un mode singulier : le mode $m=1$, $n=0$sansecoul}
+\noindent La m\^eme d\'emarche est suivie pour le mode singulier $m=1$, $n=0$ en absence d'\'ecoulement :
+\begin{displaymath}
+\text{PA2R, m=1, n=0}\left\lbrace
+\begin{array}{lll}
+\dsp  6085   & \text{ddls} & 6.35537\times 10^{-1}-i\ 4.76084\times 10^{-1}\\
+\dsp 23123   & \text{ddls} & 6.57412\times 10^{-1}-i\ 4.73512\times 10^{-1}\\
+\dsp 86752   & \text{ddls} & 6.64245\times 10^{-1}-i\ 4.76292\times 10^{-1}\\
+\dsp 312318  & \text{ddls} & 6.65853\times 10^{-1}-i\ 4.76164\times 10^{-1}\\
+\end{array}
+\right.
+\end{displaymath}
+\begin{displaymath}
+\text{ACTI3S, m=1, n=0}\left\lbrace
+\begin{array}{lll}
+\dsp 17137  &  \text{ddls} &  6.29812\times 10^{-1}-i\ 4.76084\times 10^{-1}\\
+\dsp 62455  &  \text{ddls} &  6.64129\times 10^{-1}-i\ 4.76151\times 10^{-1} \\
+\dsp 226747 &  \text{ddls} &  6.65324\times 10^{-1}-i\ 4.76121\times 10^{-1} \\
+\end{array}
+\right.
+\end{displaymath}
+La convergence en maillage des coefficients de r\'eflexion est constat\'ee pour les deux codes. Ils sont proches \`a $10^{-3}$ pr\`es sur les maillages les plus raffin\'es. La convergence semble moins rapide que pour le mode plan et ce pour les deux codes (1 chiffre gagn\'e environ \`a chaque raffinement pour ACTI3S pour 0,5 chiffre gagn\'e environ par PA2R. PA2R converge toujours plus lentement que ACTI3S).
+\subsection{Ecoulement constant $M=0,1$}
+\subsubsection{Un mode non singulier : le mode plan}
+\noindent Ci-dessous est pr\'esent\'e le coefficient de retour du mode $m=0,\ n=0$ sur lui-m\^eme en pr\'esence d'un \'ecoulement constant $M=0,1$ pour le code PA2R (l'\'ecoulement porteur ne provient plus du solveur fluide, mais est "rentr\'e en dur"). La premi\`ere ligne correspond \`a un maillage \`a 6085 degrés de liberté et les deux derni\`eres lignes correspondent \`a ce m\^eme maillage que l'on a successivement raffin\'e en d\'ecomposant chaque triangle en 4 sous-triangles.
+\begin{displaymath}
+\text{PA2R, m=0, n=0}\left\lbrace
+\begin{array}{lll}
+\dsp  6085  &  \text{ddls} & -1.92695\times 10^{-1}-i\ 1.01288\times 10^{-1} \\
+\dsp 23123  &  \text{ddls} & -1.92537\times 10^{-1}-i\ 1.02264\times 10^{-1} \\
+\dsp 86752  &  \text{ddls} & -1.92143\times 10^{-1}-i\ 1.02926\times 10^{-1} \\
+\dsp 312318 &  \text{ddls} & -1.92118\times 10^{-1}-i\ 1.02966\times 10^{-1} \\
+\end{array}
+\right.
+\end{displaymath}
+Ci-dessous sont pr\'esent\'es les coefficients de retour du mode $m=0,\ n=0$ sur lui-m\^eme en pr\'esence d'un \'ecoulement constant pour le code ACTI3S (le code r\'esout le probl\`eme dans l'espace transform\'e de Lorentz, et les r\'esultats sont ramen\'es dans l'espace physique {\it{via}} un post-traitement). La premi\`ere ligne correspond au maillage dont la trace sur la surface transverse de la nacelle correspond au premier maillage ci-dessus. La deuxi\`eme ligne correspond \`a ce m\^eme maillage que l'on a raffin\'e en d\'ecomposant chaque triangle en 4 sous-triangles.
+\begin{displaymath}
+\text{ACTI3S, m=0, n=0}\left\lbrace
+\begin{array}{lll}
+\dsp  17137   &  \text{ddls} & -1.92133\times 10^{-1}-i\ 1.02915\times 10^{-1} \\
+\dsp  62455   &  \text{ddls} & -1.92111\times 10^{-1}-i\ 1.02967\times 10^{-1} \\
+\dsp  226747  &  \text{ddls} & -1.92111\times 10^{-1}-i\ 1.02967\times 10^{-1} \\
+\end{array}
+\right.
+\end{displaymath}
+Des remarques similaires au cas du mode plan en absence d'\'ecoulement (\ref{Un mode non singulier : le mode plansansecoul}) peuvent \^etre faites : la convergence en maillage des coefficients de r\'eflexion est constat\'ee pour les deux codes. Sur le maillage le plus raffin\'e, les coefficients de r\'eflexion coïncident \`a $10^{-5}$ pr\`es. PA2R gagne environ un chiffre \`a chaque raffinement, alors qu'ACTI3S semble converger plus rapidement (5 chiffres fix\'es d\`es la deuxi\`eme it\'eration).
+\subsubsection{Un mode singulier : le mode $m=1$, $n=0$}
+\noindent La m\^eme d\'emarche est suivie pour le mode non singulier $m=1$, $n=0$ en pr\'esence d'\'ecoulement :
+\begin{displaymath}
+\text{PA2R, m=1, n=0}\left\lbrace
+\begin{array}{lll}
+\dsp  6085  &  \text{ddls} & 6.67034\times 10^{-1}-i\ 4.08839\times 10^{-1}\\
+\dsp 23123  &  \text{ddls} & 6.89210\times 10^{-1}-i\ 4.08321\times 10^{-1}\\
+\dsp 86752  &  \text{ddls} & 6.92364\times 10^{-1}-i\ 4.09236\times 10^{-1}\\
+\dsp 312318 &  \text{ddls} & 6.93765\times 10^{-1}-i\ 4.09455\times 10^{-1}\\
+\end{array}
+\right.
+\end{displaymath}
+\begin{displaymath}
+\text{ACTI3S, m=1, n=0}\left\lbrace
+\begin{array}{lll}
+\dsp 17137  &  \text{ddls} & 6.62946\times 10^{-1}-i\ 4.05877\times 10^{-1}\\
+\dsp 62455  &  \text{ddls} & 6.96835\times 10^{-1}-i\ 4.09237\times 10^{-1}\\
+\dsp 226747 &  \text{ddls} & 6.93515\times 10^{-1}-i\ 4.09432\times 10^{-1}\\
+\end{array}
+\right.
+\end{displaymath}
+Des remarques similaires au cas du mode plan en absence d'\'ecoulement (\ref{Un mode singulier : le mode $m=1$, $n=0$sansecoul}) peuvent \^etre faites : la convergence en maillage des coefficients de r\'eflexion est constat\'ee pour les deux codes. Ils sont proches \`a $10^{-4}$ pr\`es sur le maillage le plus raffin\'e. La convergence semble moins rapide que pour le mode plan pour les deux codes (1 chiffre gagn\'e environ \`a chaque raffinement pour ACTI3S pour 0,5 chiffre gagn\'e environ par PA2R. PA2R converge toujours plus lentement que ACTI3S.
+\section{Propagation potentielle et influence de l'\'ecoulement}
+\noindent Ce paragraphe présente des résultats numériques globaux écoulement-acoustique sur une géométrie réaliste.
+\newline Différents écoulements potentiels sont exhibés. Ces écoulements diffèrent par une accélération croissante à la nacelle et un nombre de Mach à l'infini nul ou constant égal à $0,1$ (le turboréacteur est en banc statique ou l'avion vole à vitesse constante Mach $0,1$).
+\newline Les variables acoustiques dans le cadre particulier d'un écoulement potentiel non accéléré à la nacelle à vitesse constante $M=0,1$ sont détaillées.
+\newline Les résultats de comparaison entre un écoulement constant et un écoulement nul montrent ensuite le phénomène d'effet Doppler.
+\newline L'effet de l'écoulement (de l'accélération à la nacelle) est ensuite discuté. L'intensité acoustique en décibels et les diagrammes de champ lointain sont comparés pour des écoulements potentiels dont l'accélération à la nacelle augmente. 
+\subsection{Ecoulement porteur numérique}
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=machfinal.eps,height=12.5cm,width=13.cm}
+\smallskip
+\vskip -0.5cm
+\quad Nombres de Mach  
+\smallskip
+\end{center}
+\noindent Les r\'esultats des nombres de Mach de l'\'ecoulement porteur sont pr\'esent\'es ci-dessus pour deux valeurs du Mach \`a l'infini : $M_\infty=0$ et $M_\infty=0,1$ et pour trois valeurs des nombres de Mach au moteur : $M_M=0,1$, $M_M=0,2$ et $M_M=0,3$.
+\newline Les nombres de Mach les plus élevés se trouvent au niveau de la lèvre de la nacelle, là où les effets Ventury d'accélération sont les plus présents. Ils sont d'autant plus élevés que le Mach infini est grand (l'avion vole vite) et que l'accélération au moteur est forte.
+\newline  Le choix d'un Mach infini nul correspond à un avion au repos ou plutôt à un turboréacteur en banc statique d'essai. Ce choix s'explique par sa possibilité d'établir un grand différentiel entre le Mach moteur et le Mach infini sans faire saturer le régime subsonique au niveau de la lèvre avant de la nacelle : on verra que ce sont en fait les grands différentiels de Mach entre le moteur et l'infini qui causent les grandes différences acoustiques dans les diagrammes de rayonnement en dB.
+\newline Des ph\'enom\`enes de saturation apparaissent \`a l'arri\`ere de la nacelle du fait des hauts d\'ebits du conduit d'éjection : l'\'ecoulement \`a l'arri\`ere n'est pas physique et l'influence de cet \'ecoulement "non physique" sur le diagramme de rayonnement \`a l'avant est n\'eglig\'ee.
+\subsection{Acoustique numérique}
+\subsubsection{Probl\'ematique}
+\noindent Nous pr\'esentons  ci-dessous les champs des variables acoustiques se propageant sur un \'ecoulement potentiel $\dsp M_M=0,1$ et $\dsp M_\infty=0,1$. Les calculs sont effectu\'es pour $\dsp kR=2$ sur le maillage \`a 6085 ddls et les champs acoustiques sont pr\'esent\'es dans le cas du mode non singulier $\dsp m=0,\ n=0$ et du mode singulier $\dsp m=1,\ n=0$.
+\subsubsection{R\'esultats}
+\begin{center}
+\epsfig{file=visufinalquatredeux.eps,height=7.5cm,width=15.cm}
+R\'esultats acoustiques 1.
+\end{center}
+\noindent La figure ci-dessus pr\'esente la partie r\'eelle et imaginaire de la pression acoustique adimensionn\'ee ($\dsp \Re e\left(p_a^*\right)$ et $\dsp \Im m\left(p_a^*\right)$). La pression acoustique complexe s'obtient \`a partir du potentiel acoustique complexe : $\dsp p_a=-\rho_0(-i\ \omega
+\phi_a+\ovra{v_0}.\ovra{\nabla}\phi_a)$.
+\newline La derni\`ere figure pr\'esente $\dsp \vert \ovra{I^*} \vert$, o\`u $\dsp  \ovra{I^*}$ d\'esigne le vecteur r\'eel : 
+\BEQ{yoyoyolevecteurintensitedescomplexes}
+\dsp \frac{1}{2}\dsp \left(\frac{1}{2}\rho_0\vert\ovra{v_a}\vert^2+\frac{\vert p_a\vert^2}{2\rho_0 a_0^2}) \right) \dsp \ovra{v_0}+ \dsp \frac{1}{4}\dsp \left(p_a\overline{\ovra{v_a}}+\overline{p_a}\ovra{v_a}\right)
+\EEQ
+\newline Cette notation est un abus par rapport \`a (\ref{vecteurPointing}), qui r\'ef\'erait \`a des valeurs acoustiques r\'eelles. Ce vecteur obtenu \`a partir des valeurs acoustiques complexes est justement d\'etermin\'e de telle sorte que la valeur moyenne spatiale et temporelle de son flux \`a travers une surface \'egale \`a la  valeur moyenne spatiale et temporelle du flux \`a travers la m\^eme surface du vecteur Intensit\'e (\ref{vecteurPointing}) form\'e \`a partir des valeurs acoustiques r\'eelles.
+\smallskip  
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=visufinalquatretrois.eps,height=7.5cm,width=15.cm}
+\smallskip
+\vskip -0.5cm
+\quad R\'esultats acoustiques 2.
+\smallskip
+\end{center}
+La figure ci-dessus pr\'esente les parties r\'eelles et imaginaires des vitesses acoustiques radiales et axiales ($\Re e \left( v^*_{az} \right)$, $\Im m\left( v^*_{az} \right)$, $\Re e \left( v^*_{ar} \right)$ et $\Im m\left( v^*_{ar} \right)$). 
+\subsection{Effet Doppler et effet d'advection}
+\noindent Ce paragraphe d\'etaille la comparaison de la propagation acoustique sur un \'ecoulement porteur nul et la propagation acoustique sur un \'ecoulement porteur constant de m\^eme Mach moteur et infini \'egal \`a $0,1$.
+\smallskip 
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=comp0100finaldeux.eps,height=8.5cm,width=15.cm}
+\quad Comparaison Mach constant 0 - Mach potentiel $M_M=M_\infty=0,1$
+\smallskip
+\end{center}
+La ligne supérieure correspond aux résultats pour le mode plan non singulier $m=0$, $n=0$. La ligne inférieure correspond aux résultats du mode singulier $m=1$, $n=0$.
+\newline La figure de gauche pr\'esente la diff\'erence absolue des parties r\'eelles des potentiels acoustiques : $\dsp \vert \Re e \left(\phi^*_{a,M=0}\right)-\Re e \left(\phi^*_{a,M=0,1}\right)\vert$, o\`u l'indexation $M=0$ (resp. $M=0,1$) correspond \`a un \'ecoulement porteur nul (resp. un \'ecoulement porteur constant de m\^eme Mach moteur et infini \'egal \`a $0,1$).
+\newline La figure du milieu pr\'esente la diff\'erence absolue des modules du vecteur Intensit\'e (\ref{yoyoyolevecteurintensitedescomplexes}) adimensionnée (valeur physique non pertinente) : $\vert \vert \ovra{I^*}_{M=0}\vert - \vert\ovra{I^*}_{M=0,1}\vert    \vert $.
+\newline La figure du droite pr\'esente la diff\'erence absolue des intensit\'es en d\'ecibels (valeur physique pertinente) : $\vert I^*dB_{M=0} - I^*dB_{M=0,1}\vert $, o\`u $I^*dB=20{\rm log}\left(\vert \ovra{I^*}\vert\right)$.
+\newline Dans le cas de la comparaison pour un m\^eme Mach \`a l'infini (ce qui n'est pas le cas ici), les param\`etres d'adimensionnement \'etant les m\^emes, les propri\'et\'es du logarithme font dispara\^itre ces constantes (ainsi que l'intensit\'e de r\'ef\'erence de la d\'efinition (\ref{intensiteendb})) et cette diff\'erence absolue se lit en d\'ecibels physiques. Dans ce cas, les comparaisons se faisant entre un Mach infini nul et un Mach infini de $0,1$, cette diff\'erence absolue repr\'esente une variation de d\'ecibels physiques d\'efinie \`a une constante pr\`es. 
+\vspace{-0.5 cm}
+\subsubsection{Commentaires}
+\vspace{-0.5 cm}
+\noindent La figure de gauche explicite l'effet Doppler : les ondes en pr\'esence d'\'ecoulement sont compress\'ees par celui-ci, lorsqu'elles se d\'eplacent \`a contre-courant (le nombre d'ondes est augment\'e) et allong\'ees lorsqu'elles sont emport\'es par celui-ci (le nombre d'ondes est diminu\'e).
+\newline La figure du milieu et la figure de droite d\'emontre des diff\'erences dans la propagation de l'intensit\'e acoustique adimensionn\'ee et en d\'ecibels. Attention, les r\'esultats en d\'ecibels sont ici d\'efinis \`a une constante pr\`es.
+\subsection{Comparaison à Mach moteur augmentant}
+\noindent Ce paragraphe détaille les effets de l'écoulement potentiel et son accélération à la nacelle sur la propagation de l'intensité du bruit. Ces comparaisons s'effectuent pour un Mach à l'infini au repos et pour un Mach à l'infini constant. L'intensité physique adimensionnée est comparée dans un premier temps, puis les résultats sont transcrits en décibels (quantité physique pertinente pour l'être humain).
+\subsubsection{Mach Nul \`a l'Infini : $M_\infty=0$}
+\begin{center}
+\epsfig{file=intensiteminfzerodeux.eps,height=8.25cm,width=15.cm}
+Comparaison des intensit\'es $M_\infty=0$; $M_M=0,1$-$M_M=0,2$-$M_M=0,3$
+\end{center}
+\begin{center}
+\epsfig{file=intensitedebminfzerodeux.eps,height=8.25cm,width=15.cm}
+Comparaison en d\'ecibels $M_\infty=0$; $M_M=0,1$-$M_M=0,2$-$M_M=0,3$
+\end{center}
+\noindent La premi\`ere figure ci-dessus pr\'esente les diff\'erences absolues du module du vecteur Intensit\'e (\ref{yoyoyolevecteurintensitedescomplexes}) de la progation acoustique du mode $m=0,\ n=0$ (resp. $m=1,\ n=0$) pour la premi\`ere ligne (resp. la deuxi\`eme ligne) sur un \'ecoulement potentiel de Mach infini nul $M_\infty=0$ et de Mach moteur de gauche \`a droite respectivement $M_M=0,1$, $M_M=0,2$ et $M_M=0,3$ par rapport \`a la propagation acoustique du m\^eme mode sur un \'ecoulement de r\'ef\'erence nul.
+\newline
+La deuxi\`eme figure ci-dessus pr\'esente les diff\'erences absolues de l'intensit\'e en d\'ecibels de la progation acoustique du mode $m=0,\ n=0$ (resp. $m=1,\ n=0$) pour la premi\`ere ligne (resp. la deuxi\`eme ligne) sur un \'ecoulement potentiel de Mach infini nul $M_\infty=0$ et de Mach moteur de gauche \`a droite respectivement $M_M=0,1$, $M_M=0,2$ et $M_M=0,3$ par rapport \`a la propagation acoustique du m\^eme mode sur un \'ecoulement de r\'ef\'erence nul (cette diff\'erence absolue se lit en d\'ecibels physiques car le nombre de Mach à l'infini est toujours le même : $M_\infty = 0$, faisant disparaître ainsi les constantes d'adimensionnement dans les logarithmes).
+\subsubsection{Mach non Nul \`a l'Infini : $M_\infty=0,1$}
+\begin{center} 
+\epsfig{file=intensiteminfzeroundeux.eps,height=8.25cm,width=15.cm}
+Comparaison des intensit\'es $M_\infty=0,1$; $M_M=0,1$-$M_M=0,2$-$M_M=0,3$
+\end{center}
+La premi\`ere figure ci-dessus pr\'esente les diff\'erences absolues du module du vecteur Intensit\'e (\ref{yoyoyolevecteurintensitedescomplexes}) de la progation acoustique du mode $m=0,\ n=0$ (resp. $m=1,\ n=0$) pour la premi\`ere ligne (resp. la deuxi\`eme ligne) sur un \'ecoulement potentiel de Mach infini $M_\infty=0,1$ et de Mach moteur de gauche \`a droite respectivement $M_M=0,1$, $M_M=0,2$ et $M_M=0,3$ par rapport \`a la propagation acoustique du m\^eme mode sur un \'ecoulement de r\'ef\'erence constant à $M_\infty=0,1$.
+\begin{center}
+\epsfig{file=intensitedebminfzeroundeux.eps,height=8.25cm,width=15.cm}
+Comparaison en d\'ecibels $M_\infty=0,1$; $M_M=0,1$-$M_M=0,2$-$M_M=0,3$
+\end{center}
+La deuxième figure ci-dessus pr\'esente les diff\'erences absolues de l'intensit\'e en d\'ecibels de la progation acoustique du mode $m=0,\ n=0$ (resp. $m=1,\ n=0$) pour la premi\`ere ligne (resp. la deuxi\`eme ligne) sur un \'ecoulement potentiel de Mach infini $M_\infty=0,1$ et de Mach moteur de gauche \`a droite respectivement $M_M=0,1$, $M_M=0,2$ et $M_M=0,3$ par rapport \`a la propagation acoustique du m\^eme mode sur un \'ecoulement de r\'ef\'erence constant à $M_\infty=0,1$ (cette différence absolue se lit en décibels physiques car le nombre de Mach à l'infini est toujours le même $M_\infty = 0,1$).
+\subsubsection{Commentaires}
+\noindent Les champs de comparaison en décibels entre un écoulement constant et un écoulement potentiel variable prouvent la nécessité de prendre en compte ce dernier : des différences d'environ 10 décibels sont présentes au niveau de la nacelle et ce quelques soient le mode considéré et le Mach au moteur. 
+\newline Ces différences sont relativement élevées vis à vis des normes internationales de certification. Néanmoins, ces normes concernent le rayonnement de l'avion à longue distance :
+\newline Une étude des diagrammes de champ lointain permet finalement d'étudier la propagation de ces différences élevées au niveau des normes à une longue distance de la nacelle en étudiant les diagrammes de champ lointain.
+\newline On remarque déjà que plus le différentiel entre le nombre de Mach à l'infini et le nombre de Mach au moteur est grand, plus les différences d'intensité acoustique par rapport à un écoulement constant sont élevées. 
+\subsection{Diagrammes de rayonnement}
+\noindent Les diagrammes de rayonnement en champ lointain sont finalement commentés.
+\newline Ces diagrammes détaillent l'effet de l'écoulement potentiel sur la directivité du son à une longue distance de l'avion.
+\newline Les diagrammes de rayonnement sont pr\'esent\'es dans le r\'ef\'erentiel galil\'een de l'avion.
+\newline Le rayonnement de l'avion dans un r\'ef\'erentiel fixe se déduit {\it via} une transformation algébrique de Galil\'ee (effet Doppler).
+\newline Les résultats sont présentés sous forme de courbe polaire du module $\vert A\left(\theta\right)\vert$ en fonction de $\theta$.
+\newline On ne pr\'esente pas la classique SER du fait de l'adimensionnement des variables physiques : seul la diff\'erence du logarithme des courbes pr\'esent\'ees pour un m\^eme Mach infini peut s'interpr\'eter en vrais d\'ecibels physiques. 
+\subsubsection{Th\'eorie}
+\noindent Une estimation asymptotique de la formule de repr\'esentation (\ref{representationintegrale}) pour le potentiel acoustique dans l'espace transform\'e de Lorentz s'\'ecrit :
+\BEQ{champlointaindanslespacetransforme}
+\begin{array}{c}
+\dsp \widetilde{\phi_a}'(y')\thickapprox \dsp \frac{ \dsp e^{ \dsp ik_\infty' r'}}{ \dsp 4\pi r'}\left[ \dsp -\int_{\Gamma_\infty'}e^{ \dsp -ik_\infty' x'.\frac{y'}{ \dsp \vert  y' \vert}} \dsp \widetilde{\nabla}\widetilde{\phi_a}'.\ovra{n'}\ud x' \dsp +  \int_{\Gamma_\infty'} \dsp \frac{ \dsp \widetilde{ \dsp \partial}}{ \dsp \widetilde{\partial}n'} \dsp \left(e^{ \dsp -ik_\infty' x'.\frac{y'}{\vert  y' \vert}} \dsp \right) \dsp \widetilde{ \dsp \phi_a}'\ud x' \dsp  \right] \\
+\dsp  \widetilde{\phi_a}'(y'=r',\theta') \dsp \thickapprox\frac{ \dsp e^{ \dsp ik_\infty' r'}}{ \dsp 4\pi r'} \dsp \widetilde{A}' \dsp \left( \dsp \theta' \dsp \right)\\
+\end{array},
+\EEQ
+o\`u $ \dsp \theta'$ d\'esigne l'angle entre les vecteurs $ \dsp \ovra{e_r}$ et $ \dsp \ovra{e_{z'}}$.
+\newline Le potentiel acoustique dans l'espace physique v\'erifie alors :
+\BEQ{champlointainpourlevraipotentielphysiquenumbertoutou}
+\begin{array}{c}
+\dsp \dsp \phi_a(y=r,\theta)\thickapprox\dsp 
+\frac{e^{ \dsp i\frac{k_\infty}{ \dsp \sqrt{1-M_\infty^2}}r}}{ \dsp 4\pi r}  \dsp A\left(\theta\right) \\
+\end{array},
+\EEQ
+où $\dsp A\left(\theta\right)$ est donné par :
+\BEQ{champlointainpourlevraipotentielphysique}
+\begin{array}{c}
+\dsp A\left(\theta\right) \\
+\dsp = \\
+\dsp e^{ \dsp \frac{ \dsp ik_\infty M_\infty}{ \dsp \sqrt{1-M_\infty^2}}{ \dsp \rm cos} \dsp \left(
+{\rm arctan} \dsp \left( \dsp \sqrt{1-M_\infty^2} \dsp {\rm tan} \dsp \theta\right)
+\right)} \dsp \widetilde{A}' \dsp \left( \dsp {\rm arctan} \dsp \left( \dsp \sqrt{1-M_\infty^2}{\rm tan} \dsp \theta\right) \dsp \right) \\
+\end{array}
+\EEQ
+\subsubsection{Mach nul \`a l'infini : $M_\infty=0$}
+\begin{center}
+\epsfig{file=rayonnementmach0.eps,height=8.5cm,width=15.cm}
+Champs lointains $M_\infty=0$;  $M_M=0,1$-$M_M=0,2$-$M_M=0,3$
+\end{center} 
+\subsubsection{Mach non nul \`a l'infini : $M_\infty=0,1$}
+\begin{center}
+\epsfig{file=rayonnementmach01deux.eps,height=8.5cm,width=15.cm}
+Champs lointains $M_\infty=0,1$;  $M_M=0,1$-$M_M=0,2$-$M_M=0,3$
+\end{center}
+\subsubsection{Commentaires}
+\noindent Les diagrammes de rayonnement laissent apparaître des différences supérieures à 5 décibels selon certaines directivités en fonction de l'accélération au moteur. 
+\newline Ceci prouve que l'influence de l'écoulement potentiel n'est pas négligeable quant à la directivité du son : des différences supérieures à 5 décibels en champ lointain sont sanctionnées par les normes de l'aviation civile internationales.
+\newline Les diagrammes de rayonnement confirment ce que nous apprenaient les champs extérieurs d'intensité acoustique : le diagramme de champ lointain est d'autant plus déformé que l'accélération au moteur est grande.
+\newline Néanmoins, on constate que les différences très fortes constatées au niveau de la lèvre de la nacelle sont atténuées dans les diagrammes en champ lointain.
+\section{Propagation acoustique potentielle \`a haute fr\'equence}
+\noindent Ce paragraphe présente des résultats acoustiques pour des nombres d'ondes élevés $kR=60$ sur un maillage raffiné à hauteur de $\dsp \frac{\lambda}{10}$ pour un écoulement potentiel non accéléré à $M=0,1$.
+\subsection{Ecoulement porteur numérique}
+\begin{center}
+\epsfig{file=heterfludeuxdeux.eps,height=4.5cm,width=15.cm}
+Ecoulement potentiel $M_\infty=0,1$ et $M_M=0,1$
+\end{center}
+La figure ci-dessus pr\'esente les isopotentielles et les nombres de Mach d'un \'ecoulement potentiel de m\^eme Mach moteur et infini égal à $0,1$.
+\newline La position de la surface $\Gamma_\infty$ a \'et\'e optimis\'ee pour ne pas compresser l'\'ecoulement et \^etre la plus proche possible de la nacelle pour limiter le domaine de calcul. Le maillage est de plus tr\`es raffiné \`a l'avant vers la lèvre de la nacelle (122 412 degr\'es de libert\'e en tout) pour capturer au mieux le point d'arrêt hydrodynamique.
+\newline L'arri\`ere de la nacelle est toujours le si\`ege de ph\'enom\`enes de saturation : l'\'ecoulement potentiel n'y est pas r\'ealiste.
+\subsection{Acoustique numérique}
+\begin{center}
+\epsfig{file=resultatsm1n012345kR60.eps,height=5.5cm,width=15.cm}
+$\R e\left(\phi_a^*\right)$, $M_\infty=0,1$ et $M_M=0,1$, $kR=60$, $m=1$ ,$n=0,1,2,3,4,5$
+\end{center}
+La figure ci-dessus pr\'esente les champ acoustiques de la partie r\'eelle du potentiel se propageant sur l'\'ecoulement précédent $M_M=M_\infty=0,1$ pour les modes $m=1$, $n=0,1,2,3,4,5$ et pour un nombre d'ondes $kR=60$.
+\newline La haute fréquence se traduit par une directionnalité 'quasi-droite' dans les diagrammes de rayonnement (comme un jet d'eau sort droit d'un tuyau). Cet effet est prépondérant sur la présence d'un écoulement potentiel et les diagrammes de rayonnement pour des Machs moteurs légèrement augmentés $0,2$ et $0,3$ sont identiques à ceux obtenus à Mach constant.  

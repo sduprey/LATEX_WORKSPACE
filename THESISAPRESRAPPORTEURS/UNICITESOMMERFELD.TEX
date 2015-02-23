@@ -1,0 +1,350 @@
+\subsection{Existence et unicit\'e}\label{unicitesommerfeldsubsection1}
+\subsubsection{Probl\'{e}matique}\label{unicitesommerfeldsubsectionsub1} 
+\begin{center}
+\epsfig{file=lorentzavecheterogeneiteecoulement.eps,height=11.cm,width=14.50cm}
+Transform\'ee de Lorentz et g\'eom\'etrie
+\end{center}
+\noindent Les domaines consid\'er\'es sont les domaines tridimensionnels et cart\'esiens $(x,y,z)$. N\'eanmoins, les démonstrations d'existence et d'unicité du problème acoustique complet sont rédigées dans un espace cartésien bidimensionnel (l'axe $x$ correspond à l'axe de propagation $z$ et l'axe $y$ correspond aux axes  $(r,\theta)$) par souci de simplicité étant donnée la taille des équations \`a trois dimensions. Les démonstrations sont totalement similaires dans un espace tridimensionnel et les principaux r\'esultats du paragraphe suivant sont explicités ultérieurement dans le paragraphe (\ref{pareilenaxisubsectionsub1}) en coordonnées cylindriques.
+\newline La transform\'ee de Lorentz est appliqu\'ee \`a tout l'espace $\mathbb{R}^3=\overline{\Omega_i\cup\Omega_M\cup\Omega\cup\Omega_e}$. 
+\newline Par abus de notation, les nouvelles variables physiques et les nouveaux domaines transformés sont notés comme les anciennes variables et anciens domaines.
+\newline Ce paragraphe prouve l'existence et l'unicit\'e de la solution du probl\`eme acoustique complet.
+\subsubsection{Unicit\'e et condition de rayonnement}\label{unicitesommerfeldsubsectionsub2}
+\noindent On note $A_L \left(\phi_a\right)$ l'op\'erateur volumique d\'efini par l'\'equation aux d\'eriv\'ees partielles suivante  dans $\left(\overline{\Omega\cup\Omega_e}\right)\backslash\left(\Gamma_R\cup \Gamma_M\right)$ :
+\BEQ{lorentzglobaldeuxdimensionsdeux}
+\left\{\begin{array}{l}
+\dsp
+\frac{1}{1-M_\infty^2}\frac{\partial }{\partial
+x}\left(\rho_0\frac{\partial \phi_a}{\partial
+x}\right)+\frac{\partial }{\partial y}\left(\rho_0\frac{\partial
+\phi_a}{\partial y}\right)\\
+\dsp
+-\frac{1}{1-M_\infty^2}\frac{\partial}{\partial x
+}\left(\rho_0M_{0x}^2\frac{\partial
+\phi_a}{\partial x}\right)
+-\frac{1}{\sqrt{1-M_\infty^2}}\frac{\partial}{\partial x
+}\left(\rho_0 M_{0x}M_{0y}\frac{\partial
+\phi_a}{\partial y}\right)
+\\
+\dsp
+-\frac{1}{\sqrt{1-M_\infty^2}}\frac{\partial}{\partial y
+}\left(\rho_0 M_{0x}M_{0y}\frac{\partial
+\phi_a}{\partial x}\right)-\frac{\partial}{\partial
+y}\left(\rho_0 M_{0y}^2\frac{\partial
+\phi_a}{\partial y}\right)
+\\
+\dsp
++\rho_0\left(\frac{ik_\infty
+M_\infty}{\left(1-M_\infty^2\right)^{\frac{3}{2}}}\left(1-M_{0x}^2\right)+\frac{ik_0
+M_{0x}
+}{\sqrt{1-M_\infty^2}}\right)\frac{\partial\phi_a}{\partial
+x}\\
+\dsp
++\rho_0\left(ik_0M_{0y}-\frac{ik_\infty M_\infty
+M_{0x}M_{0y}}{(1-M_\infty^2)}\right)\frac{\partial\phi_a}{\partial
+y}+\frac{ik_\infty
+M_\infty}{(1-M_\infty^2)^\frac{3}{2}}\frac{\partial }{\partial
+x}\left(\rho_0\phi_a\right)\\
+\dsp +\frac{1}{\sqrt{1-M_\infty^2}}\frac{\partial }{\partial
+x}\left(\rho_0ik_0
+M_{0x}\phi_a\right)-\frac{ik_\infty
+M_\infty}{\left(1-M_\infty^2\right)^\frac{3}{2}}\frac{\partial
+}{\partial x}\left(\rho_0M_{0x}^2\phi_a\right)
+\\
+\dsp
++\frac{\partial}{\partial y }\left(\rho_0ik_0M_{0y}
+\phi_a\right)-\frac{ik_\infty
+M_\infty}{1-M_\infty^2}\frac{\partial }{\partial
+y}\left(\rho_0M_{0x}
+M_{0y}\phi_a\right)
+\\
+\dsp +\rho_0\left(\frac{-k_\infty^2M_\infty^2}{\left(1-M_\infty^2\right)^2}
+\left(1-M_{0x}^2\right)+k_0^2-\frac{2k_0
+k_\infty M_{0x}M_\infty
+}{\left(1-M_\infty^2\right)}\right)\phi_a=0,\\
+\end{array}
+\right.
+\EEQ
+La dérivée conormale de l'opérateur elliptique $A_L$ est not\'ee $\dsp \frac{\partial}{\partial n_{A_L}}$.
+\newline
+$T_{LM}$ d\'esigne l'op\'erateur Dirichlet-Neumann transform\'e dans l'espace de Lorentz, qui s'obtient en appliquant la transformation de Lorentz \`a l'op\'erateur Dirichlet-Neumann (\ref{definitionoperateurmodalespacephysiquemodem}) permettant de borner le domaine modal du probl\`eme continu non transform\'e (\ref{probacoustiqueaxisymetriquecompletavecconditionsauxbordsrappelnumerodeuxreduitmodal}) :
+\BEQ{definitionoperateurmodalespacephysique}
+\left\lbrace
+\begin{array}{c}
+T_{LM} :H^{\frac{1}{2}}\left(\Gamma_M\right)\rightarrow H^{-\frac{1}{2}}\left(\Gamma_M\right)\\
+\phi_{a}\rightarrow \sum_{(m,n)\in \mathbb{Z}\times\mathbb{N}}\mu_{mn}^-\langle\phi_a,\Xi_{rmn}\rangle_{L^2\left(\Gamma_M\right)}\Xi_{rmn} \\
+\end{array}
+\right.
+\EEQ
+Le caract\`ere incident ou r\'efl\'echi d'un mode dans l'espace de Lorentz d\'epend du caract\`ere de son image par la transform\'ee de Lorentz inverse :
+\BEQ{constantedefinitionoperateurdirichletneumannespacelorentznumerodeux}
+\left\lbrace
+\begin{array}{ll}
+\dsp \phi_{a,inc}=\sum_{(m,n)\in \mathbb{Z}\times\mathbb{N}} \langle\phi_{a,inc},\Xi_{rmn}\rangle_{L^2\left(\Gamma_M\right)} e^{i\gamma_{mn}^+ x}\Xi_{rmn}(y) &,\forall (x,y)\in \Gamma_M \\
+\dsp \phi_a-\phi_{a,inc}=\sum_{(m,n)\in \mathbb{Z}\times\mathbb{N}} \langle \phi_a-\phi_{a,inc},\Xi_{rmn}\rangle_{L^2\left(\Gamma_M\right)} e^{i\gamma_{mn}^- x}\Xi_{rmn}(y) &,\forall (x,y)\in \Gamma_M \\
+\end{array}
+\right.,
+\EEQ
+o\`u l'on a not\'e :
+\BEQ{constantedefinitionoperateurdirichletneumannespacelorentz}
+\left\lbrace
+\begin{array}{ll}
+\dsp \gamma_{mn}^\pm=-k'_\infty M_\infty+\sqrt{1-M_\infty^2}\beta^\pm_{mn},&\text{ les constantes propagatives axiales }  \\
+\dsp \mu_{mn}^\pm= i\rho_M\left(k_M M_M-\left(1-M_M^2\right)\beta^\pm_{mn}\right),&\text{ les coefficients de l'opérateur }T_{LM} \\
+\end{array}
+\right. ,
+\EEQ
+avec $\dsp k_\infty'=\frac{k_\infty}{\sqrt{1-M_\infty^2}}$.
+\newline
+Si le Mach moteur \'egale le Mach infini, la transformation de Lorentz annule simplement l'\'ecoulement et l'on retombe sur le classique op\'erateur Dirichlet-Neumann d'un guide d'ondes. 
+\newline
+L'op\'erateur Dirichlet-Neumann est \'ecrit pour un guide d'ondes \`a trois dimensions par abus de notation : son expression bidimensionnelle est conceptuellement identique (seules les fonctions de Bessel radiales sont remplac\'ees par la classique base de Fourier $L^2$ en cosinus d'un segment. Les constantes propagatives axiales et les coefficients de l'op\'erateur $T_{LM}$ restent conceptuellement identiques.
+\begin{theorem}\label{dupreypremier}
+\text{\newline}\\
+\noindent $\bullet $  Le potentiel acoustique transform\'e dans l'espace de Lorentz cart\'esien bidimensionnel $\dsp \left(\overline{\Omega\cup\Omega_e}\right)\backslash\left(\Gamma_R\cup \Gamma_M\right)$ v\'erifie l'\'equation aux d\'eriv\'ees partielles elliptique $A_L \left(\phi_a\right)=0$.
+\text{\newline}\\
+$\bullet $ Les conditions aux limites du potentiel transform\'e et de l'\'ecoulement transform\'e s'\'ecrivent :
+\begin{enumerate} 
+\item 
+\BEQ{condtransparoirigide}
+\left\{
+\begin{array}{ll}
+\dsp \frac{1}{\sqrt{1-M_\infty^2}}M_{0x} \ovra{n}.\overrightarrow{e_x}+M_{0y}\ovra{n}.\overrightarrow{e_y}=0, & \forall x\in \Gamma_R\\
+\dsp \frac{\partial \phi_a}{\partial n_{A_L}}=0, &\forall x\in \Gamma_R \\ 
+\end{array}
+\right.
+\EEQ
+\item 
+\BEQ{condtransparoimodale}
+\begin{array}{ll}
+\dsp \frac{\partial\left( \phi_a-\phi_{a,inc}\right)}{\partial n_{A_L}}=T_{LM}\left(\phi_a-\phi_{a,inc} \right), & \forall x\in \Gamma_M \\
+\end{array},
+\EEQ
+\end{enumerate}
+\text{\newline}\\
+$\bullet $  L'\'equation aux d\'eriv\'ees partielles (\ref{lorentzglobaldeuxdimensionsdeux}) est \'equivalente \`a l'\'equation de Helmholtz, l\`a o\` u l'\'ecoulement est uniforme.
+\BEQ{eqpottransinfondesbidim}
+\frac{\partial^2 \phi_a}{\partial x^2}+\frac{\partial^2 \phi_a}{\partial y^2}+\left(k'_\infty\right)^2\phi_a=0,
+\EEQ
+\text{\newline}\\
+$\bullet $ Le potentiel transform\'e v\'erifiant $\dsp 
+\lim_{R\rightarrow +\infty}\int_{S_R}\vert \frac{\partial \phi_a}{\partial n} -ik'_\infty\phi_a\vert^2 \ud \gamma =0
+$ est unique. Cette condition est la condition classique de Sommerfeld appliqu\'ee au potentiel acoustique transform\'e, o\`u $S_R$ (resp. $B_R$) d\'esigne la sph\`ere (resp. la boule) de rayon R et d'origine nulle avec $R$ choisi de telle sorte que $\Gamma_\infty\subset B_R$.
+\end{theorem}
+\noindent Preuve du th\'eor\`eme \ref{dupreypremier} :
+\newline
+Le diff\'eomorphisme $C^\infty$ de la transform\'ee de Lorentz avec les param\`{e}tres de l'\'ecoulement constant \`{a} l'infini (\ref{lorentzfrequent}) est appliqu\'e dans tout le domaine ext\'erieur $\mathbb{R}^3=\overline{\Omega_i\cup\Omega_M\cup\Omega\cup\Omega_e}$ \`a l'\'equation aux d\'eriv\'ees partielles cart\'esienne bidimensionnelle du potentiel acoustique (\ref{eqac}). Le changement d'inconnue conduit \`a l'\'equation aux d\'eriv\'ees partielles (\ref{lorentzglobaldeuxdimensionsdeux}) pour le nouveau potentiel acoustique. Les nouvelles conditions de bord s'obtiennent de la m\^eme fa\c con. La nullit\'e de la d\'eriv\'ee conormale dans l'espace physique est conserv\'ee par la transformation de Lorentz : (\ref{condtransparoirigide}). La transform\'ee de Lorentz appliqu\'ee \`a l'op\'erateur diff\'erentiel de bord modal (\ref{definitionoperateurmodalespacephysiquemodem}) donne l'équation (\ref{condtransparoimodale}).
+\newline
+L'ellipticit\'e de l'op\'erateur $A_L$ s'obtient en écrivant la partie principale de l'opérateur $A_L$ sous forme conservative :
+\BEQ{ellipticitepotentiel}
+ \dsp 
+{\rm div}\left(A\left(x,y\right)\nabla\phi_a\left(x,y\right)\right)
+\text{ avec }
+A\left(x,y\right)=\rho_0\left(
+\begin{array}{cc}
+   \dsp    \frac{1-M_{0x}^2}{1-M_\infty^2}       &  \dsp  \frac{M_{0x}M_{0y}}{1-M_\infty^2}    \\
+  \dsp    \frac{M_{0x}M_{0y}}{1-M_\infty^2}      &   \dsp  1-M_{0y}^2     \\
+\end{array}\right)
+\EEQ
+%% \begin{displaymath}
+%%  \dsp <A(x,y)X,X>=\rho_0\left(\begin{array}{cc} X_1 & X_2 \\ \end{array}\right)
+%% \left(
+%% \begin{array}{cc}
+%%      \dsp  \frac{1-M_{0x}^2}{1-M_\infty^2}       &   \dsp \frac{M_{0x}M_{0y}}{1-M_\infty^2}    \\
+%%    \dsp   \frac{M_{0x}M_{0y}}{1-M_\infty^2}      &   \dsp  1-M_{0y}^2     \\
+%% \end{array}\right)\left(\begin{array}{c} X_1 \\ X_2 \\ \end{array}\right)
+%% \end{displaymath}
+\begin{displaymath}
+ \dsp <A(x,y)X,X>=\rho_0
+\left(\begin{array}{cc} \dsp  \frac{X_1}{\sqrt{1-M_\infty^2}} & X_2 \\ \end{array}\right)
+\left(I-^t\overrightarrow{M}_0 \overrightarrow{M}_0\right)  
+\left(\begin{array}{c}  \dsp \frac{X_1}{\sqrt{1-M_\infty^2}} \\ X_2 \\ \end{array}\right)
+\end{displaymath}
+%% \begin{displaymath}
+%% <A(x,y)X,X>=\rho_0(\vert\left(\begin{array}{c} \dsp  \frac{X_1}{\sqrt{1-M_\infty^2}} \\ X_2 \\ \end{array}\right) \vert^2-\vert\overrightarrow{M}_0.\left(\begin{array}{c}  \dsp \frac{X_1}{\sqrt{1-M_\infty^2}} \\ X_2 \\ \end{array}\right)\vert^2
+%% \end{displaymath}
+\begin{displaymath}
+\langle A(x,y)X,X\rangle\ge\rho_0\left(1-\vert\overrightarrow{M}_0\vert^2\right)\vert\left(\begin{array}{c} \frac{X_1}{\sqrt{1-M_\infty^2}} \\ X_2 \\ \end{array}\right) \vert^2
+>C(\rho_0,M_0,\Omega)\vert\left(\begin{array}{c} X_1 \\ X_2 \\ \end{array}\right) \vert^2
+\end{displaymath}
+\text{L'in\'egalit\'e d'ellipticit\'e de l'\'equation aux d\'eriv\'ees partielles (\ref{lorentzglobaldeuxdimensionsdeux}) s'\'ecrit :\newline}
+\BEQ{inegaliteelliptique}
+\forall \left(x,y\right)\in\Omega, \forall X=\left(\begin{array}{c} X_1 \\ X_2 \\ \end{array}\right)\in \mathbb{R}^2\text{,  }
+<A(\overrightarrow{x})X,X>\ge C(\rho_0,M_0,\Omega)\vert\left(\begin{array}{c} X_1 \\ X_2 \\ \end{array}\right) \vert^2
+\EEQ
+La preuve de (\ref{eqpottransinfondesbidim}) s'obtient en remplaçant l'\'ecoulement variable $\rho_0$, $k_0$ et $\ovra{M_0}$ par ses valeurs \`a l'infini.
+\newline On note $\dsp a_L(\ . \ , \ . \ )$ la forme sesquilin\'eaire volumique suivante :
+\BEQ{definitionformbilinvolumlorglobpartout}
+\left\{
+\begin{array}{l}
+\dsp a_L(\phi_a,\psi)=\int_{\Omega}\rho_0\left( \frac{1-M_{0x}^2}{(1-M_\infty)^2}  \right)\frac{\partial\phi_a}{\partial
+x}\frac{\partial \overline{\psi}}{\partial
+x}
++\int_{\Omega}\rho_0\left(1-M_{0y}^2\right)\frac{\partial
+\phi_a}{\partial y}\frac{\partial
+\overline{\psi}}{\partial y} 
+\\
+\dsp -\frac{1}{\sqrt{1-M_\infty^2}}\int_{\Omega}\rho_0
+M_{0x}M_{0y}\frac{\partial \phi_a}{\partial y
+}\frac{\partial\overline{\psi}}{\partial
+x}
+-\frac{1}{\sqrt{1-M_\infty^2}}\int_{\Omega}\rho_0
+M_{0x}M_{0y}\frac{\partial \phi_a}{\partial x
+}\frac{\partial\overline{\psi}}{\partial
+y}\\
+\dsp -\int_{\Omega}\rho_0(\frac{ik_\infty
+M_\infty}{(1-M_\infty^2)^{\frac{3}{2}}}(1-M_{0x}^2)+\frac{ik_0
+M_{0x}
+}{\sqrt{1-M_\infty^2}})\frac{\partial\phi_a}{\partial
+x}\overline{\psi}\\
+\dsp -\int_{\Omega}\rho_0(ik_0
+M_{0y}-\frac{ik_\infty M_\infty
+M_{0x}M_{0y}}{1-M_\infty^2})\frac{\partial\phi_a}{\partial
+y}\overline{\psi}
+\\
+\dsp +\int_{\Omega}\rho_0\left( \frac{ik_\infty
+M_\infty (1-M_{0x}^2)}{(1-M_\infty^2)^\frac{3}{2}}+ \frac{i k_0
+M_{0x}}{\sqrt{1-M_\infty^2}}\right)\phi_a\frac{\partial\overline{\psi}}{\partial
+x}
+\\
+\dsp
++\int_{\Omega}\rho_0\left(i k_0M_{0y}-\frac{ik_\infty M_\infty M_{0x}M_{0y}}{1-M_\infty^2}\right)\phi_a\frac{\partial
+\overline{\psi}}{\partial y }
+\\
+\dsp -\int_{\Omega} \rho_0(\frac{-k_\infty^2 M_\infty^2}{(1-M_\infty^2)^2}(1-M_{0x}^2)+k_0^2-\frac{2k_0 k_\infty M_{0x}M_\infty}{1-M_\infty^2})\phi_a\overline{\psi}\\
+\end{array}
+\right. 
+\EEQ
+On note $\dsp b_L(\ . \ , \ . \ )$ la forme sesquilin\'eaire de bord suivante :
+\BEQ{defintdebordlorglob}
+\left\{
+\begin{array}{l}
+%\dsp\langle T_{LM}\left(\phi_a\right),\psi\rangle_{L^2\left(\Gamma_M\right)}+\int_{\Gamma_\infty} \ovra{\nabla}\phi_a .\ovra{n} \overline{\psi}= \\
+\dsp
+ b_L(\phi_a , \psi ) =\int_{\partial\Omega}\rho_0(\frac{1-M_{0x}^2}{1-M_\infty^2})\frac{\partial\phi_a}{\partial
+x}\overline{\psi}\overrightarrow{n}.\overrightarrow{e_x}-\int_{\partial\Omega}\rho_0\frac{M_{0x}M_{0y}}{\sqrt{1-M_\infty^2}}\frac{\partial\phi_a}{\partial
+y}\overline{\psi}\overrightarrow{n}.\overrightarrow{e_x}
+\\
+\dsp
++\int_{\partial\Omega}\rho_0(1-M_{0y}^2)\frac{\partial\phi_a}{\partial
+y}\overline{\psi}\overrightarrow{n}.\overrightarrow{e_y}
+-\int_{\partial\Omega}\rho_0\frac{M_{0x}M_{0y}}{\sqrt{1-M_\infty^2}}\frac{\partial\phi_a}{\partial
+x}\overline{\psi}\overrightarrow{n}.\overrightarrow{e_y}\\
+\dsp +\int_{\partial\Omega}\rho_0(\frac{ik_\infty
+M_\infty}{(1-M_\infty^2)^\frac{3}{2}}+\frac{ik_0
+M_{0x}}{\sqrt{1-M_\infty^2}}-\frac{ik_\infty M_\infty
+M_{0x}^2}{(1-M_\infty^2)^\frac{3}{2}})\phi_a\overline{\psi}\overrightarrow{n}.\overrightarrow{e_x}\\
+\dsp +
+\int_{\partial\Omega}\rho_0(ik_0
+M_{0y}-\frac{ik_\infty M_\infty
+M_{0x}M_{0y}}{1-M_\infty^2})\phi_a\overline{\psi}\overrightarrow{n}.\overrightarrow{e_y}\\
+\end{array}
+\right.
+\EEQ
+Par lin\'earit\'e, montrer l'unicit\'e du probl\`eme \'equivaut \`a montrer que pour une source sonore incidente nulle, la condition de Sommerfeld implique une unique solution nulle.
+\begin{lemma}\label{dupreylemme}
+On suppose donc la source sonore incidente nulle : $\phi_{a,inc}=0$. Le probl\`eme transform\'e (\ref{lorentzglobaldeuxdimensionsdeux}),
+(\ref{condtransparoirigide}) et (\ref{condtransparoimodale}) se formule variationnellement dans $\Omega$ :
+\text{\newline}
+\BEQ{formvarbidimlorentz}
+\left\{
+\begin{array}{l}
+\dsp\text{ Trouver }  \phi_a \in H^1(\Omega)  \text{ tel que : }\\
+\dsp a_L(\phi_a,\psi)=\langle T_{LM}\left(\phi_a\right),\psi\rangle_{L^2\left(\Gamma_M\right)}+\int_{\Gamma_\infty} \ovra{\nabla}\phi_a .\ovra{n} \ \overline{\psi}\\
+   \forall \psi \in H^1(\Omega)\\
+\end{array}
+\right.,
+\EEQ 
+\newline
+$\bullet $
+La solution du probl\`eme transform\'e soumise à la condition de Sommerfelfd v\'erifie le bilan d'énergie :
+\BEQ{egaliteenergie}
+\begin{array}{c}
+\lim_{R\rightarrow +\infty}k'_\infty\vert\vert \phi_a \vert\vert_{L^2(S_R)}\\
+\dsp + \\
+\dsp\sum_{(m,n)\in\mathbb{Z}\times\mathbb{N}}\sum_\pm \Im m\left(\mu_{mn}^\pm\right)\vert\langle\phi_a,\Xi_{rmn}\rangle_{L^2\left(\Gamma_M\right)}\vert^2\vert\vert \Xi_{rmn}\vert\vert^2_{L^2\left(\Gamma_M\right)}\\
+\dsp =0\\
+\end{array},
+\EEQ où la somme modale ci-dessus ne se fait que sur les modes propagatifs.
+\newline
+$\bullet $
+En l'absence de modes incidents propagatifs \`a l'entr\'ee de la nacelle ($\phi_{a,inc}=0$) :
+\begin{itemize}
+\item \BEQ{decroissancealinfini}
+\lim_{R\rightarrow +\infty}\vert\vert \phi_a \vert\vert_{L^2(S_R)}=0
+\EEQ
+\item \BEQ{decroissancealinfininumerodeux}
+\lim_{R\rightarrow +\infty}\vert\vert \frac{\partial \phi_a}{\partial n} \vert\vert_{L^2(S_R)}=0
+\EEQ
+\end{itemize}
+\end{lemma}
+\noindent Preuve du lemme \ref{dupreylemme} :
+\newline
+La formulation variationnelle (\ref{formvarbidimlorentz}) s'obtient à partir de l'\'equation aux d\'eriv\'ees partielles elliptique (\ref{lorentzglobaldeuxdimensionsdeux}) que l'on a multipliée par une fonction test et intégrée par parties. L'expression des conditions aux limites (\ref{condtransparoirigide}) et (\ref{condtransparoimodale}) dans l'int\'egrale de bord (\ref{defintdebordlorglob}) donne le second membre. $a_L(\ . \ , \ . \ )$ est la forme sesquilin\'eaire volumique associée à l'opérateur $A_L$ et $\dsp b_L(\phi_a , \psi )=\langle T_{LM}\left(\phi_a\right),\psi\rangle_{L^2\left(\Gamma_M\right)}+\int_{\Gamma_\infty} \ovra{\nabla}\phi_a .\ovra{n} \overline{\psi}$ est la forme sesquilin\'eaire de bord associ\'ee \`a la d\'eriv\'ee conormale $\dsp \frac{\partial}{\partial n_{A_L}}$.
+\newline
+La forme sesquilin\'eaire volumique (\ref{definitionformbilinvolumlorglobpartout}) s'\'ecrit sous la forme synth\'etique :
+\BEQ{formblinlorentzglobmemefonctest}
+\begin{array}{c}
+\dsp a_L\left(\phi_a,\phi_a\right)=\int_{\Omega}f_1(x,y)\vert \phi_a \vert^2 +\int_{\Omega} \langle A(x,y)\nabla \phi_a,\overline{\nabla \phi_a} \rangle \\
+\dsp +\int_{\Omega}i f_2(x,y)\frac{\partial \phi_a}{\partial x} \overline{\phi_a}
+\dsp +\overline{\int_{\Omega}i f_2(x,y)\frac{\partial \phi_a}{\partial x} \overline{\phi_a}} \\ 
+\dsp +\int_{\Omega}i f_3(x,y)\frac{\partial \phi_a}{\partial y} \overline{\phi_a}
+\dsp +\overline{\int_{\Omega}i f_3(x,y)\frac{\partial \phi_a}{\partial y} \overline{\phi_a}} \\
+\end{array},
+\EEQ
+o\`u $f_1$, $f_2$ et $f_3$ sont trois fonctions $W^{1,\ \infty}\left(\Omega\right)$ \`a valeurs r\'eelles.
+La matrice $A(x,y)$ d\'efinie par (\ref{ellipticitepotentiel}) \'etant r\'eelle, sym\'etrique, d\'efinie et positive, la forme sesquilin\'eaire volumique v\'erifie :
+\BEQ{lemmenecessaireegaliteenergie}
+\Im m\left(a_L\left(\phi_a,\phi_a\right)\right)=0,\ \ \forall \phi_a \in H^1\left(\Omega\right)
+\EEQ
+L'application de $\phi_a$ comme fonction-test dans la formulation variationnelle (\ref{formvarbidimlorentz}) donne l'\'egalit\'e :
+\begin{displaymath}
+a_L(\phi_a,\phi_a)=\int_{\Gamma_\infty}\frac{\partial \phi_a}{\partial n}\overline{\phi_a} 
++\langle T_{LM}\left(\phi_a\right),\phi_a\rangle_{L^2\left(\Gamma_M\right)}
+\end{displaymath}
+\BEQ{premiereegaliteenergie}
+a_L(\phi_a,\phi_a)=\int_{\Gamma_\infty}(\frac{\partial \phi_a}{\partial n}-ik'_\infty \phi_a)\overline{\phi_a} +ik'_\infty\int_{\Gamma_\infty}\phi_a\overline{\phi_a} +\langle T_{LM}\left(\phi_a \right),\phi_a\rangle_{L^2\left(\Gamma_M\right)}
+\EEQ
+En utilisant la d\'ecomposition de $\phi_a$ sur les modes de conduit et l'orthogonalit\'e de ceux-ci :
+\begin{displaymath}
+\langle T_{LM}\left(\phi_a \right),\phi_a\rangle_{L^2\left(\Gamma_M\right)}=\sum_{(m,n)\in\mathbb{Z}\times\mathbb{N}}\sum_\pm \mu_{mn}^\pm\vert\langle\phi_a,\Xi_{rmn}\rangle_{L^2\left(\Gamma_M\right)}\vert^2\vert\vert \Xi_{rmn}\vert\vert^2_{L^2\left(\Gamma_M\right)}
+\end{displaymath}
+En identifiant partie r\'eelle et imaginaire dans l'\'egalit\'e (\ref{premiereegaliteenergie}) :
+\begin{displaymath}
+k'_\infty\vert\vert \phi_a\vert\vert_{L^2(\Gamma_\infty)}^2+\sum_{(m,n)\in\mathbb{Z}\times\mathbb{N}}\sum_\pm \Im m\left(\mu_{mn}^\pm\right)\vert\langle\phi_a,\Xi_{rmn}\rangle_{L^2\left(\Gamma_M\right)}\vert^2\vert\vert \Xi_{rmn}\vert\vert^2_{L^2\left(\Gamma_M\right)}
+\end{displaymath}
+\begin{displaymath}
+=-\Im m\left(\int_{\Gamma_\infty}(\frac{\partial \phi_a}{\partial n}-ik'_\infty \phi_a)\overline{\phi_a} \right)
+\le\vert\vert \phi_a\vert\vert_{L^2(\Gamma_\infty)}\vert\vert\frac{\partial \phi_a}{\partial n}-ik'_\infty \phi_a \vert\vert_{L^2(\Gamma_\infty)}
+\end{displaymath}
+La somme modale ne se fait que sur les modes propagatifs :
+\BEQ{caracterisationmodespropagatifs}
+\Im m\left(\mu_{mn}^\pm\right)=0 \Longleftrightarrow \text{ le mode est \'evanescent}
+\EEQ
+\BEQ{caracterisationmodespropatifsincidents}
+\Im m\left(\mu_{mn}^\pm\right)<0 \Longleftrightarrow \text{ le mode est propagatif incident}
+\EEQ
+La condition de Sommerfeld conclut (\ref{egaliteenergie}). En l'absence de modes propagatifs incidents, on a une somme de deux termes positifs nulle, il d\'ecoule (\ref{decroissancealinfini}) et la nullité des coefficients des modes propagatifs réfléchis :
+\BEQ{coefficientsmodauxnuls}
+\vert a_{mn}^-\vert=0, \ \ \forall n\in \mathbb{N}\text{ tel que } \Xi^-_{mn}\text{ soit un mode propagatif}
+\EEQ
+La condition de Sommerfeld et (\ref{decroissancealinfini}) implique (\ref{decroissancealinfininumerodeux}) :
+\begin{displaymath}
+\vert\vert \frac{\partial\phi_a}{\partial n}\vert\vert_{L^2(\Gamma_\infty)}\le k'_\infty\vert\vert \phi_a\vert\vert_{L^2(\Gamma_\infty)}+ \vert\vert \frac{\partial \phi_a}{\partial n}-ik'_\infty \phi_a\vert\vert_{L^2(\Gamma_\infty)}
+\end{displaymath}
+\newline Le th\'eor\`eme de Rellich \cite{FR} et le principe de continuation unique pour une \'equation aux d\'eriv\'ees partielles elliptique (la r\'egularit\'e $W^{1,\ \infty}\left(\Omega\right)$ des coefficients variables provenant de l'\'ecoulement porteur est suffisante) concluent la nullit\'e de $\phi_a$ partout et donc la nullit\'e de tous les coefficients r\'efl\'echis (pas seulement les propagatifs).
+\newline Citons le th\'eor\`eme de Rellich \cite{FR} :
+\begin{theorem}[Rellich] Soit $\phi_a$ une fonction de classe $C^2$ pour $\vert x \vert $ assez grand, et v\'erifiant l'\'equation de Helmholtz : $\Delta \phi_a+ \lambda \phi_a=0$ pour $\vert x\vert\ge r_0$ (avec $\lambda>0$).
+\newline
+Alors seuls deux cas de figures sont possibles :
+\begin{itemize}
+\item \BEQ{conditionnulleinfiniRellich} \phi_a(x)=0\text{ pour }\vert x\vert>r_0 \EEQ
+\item \BEQ{conditionnonnulleinfiniRellich} \forall R_0>r_0, \exists  C>0 \text{ tel que } \int_{R_0<\vert x\vert <R} \vert \phi_a(x)\vert^2\ud x\ge CR, \text{ pour R assez grand}\EEQ
+\end{itemize}
+\end{theorem}
+\noindent
+Le th\'eor\`eme de Rellich et (\ref{decroissancealinfini}) entra\^inent (\ref{conditionnulleinfiniRellich}). Etant donné $\epsilon>0$, il existe d'apr\`es (\ref{decroissancealinfini}) un r\'eel $R_\epsilon>0$ tel que $\vert\vert \phi_a \vert\vert^2_{L^2\left(S_{r}\right)}\le \epsilon$, $\forall r\ge R_\epsilon$.
+\begin{displaymath}
+\forall R>R_\epsilon, \int_{R_\epsilon <\vert x\vert <R} \vert \phi_a\vert^2 \ {\rm d}x=\int_{R_\epsilon<r<R}\ud r\int_{S_r}\vert \phi_a\vert^2 r \ud\theta \le \epsilon \left(R-R_\epsilon\right)
+\end{displaymath}
+Le cas (\ref{conditionnonnulleinfiniRellich}) du th\'eor\`eme de Rellich n'est pas possible : $\phi_a=0$ pour $\vert x\vert>r_0$. Le principe de prolongement unique d'une équation aux dérivées partielles strictement elliptique à coefficients variables de régularité $W^{1,\ \infty}\left(\Omega\right)$ (qui est la régularité de l'écoulement porteur dont on peut extraire une sous-suite convergente pour $W^{1,\ \infty}\left(\Omega\right)$ d'apr\`es le th\'eor\`eme d'Ascoli) implique la nullit\'e de $\phi_a$ partout dans $\overline{\Omega_M\cup\Omega\cup\Omega_e}\backslash\Gamma_R$. Par unicit\'e de la d\'ecomposition modale dans le guide d'ondes, les coefficients r\'efl\'echis \'evanescents sont nuls. Par lin\'earit\'e, la solution du probl\`eme transform\'e est unique.
+

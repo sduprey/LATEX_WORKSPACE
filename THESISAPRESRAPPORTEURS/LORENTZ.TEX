@@ -1,0 +1,91 @@
+\chapter[Ecoulement constant]{Ecoulement constant}\label{Ecoulement Constant}
+\noindent Ce chapitre consid\`ere l'écoulement potentiel le plus simple, globalement uniforme : la zone \text{2} est inexistante et seule la zone \text{3} à l'extérieur de la nacelle est considérée. Il d\'etaille l'effet de la transformation algébrique de Lorentz sur les \'equations de Euler linéarisées autour d'un \'ecoulement uniforme constant, ainsi que sur les conditions de bord fermant le problème continu.
+\newline Ce chapitre s'inspire du manuel th\'eorique du logiciel A3DF \cite{FMFD} d\'evelopp\'e \`a EADS-CCR.
+\newline Les domaines sont ici cart\'esiens et tridimensionnels.
+\begin{center}
+\epsfig{file=lorentzavececoulementconstant.eps,height=11cm,width=14.50cm}
+Transform\'ee de Lorentz et g\'eom\'etrie
+\end{center}
+\section{Th\'eorie du probl\`eme continu}\label{lorentzsection8}
+\subsection{Transform\'{e}e de Lorentz}\label{lorentzsubsection8} 
+\noindent Ce paragraphe détaille la transformation de Lorentz sur les équations d'Euler linéarisées autour d'un écoulement constant en régime temporel et harmonique.
+\newline L'\'ecoulement est supposé uniforme partout : $\Omega=\varnothing$ et $\overline{\Omega_e\cup\Omega_M}\backslash \Gamma_R=\mathbb{R}^3 \backslash \overline{\Omega_i}$. 
+\subsubsection{Transform\'{e}e de Lorentz temporelle}\label{lorentzsubsectionsub82}
+\noindent Dans $\Omega_e\subset\mathbb{R}^3$, l'\'{e}coulement est uniforme et indicé par $\infty$ :
+\BEQ{uniformitedelecoulementdansomegae}
+\left(\begin{array}{c}\rho_0\\a_0\\M_{0x}\\ M_{0y} \\M_{0z}\end{array}\right)=\left(\begin{array}{c}\rho_\infty\\a_\infty\\0\\0\\-M_{\infty}\end{array}\right)
+,\EEQ
+où $0<M_\infty=\dsp \frac{\dsp \vert v_\infty\vert}{\dsp a_\infty}<1$ est le nombre de Mach \`a l'infini non sign\'e.
+L'\'equation aux d\'eriv\'ees partielles du potentiel acoustique en \'ecoulement constant et en r\'egime transitoire est obtenue en combinant les \'equations (\ref{irrotac}), (\ref{entroparfac}), (\ref{eulac}), (\ref{bernouac}). L'équation obtenue est l'équation des ondes convect\'ees :
+\BEQ{eqpreavanlorent} \dsp \frac{1}{a_\infty}\frac{\partial^2
+\phi_a}{\partial t^2}-\Delta
+\phi_a+2\frac{M_\infty}{a_\infty}\frac{\partial^2 \phi_a}{\partial t\partial
+z}+M_\infty^2\frac{\partial ^2 \phi_a}{\partial z^2}=0 
+\EEQ 
+La transformation de Lorentz est un changement d'espace-temps alg\'ebrique :
+\BEQ{translorentz}
+ \dsp \left\{\begin{array}{ccl} x' & = & \dsp  x \\
+ \dsp y'&=& \dsp  y \\
+ \dsp z'&=& \dsp \frac{1}{\sqrt{1-M_\infty^2}}z \\
+ \dsp t'&=&t+ \dsp \frac{M_\infty}{a_\infty(1-M_\infty^2)}z\\
+\end{array}
+\right. 
+\EEQ
+Le potentiel acoustique transform\'e $\dsp
+\widetilde{\phi_a}(r',\theta',z',t')=\phi_a(r,\theta,z,t)$ est solution de l'\'equation des ondes dans l'espace transform\'e de Lorentz $\Omega_e'$ :
+ \BEQ{eqpreaprelorentz} 
+\dsp
+\frac{1}{a_\infty\sqrt{1-M_\infty^2}}\frac{\partial^2\widetilde{\phi_a}}{\partial
+t'^2}-\Delta'\widetilde{\phi_a}=0 
+,\EEQ
+où la nouvelle vitesse des ondes $ \dsp a_\infty\sqrt{1-M_\infty^2}$ a subi un d\'ephasage Doppler.
+\subsubsection{Transform\'{e}e de Lorentz fr\'{e}quentielle}\label{lorentzsubsectionsub83}
+\noindent L'\'ecoulement est uniforme dans $\Omega_e\subset\mathbb{R}^3$ : (\ref{uniformitedelecoulementdansomegae}).
+Le moteur est une source de bruit tonal (monofréquentiel) : le potentiel acoustique est cherché sous la forme harmonique, et l'équation suivante dite de Helmholtz convectée dans $\Omega_e$ est obtenue en substituant (\ref{passagealavariablecomplexe}) dans (\ref{eqpreaprelorentz}) :
+\BEQ{edphelmholtzuniformementconvecte}
+\begin{array}{ll}
+ \dsp 
+\frac{ \dsp \partial^2\phi_a}{ \dsp \partial
+x^2}+\frac{ \dsp \partial^2\phi_a}{ \dsp \partial
+y^2}+(1-M_\infty^2)\frac{ \dsp \partial^2\phi_a}{ \dsp \partial
+z^2}-2ik_\infty M_\infty\frac{ \dsp \partial\phi_a}{ \dsp \partial z
+}+ \dsp k_\infty^2\phi_a=0, &\forall (x,y,z)\in \Omega_e \\
+\end{array},
+\EEQ
+où $ \dsp k_\infty= \dsp \frac{\omega}{a_\infty}$ d\'esigne le nombre d'ondes modulé à l'infini.
+La transformation de Lorentz se d\'ecompose en deux \'etapes :
+\newline
+$\bullet$ Une dilatation alg\'ebrique d'espace :
+\BEQ{lorentzfrequent}\dsp\left\{
+\begin{array}{l}
+\dsp x'=x \\
+\dsp y'=y \\
+\dsp z'=\frac{z}{\sqrt{1-M_\infty^2}}\\
+\end{array}
+\right. 
+\EEQ
+L'\'equation (\ref{edphelmholtzuniformementconvecte}) transporté par le $C^1$-diff\'eomorphisme (\ref{lorentzfrequent}) s'écrit dans le nouvel espace $\Omega'_e$ :
+$$
+\frac{\partial^2\widetilde{\phi_a}}{\partial
+x'^2}+\frac{\partial^2\widetilde{\phi_a}}{\partial
+y'^2}+\frac{\partial^2\widetilde{\phi_a}(x',y',z')}{\partial
+z'^2}-\frac{2ik_\infty
+M_\infty}{\sqrt{1-M_\infty^2}}\frac{\partial\widetilde{\phi_a}(x',y',z')}{\partial
+z'}+k_\infty^2\widetilde{\phi_a}(x',y',z')=0,
+$$
+où $\widetilde{\phi_a}(r',\theta',z')=\phi_a(r,\theta,z)$.
+\newline
+$\bullet$ Un changement de fonction inconnue :
+\BEQ{nouvelleinconnue}
+ \dsp \widetilde{\phi_a}'(x',y',z')= \dsp \widetilde{\phi_a}
+(x',y',z') \dsp e^{ \dsp \frac{-ik_\infty
+M_\infty}{ \dsp \sqrt{1-M_\infty^2}}z'}\EEQ 
+Le potentiel acoustique transform\'e v\'erifie dans l'espace de Lorentz $\Omega_e'$ l'\'equation de Helmholtz : 
+\BEQ{nouvellequation} \Delta
+\widetilde{\phi_a}'(x',y',z')+k_\infty'^2\widetilde{\phi_a}
+'(x',y',z')=0, \EEQ
+o\`u $ \dsp k_\infty'= \dsp \frac{k_\infty}{\sqrt{1-M_\infty^2}}$ est le nouveau nombre d'ondes ayant subi un effet Doppler.
+
+
+
+

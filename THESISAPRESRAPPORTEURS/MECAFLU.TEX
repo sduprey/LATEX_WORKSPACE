@@ -1,0 +1,455 @@
+\section{Th\'eorie du probl\`eme continu}
+\subsection{Ecoulement porteur}\label{mecaflusubsection13}
+\subsubsection{Equations aux d\'eriv\'ees partielles du potentiel}\label{mecaflusubsectionsub131} 
+\noindent Les domaines consid\'er\'es ici sont tridimensionnels et cart\'esiens. 
+\newline La potentialit\'{e} de l'\'{e}coulement porteur annule le terme rotationnel de l'\'{e}quation d'Euler (\ref{eulport}). 
+\newline Une version stationnaire de la relation de Bernoulli (\ref{bernoutot}) pour l'\'ecoulement porteur d\'ecoule :
+\BEQ{bernouparti} \dsp \frac{\vert \ovra{v_0}\left(\overrightarrow{x}\right) \vert^2 }{2}+\frac{a_0^2\left(\overrightarrow{x}\right)}{\gamma-1}=\text{constante}, 
+\EEQ où l'\'{e}nergie totale du fluide porteur est une constante absolue de l'espace et du temps.
+Cette constante est déterminée par les paramètres constants de l'écoulement à l'infini. Les \'equations (\ref{entroparfport}), (\ref{vitsonport}) impliquent que la densité volumique est uniquement fonction de la vitesse au carré et des paramètres à l'infini :
+\BEQ{finfini}
+\begin{array}{c}
+\dsp \rho_0=\left(\frac{\rho_\infty^\gamma}{\gamma p_\infty}\right)^{\frac{1}{\gamma - 1}} a_0^{\frac{2}{\gamma -1}}=
+F_{\infty}\left(\vert\ovra{\nabla}\phi_0\left(\overrightarrow{x}\right)\vert^2\right),
+\ \forall\overrightarrow{x}\in\Omega \\
+\end{array},
+\EEQ
+o\`u
+$ \dsp F_{\infty}\left(x\right)= \dsp 
+ \dsp \left(\frac{\rho_\infty^\gamma}{\gamma p_\infty}\right)^{\frac{1}{\gamma - 1}}\left(a_\infty^2+ \dsp \frac{\gamma-1}{2} \dsp \left(v_\infty^2-x \right)\right)^\frac{1}{\gamma - 1}$. La loi de conservation de la masse donne l'\'{e}quation aux
+d\'{e}riv\'{e}es partielles v\'{e}rifi\'{e}e par le potentiel porteur :
+\BEQ{eqpotnonadim}
+ \dsp {\rm
+div}(F_{\infty}\left(\vert\ovra{\nabla}\phi_0\left(\overrightarrow{x}\right)\vert^2\right)
+\ovra{\nabla}  \phi_0(\overrightarrow{x}))=0,\ \
+\forall\overrightarrow{x}\in\Omega \EEQ
+L'\'{e}quation (\ref{eqpotnonadim}) est non lin\'{e}aire et change de nature selon le
+r\'{e}gime consid\'{e}r\'{e} : elliptique en régime subsonique et hyperbolique en régime supersonique. Le régime transsonique est complexe avec la présence d'ondes de choc. Au niveau de l'avant de la nacelle, les nombres de Mach sont largement subsoniques. Le modèle choisi est subsonique.
+\subsubsection{Conditions aux bords}\label{mecaflusubsectionsub132}
+\noindent
+$\bullet$ L'\'{e}coulement fluide est suppos\'{e} uniforme au-del\`{a} de $\Gamma_\infty$.
+ Sa vitesse est l'oppos\'{e}e de celle de l'avion. On impose sur
+ $\Gamma_\infty$ une condition de flux \'{e}gale \`{a} la masse convect\'{e}e
+ par l'\'{e}coulement uniforme \`{a} l'infini :
+\BEQ{borinfnonadim} \dsp
+\rho_0\left(\overrightarrow{x}\right)\overrightarrow{v_0}\left(\overrightarrow{x}\right).\overrightarrow{n}\left(\overrightarrow{x}\right)=\rho_\infty\overrightarrow{v_\infty}.\overrightarrow{n}\left(\overrightarrow{x}\right),
+\ \ \forall \overrightarrow{x} \in \Gamma_\infty \EEQ
+\newline
+$\bullet$ L'\'{e}coulement fluide glisse sur les parois de la nacelle : \BEQ{borglinonadim}\dsp
+\rho_0\left(\overrightarrow{x}\right) \overrightarrow{v_0}\left(\overrightarrow{x}\right).\overrightarrow{n}\left(\overrightarrow{x}\right)=0,\ \  \forall \overrightarrow{x} \in
+\Gamma_R \EEQ
+\newline
+$\bullet$ On impose un flux de masse sortant (du domaine de calcul) \`{a} l'entr\'{e}e de la
+nacelle :
+\BEQ{borfictnonadim} \dsp\rho_0\left(\overrightarrow{x}\right)
+\overrightarrow{v_0}\left(\overrightarrow{x}\right).\overrightarrow{n}\left(\overrightarrow{x}\right)=q_M\left(\overrightarrow{x}\right), \ \ \forall \overrightarrow{x} \in
+\Gamma_{M} \EEQ
+\newline
+$\bullet$ On impose un flux de masse rentrant (du domaine de calcul) \`a la sortie de la nacelle :
+\BEQ{borfictnonadimdeu}\dsp \rho_0\left(\overrightarrow{x}\right)
+\overrightarrow{v_0}\left(\overrightarrow{x}\right).\overrightarrow{n}\left(\overrightarrow{x}\right)=q_{M'}\left(\overrightarrow{x}\right), \ \ \forall \overrightarrow{x} \in
+\Gamma_{M'} \EEQ
+\begin{remark}
+\text{\newline}
+\newline
+{ \rm
+$\bullet$ La normale $\overrightarrow{n}$ est sortante au domaine de calcul. Le flux sortant $q_M$ (resp. rentrant $q_{M'}$) est donc positif (resp. n\'egatif).
+\newline
+$\bullet$ Le flux total sur $\partial \Omega $ doit \^etre nul, pour que le probl\`eme de Neumann soit bien pos\'e. Le flux global \`a travers $\Gamma_\infty$ \'etant nul, les deux d\'ebits \`a la nacelle doivent se compenser :
+\BEQ{conditionneumannprobflui}
+\dsp \int_{\Gamma_M}q_M\left(\overrightarrow{x}\right)+\int_{\Gamma_{M'}}q_{M'}\left(\overrightarrow{x}\right)=0
+\EEQ
+\newline
+$\bullet$ L'\'{e}coulement r\'eel \`{a} l'arri\`{e}re de la nacelle est complexe : il est la combinaison de deux jets de vitesses diff\'erentes. Le ph\'enom\`ene a\'erodynamique de jet est tr\`es complexe \`a mod\'eliser. N\'eanmoins, la disconstinuit\'e tangentielle de vitesse d'\'ecoulement est mod\'elisable tout en conservant un \'ecoulement potentiel, comme le propose W. Eversmann dans l'article \cite{WEDO}.
+\newline
+$\bullet$ Les d\'{e}bits fix\'{e}s en entr\'{e}e et en sortie de la nacelle n'ont
+d'autres n\'{e}cessit\'{e}s que de globalement s'annuler. La g\'eom\'etrie axisym\'etrique de la nacelle sugg\`ere d'imposer des flux entrants et sortants axisym\'etriques. Ces d\'ebits n'ont a priori aucune raison d'\^etre constants radialement. On peut donner deux raisons \`{a}
+fixer des d\'{e}bits constants :
+\begin{itemize}
+\item Pour les fluides parfaits eul\'{e}riens, la
+circulation du vecteur rotationnel le long d'une courbe ferm\'{e}e se
+conserve. Le long de toute ligne de courant provenant de l'infini, l'\'{e}coulement est donc bien irrotationnel, celui-ci \'{e}tant
+irrotationnel \`{a} l'infini : l'hypoth\`{e}se de base de potentialit\'e du mod\`{e}le
+est bien v\'{e}rifi\'{e}e. L'imposition de d\'{e}bits plus forts au centre de $\dsp \Gamma_M$ provoquerait l'existence de lignes de courant ne pouvant \^{e}tre reli\'{e}es \`{a} l'infini et le mod\`{e}le potentiel ne serait plus valide.
+\item L'expression du bruit provenant du moteur est fournie sous la forme de coefficients de modes acoustiques cylindriques de conduit se propageant sur un \'ecoulement uniforme. Cet \'ecoulement uniforme est obtenu en fixant des d\'ebits constants.
+\end{itemize}
+$\bullet$ Le placement arbitraire des surfaces $\Gamma_M$ et $\Gamma_\infty$, o\`u des flux constants sont impos\'es, peut "comprimer" l'\'ecoulement. Il faut jouer sur la position des surfaces et s'assurer qu'elles sont suffisamment loin pour que l'\'ecoulement soit naturellement constant \`a leur niveau. En effet, l'imposition de flux pour l'écoulement est l'analogue d'une condition de Robin pour l'équation de Helmholtz et la solution recherchée est correcte si les surfaces d'imposition sont situés suffisamment loin (à l'infini théoriquement) de l'objet. L'article \cite{HBGWWW} de H. Berger, W. Warnecke et W.L. Wendland propose des conditions int\'egrales \`a la place des conditions de flux impos\'es, de telle sorte que l'\'ecoulement calcul\'e soit automatiquement relax\'e \`a l'infini (exactement la même démarche que pour l'équation de Helmholtz présentée dans le paragraphe \ref{DiffractionparunLocale}). 
+}
+\end{remark}
+\subsubsection{Adimensionnement}\label{mecaflusubsectionsub133}
+\noindent Chaque variable physique du probl\`eme est adimensionn\'ee par la valeur homog\`ene obtenue \`a partir des trois valeurs fondamentales : $R$ la grandeur caract\'eristique de la nacelle, $a_\infty$ la vitesse du son \`a l'infini et $\rho_\infty$ la densit\'e volumique de l'\'ecoulement porteur \`a l'infini :
+\BEQ{adimflui}
+\left\lbrace
+\begin{array}{llll}
+\dsp \overrightarrow{x}^*=\frac{\overrightarrow{x}}{R}, &\dsp \rho_0^*=\frac{\rho_0}{\rho_\infty},  &\dsp a_0^*=\frac{a_0}{a_\infty},  &\dsp \phi_0^*=\frac{R \phi_0}{ a_\infty}  \\
+\dsp   p_0^*=\frac{p_0}{\rho_\infty a_\infty^2}, &\dsp  v_0^*=\frac{v_0}{a_\infty},& \dsp q^*=\frac{q}{\rho_\infty a_\infty}, & M^*=M  \\
+\end{array}
+\right.
+\EEQ
+Le seul invariant d'\'echelle est le nombre de Mach : $M^*=M$. Les conditions de bord sont des fonctions directes du nombre de Mach. Par abus de notation, l'indiciation $^*$ est oubli\'ee.
+Les \'equations de l'\'ecoulement porteur (\ref{irrotport}), (\ref{entroparfport}), (\ref{eulport}) et (\ref{vitsonport}) se r\'e\'ecrivent : 
+\BEQ{eqfluiadim}
+\left\{\begin{array}{ll}
+\dsp a_0^2\left(\overrightarrow{x}\right) =\gamma \frac{p_0\left(\overrightarrow{x}\right)}{\rho_0\left(\overrightarrow{x}\right)}&,\forall \overrightarrow{x}\in\Omega\\
+\dsp p_0\left(\overrightarrow{x}\right)=\frac{\rho_0\left(\overrightarrow{x}\right)^\gamma}{\gamma}&,\forall \overrightarrow{x}\in\Omega\\
+\dsp \rho_0\left(\overrightarrow{x}\right)=\left(a_0^2\left(\overrightarrow{x}\right)\right)^{\frac{1}{\gamma-1}}&,\forall \overrightarrow{x}\in\Omega\\
+\dsp a_0^2\left(\overrightarrow{x}\right) = 1+\frac{\gamma-1}{2}(M_\infty^2-\vert \ovra{v_0} \left(\overrightarrow{x}\right) \vert^2 )&,\forall \overrightarrow{x}\in\Omega\\
+\dsp
+\rho_0\left(\overrightarrow{x}\right)=(1+\frac{\gamma-1}{2}(M_\infty^2-\vert \ovra{v_0} \left(\overrightarrow{x}\right) \vert^2))^{\frac{1}{\gamma-1}}=F_\infty(\vert\ovra{\nabla}\phi_0\vert^2)&,\forall \overrightarrow{x}\in\Omega\\
+\end{array}
+\right. \EEQ L'\'equation aux d\'eriv\'ees partielles v\'erifi\'ees par le potentiel fluide dans $\dsp\Omega$ :
+\BEQ{eqfluiadim}\left\{
+\begin{array}{ll}
+\dsp {\rm div}(F_\infty(\vert\ovra{\nabla}\phi_0\vert^2)\ovra{\nabla}\phi_0)=0 &\text{ dans } \Omega\\
+\dsp F_\infty(\vert\ovra{\nabla}\phi_0\vert^2)\frac{\partial\phi_0}{\partial n}=q  &\text{ dans } \partial \Omega \\
+\end{array}
+\right., 
+\EEQ
+ o\`u l'on note $q(\overrightarrow{x})=\overrightarrow{M_\infty}.\overrightarrow{n}\left(\overrightarrow{x}\right)$,  si $\overrightarrow{x} \in \Gamma_\infty$; $0$,  si $\overrightarrow{x} \in \Gamma_R$; $q_M\left(\overrightarrow{x} \right)$,  si $\overrightarrow{x} \in \Gamma_{M}$; $q_{M'}\left(\overrightarrow{x} \right)$,  si $\overrightarrow{x} \in \Gamma_{M'}$. 
+\subsubsection{Nombre de Mach et d\'ebit}\label{mecaflusubsectionsub134}
+\noindent Le d\'{e}bit est fonction directe du module de la vitesse :
+\BEQ{vitfoncdeb}
+q_0=\rho_0\vert v_0 \vert=G\left(\vert v_0 \vert\right),
+\EEQ 
+o\`u $G\left(x \right)=\left(1+\frac{\gamma-1}{2}\left(M_\infty^2-x^2\right)\right)^{\frac{1}{\gamma-1}}x, \ x\ge 0$. Une \'{e}tude de cette fonction montre que le d\'{e}bit cro\^{i}t avec la vitesse pour atteindre
+son apog\'{e}e \`{a} une vitesse qui correspond \`{a} un nombre de Mach transsonique, puis d\'{e}croit. Une valeur de $q_0$ donn\'ee dans l'image de la fonction $G$ correspond \`{a} deux
+valeurs de vitesse, une subsonique et une supersonique. Le choix d'un mod\`ele subsonique implique une bijection entre d\'ebit et nombre de Mach. Les param\`etres physiques n\'ecessaires \`a l'\'ecoulement porteur se restreignent donc aux nombres de Mach \`a la nacelle et \`a l'infini.
+\smallskip  
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=debvit.eps,height=5.cm,width=8.cm}
+\smallskip\newline
+\quad Bijection d\'ebit-vitesse
+\smallskip
+\end{center}
+\subsubsection{R\'{e}sultats th\'{e}oriques d'existence et d'unicité}\label{mecaflusubsectionsub135}
+\noindent La d\'emarche suivie ici est une adaptation de l'article \cite{MOBRGJPPPOPGP} de M.O. Bristeau, R. Glowinski, J. Periaux, P. Perrier, O. Pironneau et G. Poirier dans le cas du probl\`eme de Neumann pur (\ref{eqfluiadim}) (les articles \cite{JFCMPGT}, \cite{JP} traitent également du même problème). Ce paragraphe prouve l'existence et l'unicit\'e de (\ref{eqfluiadim}) pour des flux impos\'es conservant le r\'egime subsonique.
+\paragraph{Approche variationnelle}\label{mecaflusubsectionsubsub1351}
+\text{\newline}
+\\
+Le r\'{e}gime subsonique est d\'{e}fini par une borne pour la norme infinie de la vitesse :
+\BEQ{regsub}
+\dsp\vert\vert\ovra{\nabla}\phi_0\vert\vert_{\infty}<\sqrt{\frac{2}{\gamma+1}\left(1+\frac{\gamma-1}{2}M_\infty^2\right)}=c_*
+\EEQ
+Une solution faible de l'\'{e}quation (\ref{eqfluiadim}) est cherchée variationnellement :
+\BEQ{formvarfluiadim} \left\{\begin{array}{c} \text{  Trouver  }\phi_0 \in H^1(\Omega) \slash \mathbb{R} \text{  tel que : }\\
+\dsp\int_\Omega
+F_\infty(\vert\ovra{\nabla}\phi_0\vert^2)\ovra{\nabla}\phi_0\ovra{\nabla}\psi\ \
+dx=\int_{\partial\Omega}q\psi \ \ d\gamma , \ \ \forall \psi \in
+H^1(\Omega)\slash\mathbb{R}\\
+\end{array}
+\right. \EEQ
+Le problème de Neumann (\ref{eqfluiadim}) définit le potentiel \`a une constante pr\`es et l'espace fonctionnel où l'on cherche la solution est quotient\'e par les constantes.
+\paragraph{Probl\`{e}me subsonique}\label{mecaflusubsectionsubsub1352}
+\text{\newline}
+\\
+$K_{\delta}=\left\{v\in W^{1,\infty}\left(\Omega\right)\slash
+\mathbb{R},\vert\vert\ovra{\nabla} v\vert\vert_{\infty}\le\delta<c_*
+\right \}$ est un convexe ferm\'{e} non vide de l'espace $H^1(\Omega) \slash
+\mathbb{R}$. $\Omega$ est un domaine borné à frontière régulière. Le théorème d'Ascoli (que l'on peut trouver dans le livre d'analyse fonctionnelle d'H. Br\'ezis \cite{HB} ou encore \cite{TK}) prouve la fermeture. Les fonctions de $K_\delta$ sont uniform\'ement continues. Nous allons montrer que le problème (\ref{formvarfluiadim}) restreint à ce convexe admet toujours une unique solution.
+\paragraph{Fonctionnelle associ\'{e}e}\label{mecaflusubsectionsubsub1353}
+\begin{center}
+\epsfig{file=densifoncconvvisu.eps,height=6.cm,width=7.5cm}
+\newline
+Fonctions $F_\infty$ et $F$
+\end{center}
+\noindent La fonction $\dsp F : x\rightarrow
+-\frac{2}{\gamma}\left(1+\frac{\gamma-1}{2}(M_\infty^2-x^2)\right)^{\frac{\gamma}{\gamma-1}}=-\int_{x^2}^{c_{max}^2}F_\infty(s)\ {\rm
+d}s$ est convexe, si $x\in [0,c_*]$; concave, si $x\in
+[c_*,x_{max}]$; strictement convexe, si $x\in[0,c_*[$ et où l'on a noté $c_{max}$ la vitesse à partir de laquelle la densité volumique n'est plus définie. Il vient $F'\left(\vert v_0 \vert \right)=2\vert v_0 \vert F_\infty\left(\vert v_0 \vert \right)$. La fonctionnelle $J$ est définie sur $K_\delta$ \`a l'aide de $F$ :
+\BEQ{foncson} J(\phi_0)=\frac{1}{2}\int_\Omega F(\vert\ovra{\nabla}
+\phi_0\vert)\ {\rm d}x
+\EEQ 
+Définissons la fonctionnelle $K$ par :
+\BEQ{deuxiemefonctionnelle}
+\dsp K\left(\phi_0\right)=J\left(\phi_0\right)-\int_{\partial\Omega} q \phi_0 \ {\rm d}\gamma
+\EEQ
+Un r\'esultat classique de minimisation convexe permet d'affirmer que le probl\`{e}me de minimisation de la fonctionnelle strictement convexe $K$ sur le convexe fermé non vide $K_\delta$ admet une unique solution $\phi_0$. Cette solution est l'unique fonction vérifiant l'inégalité variationnelle suivante (associée à l'ancienne condition d'Euler (\ref{formvarfluiadim})) :
+\BEQ{formvarfluiconv} 
+\left\{\begin{array}{l} \text{ Trouver }
+\phi_0 \in K_{\delta}
+\ \text{ tel que :}\\
+\dsp\int_\Omega
+F_\infty(\vert\ovra{\nabla}\phi_0\vert^2)\ovra{\nabla}\phi_0\ovra{\nabla}(\psi-\phi_0)\ \
+{\rm d}x\ge\int_{\partial\Omega}q\left(\psi-\phi_0\right)\ {\rm d}\gamma ,
+\ \ \forall \psi \in
+ K_{\delta} \\
+\end{array}
+\right. \EEQ
+\paragraph{Existence et unicité}
+\text{\newline}\\
+\noindent Le th\'eor\`eme suivant est une adaptation d'un th\'eor\`eme tir\'e de l'article \cite{MOBRGJPPPOPGP}.
+\newline Le probl\`{e}me initial (\ref{eqfluiadim}) et le probl\`{e}me convexifi\'{e} (\ref{formvarfluiconv}) sont \'equivalents en régime subsonique :
+\begin{theorem}\label{pironneau}
+\text{\newline \\}
+Supposons que le probl\`{e}me initial (\ref{eqfluiadim}) admette une unique
+solution $\phi_0\in H^1(\Omega)\slash\mathbb{R}$, telle qu'il existe $\delta_0<c_*$ et $\vert\vert \ovra{\nabla} \phi_0 \vert\vert_\infty\le \delta_0<c_*$. Alors
+$\phi_0$ est une solution du probl\`{e}me convexifi\'{e} (\ref{formvarfluiconv}), pour tout $\delta\in[\delta_0,c_*[$. R\'{e}ciproquement, si $\phi_0$ est une
+solution du probl\`{e}me convexifi\'{e} (\ref{formvarfluiconv}) pour un certain $\delta<c_*$, telle que l'on peut trouver $\delta_0<\delta$ et $\vert\vert \ovra{\nabla} \phi_0 \vert\vert_\infty\le \delta_0$ (la contrainte de convexité n'est pas saturée). Alors $\phi_0$ est une solution du probl\`{e}me initial (\ref{eqfluiadim}).
+\end{theorem}
+\noindent Preuve du th\'eor\`eme \ref{pironneau}: 
+\newline
+La premi\`{e}re implication est triviale. Montrons la
+deuxi\`{e}me implication. $\Omega$ est un domaine régulier et l'ensemble $C^\infty \left( \overline{\Omega}\right)$ des restrictions à $\Omega$ des fonctions régulières à support compact dans $\mathbb{R}^n$ est dense dans $H^1\left(\Omega \right)\slash \mathbb{R}$.
+On suppose qu'il existe $\delta_0<\delta$ tel que l'unique solution $\phi_0\in K_\delta$ du problème convexifié (\ref{formvarfluiconv}) pour ce $\delta$ vérifie $\vert\vert \phi_0 \vert\vert_\infty\le \delta_0$. Pour tout $v\in C^\infty \left( \overline{\Omega}\right)$, on peut trouver un réel $t>0$ suffisamment petit tel que $\phi_0+tv \in K_\delta$. En remplaçant $\psi$ par $\phi_0+tv$ dans l'inégalité variationnelle :
+\begin{displaymath}
+\int_\Omega
+F_\infty(\vert\ovra{\nabla}\phi_0\vert^2)\ovra{\nabla}\phi_0\ovra{\nabla}(\psi-\phi_0)\ \
+dx\ge\int_{\partial\Omega}q\left(\psi-\phi_0\right)\ {\rm d}\gamma ,
+\ \ \forall \psi \in
+ K_{\delta},
+\end{displaymath}
+il vient en divisant par t :
+\begin{displaymath}
+\int_\Omega
+F_\infty(\vert\ovra{\nabla}\phi_0\vert^2)\ovra{\nabla}\phi_0\ovra{\nabla} v\ {\rm
+d}x\ge\int_{\partial\Omega}qv \ {\rm d}\gamma, \ \forall v \in C^\infty \left( \overline{\Omega}\right)
+\end{displaymath}
+En raisonnant similairement avec $-t$ :
+\begin{displaymath}
+\int_\Omega
+F_\infty(\vert\ovra{\nabla}\phi_0\vert^2)\ovra{\nabla}\phi_0\ovra{\nabla} v\ {\rm
+d}x=\int_{\partial\Omega}q v\ {\rm d}\gamma, \ \ \ \forall v \in C^\infty \left( \overline{\Omega}\right)
+\end{displaymath}
+On conclut par l'argument de la densité de $C^\infty \left( \overline{\Omega}\right)$ dans $H^1\left(\Omega\right)\slash \mathbb{R}$.
+Le problème subsonique admet toujours une unique solution et cette solution est celle du problème général si la contrainte de convexité n'est pas saturée. Le probl\`{e}me est que l'on ne peut connaître le régime {\it a priori}. Pratiquement on choisit $\delta$ le plus proche possible de $c_*$ et l'on joue sur les flux imposés pour ne pas saturer la contrainte de convexité.
+\paragraph{Ellipticité de la fonctionnelle}\text{\newline}\\
+Nous prouvons ici un résultat d'ellipticité de la fonctionnelle $K$ plus fort que sa stricte convexité et nécessaire au paragraphe suivant pour démontrer la convergence du point fixe.
+\begin{proposition}
+\text{\newline}\\
+La fonctionnelle $K$ est elliptique sur $K_\delta$ :
+\BEQ{rebusdefonctionnelleavecdebitnumdeuxoriginaledupremiercru}
+\dsp\exists \alpha > 0, \ \forall \phi_0\in K_\delta,\ \forall \psi \in K_\delta,\  \ovra{\nabla}^2 K(\phi_0)(\psi,\psi)\ge  \dsp \alpha \vert\vert \psi\vert\vert^2_{ \dsp H^1\left(\Omega\right)\slash\mathbb{R}},
+\EEQ
+ce qui équivaut encore à :
+\BEQ{rebusdefonctionnelleavecdebitnumdeuxoriginaledupremiercrunumerodeuxequivalent}
+\dsp\exists \alpha > 0, \ \forall \phi\in K_\delta,\ \forall \psi \in K_\delta,\   \langle \ovra{\nabla}K(\phi)-\ovra{\nabla}K(\psi),\phi-\psi)\rangle \ge  \dsp \alpha \vert\vert\phi- \psi\vert\vert^2_{ \dsp H^1\left(\Omega\right)\slash\mathbb{R}}
+\EEQ
+\end{proposition}
+\noindent Preuve : 
+\newline
+$J$ est une fonctionnelle deux fois continûment dérivable sur $K_\delta$ :
+\BEQ{difffonc}
+\begin{array}{c}
+\dsp \ovra{\nabla} J(\phi_0)(\psi)=\int_\Omega
+F_\infty(\vert\ovra{\nabla}\phi_0\vert^2)\ovra{\nabla}\phi_0\ovra{\nabla}\psi\ {\rm
+d}x\\
+\dsp \ovra{\nabla}^2 J(\phi_0)(\psi,\xi)=\int_\Omega 2 F_\infty ' \left(\vert \ovra{\nabla} \phi_0 \vert^2 \right)\ovra{\nabla} \phi_0.\ovra{\nabla} \psi \ovra{\nabla} \phi_0.\ovra{\nabla} \xi\ {\rm
+d}x +\int_\Omega
+F_\infty(\vert\ovra{\nabla}\phi_0\vert^2)\ovra{\nabla}\psi\ovra{\nabla}\xi\ {\rm
+d}x \\
+\end{array}
+\EEQ
+$J$ est strictement convexe sur $K_\delta$. L'inégalité de Cauchy-Schwartz implique :
+\BEQ{preuveellipticite}
+ \dsp \ovra{\nabla}^2 J(\phi_0)(\psi,\psi)\ge \int_\Omega (F_\infty\left(\vert \ovra{\nabla} \phi_0 \vert^2 \right)-2\delta^2\vert  F_\infty ' \left(\vert \ovra{\nabla} \phi_0 \vert^2 \right)\vert) \vert \ovra{\nabla} \psi \vert^2  {\rm
+d}x,
+\EEQ
+où $ \dsp F_\infty\left(\vert \ovra{\nabla} \phi_0 \vert^2 \right) \dsp -2\delta^2\vert  F_\infty ' \left(\vert \ovra{\nabla} \phi_0 \vert^2 \right)\vert= \dsp \rho_0\left(1- \dsp \left( \dsp \frac{ \dsp \delta}{ \dsp a_0}\right)^2\right) \dsp >0$ sur $K_\delta$, o\`u $\delta<c_*$ avec $c_*$ la valeur du module de la vitesse correspond \`a un Mach transsonique \'egal \`a l'unit\'e ($\frac{ \dsp \delta}{ \dsp a_0}<1$).
+La fonctionnelle $J$ est elliptique :
+\BEQ{ellipticite}
+ \dsp \exists \alpha>0,\ \ovra{\nabla}^2 J(\phi_0)(\psi,\psi)\ge  \dsp \alpha \vert\vert \psi\vert\vert^2_{ \dsp H^1\left(\Omega\right)\slash\mathbb{R}}
+\EEQ
+La fonctionnelle $K$ est deux fois continûment dérivable, strictement convexe et elliptique sur $K_\delta$ :
+\BEQ{rebusdefonctionnelleavecdebit}
+\ovra{\nabla} K\left(\phi_0\right)(\psi) = \ovra{\nabla} J(\phi_0)(\psi)-\int_{\partial\Omega}q\psi \ {\rm d}\gamma
+\EEQ
+\BEQ{rebusdefonctionnelleavecdebitnumdeux}
+\dsp \ovra{\nabla}^2 K(\phi_0)(\psi,\psi)= \ovra{\nabla}^2 J(\phi_0)(\psi,\psi)\ge  \dsp \alpha \vert\vert \psi\vert\vert^2_{ \dsp H^1\left(\Omega\right)\slash\mathbb{R}}
+\EEQ
+\subsubsection{Convergence du point fixe}\label{mecaflusubsectionsub136} 
+\noindent Ce paragraphe propose une alternative \`a la r\'esolution num\'erique par une m\'ethode des moindres carr\'es propos\'ee par l'article \cite{MOBRGJPPPOPGP} en suivant un th\'eor\`eme de J. Ne$\check{c}$as tir\'e de \cite{JN} prouvant la convergence d'un point fixe th\'eorique vers la solution du probl\`eme convexifi\'e.
+\newline On note $B(\phi_0;\psi,\xi)=\int_\Omega F_\infty(\vert\ovra{\nabla} \phi_0\vert^2)\ovra{\nabla} \psi\ovra{\nabla}
+\xi$. Récapitulons les propriétés de $B$ :
+\BEQ{proprietefoncpointfixe}
+\exists C_1>0,\ \forall \phi_0\in K_\delta,\ \forall (\psi,\xi)\in [H^1(\Omega)\slash\mathbb{R}]^2,\ B(\phi_0;\psi,\xi)\le C_1\vert\vert \psi\vert\vert_{H^1(\Omega)\slash\mathbb{R}} \vert\vert \xi\vert\vert_{H^1(\Omega)\slash\mathbb{R}} 
+\EEQ
+\BEQ{proprietefoncpointfixe2}
+\exists C_2>0,\ \forall \phi_0\in K_\delta,\ \forall \psi\in H^1(\Omega)\slash\mathbb{R},\ B(\phi_0;\psi,\psi)\ge  C_2\vert\vert \psi\vert\vert_{H^1(\Omega)\slash\mathbb{R}}^2\\
+\EEQ
+$J :K_\delta\rightarrow \mathbb{R}$ est la fonctionnelle d\'efinie par (\ref{foncson}). J est G\^ateaux-diff\'erentiable sur $K_\delta$ et sa diff\'erentielle est un \'el\'ement du dual $[H^1(\Omega)\slash\mathbb{R}]^*$ donn\'ee par :
+$$
+\forall \phi_0\in K_\delta,\ \ovra{\nabla} J(\phi_0)\left(\psi\right)=B(\phi_0;\phi_0,\psi),\ \forall \psi \in H^1(\Omega)\slash\mathbb{R},
+$$
+La convexité de la fonctionnelle $J$ équivaut à :
+\BEQ{stricteconvexite}
+J(\psi)-J(\phi_0)\ge \ovra{\nabla} J\left(\phi_0\right)(\psi-\phi_0) =B(\phi_0;\phi_0,\psi)-B(\phi_0;\phi_0,\phi_0),\ \forall \phi_0,\psi\in K_\delta
+\EEQ
+L'ellipticité de la fonctionnelle $J$ équivaut à :
+\BEQ{propreitefondamentale}
+\exists C_3>0,\ \forall \psi \in  H^1(\Omega)\slash\mathbb{R},\  \phi_0+\psi\in K_\delta,\ \ovra{\nabla} J(\phi_0+\psi)(\psi)-\ovra{\nabla} J(\phi_0)(\psi)\ge C_3 \vert\vert \psi \vert \vert^2_{H^1(\Omega)\slash\mathbb{R}}
+\EEQ
+Ayant prouv\'e toutes les propri\'et\'es (\ref{proprietefoncpointfixe}) et (\ref{proprietefoncpointfixe2}) pour $B(.;.,.)$ et les propri\'et\'es (\ref{stricteconvexite}) et (\ref{propreitefondamentale}) pour $J$, on peut appliquer le th\'eor\`eme g\'en\'eral tir\'e de \cite{JN} :
+\begin{theorem}[Ne$\check{c}$as]\label{necas}
+Pour tout $\phi_0\in K_\delta$, la coercivité (\ref{proprietefoncpointfixe2}) de $B(\phi_0;.,\ .)$ implique l'existence et l'unicité de la solution de :  
+\BEQ{probcompnotatbizarre}
+ \dsp \forall \phi_0 \in  K_\delta, \
+ \dsp \exists \ !   \dsp \ \zeta=\zeta\left(\phi_0\right)\in K_\delta \text{  tel que :  }
+ \dsp \forall \psi\in K_\delta ,\  \dsp B(\phi_0;\zeta,\ \psi-\zeta)\ge <q,\ \psi-\zeta>
+\EEQ
+La suite d\'efinie par $\phi_0\in  H^1(\Omega)\slash\mathbb{R}$ et $\phi_0^{n+1}=\zeta(\phi_0^n)$ converge vers l'unique solution de (\ref{formvarfluiconv}).
+\end{theorem}
+\noindent Preuve du th\'eor\`eme \ref{necas} :
+\newline
+Prouvons la propriété :
+\BEQ{propriounopositivo}
+\dsp B(\phi_0;\zeta(\phi_0),\zeta(\phi_0))-B(\phi_0;\phi_0,\phi_0)+2J(\phi_0)-2J(\zeta(\phi_0))\ge 0
+\EEQ
+L'unique solution $\zeta\in K_\delta$ de (\ref{probcompnotatbizarre}) minimise la fonctionnelle $\frac{1}{2}B(\phi_0;.,.)-\langle q,.\rangle$ sur $K_\delta$ :
+\BEQ{qsdfohfs}
+\frac{1}{2}B(\phi_0;\zeta(\phi_0),\zeta(\phi_0))-\langle q,\zeta(\phi_0 )\rangle \le B(\phi_0;\phi_0,\phi_0)-\langle q,\zeta(\phi_0 )\rangle
+\EEQ
+L'unique solution $\phi_0\in K_\delta$ minimise la fonctionnelle $J(.)-\langle q,.\rangle$ sur $K_\delta$ :
+\BEQ{qsdpfjqslmkjfazpoeifj}
+J(\phi_0)-\langle q,\phi_0 \rangle \le J(\zeta(\phi_0))-\langle q,\zeta(\phi_0 )\rangle
+\EEQ
+La sommation de (\ref{qsdfohfs}) et (\ref{qsdpfjqslmkjfazpoeifj}) implique (\ref{propriounopositivo}).
+$L$ désigne la fonctionnelle suivante :
+\BEQ{fonctionnelletranssonique}
+L(\phi_0)=J(\phi_0)-J(\zeta(\phi_0))-<q,\phi_0-\zeta(\phi_0)>=K(\phi_0)-K(\zeta(\phi_0))
+\EEQ
+Prouvons la propriété :
+\BEQ{deuxiemeproprietefondamentale}
+L(\phi_0)\ge\frac{C_2}{2}\vert\vert \phi_0-\zeta(\phi_0) \vert\vert_{H^1(\Omega)\slash\mathbb{R}}^2
+\EEQ
+Par bilinéarité de $B(\phi_0;.,.)$, il vient :
+$$
+B(\phi_0;\zeta-\phi_0,\zeta-\phi_0)=B(\phi_0;\zeta,\zeta)-2B(\phi_0;\zeta,\phi_0)+B(\phi_0;\phi_0,\phi_0)
+$$
+$$
+B(\phi_0;\zeta-\phi_0,\zeta-\phi_0)\ge 2\left(J(\zeta)-J(\phi_0)+B(\phi_0;\zeta-\phi_0,\zeta-\phi_0)+B(\phi_0;\phi_0-\zeta,\zeta)\right)
+$$
+$$
+B(\phi_0;\zeta-\phi_0,\zeta-\phi_0)\ge 2\left(J(\zeta)-J(\phi_0)+B(\phi_0;\zeta-\phi_0,\zeta-\phi_0)+\langle q,\phi_0-\zeta \rangle\right)
+$$
+$$
+B(\phi_0;\zeta-\phi_0,\zeta-\phi_0)\ge 2\left(-L(\phi_0 )+B(\phi_0;\zeta-\phi_0,\zeta-\phi_0 ) \right)
+$$
+$$
+2 L(\phi_0)\ge B(\phi_0;\zeta-\phi_0,\zeta-\phi_0) \ge C_2 \vert\vert \phi_0-\zeta(\phi_0) \vert\vert_{H^1(\Omega)\slash\mathbb{R}}^2
+$$
+Par définition de la suite $\dsp \left(\phi_0^n\right)$ :
+\BEQ{vouicestcelalacaille}
+J(\phi_0^n)-J(\phi_0^{n+1})-<q,\phi_0^n-\phi_0^{n+1}>=L(\phi_0^n)\ge \frac{C_2}{2} \vert\vert \phi_0^n-\phi_0^{n+1}\vert\vert_{H^1\left(\Omega\right)\slash\mathbb{R}}^2\ge 0
+\EEQ
+La suite $(K(\phi_0^n))_{n\in\mathbb{N}}$ est donc d\'ecroissante. Elle est minorée sur le convexe $K_\delta$. Elle est donc convergente et :
+$$
+L(\phi_0^n)=K(\phi_0^n)-K(\phi_0^{n+1})\rightarrow 0
+$$
+Il suit d'après (\ref{vouicestcelalacaille}) :
+\BEQ{echelon}
+\vert\vert \phi_0^n-\phi_0^{n+1}\vert\vert_{H^1\left(\Omega\right)\slash\mathbb{R}}  \rightarrow 0
+\EEQ
+Montrons la propriété :
+\BEQ{rpopritetedesfonctionnelleselliptiques}
+J(\phi_0^n)-J(\phi_0)\ge \ovra{\nabla} J(\phi_0)(\phi_0^n-\phi_0)+\frac{C_3}{2}\vert\vert \phi_0^n-\phi_0\vert\vert_{H^1\left(\Omega\right)\slash\mathbb{R}}^2
+\EEQ
+$$
+J(\phi_0^n)-J(\phi_0)=\int_0^1 \ovra{\nabla} J(\phi_0+t(\phi_0^n-\phi_0))(\phi_0^n-\phi_0)\ {\rm d}t
+$$
+$$
+J(\phi_0^n)-J(\phi_0)=\ovra{\nabla} J(\phi_0)(\phi_0^n-\phi_0)+\int_0^1 \ovra{\nabla} [J(\phi_0+t(\phi_0^n-\phi_0))-\ovra{\nabla} J(\phi_0)](\phi_0^n-\phi_0)\ {\rm d}t
+$$
+En utilisant la propriété (\ref{propreitefondamentale}) :
+$$
+J(\phi_0^n)-J(\phi_0)\ge \ovra{\nabla} J(\phi_0)(\phi_0^n-\phi_0)+\int_0^1 C_3t\vert\vert \phi_0^n-\phi_0\vert\vert_{H^1\left(\Omega\right)\slash\mathbb{R}}^2
+$$
+Il vient (\ref{rpopritetedesfonctionnelleselliptiques}).
+En utilisant les propriétés de $B$, il vient :
+$$
+C_3\vert\vert \phi_0^n-\phi_0 \vert\vert^2\le \ovra{\nabla} J(\phi_0^n)(\phi_0^n-\phi_0)-\ovra{\nabla} J(\phi_0)(\phi_0^n-\phi_0)
+$$
+$$
+=B(\phi_0^n;\phi_0^n,\phi_0^n-\phi_0)-\ovra{\nabla} J(\phi_0)(\phi_0^n-\phi_0)
+$$
+$$
+\le B(\phi_0^n;\phi_0^n,\phi_0^n-\phi_0)-<q,\phi_0^n-\phi_0>
+$$
+$$
+=B(\phi_0^n;\phi_0^n-\phi_0^{n+1},\phi_0^n-\phi_0)+B(\phi_0^n,\phi_0^{n+1},\phi_0^n-\phi_0)-<q,\phi_0^{n}-\phi_0>
+$$
+$$
+=B(\phi_0^n,\phi_0^n-\phi_0^{n+1},\phi_0^n-\phi_0)
++B(\phi_0^n,\phi_0^{n+1},\phi_0^{n+1}-\phi_0)
+$$
+$$
++B(\phi_0^n,\phi_0^{n+1},\phi_0^n-\phi_0^{n+1})-<q,\phi_0^{n+1}-\phi_0>+<q,\phi_0^{n+1}-\phi_0^n>
+$$
+Finalement, par la d\'efinition (\ref{probcompnotatbizarre}) de la suite $\phi_0^{n+1}=\zeta(\phi_0^n)$, il vient :
+$$
+C_3\vert\vert \phi_0-\phi_0^n\vert\vert_{H^1\left(\Omega\right)\slash\mathbb{R}}^2\le B(\phi_0^n;\phi_0^n-\phi_0^{n+1},\phi_0^n-\phi_0)+B(\phi_0^n,\phi_0^{n+1},\phi_0^n-\phi_0^{n+1})+<q,\phi_0^{n+1}-\phi_0^n>,
+$$
+ce qui prouve la convergence forte de la suite.
+\subsubsection{Formulation axisym\'{e}trique}\label{131334241234}
+\noindent Les domaines consid\'er\'es sont maintenant bidimensionnels : ce sont les domaines de coupe transverses, qui sont not\'es par abus de notation comme les pr\'ec\'edents domaines tridimensionnels.
+\newline Les conditions de flux de bord sont suppos\'ees ind\'ependantes de $\theta$ : l'\'{e}coulement cherch\'e est à symétrie axiale.
+\newline
+Le potentiel $\phi_0$ de l'écoulement porteur est solution de l'\'equation aux d\'eriv\'ees partielles en coordonn\'ees cylindriques dans le plan transverse :
+\BEQ{eqfluiadimpol} 
+\dsp \left\{
+\begin{array}{ll}
+\dsp \vert\ovra{\nabla}\phi_0(x,y,z)\vert^2=\vert \frac{\partial\phi_0}{\partial r}\vert^2+\vert\frac{\partial\phi_0}{\partial z}\vert^2&,\ \forall (r,z)\in \Omega \\
+\dsp \frac{1}{r}\frac{\partial}{\partial
+r}\left(rF_\infty(\vert\ovra{\nabla}\phi_0\vert^2)\frac{\partial\phi_0}{\partial
+r}\right)+\frac{\partial}{\partial z}\left(F_\infty(\vert\ovra{\nabla}\phi_0\vert^2)\frac{\partial\phi_0}{\partial
+z}\right)=0& ,\ \forall (r,z)\in \Omega \\
+\dsp \rho_0\frac{\partial\phi_0}{\partial n}=q &,\ \ \forall (r,z) \in \partial \Omega \\
+\end{array}
+\right.
+\EEQ
+La formulation variationnelle axisym\'etrique du point fixe th\'eorique s'écrit :
+\BEQ{algopoinfixtheo}
+\left\{\begin{array}{l}
+\dsp \phi_0^0=0\\
+\dsp \text{ Trouver }  \phi_0^{n+1}  \in K_{\delta}
+\text{ tel que :}\\
+\dsp \int_\Omega
+F_\infty(\vert\ovra{\nabla}\phi_0^n\vert^2)\ovra{\nabla}\phi_0^{n+1}\ovra{\nabla}\psi
+\ r{\rm d}r{\rm d}z=\int_{\partial\Omega}q\psi  \  r{\rm d}\gamma , \  \forall
+\psi \in
+ K_{\delta} \\
+\end{array}
+\right. ,
+\EEQ
+où $ \dsp \ovra{\nabla}= \dsp \left( \dsp \begin{array}{cc} \dsp  \frac{\partial}{\partial r} & \dsp  \frac{\partial}{\partial z}\\\end{array} \dsp \right)$ désigne le gradient cartésien en $ \dsp (r,z)$. Les espaces de Sobolev classiques $ \dsp H^1\left(\Omega\right)\slash \mathbb{R}$ de $ \dsp K(\delta)$ sont remplac\'{e}s par les espaces de Sobolev \`{a} poids axisymétriques transverses pour le mode azimutal $ \dsp m=0$ : $ \dsp H^1_{a0}\left(\Omega\right)\slash \mathbb{R}$ (\ref{definitionH1axiazimutal}).
+\subsubsection{Détails de l'impl\'{e}mentation num\'{e}rique}\label{mecaflusubsectionsub137}
+\noindent Le probl\`{e}me convexifi\'{e} \rfb{formvarfluiconv} admet toujours une unique solution obtenue comme limite de la suite $\left(\phi_0^{n}\right)_{n\in\mathbb{N}}$. Le potentiel $\phi_0^n$ de l'écoulement porteur est approché par des éléments finis classiques $H^1$-conformes, continus et $P^1$ par élément. La densit\'{e} est constante par \'{e}l\'{e}ment et sa valeur \`a l'\'etape $k+1$ est obtenue \`{a} partir des valeurs du
+potentiel \`{a} l'\'{e}tape $k$.
+\newline $\phi_0^0$ est choisi nul : le potentiel est initialis\'e \`a z\'ero. Le potentiel converg\'e est obtenu \`a la limite d'un point fixe num\'erique, lorsque la variation entre deux it\'erations successives de la norme infinie du potentiel est inf\'erieur \`a un seuil $\epsilon$ fix\'e.
+\newline La saturation de la contrainte de convexit\'{e} se traduit par l'atteinte ou le d\'epassement de $c_*$ par le module de la vitesse au niveau d'un \'el\'ement et d'une it\'eration. Il suffit de tester la norme de la vitesse sur chaque \'el\'ement \`a chaque it\'eration et d'arr\^eter le calcul d\`es qu'il y a saturation. On choisit alors des flux entrants plus faibles afin de garantir le régime subsonique non saturé.
+\newline L'impl\'ementation du code de calcul est parall\'elis\'ee {\it{via}} l'utilisation d'un logiciel d'alg\`ebre lin\'eaire parall\`ele MPF d\'evelopp\'e \`a EADS-CCR. Une nouvelle matrice est assembl\'ee \`a chaque it\'eration. Ces matrices sont creuses et sym\'etriques et la r\'esolution du syst\`eme lin\'eaire utilise le serveur creux parall\`ele MUMPS du CERFACS. Seules les donn\'ees du potentiel \`a tous les sommets à l'étape précédente sont communes \`a tous les processeurs pour palier au cas d'un \'el\'ement dont les degr\'es de libert\'e se trouvent dans deux blocs disjoints.
+\subsubsection{Cas-Test}\label{mecaflusubsectionsub138}
+\smallskip  
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=castestfluide.eps,height=4.5cm,width=9.5cm}
+\smallskip\newline
+\quad  Cas-Test 
+\smallskip
+\end{center}
+\noindent On propose le cas-test axisym\'etrique suivant :
+\BEQ{formulationproblemeducastestdemecaflu}
+\left\lbrace
+\begin{array}{ll}
+\dsp {\rm div}\left(F_\infty\left(\vert\ovra{\nabla}\phi_0\vert^2 \right) \ovra{\nabla}\phi_0\right)=0 & \forall x \in \Omega \\
+\dsp \frac{\partial \phi_0}{\partial n}=0 & \forall x \in \Gamma_R    \\
+\dsp \frac{\partial \phi_0}{\partial n}=-q& \forall x \in \Gamma_M    \\
+\dsp \frac{\partial \phi_0}{\partial n}=+q& \forall x \in \Gamma_{M'} \\
+\end{array}
+\right.
+\EEQ
+La vitesse th\'{e}orique \`{a} l'\'{e}tape $k+1$ s'obtient par r\'{e}currence :
+\BEQ{suitrecucatest}
+\left\{
+\begin{array}{l}
+\dsp v_0=0 \\
+\dsp v_{k+1}=\frac{q}{F_{\infty}(v_k)}, \ \forall k\in \mathbb{N}\\
+\end{array}
+\right.
+\EEQ
+\smallskip  
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=convergencepointfixe.eps,height=6.5cm,width=14.5cm}
+\smallskip
+\quad Débit et convergence du point fixe
+\smallskip
+\end{center}
+Comme le montrent les sch\'{e}mas précédents, la suite th\'eorique (\ref{suitrecucatest}) converge pour des d\'{e}bits q tels que la fonction d\'efinie par $v_{k+1}=f_q(v_k)$ admette un point fixe, ce qui correspond exactement au régime subsonique. Ces sch\'emas ont pour m\'erite d'expliciter la façon dont converge l'algorithme de point fixe. La convergence du schéma de point fixe est d'autant plus rapide que les débits impos\'es sont petits et inversement. Le schéma diverge d\`es que l'on atteint un d\'ebit correspondant \`a un r\'egime transsonique. 

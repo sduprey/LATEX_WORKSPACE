@@ -1,0 +1,364 @@
+\chapter[Moteur : un Mod\`ele de Guide d'Ondes]{Moteur : un Mod\`ele de Guide d'Ondes}\label{Moteur : un Mod\`ele de Guide d'Ondes}
+\section{Probl\'ematique}\label{modessection4} 
+\begin{center}
+\epsfig{file=geometrienumerounmodalfinal.eps,height=5.cm,width=8.cm}
+\newline
+Le Moteur $\dsp \Omega_M$ : un Guide d'Ondes Cylindrique Infini $z<0$
+\end{center}
+\noindent Les domaines sont consid\'er\'es ici transverses et bidimensionnels.
+\newline
+La surface fictive $\Gamma_M$ est située suffisamment loin du moteur pour se trouver dans la zone \textbf{2}. L'\'ecoulement potentiel est suppos\'e constant au niveau de $\Gamma_M$.
+\newline La portion de conduit d'entrée d'air à l'intérieur du moteur entre $\Gamma_M$ et la zone \textbf{1} de cr\'eation du bruit est suppos\'ee suffisamment longue pour considérer que les ondes acoustiques émises et r\'efl\'echies dans le moteur se propagent sous la forme de modes guidés en conduit cylindrique infini en présence d'écoulement uniforme. 
+\newline Le moteur est assimilé à un guide d'ondes cylindrique infini dans le sens des $z<0$ et noté $\Omega_M$ (g\'eom\'etrie {\it{a priori}} impossible). 
+\newline La source acoustique "moteur" est modélisée sous la forme de modes acoustiques de conduit cylindrique incidents en pr\'esence d'\'ecoulement uniforme. 
+\newline Les coefficients de ces modes sources sont suppos\'es connus (soit provenant d'un code de m\'ecanique des fluides, soit mesur\'es par les motoristes). Ils sont les donn\'ees du probl\`eme.
+\section{D\'ecomposition Modale}\label{modessection5}
+\noindent Les r\'esultats expos\'es ci-dessous pr\'esentent les modes acoustiques d'un guide d'ondes cylindrique en pr\'esence d'un \'ecoulement uniforme. 
+\newline Ces r\'esultats sont classiques et on peut les trouver dans la th\`ese de G. Legendre \cite{GL} par exemple, o\`u ils sont pr\'esent\'es dans le cadre de l'\'equation légèrement diff\'erente de Galbrun lin\'earis\'ee (\'equation du d\'eplacement lagrangien). N\'eanmoins, la m\'ethodologie est strictement identique.
+\newline L'\'{e}coulement porteur dans le guide d'ondes cylindrique infini $\Omega_M\times\left[0,2\pi\right]$ est supposé uniforme selon z :
+\BEQ{constantesaumoteur}
+\dsp\left(\begin{array}{c} \dsp \rho_0\\ \dsp a_0\\ \dsp M_{0r}\\\dsp M_{0\theta}\\ \dsp M_{0z}\end{array}\right)=\left(\begin{array}{c} \dsp \rho_M\\ \dsp a_M\\ \dsp 0\\ \dsp 0\\ \dsp -M_M\end{array}\right) \dsp=\text{constante},
+\EEQ
+où $\dsp \dsp \ovra{M_0}=\dsp \frac{\dsp \ovra{v_0}}{\dsp a_0}$ désigne le nombre de Mach vectoriel dans $\Omega\times\left[0,2\pi\right]$ et $\dsp \dsp 0<\dsp M_M=\frac{\dsp \vert v_M\vert}{\dsp a_M}<1$ est le nombre de Mach non signé au moteur. Les variables de l'écoulement porteur sont dorénavant indicées par $M$ car ce sont des constantes fixées par le nombre de Mach au moteur.
+L'\'equation aux d\'eriv\'ees partielles du potentiel acoustique en \'ecoulement constant en r\'egime harmonique est obtenue en combinant les \'equations (\ref{irrotac}), (\ref{entroparfac}), (\ref{eulac}), (\ref{bernouac}). L'\'equation obtenue est une \'equation de Helmholtz convect\'ee :
+\BEQ{eqsimplipotac}
+A_M\left(\phi_a\right)=\Delta\phi_a-M_M^2\frac{\partial^2\phi_a}{\partial
+z^2}-2ik_MM_M\frac{\partial\phi_a}{\partial z
+}+k_M^2\phi_a=0 \text{   dans   } \Omega_M\times\left[0,2\pi\right],
+\EEQ
+où $k_M=\frac{\dsp \omega}{a_M}$ est le nombre d'ondes modulé au moteur. Le guide d'ondes est supposé rigide :
+\BEQ{condborrig}
+\dsp \frac{\partial \phi_a}{\partial n}=0, \ \forall x\in \dsp \left(\Gamma_R\cap\dsp \overline{\Omega_M}\right)\times\left[0,2\pi\right]
+\EEQ
+Toute fonction $ \dsp \phi_a\in H^1_{loc}\left(\Omega_M\times\left[0,2\pi\right]\right)$ \`a variables s\'epar\'ees, solution de (\ref{eqsimplipotac}) et (\ref{condborrig}) dans le guide cylindrique se d\'ecompose sur la base $\dsp \left(\Xi_{mn}^\pm(r,\theta,z)\right)_{\dsp m\in\mathbb{Z},n\in\mathbb{N}}$ :
+\BEQ{basemodalepourlapreuve}
+\dsp \Xi_{mn}^\pm(r,\theta,z)=J_m(k_{rmn}r)e^{im\theta}e^{i\beta^\pm_{mn}z}=\Xi_{rmn}\left(r,\theta\right)e^{i\beta^\pm_{mn}z},
+\EEQ avec $ \dsp J_m$ la fonction de Bessel de premi\`ere esp\`ece d'ordre entier $\vert m\vert$ et $ \dsp k_{rmn}=\frac{z_{mn}}{R}$, o\`u $ \dsp z_{mn}$ d\'esigne le n-i\`eme z\'ero de la d\'eriv\'ee de $J_m$ et $R$ le rayon de la nacelle. A chaque mode azimutal $\dsp m\in \mathbb{Z}$ correspond deux constantes complexes propagatives axiales $\beta^\pm_{mn}$ qui sont les deux racines d'une équation polynômiale. Les modes de conduit se regroupent en deux familles $\pm$ d'après leurs nombres axiaux :
+\BEQ{definitiondesnombresaxiauxglobalavecladeterminationcomplexedelaracine}
+\dsp \beta_{mn}^\pm=\frac{ \dsp k_MM_M\pm\sqrt{ \dsp k_M^2-k^2_{rmn}(1-M_M^2)}}{ \dsp 1-M_M^2}
+\EEQ, où la détermination pour la racine carrée complexe est choisie de la manière suivante : $\dsp \sqrt{z}=\sqrt{\vert z\vert}e^{i\frac{{\arg}\left(z\right)}{2}},\ 0\le {\arg}\left(z\right)<2\pi, \ \forall z\in\mathbb{C}$. On distingue également les modes propagatifs des modes évanescents :
+\newline
+$\bullet$ Les modes propagatifs (incidents et r\'efl\'echis) : $ \dsp k_{rmn}\leq\left[\frac{k_M}{\sqrt{1-M_M^2}}\right]$
+\newline
+Où $ \dsp \left[\ \ \right]$ désigne la partie entière et la fréquence associée au nombre d'ondes $ \dsp \left[\frac{k_M}{\sqrt{1-M_M^2}}\right]$ est appelée fréquence de coupure.
+\newline
+A fr\'equence fix\'ee, les constantes propagatives $ \dsp \pm$ sont r\'eelles. L'amplitude de ces modes est constante : ils se propagent et ne s'att\'enuent pas. Ils sont en nombre fini \`a fr\'equence fix\'ee. Leur nombre est une fonction croissante (resp. d\'ecroissante) du nombre de Mach moteur (resp. de la fr\'equence).
+\newline Les vitesses de groupe des modes $ \dsp \beta_{mn}^+$ (resp. $ \dsp \beta_{mn}^-$)) sont r\'eelles positives (resp. r\'eelles n\'egatives) : 
+\BEQ{vitessedegroupe}
+\begin{array}{ll}
+\dsp \frac{ \dsp \partial\omega}{ \dsp \partial
+\beta^+_{mn}}= \dsp \frac{ \dsp 1-M_M^2}{ \dsp M_M +\frac{k_M}{ \dsp \sqrt{ \dsp k_M^2-k^2_{rmn}( \dsp 1-M_M^2)}}}, &
+\dsp \frac{ \dsp \partial\omega}{ \dsp \partial
+\beta^-_{mn}}= \dsp \frac{ \dsp 1-M_M^2}{ \dsp M_M -\frac{k_M}{ \dsp \sqrt{ \dsp k_M^2-k^2_{rmn}(1-M_M^2)}}}\\
+\end{array}
+\EEQ
+La vitesse de groupe est la vitesse de l'\'energie : les modes $ \dsp \beta_{mn}^+$ (resp. $ \dsp \beta_{mn}^-$)) sont les modes incidents (resp. r\'efl\'echis).
+L'\'etude des vitesses de groupe prouve que l'\'{e}coulement ralentit les modes amonts et acc\'{e}l\`{e}re les modes avals, ce que l'on peut \'{e}galement constater avec les nombres d'onde : $ \dsp \beta^+$ (resp. $ \dsp \beta^-$)  est augment\'{e} (les ondes sont tass\'ees par l'\'ecoulement) (resp. diminu\'e (les ondes sont emport\'ees)) pour les modes amonts de l'\'ecoulement (resp. modes avals). Un
+effet bien connu de la pr\'{e}sence d'un \'{e}coulement uniforme est la
+pr\'{e}sence de modes $ \dsp \beta_{mn}^-$, dits 'inverse upstream modes' (modes emport\'es par l'\'ecoulement), qui ont une
+vitesse de phase positive et une vitesse de groupe n\'{e}gative pour :
+\BEQ{inverseupstreammodes}
+ \dsp \sqrt{1-M_M^2}k_{rmn}<k_M<k_{rmn}
+\EEQ
+$\bullet$ Les modes \'evanescents (incidents et r\'efl\'echis) : $ \dsp k_{rmn}>\left[\frac{k_M}{\sqrt{1-M_M^2}}\right]$
+\newline
+Ces modes d\'{e}croissent exponentiellement \`{a} l'infini dans une direction : $ \dsp \Im m\left(\beta^\pm_{mn}\right)\neq 0$ et croissent exponentiellement dans l'autre direction.
+Un principe d'amplitude limite permet de leur donner une causalit\'e et de s\'electionner les modes physiquement acceptables (incident ou réfléchi). La vitesse de groupe n'est plus définie car strictement complexe : le calcul de leur flux d'énergie montre que ces modes ne véhiculent aucune d'énergie.
+\newline
+Preuve de (\ref{basemodalepourlapreuve}) et (\ref{definitiondesnombresaxiauxglobalavecladeterminationcomplexedelaracine}) :
+\newline
+La solution est cherch\'ee "\`a variables s\'epar\'ees" :
+\BEQ{formesolutionchercheeun}
+ \dsp \phi_{a}=\phi_{a,2d}\left(r,\theta\right)\phi_{a,z}\left(z\right)\\
+\EEQ
+L'expression (\ref{formesolutionchercheeun}) est report\'ee dans (\ref{eqsimplipotac}) :
+$$
+ \dsp \frac{ \dsp \Delta_{2d} \dsp \phi_{a,2d}}{ \dsp \phi_{a,2d}}=-\frac{ \dsp \left(1-M_M^2\right) \dsp \frac{ \dsp \ud^2\phi_{a,z}}{ \dsp \ud z^2}- \dsp 2ik_MM_M \frac{ \dsp \ud\phi_{a,z}}{ \dsp \ud z}  }{ \dsp \phi_{a,z}}-k_M^2=constante= \dsp \lambda
+$$
+La recherche d'une solution \`a variables s\'epar\'ees (\ref{formesolutionchercheeun}) scinde le probl\`eme initial en deux sous-probl\`emes : une \'{e}quation aux valeurs propres dans la section transverse et une \'equation du second degr\'e polyn\^omiale en $k_z$.
+\BEQ{eqsimplipotacpropa}
+ \dsp \left\{\begin{array}{l}
+\Delta_{2d}\phi_{a,2d}(r,\theta)=\lambda\phi_{a,2d}(r,\theta)\\
+\phi_{a,z}=e^{ik_z z} \\
+-\lambda+k_z^2=(k_M+M_Mk_z)^2\\
+\end{array}
+\right.
+\EEQ
+$ \dsp \lambda$ est valeur propre du laplacien transverse avec condition de Neumann. $ \dsp \lambda$ est not\'ee $ \dsp -k_r^2$ avec $ \dsp k_r>0$. L'axisym\'etrie du guide d'ondes permet de d\'ecomposer le probl\`eme aux valeurs propres transverse en une s\'erie d\'enombrable de probl\`emes radiaux pour chaque mode azimutal de Fourier :
+\BEQ{probraddonnantfoncbessel}
+\left\lbrace
+\begin{array}{l}
+\dsp \phi_{a,2d}\left(r,\theta\right)=\sum_{m\in \mathbb{Z}}\phi_{a,m}\left(r\right)e^{im\theta} \\
+\dsp  \frac{1}{r}\frac{{\rm d}}{{\rm d}r}\left(r \frac{{\rm d}}{{\rm d}r}\left(\phi_{a,m}(r)\right)\right)+\left(k_r^2-\frac{m^2}{r^2}\right)\phi_{a,m}(r)=0, \ \forall r\in\left[0,R\right],\ \forall m\in \mathbb{Z} \\
+\dsp \left[\frac{{\rm d}\phi_{a,m}(r)}{{\rm d}r}\right]_{r=R}=0 ,\ \forall m\in \mathbb{Z} \\
+\end{array}
+\right.
+\EEQ
+La solution r\'{e}guli\`{e}re de cette \'{e}quation est de la forme
+$ \dsp J_m(k_r\times r)$, $ \dsp J_m$ fonction de Bessel d'ordre $ \dsp \vert m\vert$.
+Les conditions aux limites rigides imposent $ \dsp J_m'(k_r\times R)=0$ et donne une suite d\'enombrable de $ \dsp k_r$ possible : $ \dsp k_{rmn}=\frac{z_{mn}}{R}$, o\`u $ \dsp z_{mn}$ est le n-i\`eme z\'ero de $ \dsp J_m'$.
+Les $ \dsp -k^2_{rmn}$ sont les valeurs propres du laplacien
+transverse avec condition de Neumann sur le disque unit\'e.
+Les $ \dsp -k^2_{rmn}$ forment une suite d\'enombrable de r\'eels n\'egatifs divergente et sans points d'accumulation.
+0 est valeur propre pour $ \dsp m=0$ et correspond au mode plan.
+Les fonctions propres forment une base $ \dsp L^2$-orthonormale et $ \dsp H^1$-orthogonale de la section transverse.
+\section{Normalisation}\label{modessection6}
+\subsection{Flux d'Energie}\label{modessectionsub61}
+\noindent Les modes transverses de conduit forment une base orthogonale de $ \dsp L^2\left(\Gamma_M\times\left[0,2\pi\right]\right)$ de la surface
+modale. Un mode transverse $(m,n)$ quelconque est une simple fonction de base
+physiquement adimensionn\'ee. La valeur physique du
+potentiel acoustique est contenue dans les coefficients modaux.
+\newline Une normalisation des modes par leur flux d'énergie permet un dimensionnement pertinent des fonctions de base donnant un sens parlant aux valeurs physiques des coefficients modaux.
+\newline Le calcul du flux d'énergie d'un mode acoustique de conduit en pr\'esence d'\'ecoulement pour la pression acoustique est classique et peut \^etre trouv\'e par exemple dans le manuel fondamental de l'acoustique de M. Bruneau \cite{MB}.
+\newline L'originalit\'e de ce paragraphe r\'eside dans l'approche potentielle de l'acoustique : c'est le potentiel acoustique qui est d\'ecompos\'e en modes acoustiques de conduit et le flux d'énergie est calcul\'e en fonction de la norme $L^2$ du potentiel acoustique.
+\newline
+Les \'equations de l'acoustique (\ref{irrotac}), (\ref{entroparfac}), (\ref{eulac}), (\ref{bernouac}) pour un \'ecoulement porteur constant dans $ \dsp \Omega_M\times\left[0,2\pi\right]$ se combinent sous forme conservative :
+\BEQ{Egalitedenergie}
+\dsp
+\frac{\partial }{\partial t}\left(\frac{1}{2}\rho_M
+\ovra{v_a}^2+
+\frac{p_a^2}{2\rho_M a_M^2}
+ \right)+{\rm div}\left[\left(   \frac{1}{2}\rho_M
+\ovra{v_a}^2+
+\frac{p_a^2}{2\rho_M a_M^2}\right)\overrightarrow{v_M}+p_a \ovra{v_a} \right]=0
+\EEQ
+L'\'energie acoustique $W_a$ se d\'efinit :
+\BEQ{Energietotale}
+W_a=\frac{1}{2}\rho_M
+\ovra{v_a}^2+
+\frac{p_a^2}{2\rho_M a_M^2}
+\EEQ
+Le vecteur Intensit\'e $\overrightarrow{I}$ se d\'efinit :
+\BEQ{vecteurPointing}
+\overrightarrow{I}=W_a\overrightarrow{v_M}+p_a \ovra{v_a}
+\EEQ
+Le vecteur Intensit\'e est la somme de deux composantes, l'une
+repr\'esentant la densit\'e d'\'energie convect\'ee par l'\'ecoulement,
+l'autre repr\'esentant le flux de l'\'energie de l'onde. En r\'egime harmonique, le flux d'\'energie du vecteur Intensit\'e (\ref{vecteurPointing}), que l'on note $I$, se d\'efinit comme la moyenne temporelle sur une p\'eriode d'oscillations et spatiale sur une section transverse du conduit du flux du vecteur Intensit\'e : $\dsp I=\frac{1}{T}\int_{0}^T\ud t\frac{1}{\vert S\vert}\int_S\ud S \left(\ovra{I}.\ovra{n}\right) $, où $ \dsp T$ d\'esigne la p\'eriode associ\'ee \`a la pulsation harmonique $\omega T=2\pi$ et $S$ d\'esigne la surface de $ \dsp \Gamma_M \times\left[0,2\pi\right]$. L'\'energie se conserve le long d'un tube de rayons. La valeur du flux du vecteur Intensit\'e ne d\'epend pas de l'abscisse de la section transverse choisie. Il ne d\'epend que du mode consid\'er\'e. On d\'efinit le flux d'\'energie du vecteur Intensit\'e pour chaque mode de conduit :
+\BEQ{deuxiemeexpressiondesmodes}
+I^\pm_{mn}=\frac{1}{T}\int_0^T <\overrightarrow{I}^\pm_{mn}.\ovra{n}>,
+\EEQ
+o\`u $\dsp \overrightarrow{I}^\pm_{mn}=\overrightarrow{I}(a^\pm_{mn}\Xi^{\pm}_{mn}(r,\theta,z))$, $\dsp \Xi_{mn}^\pm(r,\theta,z)=\Xi_{rmn}\left(r,\theta\right)e^{i\beta^\pm_{mn}z}$ et $\dsp <>$ d\'esigne la moyenne spatiale sur une section transverse $S$.
+Le flux du vecteur Intensit\'e s'exprime, en distinguant modes \'evanescents et modes propagatifs :
+\begin{enumerate}
+\item Les modes propagatifs incidents (resp. r\'efl\'echis) ont un flux d'\'energie positif (resp. n\'egatif) \`a travers la surface transverse au conduit orient\'e dans le sens des z croissants :
+\begin{displaymath}
+\dsp \forall \left(m,n\right)\in \mathbb{Z}\times\mathbb{N}\text{ tels que }k_{rmn}\leq \left[\frac{k_M}{\sqrt{1-M_M^2}}\right] 
+\end{displaymath}
+\BEQ{definitionetcalculfluxpointingparmodes}
+\left\lbrace
+\begin{array}{l}
+\dsp I^\pm_{mn}= \frac{\rho_M a_M}{2}\left(  k_M \beta^\pm_{mn}-M_Mk_{rmn}^2 \right)\frac{\vert\vert \Xi_{rmn} \vert\vert_{L^2\left(\Gamma_M\times\left[0,2\pi\right]\right)}^2}{S\left(\Gamma_M \times\left[0,2\pi\right]\right)}\vert a_{mn}^\pm \vert^2\\
+\dsp \zeta_{mn}^\pm=\frac{\rho_M a_M}{2}\left(  k_M \beta^\pm_{mn}-M_Mk_{rmn}^2 \right)\\
+\dsp  \dsp \text{signe}\left( \dsp \zeta_{mn}^\pm \right)= \dsp \text{signe}\left(\frac{\partial \omega}{\partial \beta_{mn}^\pm} \right)\\
+\end{array}
+\right.
+\EEQ
+\item Les modes \'evanescents incidents et r\'efl\'echis ont un flux d'\'energie nul \`a travers toute surface transverse du conduit.
+\BEQ{definitionetcalculfluxpointingparmodesnumerodeux}
+\dsp \forall \left(m,n\right)\in \mathbb{Z}\times\mathbb{N}, \ \ k_{rmn} > \left[\frac{k_M}{\sqrt{1-M_M^2}}\right],\ \ \dsp I^\pm_{mn}=0
+\EEQ
+\end{enumerate}
+Les modes de conduit propagatifs sont renormalis\'es pour obtenir un flux d'\'energie unitaire :
+\BEQ{renormalisationfoncbasenumeroun}
+ \dsp \Xi^{renorm \ \pm}_{mn}(r,\theta,z)= \dsp \frac{ \dsp  \Xi_{mn}^\pm(r,\theta,z)}{\sqrt{\vert\zeta_{mn}^\pm \vert\frac{ \dsp \vert\vert \Xi_{rmn} \vert\vert_{L^2\left(\Gamma_M\times\left[0,2\pi\right]\right)}^2}{ \dsp S\left(\Gamma_M\times\left[0,2\pi\right] \right)} }},
+\EEQ
+que l'on note encore :
+\BEQ{renormalisationfoncbasenumerounouimaisdeux}
+\dsp \Xi^{renorm \ \pm}_{mn}(r,\theta,z)=\Xi^{renorm \ \pm}_{rmn}\left(r,\theta\right)e^{i\beta^\pm_{mn}z}
+\EEQ
+On choisit par simplicit\'e de renormer les modes \'evanescents de la m\^eme mani\`ere.
+Toutes les informations sur le flux d'\'energie des modes propagatifs renormalis\'es sont port\'ees par le module du coefficient modal et le signe de la vitesse de phase : 
+\BEQ{intensitemodeadimensionnenumeroun}
+ \dsp \frac{1}{T}\int_0^T <\overrightarrow{I}\left(a^\pm_{mn}\Xi^{renorm \ \pm}_{mn}(r,\theta,z)\right).\ovra{n}>
+=\pm\vert a^\pm_{mn} \vert^2
+\EEQ
+\begin{remark}
+{\rm
+\text{\newline}
+\newline $\bullet$ Le potentiel acoustique harmonique est cherch\'e sous la forme $ \dsp \Re e\left(\phi_a\left(x\right)e^{-i\omega t}\right)$. Si la source $ \dsp f(x)cos(\omega t)$ est \`{a} valeurs r\'{e}elles, par lin\'earit\'e, $ \dsp \Re
+e(\phi_a(x)e^{-i\omega t})$ d\'{e}finit la solution r\'{e}elle associ\'{e}e. Toute variable physique dépendant linéairement du potentiel acoustique s'obtient par la partie réelle de sa valeur complexe associée.
+\newline N\'eanmoins, cette démarche ne se généralise pas aux variables physiques obtenues non linéairement comme le vecteur Intensit\'e  : sa valeur physique n'est pas la partie r\'eelle du produit des variables complexes associ\'ees, mais le produit des parties r\'eelles des variables physiques associ\'ees.
+\newline $\bullet$ Le signe du flux du vecteur Intensit\'e convect\'e et la direction de la vitesse de groupe de l'\'energie sont coh\'erents. La surface \'etant orient\'ee dans le sens des $z$ décroissants, les modes propagatifs incidents (resp. r\'efl\'echis) ont un flux d'\'energie de $-1$ (resp. $1$). Les modes \'evanescents ne v\'ehiculent aucune \'energie.
+\newline $\bullet$ Les fonctions de base sont maintenant dimensionn\'ees. Elles sont homog\`enes \`a un potentiel multipli\'e par l'inverse de la racine carr\'ee d'un flux d'\'energie. Les coefficients modaux sont homog\`enes \`a la racine carr\'ee d'un flux d'\'energie.
+\newline $\bullet$ Par abus de notation, les modes renormalis\'es seront not\'es par la suite comme les anciens modes : le $^{renorm}$ est oubli\'e.
+}
+\end{remark}
+\noindent Preuve de (\ref{definitionetcalculfluxpointingparmodes}), (\ref{definitionetcalculfluxpointingparmodesnumerodeux}) et (\ref{intensitemodeadimensionnenumeroun}) :
+\newline
+L'\'ecoulement \'etant constant, on peut lin\'eariser l'\'equation d'Euler sans l'hypoth\`ese de potentialit\'e.
+\BEQ{linearisationsansecoulement}
+\left\lbrace
+\begin{array}{l}
+\dsp \left[\frac{\partial}{\partial t}+\overrightarrow{v_M}.\ovra{\nabla}\right]\rho_a+\rho_M{\rm div}\left(\ovra{v_a}\right)=0 \\
+\dsp \left[\rho_M\frac{\partial}{\partial t}+\overrightarrow{v_M}.\ovra{\nabla}\right]\ovra{v_a}+\ovra{\nabla} p_a=0 \\
+\dsp p_a = a_M^2 \rho_a \\
+\end{array}
+\right.
+\EEQ
+L'équation (\ref{Egalitedenergie}) est une simple combinaison de ces \'equations. 
+$p_a$ s'exprime en fonction de $\phi_a$ dans le guide d'ondes :
+\BEQ{lienpressionvitesse}
+\left\lbrace
+\begin{array}{l}
+\dsp p_a=-\rho_M(-i\omega\phi_a +
+\overrightarrow{v_M}.\ovra{\nabla} \phi_a) \\
+\dsp p_a = \rho_M a_M i(k_M+M_Mk_z )\phi_a \\
+\end{array}
+\right.
+\EEQ
+Le flux du premier terme du vecteur Intensit\'e donne :
+\BEQ{pointingmoyenneclassique}
+\begin{array}{c}
+\dsp\frac{1}{T}\int_0^T <\R e (p_a) \R e(\ovra{v_a}.\overrightarrow{n})>=
+\dsp \frac{1}{4}\left( <\overline{p_a}v_{az}>+<p_a\overline{v_{az}}>
+                \right) \\
+\dsp = \frac{i}{4}\left(k_z <\overline{p_a}\phi_{a}>-\overline{k_z}<p_a\overline{\phi_{a}}>
+                \right) \\
+
+\dsp = \frac{i}{4}\left(-\rho_M a_M i(k_M+M_M\overline{kz})k_z <\overline{\phi_a}\phi_{a}>-\rho_M a_M i(k_M+M_Mk_z )\overline{k_z}<\phi_a\overline{\phi_{a}}>
+                \right) \\
+\dsp = \frac{\rho_M a_M}{2}\left( k_M\R e\left(k_z\right)+M_M\vert k_z\vert^2
+                \right)<\vert\phi_a\vert^2 > \\
+\end{array}
+\EEQ
+Exprimons maintenant la densit\'e moyenne d'\'energie acoustique par
+section de conduit et par p\'eriode :
+\begin{displaymath}
+\begin{array}{c}
+\dsp \frac{1}{T}\int_0^T<W>= \\
+\dsp \frac{\rho_M}{2}\frac{1}{T}\int_0^T\left( < \R e\left( v_{a(r\theta)}\right)^2>+<\R e\left(
+\dsp                      v_{az}\right)^2 >\right)
+\dsp +\frac{1}{2\rho_M a_M^2}\frac{1}{T}\int_0^T<\R e\left(p_a\right)^2>\\
+\end{array}
+\end{displaymath}
+En moyennant temporellement les parties r\'eelles de nos signaux :
+\begin{displaymath}
+\begin{array}{l}
+\dsp \frac{1}{T}\int_0^T <W> = \frac{\rho_M}{4}\left(<\vert
+v_{a(r\theta)}\vert^2>+ <\vert v_{az} \vert^2 >\right)
++\frac{1}{4\rho_Ma_M^2}<\vert p_a \vert^2> \\
+\dsp \frac{1}{T}\int_0^T <W> = \frac{\rho_M}{4}\left(<\vert
+v_{a(r\theta)}\vert^2>+\vert k_z\vert^2 <\vert \phi_{a} \vert^2 >\right)
++\frac{\rho_M\vert k_M + M_M k_z \vert^2}{4}<\vert \phi_a \vert^2> \\
+\end{array}
+\end{displaymath}
+On exprime le premier terme par une int\'egration par parties :
+\begin{displaymath}
+< v_{a(r,\theta)}^2>=< \ovra{\nabla}_{r,\theta} \phi_a
+ .\overline{\ovra{\nabla}_{r,\theta} \phi_a}>=<{\rm
+ div}_{r,\theta}(\overline{\phi_a}\ovra{\nabla}_{r,\theta}\phi_a ) >-< \overline{\phi_a}\Delta_{r,\theta}\phi_a>
+\end{displaymath}
+Le premier terme int\'egr\'e par parties est nul d'apr\`es la
+condition de r\'eflexion totale au niveau de la paroi. Il vient :
+\begin{displaymath}
+\begin{array}{l}
+\dsp <\vert v_{a(r,\theta)}  \vert^2>=k_r^2<\vert \phi_a
+ \vert^2>=[(k_M+M_Mk_z)^2-k_z^2]<\vert \phi_a  \vert^2> \\
+\end{array}
+\end{displaymath}
+D'où l'expression finale de l'\'energie acoustique moyenn\'ee :
+\BEQ{moyenneenergieacoustique}
+\frac{1}{T}\int_0^T<W>=\frac{\rho_M\left(k_r^2+\vert k_z\vert^2 +\vert k_M+M_M k_z \vert^2\right)}{4}<\vert \phi_a \vert^2>
+\EEQ
+La moyenne spatiale et temporelle du flux du vecteur Intensit\'e
+s'obtient en sommant les deux \'equations (\ref{moyenneenergieacoustique})
+et (\ref{pointingmoyenneclassique}) :
+\BEQ{jauriapaspensequejautriaalaspecifier}
+\begin{array}{l}
+\dsp \frac{1}{T}\int_0^T <\overrightarrow{I}.\ovra{n}> = \frac{1}{T}\int_0^T <p_a \ovra{v_a}.\ovra{n} >+
+ \frac{1}{T}\int_0^T <W>\ovra{v_M}.\ovra{n} \\
+\dsp  \frac{1}{T}\int_0^T <\overrightarrow{I}.\ovra{n}> = \frac{\rho_M a_M}{2}\left( k_M\R e(k_z)+M_M\vert k_z\vert^2 )
+                \right)<\vert\phi_a\vert^2 > \\
+\dsp -\frac{\rho_Ma_M
+M_M\left(k_r^2+\vert k_z\vert^2 +\vert k_M+M_M k_z
+    \vert^2\right)}{4}<\vert \phi_a \vert^2> \\
+\end{array}
+\EEQ
+La relation de dispersion (\ref{eqsimplipotacpropa}) nous permet de simplifier l'expression en distinguant modes propagatifs et modes \'evanescents.
+Il vient (\ref{definitionetcalculfluxpointingparmodes}). La renormalisation (\ref{renormalisationfoncbasenumeroun}) donne un flux d'\'energie unitaire pour les modes propagatifs :
+\BEQ{calculintensitemodeadimensionne}
+\begin{array}{c}
+ \dsp \frac{1}{T}\int_0^T <\overrightarrow{I}(a^\pm_{mn}\Xi^{renorm \ \pm}_{mn}(r,\theta,z)).\ovra{n}>=\\
+\dsp \frac{ \dsp \rho_M a_M}{ \dsp 2}\left(\beta_{mn}^\pm k_M-M_M k_{rmn}^2 \right)< \dsp \vert \frac{ a^\pm_{mn} \Xi_{mn}^\pm(r,\theta,z)}{ \dsp \sqrt{\vert
+ \frac{ \dsp \rho_M a_M}{2} \dsp \left(\beta_{mn}^\pm k_M-M_M k_{rmn}^2 \right)< \dsp \vert \Xi_{mn}^\pm(r,\theta) \vert^2 >  \vert}}
+ \vert^2 > \\
+\dsp \frac{1}{T}\int_0^T <\overrightarrow{I}(a^\pm_{mn}\Xi^{renorm \ \pm}_{mn}(r,\theta,z)).\ovra{n}>=signe\left(\beta_{mn}^\pm k_M-M_M k_{rmn}^2 \right)\vert a^\pm_{mn} \vert^2\\
+\dsp \frac{1}{T}\int_0^T <\overrightarrow{I}(a^\pm_{mn}\Xi^{renorm \ \pm}_{mn}(r,\theta,z)).\ovra{n}>=\pm \vert a^\pm_{mn} \vert^2\\
+\end{array}
+\EEQ
+\subsection{Adimensionnement et Coefficients Modaux}\label{modessectionsub62}
+\noindent Par commodit\'e de calcul, les valeurs physiques sont toutes adimensionn\'ees par la valeur canonique homog\`ene correspondante, form\'ee \`a partir des valeurs de r\'ef\'erence de l'\'ecoulement porteur \`a l'infini et du rayon caract\'eristique de la nacelle : $\rho_\infty$, $a_\infty$ et $R$. 
+\newline Les paragraphes (\ref{mecaflusubsectionsub133}) et (\ref{acoussurecoulsubsectionsub163}) de la partie (\ref{ecoulementpotentielpart}) reviennent plus pr\'ecis\'ement sur l'adimensionnement des variables physiques fluides (de l'\'ecoulement porteur) et acoustiques. 
+\newline Ici pour le potentiel acoustique et les coefficients modaux renorm\'es :
+\BEQ{adimensionnementcoefmodalpotentiel}
+\dsp a_{mn}^{\pm *}= \dsp \frac{ \dsp a_{mn}^\pm}{ \dsp \sqrt{ \dsp \rho_\infty a_\infty^3 \dsp } \dsp },\ \dsp \phi_a^*= \dsp \frac{ \dsp \phi_a}{ \dsp R a_\infty}
+\EEQ
+\newline
+Le probl\`eme \'etant lin\'eaire, il suffit de propager une unique fois chaque mode avec une intensit\'e arbitraire. Toute solution du probl\`eme acoustique globale pourra \^etre reconstruite par lin\'earit\'e. Le coefficient modal adimensionn\'e est choisi par simplicit\'e \'egal \`a l'unit\'e $\dsp a_{mn}^{\pm *}=1$ : ce choix correspond \`a une intensit\'e adimensionn\'ee unitaire (apr\`es renormalisation). Il est important d'expliciter la d\'emarche de retour \`a une valeur physique M\`etre-Kilo-Seconde-Amp\`ere exploitable.
+L'intensit\'e en d\'ecibel se d\'efinit :
+\BEQ{intensiteendb}
+ \dsp I_{dB}=10{\rm log}_{10}\left(\frac{I_{mn}^\pm}{I_{ref}}\right),
+\EEQ
+o\`u $ \dsp I_{ref}$ correspond \`a l'intensit\'e d'une onde plane de pression de
+r\'ef\'erence $ \dsp p_{ref}=2.10^{-5} Pa$, de densit\'e volumique de r\'ef\'erence
+$ \dsp \rho_{ref}=1.2 kg.m^{-3}$, et de vitesse du son de r\'ef\'erence $ \dsp a_{ref}=340 m.s^{-1}$ :
+\BEQ{defintensitereference}
+ \dsp I_{ref}=\frac{p_{ref}^2}{\rho_{ref} a_{ref}}
+\EEQ
+Explicitons la conversion des r\'esultats adimensionn\'es aux r\'esulats dimensionn\'es MKSA correspondant \`a
+un coefficient modal physique d'une intensit\'e de 100 dB :
+\BEQ{coefmodepour100dB}
+\begin{array}{c}
+\dsp I_{dB}=10{\rm log}_{10} \left(\frac{I_{mn}^\pm}{I_{ref}}
+                             \right) \\
+\end{array}
+\EEQ
+L'intensit\'e $ \dsp I_{mn}^\pm$ du mode $mn$ est directement reli\'e au coefficient modal :
+\BEQ{coefficientmodaleetenergie}
+\begin{array}{c}
+\dsp \sqrt{I_{mn}^\pm}=\vert a^\pm_{mn}\vert=\sqrt{\frac{p_{r}^2}{\rho_{ref} a_{ref}}{\rm exp}\left(\frac{I_{dB}}{10}{\rm log}(10)\right)}
+\end{array}
+\EEQ
+Le taux de conversion s'exprime :
+\BEQ{tauxdeconversion}
+ \dsp \left\lbrace
+\begin{array}{l}
+ \dsp  \phi_a\left(I_{dB}=100\right)=\frac{\dsp R}{\dsp\sqrt{ \dsp \rho_\infty a_\infty }}\sqrt{ \dsp \frac{ \dsp p_{r}^2}{ \dsp \rho_{ref} a_{ref}}{\rm exp}\left( \dsp \frac{ \dsp I_{dB}}{ \dsp 10}{\rm log}(10)\right)} 
+\dsp \phi_a^*\dsp \left(a_{mn}^*=1\right)\\
+\dsp  p_a\left(I_{dB}=100\right)=\dsp \sqrt{ \dsp \rho_\infty a_\infty} \dsp \sqrt{ \dsp \frac{ \dsp p_{r}^2}{ \dsp \rho_{ref} a_{ref}}{\rm exp}\left( \dsp \frac{ \dsp I_{dB}}{ \dsp 10}{\rm log}(10)\right)}\dsp  p_a^*\dsp \left(a_{mn}^*=1\right)\\
+\end{array}
+\right.
+\EEQ
+\begin{remark}
+{\rm
+\text{\newline}
+\newline
+Le retour aux valeurs physiques MKSA non invariantes par changement d'\'echelle n'est possible que lorsque les param\`etres \`a l'infini $ \dsp \rho_\infty$ et $ \dsp a_\infty$ sont connus (ces coefficients dépendent de la vitesse de l'avion, de l'altitude, de la temp\'erature, ...). Dans le cas d'un \'ecoulement nul, $ \dsp \rho_\infty=\rho_{ref}=1.2 kg.m^{-3}$ est la densit\'e volumique de r\'ef\'erence pour l'air et $ \dsp a_\infty=a_{ref}=340 m.s^{-1}$ est la vitesse du son de r\'ef\'erence dans l'air. Le rapport de proportionnalit\'e entre la pression acoustique physique correspondant \`a un mode de 100 d\'ecibels et la pression acoustique adimensionn\'ee est alors de $ \dsp \sqrt{p_{ref}^2 exp\left( \dsp \frac{ \dsp I_{dB}}{ \dsp 10}{\rm log}(10)\right)}=2$. 
+}
+\end{remark}
+\noindent Preuve de (\ref{tauxdeconversion}) :
+ \newline
+\begin{displaymath}
+ \dsp \begin{array}{l}
+ \dsp \phi_a(a_{mn}^+=100dB)=Ra_\infty\phi_a^*\left(a_{mn}^{+*}= \dsp  \frac{ \dsp a_{mn}^\pm\left(100dB\right)}{ \dsp \sqrt{ \dsp \rho_\infty a_\infty^3 } \dsp }\right)\\
+\end{array}
+\end{displaymath}
+Et par lin\'earit\'e :
+\begin{displaymath}
+ \dsp \begin{array}{l}
+\dsp  \phi_a(a_{mn}^+=100dB)= \dsp \frac{ \dsp R}{ \dsp \sqrt{ \dsp \rho_\infty a_\infty} \dsp }\sqrt{ \dsp \frac{ \dsp p_{r}^2}{ \dsp \rho_{ref} a_{ref}}{\rm exp}\left( \dsp \frac{ \dsp I_{dB}}{10}{\rm log}(10)\right)}\phi_a^*\left(a_{mn}^{+*}= 1\right) \\
+\end{array}
+\end{displaymath}
+La m\^eme d\'emarche pour la pression acoustique donne :
+\begin{displaymath}
+ \dsp \begin{array}{l}
+\dsp p_a(a_{mn}^+=100dB)= \dsp \rho_\infty a_\infty^2 p_a^*\left(a_{mn}^{+*}= \frac{ \dsp a_{mn}^\pm\left(100dB\right)}{ \dsp \sqrt{ \dsp \rho_\infty a_\infty^3  } \dsp }\right)\\
+\end{array}
+\end{displaymath}
+Et par lin\'earit\'e :
+\begin{displaymath}
+ \dsp \begin{array}{l}
+\dsp p_a(a_{mn}^+=100dB)= \dsp \sqrt{ \dsp \rho_\infty a_\infty}\sqrt{ \dsp \frac{ \dsp p_{r}^2}{ \dsp \rho_{ref} a_{ref}}{\rm exp}\left( \dsp \frac{ \dsp I_{dB}}{ \dsp 10}{\rm log}(10)\right)}p_a^*\left(a_{mn}^{+*}= 1\right)\\
+\end{array}
+\end{displaymath}

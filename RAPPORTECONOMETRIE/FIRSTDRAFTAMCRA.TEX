@@ -1,0 +1,362 @@
+\chapter[Modélisation affine pour l'analyse du risque de crédit]{Modélisation affine pour l'analyse du risque de crédit}\label{Modélisation affine pour l'analyse du risque de crédit}
+\section{Introduction}
+%\begin{center}
+%\epsfig{file=ddmgeometrienumerounfinal.eps,height=7.1cm,width=14.50cm}
+%\begin{displaymath}
+%\begin{array}{ll}
+%\dsp \textbf{1} : & \text{ zone de cr\'eation du bruit a\'erodynamique} \\
+%\dsp \textbf{2} : & \text{ zone de lin\'earisation} \\
+%\dsp \textbf{3} : & \text{ zone de propagation lin\'eaire sur un \'ecoulement uniforme} \\
+%\end{array}
+%\end{displaymath}
+%\end{center}
+La mesure des risques et la gestion des risques est l'un des facteurs clés de la concurrence entre banques.Les différents risques bancaires peuvent aujourd’hui être classés en cinq catégories :
+\begin{itemize}
+\item risque de crédit: risque lié à un changement de solvabilité ou au défaut d'un emprunteur, que ceux-ci résultent d'une évolution particulière ou d'évènements touchant le pays de la contrepartie.
+\item risque de contrepartie: risque de crédit lié à une transaction de marché avec un tiers pour lequel le montant de l'exposition peut être affecté par une évolution des paramètres de marché.
+\item risque de marché et de liquidité: risque lié aux variations des paramètres de marché (taux de change, taux d'intérêt ...etc) et à l'illiquidité des actifs.
+\item risque opérationnel: risque de perte lié à une défaillance d'un process métier ou une erreur humaine.
+\item risque de refinancement et de gestion des actifs/passifs : risque lié à l'incapacité d'une banque d'honorer ces engagements.
+\end{itemize}
+\newline La crise financière actuelle a mis en évidence l'importance d'une bonne gestion de ces différents risques au sein des institutions financière. De ce fait la modélisation du risque revêt donc d'un intérêt majeur afin d'une part de mesurer le risque de crédit contenu dans les différents portefeuilles et d'autre parts pour évaluer le prix des dérivés de crédit.
+\newline De plus la réglementation de Bale2 a renforcé les exigences réglementaires en terme d'évaluation du risque de crédit ce qui oblige les établissements financiers à évaluer avec beaucoup plus de finesse leur risque de contrepartie. Effectivement, l'optimisation de l'allocation des fonds propres dépend fortement de la justesse de leur modélisation du risque de crédit.
+\newline L'objectif de cet article est de décrire un modèle économétrique robuste permettant de valoriser un portefeuille d'obligations de sociétés et de fournir un meilleur calcul de la VaR de crédit qui est un indicateur de risque très suivi par les banques. Ce modèle va aussi permettre de combler les lacunes des modèles actuellement utilisés tel que les modèle mono et multifactoriels dans l'industrie financière. Ce sont principalement:
+\begin{itemize}
+\item Non prise en compte de la corrélation entre les taux sans risque et les défauts, alors que les taux évoluent de manières stochastiques.
+\item Une corrélation de défauts généralement grossière et qui ne prend pas en compte la spécificité de chaque firme et la durée des contrats.
+\item l'inefficience des outils basés sur les modèles de « Merton » qui ne prennent pas en compte l'information contenue dans le prix des obligations.
+\item la relation entre la perte en cas de défaut (LGD) et le taux de recouvrement est souvent négligée.
+\end{itemize}
+\newline Ce nouveau modèle va ainsi s'appuyer sur deux facteurs. Un premier facteur spécifique à chaque firme comme par exemple une décision d'investissement et un deuxième facteur systémique qui corrèle toutes les obligations du portefeuille. Ces deux facteurs suivent tous un processus autorégressif composé (CAR).
+\newline La première partie de cet article va décrire le nouveau modèle affine en présentant les hypothèses de base du modèle, un zoom sera ensuite fait sur le modèle affine en temps continue et le modèle sera comparé à différents approches alternatives du défaut de corrélation.
+\newline Dans la deuxième partie, nous allons présenter la distribution jointe des durations. La troisième partie va décrire le modèle de pricing et dans la quatrième partie nous présenterons des exemples numériques et enfin dans la cinquième nous étudierons des extensions de la perte en cas de défaut (LGD).
+
+\section{Description du modèle affine}\label{descmodaff}
+\noindent Nous présentons dans cette section la méthodologie du modèle,les hypothèses et les différentes approches. 
+\subsection{Méthodologie du modèle}
+L'objectif de l'utilisation des modèles affines est de pouvoir spécifier des facteurs afin de modéliser la corrélation des défauts existant dans les portefeuilles de créances détenus par les banques. Cette partie va décrire les différentes étapes qui grâce aux modèles affines en temps discret vont permettre d'étudier la relation entre les spreads de crédits observés et le prix des obligations.Les étapes de la méthodologie sont:
+\begin{itemize}
+\item définir les facteurs spécifiques aux entreprises et globaux qui permettent de capturer toute l'information nécessaire.
+\item spécifier le facteur d'escompte stochastique.
+\item définir la fonction d'intensité de survie conditionnelle aux facteurs.
+\item calculer le prix des obligations risqués et des dérivés de crédit avec la loi conditionnelle des facteurs.
+\end{itemize}
+
+\subsection{Hypothèses du modèle}
+Pour étudier ce modèle, nous allons considérer un portefeuille composé de n obligations d'entreprises différentes ayant une même date de naissance. Cette date de naissance peut être par exemple la date de création de l'entreprise.
+\newline On va noter $\tau_i , i=0.......,n$ la date de défaut de l'entreprise i ou encore sa durée de vie.
+
+\newline {\bf{Hypothése1:}} Les facteurs spécifiques aux entreprises ($Z_i$) et les facteurs globaux ou systématiques ($Z$) sont indépendant, markovien et leur transition sont telles que:
+\begin{itemsize}
+\item $E[exp(u'Z_{t+1}|Z_t)]=exp[a_{g(}u)' Z_t + b_{g}(u)]$ 
+
+\item $E[exp(u'Z^{i}_{t+1}| Z^{i}_t]  = exp[a_{c}(u)' Z^{i}_t + b_{c}(u)]$
+\end{itemize}
+\newline u est une variable déterministe et les distributions marginales $Z^{i}_t$ sont identiques.
+Ces deux facteurs ($Z$) et ($Z^{i}$) suivent un processus autorégressif composé (CAR) et leur distributions conditionnelles sont définies soit par des transformées de Laplace , soit par des fonctions de génératrices de moments, restreint au paramètre réel u.
+\newline D 'après cette hypothèse, la population est supposée homogène, c'est à dire que les distributions des facteurs spécifiques sont indépendantes des entreprises. En d'autre termes, les facteurs sont propres aux entreprises et leur distribution sont communes à toutes.
+\newline De  plus il faut noter que les facteurs n'existent que jusqu'à la date de défaut alors les facteurs généraux sont définis avant et après. Ceci explique l'indépendance entre les facteurs spécifiques et systématiques.
+
+\newline {\bf{Hypothése2:}} les dates de défaut $\tau_i , i=0.......,n$ sont indépendantes conditionnellement aux facteurs (Z) et (Zi). L'intensité de survie conditionnelle est telle que:
+\newline	$P[\tau_i>t+1|\tau_i>t, Z,Zi,i=1,.....,n]= P[\tau_i>t+1|\tau_i>t, Zt+1,Zi_{t+1}]
+					 = exp(-(\alpha_{t+1} + \beta'_{t+1} Z_{t+1}+\gamma'_{t+1}Zi_{t+1}))
+					 = exp(-\lambda'_{t+1})$	 pour tout t
+
+\newline avec  $\lambda't= \alpha_t + \beta'_t Z_t + \gamma'_t Zi_t$ intensite de survie et  \alpha_t,  \beta'_t , \gamma'_t des fonctions de l'information contenu dans les facteurs  $Z_t$ et $Zi_t$. Ce sont aussi des paramètres de sensibilités.
+
+\newline Cette hypothèse implique des conditions d'une part sur la distribution des paramètres de sensibilités et d'autres part sur les facteurs explicatifs.Ainsi l'intensité se survie dépend à la fois des paramètres  de sensibilité \alpha_t,  \beta'_t , \gamma'_t et des facteurs $Z_t$ et $Zi_t$. Les paramètres \alpha_t,  \beta'_t , \gamma'_t permettent par exemple de capturer l'information sur la maturité des entreprises car le taux de survie d'une vieille entreprise n'est pas le même que celui d'une nouvelle entreprise. Les paramètres $Zt$ et $Zi_t$ vont fournir les informations sur la conjoncture économiques et sur les choix stratégiques de chaque entreprise.
+
+\subsection{Approche en temps continu}
+Le modèle affine décrit précédemment est le plus utilisé aujourd'hui en fiance car il est facile à implémenter, c'est un modèle à temps discret. L'approche en temps continu a été essentiellement construit pour étudier des process de saut, des process d'Ornstein-Uhlenbeck et des process CIR. Cette approche est moins flexible que le temps discret, c'est l'un de ces inconvénients majeures. Dans cette partie nous allons décrire l'approche en temps continu et présenter ces inconvénients.
+
+\subsubsection{Description}
+En temps continu les paramètres $Z_t$ et $Z^{i}_t$ doivent aussi suivre un process en temps continu , alors que le temps de défaut peut prendre n'importe quelle valeur positive. Les hypothèses du modèle affine s'écrivent comme suit:
+
+\newline {\bf{Hypothése1:}} un facteur en temps continu est affine si la transforme de Laplace conditionnelle est une fonction exponentielle affine de la valeur courante et pour tout horizon.
+
+\begin{displaymath}	$E(exp(u'Z_{t+h}|Z_t]=exp[(a_{g}(u,h)'Z_t+ b_{g}(u,h)]$ pour tout h \in(0,8)
+\end{displaymath}
+\newline {\bf{Hypothése2:}} l'intensité de survie dans le cas continu s'écrit:
+
+\begin{displaymath} $\lambda_t=lim 1/dt (P[t<\tau_i>t+dt,Z,Zi])$
+\end{displaymath}
+avec	$\lambdat=\alpha_t + \beta_t Z_t + \lambda_t Zi_t$ ou $\alpha_t,\beta_t,\lambda_t$  sont des paramètres de sensibilités.
+
+\subsubsection{Flexibilité du modèle continu}
+Le gros inconvénient du modèle affine en temps continu est son manque de flexibilité et sa complexité dans son implémentation.
+\newline {\bf{Manque de flexibilité des process affine en temps continu:}}
+En temps discret les différents facteurs à analyser doivent suivre un processus autorégressif composé, par contre en temps continu ils doivent suivre un processus affine en temps continu afin de pouvoir leur appliquer le modèle en temps continu. Cette restriction tient du fait que tout facteur qui suit un processus affine continu, sa discrétisation est un (Car) , ainsi le modèle affine à temps discret peut être appliquer, alors que la réciproque n'est pas vrai.
+\newline Par exemple, dans le cas des processus Gaussien, des processus affine en temps continu sont des processus de type Ornstein-Uhlenbeck, leur discrétisation permet d'obtenir des processus de type VAR(1) qui sont bien des processus CAR dont l'équation est:
+\begin{displaymath}	$Z_t=FZ_{t-1} + µ + \epsilon_t, \epsilon_t IIN(0,\sigma^2)$.
+\end{displaymath}
+\newline La seule restriction est que la matrice $F=exp(A)$  soit strictement positive, les valeurs propres soient des réels et la fonction de corrélation des facteurs est une combinaison linéaire des facteurs.Les processus gaussiens (Car) tel que le bruit blanc gaussien, le system récursif gaussien et le processus gaussien avec des valeurs propres complexes n'ont pas de contreparties en temps continu, ainsi le modèle affine en temps continu ne peut leur être appliquer.
+\newline {\bf{Manque de flexibilité pour spécifier l'intensité de défaut:}}
+\newline L'approche en temps continu suppose implicitement l'existence d'une infinitésimale intensité de défaut, et par conséquence que le temps de défaut suit une distribution continue. Ce qui n'est pas compatible avec l'idée que le temps de défaut correspond plus à la date de payement de la dette comme dans le modèle de Merton et de ce fait doit suivre un modèle en temps discret.
+
+\subsection{Approche alternatif de la corrélation de défaut}
+Il existe d'autres approches en plus du modèle affine pour modéliser le temps de défaut d'une entreprise.
+\begin{itemize}
+\item la première approche est de spécifier directement la distribution jointe des temps de défaut de chaque entreprise. Cette approche s’appuie sur la théorie des copules qui va permettre d'étudier la dépendance entre la durée de vie des obligations en fonction d'une maturité donnée.
+
+\item la deuxième approche est basée sur l'interprétation de la fonction de survie introduit par Bremaud.
+
+\begin{displaymath} $P[\tau_i>t] = exp[\lambda_udu]
+		 = exp[-\lambda^i_udu<Ei]$
+\end{displaymath}
+où Ei est une variable exponentielle indépendante de l'intensité stochastique.
+\end{itemize}
+\section{Distribution jointe des duration}\label{distjoiteduration}
+Dans ce chapitre, nous allons étudier la distribution des durations et leurs variations dans le temps. On va considérer dans un premier temps des sensibilités dépendant de l'historique et dans un second  temps au cas particulier des sensibilités constantes.
+
+\subsection{Cas général}
+Sous les hypothèses 1 et 2 du modèle affine, il est possible de calculer explicitement la fonction de survie jointe conditionnelle, dépendant de l'information disponible à la date t. Quand cette information est exhaustive, c'est à dire disponible dans les valeurs passées et présentes des facteurs spécifiques, la fonction de survie conditionnelle peut être définie pour n'importe quel sous ensemble S de la population à risque (PaR), c'est à dire un sous ensemble PaRt d'entreprise non défaillantes à la date t.
+\begin{displaymath}
+$S^{c}_t (h_i,i\in S)=P[\tau_i >t+h_i, i \in S|PaR_t, (\tau_i |j \in PaR'_t),Z_t,Z^{j}_t, j=1,...n]$
+\end{displaymath}
+avec $PaR_t = {i \tau_i >t}$ la population à risque et $PaR'_t$ son complément
+
+\newline {\bf{Proposition .4}} La fonction de survie conditionnelle est égale a :
+\begin{displaymath}
+$S^{c}_t (h_i,i\in S)=exp[-\sum_{k = 1}^{h'}n_{t+k} \alpha_{t+k}]
+											\left *exp[B^{-[n][\beta]}_{g}(t,t+h) + A^{-[n][\beta]}_{g}(t,t+h)'Z_t]\right
+											\left *exp[\sum{i \in S)B^{-[\gamma]}_{c}(t,t+h_i)\right
+											\left + \sum{i \in S)A^{-[\gamma]}_{c}(t,t+h_i)'Z^{i}_{t}]\right$
+
+\end{displaymath}
+Avec pour toute suite déterministe $[u] = (u_t)$, les opérateurs $A[u]$ et $B[u]$
+sont recursivement definis par :
+\begin{enumerate}
+	\item $A^{[u]}(t,t+h)=a[u_{t+1} + A^{[u]}(t+1,t+h)]$.
+	\item $B^{[u]}(t,t+h)=b[u_{t+1} + A^{[u]}(t+1,t+h)]+B^{[u]}(t+1,t+h)$.
+	\item $A^{[u]}(t,t)=0$ \forall t, \forall h >0.
+	\item $B^{[u]}(t,t)=0$ \forall t, \forall h >0.
+	\item $h'=max_{i \in S}{h_i}$.
+\end{enumerate}
+la suite déterministe $[n]$ définie par $n_{t+k}={h_{i}\geq k, i \in S}$; $[n][\lambda]=n_{t}\lambda_t$;
+
+\newline Cette première proposition montre que la fonction de survie conditionnelle est facilement calculable numériquement à partir d'équations récursives en temps discret. Cette implémentation numérique doit être comparée avec l'utilisation des modèles affines en temps continu. En temps continu, il est nécessaire de résoudre numériquement des équations de Riccati également à partir d'équations récursives en temps discret. Mais ces itérations approximatives sont faites à une échelle de temps beaucoup plus petite et donc avec un nombre beaucoup plus important d'itérations. De plus, ces systèmes récursifs sont des approximations et ne sont en général pas compatibles avec les conditions d'absence d'opportunité d'arbitrage.
+
+\newline La proposition peut être utilisée pour dériver la distribution des durations données. Elle peut également être utilisée pour dériver la distribution du premier défaut d'un panier de créances. Ces calculs sont nécessaires pour les dérivés crédit actuellement échangés sur le marché.
+
+\subsection{Cas d'un unique émetteur} 
+Considérons une entreprise émettant une obligation, notée i. La fonction de survie conditionnelle spécifique à cette entreprise est egale à  $P[i > t + h_{ji} > t;Z_t;Z^{i}_t ]$.
+\newline Elle correspond à la fonction de survie jointe évaluée avec S = {i}, hi = h et nt+k = 1 pour 1\leq k \leq  h.
+
+\newline {\bf{Corollaire .3}}
+\begin{displaymath}
+$\left P[\tau_i >t+h|\tau_i >t, Z_t,Z^{i}_t]=exp[-\sum_{k = 1}^{h}n_{t+k} \alpha_{t+k} + B^{-[\beta]}_{g}(t,t+h)\rigth
+																						\left + A^{-[\beta]}_{g}(t,t+h)'Z_t] * exp[B^{-[\gamma]}_{c}(t,t+h_i)\right
+																						\left + A^{-[\gamma]}_{c}(t,t+h_i)'Z^{i}_{t}]\right$
+\end{displaymath}
+
+\subsection{Cas d'un panier first-to-default} 
+
+\newline Considérons maintenant un panier first-to-default pour un ensemble S d'émetteurs non défaillants en t et   S =minfi2SPaRtg i. La fonction de survie conditionnelle spécifique à cette entreprise
+est égale à : $P[  S > t + hjPaRt; S  PaRt;Z_t;Zi_t ; i 2 S]$. Elle correspond à la fonction de survie jointe évaluée avec hi = h; \forall i \in S et $n_t+k = n =Card (S)$ pour 1\leq k \leq h.
+
+\newline {\bf{Corollaire .4}}
+\begin{displaymath}
+$\left P[\tau^{*}_S > t+h|PaR_t, S\subseteq Par_t, Z_t, Z^{i}_t]=exp[-n\sum_{k = 1}^{h}n_{t+k} \alpha_{t+k}\right
+																																\left + B^{-n[\beta]}_{g}(t,t+h)\right +\left 	A^{-n[\beta]}_{g}(t,t+h)'Z_t] * exp[nB^{-[\gamma]}_{c}(t,t+h_i) + A^{-[\gamma]}_{c}(t,t+h_i)'Z^{i}_{t}]\right$
+\end{displaymath}
+Avec $n[\beta]=n\beta_{t+k}$
+
+\newline Même si les fonctions de survie données dans la proposition  et les corollaires .3 et .4 semblent lourds, ils sont facile à implémenter à partir d'équations récursives. On remarque que la distribution des dates de premier défaut ne dépend pas des états individuels des entreprises.
+\newline Cela signifie que la probabilité de premier défaut d'un panier qui contient des entreprises en difficulté financière est identique à celle d'un autre panier où aucune des entreprises n'est en difficulté si l'état moyen est le même. C'est une conséquence directe de l'hypothèse d'homogénéité.
+
+\subsection{Cas particulier avec sensibilités constantes}
+
+Dans le cas général de l'hypothèse .4, la probabilité de survie conditionnelle d'une entreprise i émettant une obligation varie avec t à cause de l'évolution stochastique des facteurs $Z_t$ et $Zi$
+t mais aussi à cause de l'âge déterministe modélisé par les coefficients de sensibilités. 
+
+\newline Nous traitons ici le cas particulier dans lequel ces coefficients sont constants. Dans ce cas,les corollaires .2, .3 et .4 permettent d'obtenir des expressions fermées des probabilités conditionnelle de survie.
+
+\newline {\bf{Corollaire .5 }}Quand les sensibilités aux facteurs sont constantes, on a :
+\begin{displaymath}
+$P[\tau_i >t+h|\tau_i > t,Z_t,Z^{i}_{t}]=\left exp[-h\alpha + \sum{j=0}^{h-1}b_{g,-\beta}[a^{oj}_{g-\beta}(0)]\right +
+\left [a^{oj}_{g-\beta}(0)'Z_t] + \sum{j=0}^{h-1}b_{c,-\gamma}[a^{oh}_{c-\gamma}(0)]]\right
+\left * exp[a^{oh}_{c-\gamma}(0)'Z^{i}_t]\right $
+\end{displaymath}
+\begin{displaymath}
+$P[\tau^{*}_i >t+h|PaR_t,S\subseteq Par_t,Z_t,Z^{i}_{t},i\in S]=\left exp[-nh\alpha+\sum{j=0}^{h-1}b_{g,-\beta}[a^{oj}_{g-n\beta}(0)]\right
+\left +[a^{oh}_{g-n\beta}(0)'Z_t]] 
+\right * 
+\left exp[n\sum{j=0}^{h-1}b_{c,-\gamma}[a^{oj}_{c-\gamma}(0)]+ a^{oh}_{c-\gamma}(0)'\sum{i\in S}Z^{i}_t]\right$
+\end{displaymath}
+
+\newline L'expression impliquant Ts montre les effets des facteurs généraux et spécifiques. La probabilité de survie dépend du nombre n d'entreprises dans le panier et de la moyenne des Zit . Un point intéressant est la façon dont le nombre d'entreprises n apparaît dans le coefficient de translation des fonctions ag et bg.
+
+\section{Structure à terme affine et risque de crédit}
+
+La distribution jointe des facteurs et des défauts est adaptée pour faire de la prévision, mais reste insuffisante pour analyser la Var de crédit. Pour cela elle doit être compléter en spécifiant la distribution du risque neutre ou le facteur d’escompte stochastique. En effet , il n’est pas réaliste d’étudier indépendamment la structure à terme de taux et le risque de défaut.Dans cette partie, nous allons spécifier le facteur d’escompte stochastique, calculer le prix des Zéro coupons, discuter des facteurs observables et déterminer le creditVar.
+
+\subsection{Spécification du facteur escompte stochastique}
+Le facteur d’escompte stochastique est la base de valorisation de tout produit dérivé ayant un sous jacents sur les facteurs et les temps de défaut. Il est utilisé pour prendre en compte l’effet du temps et l’effet incertitude notamment pour valoriser les obligations zero coupons.
+
+\newline Le prix à t d’un produit dérive est : $Ct(g,h)= Et(M_t,t+1……..M_t+h-1,t+hgt+h)$.
+\newline Où Et est l’espérance conditionnelle historique à la connaissance des valeurs actuelles et passées des variables d’état,la connaissance de la population à risque et les dates de défauts des autres entreprises.
+\newline Mt représente le facteur d’actualisation ;
+
+\newline {\bf{Hypothèse :}}$Mt,t+1 =exp(V_0 + V’Z_{t+1})$
+
+\newline Il aurait été possible d’introduire les facteurs spécifiques $Z^{i}_t$ dans l’expression du facteur d’escompte stochastique, mais cela aurait compliqué son interprétation puisque lorsqu’une entreprise fait faillite ses facteurs spécifiques ne sont plus définis et donc dépendent du temps. De plus, en introduisant les facteurs spécifiques $Z^{i}_t$, on introduit aussi la notion de correction du risque par rapport au nombre et à la structure des entreprises, ce qui n’est pas  dans le périmètre de l’étude.
+
+
+\subsection{Calcul du prix des obligations}
+
+\subsubsection{Bond du trésor zéro coupon}
+
+\newline Le prix des zéro coupons bonds du trésor est donné par la formule suivante :
+\begin{displaymath}
+$B(t,t+h)=E_t[\prod{j=0}^{h-1}M_{t+j,t+j+1}]
+				 =E[exp(\nu_{0}h + \nu'\sum{j=1}^{h}Z_{t+j})|Z_t]
+				 =exp[\nu_{0}h + \sum{j=1}^{h}b_{g,\nu}[a^{oj}_{g,\nu}(0)] + a^{oh}_{g,\nu}(0)'Z_t]$
+\end{displaymath}
+				 
+le rendement géométrique r(t,t+h) est égal à:
+\begin{displaymath}
+$r(t,t+h)=-1/h log[B(t,t+h)]
+         =-\nu_{0}- 1/h \sum{j=0}^{h-1}b_{g,\nu}[a^{oj}_{g,\nu}(0)]-1/h a^{oh}_{g,\nu}(0)'Z_t]$
+\end{displaymath}
+
+
+\subsubsection{Obligations risqués zéro coupon avec taux de recouvrement nul}}
+
+\newline Le prix des obligations risqués est donné par la formule suivante :
+\begin{displaymath}
+$C_{i}(t,t+h)=E_{t}[1_{\tau_i >t+h}\prod{j=0}^{h-1}M_{t+j,t+j+1}]
+             =E[exp(\sum{j=1}^{h}[\alpha_{t+j}+ \beta'_{t+j}Z_{t+j}+\gamma'_{t+j}Z^{i}_{t+j}])exp(\nu_{0}h+\nu'\sum{j=1}^{h}Z_{t+j})|Z_t]
+             =E[exp(\nu_{0}h-\sum{j=1}^{h}\alpha_{t+j} + \sum{j=1}^{h}[\nu-\beta_{t+j}]'Z_{t+j}-\sum{j=1}^{h}\gamma'_{t+j}Z^{i}_{t+j})|Z_t]
+             =exp[\nu_{0}h-\sum{j=1}^{h}\alpha_{t+j}]*exp[B^{\nu-[\beta]}_g (t,t+h) + A^{\nu-[\beta]}_g (t,t+h)'Z_t]
+             *exp[B^{-[\gamma]}_c (t,t+h) + A^{-[\gamma]}_c (t,t+h)'Z^{i}_t]$
+\end{displaymath}            
+\newline le rendement géométrique c(t,t+h) est égal à:
+\begin{displaymath}
+$c(t,t+h)=-1/h log(C_{i}(t,t+h))
+				 = -\nu_{0}h + 1/h \sum{j=1}^{h}\alpha_{t+j}
+				  -1/hB^{\nu-[\beta]}_g(t,t+h) - 1/h A^{\nu-[\beta]}_g(t,t+h)'Z_t$
+\end{displaymath}
+\subsection{Décomposition des spreads pour des zero coupons des entreprises avec un taux de recouvrement nul}
+
+Dans l’approche standard , le défaut est supposé indépendant du taux sans risque et sa valorisation est faite sous la probabilité historique . La valeur actuelle d’une obligation d’entreprise sans taux de recouvrement peut être définie comme suit :
+\begin{displaymath}
+$C^{a}_{t}(t,t+h)=B(t,t+h)P[\tau_{i}>t+h|\tau_i >t,Z_t,Z^{i}_t]$
+\end{displaymath}
+\newline En considerant le revenu actuariel nous avons:
+\begin{displaymath}
+$Y^{a}_{i}(t,t+h)=r(t,t+h)+\Pi_{i}(t,t+h)$
+où $\Pi_{i}(t,t+h)=-1/h logP[\tau_i >t+k|\tau_i >t+k-1,Z_t,Z^{i}_{t}]
+									=-1/h \sum{k=1}^{h} logP[\tau_i >t+k|\tau_i >t+k-1,Z_t,Z^{i}_{t}]
+									=-1/h \sum{h=1}^{h} \lambda^{i,f}_t+k} $
+\end{displaymath}
+
+\newline Cette formule peut alors être interprétée comme la moyenne forward de l’intensité de défaut, cette intensité forward diffère $ \lambda^{i,f}_t+k}=logP[\tau_i >t+k|\tau_i >t+k-1,Z_t,Z^{i}_{t}]$ de l’intensité spot à cause du temps de référence des valeurs des facteurs. De ce fait la formule fréquemment utilisée pour définir la probabilité de défaut à partir des spreads n’est donc plus valide. Le but de cette section est d’apporter une décomposition précise du spread.
+
+\newline {\bf{Proposition 4 :}}
+\begin{displaymath}
+$S_{i}(t,t+h)-\Pi_{i}(t,t+h)=-1/h[A^{\nu-[\beta]}_{g}(t,t+h)-A^{-[\beta]}_{g}(t,t+h)-a^{oh}_{g,\nu}(0)]'Z_t
+														-[B^{\nu-[\beta]}_{g}(t,t+h)-B^{-[\beta]}_{g}(t,t+h)-\sum{j=0}^{h-1}b_{g,\nu}[a^{oh}_{g,\nu}(0)]]$
+\end{displaymath}
+														
+\newline Cette différence mesure les effets de la dépendence entre le defaut et le facteur d'escompte stochastique. Ainsi la proposition 4 propose la décomposition suivante pour les obligations d’entreprise :
+
+\newline Structure à terme des obligations entreprises sans taux de recouvrement=
+Structure à terme des bons du trésor  
++  structure à terme de la moyenne des intensités de défaut
++  structure à terme de la dépendance entre le facteur d’escompte stochastique et le défaut.
+
+\newline La moyenne de l’intensité de défaut va absorber toutes les variations du spread alors que la dépendance entre le facteur d’escompte stochastique et le défaut va mesurer le terme de correction dans la décomposition du spread.
+
+\subsection{Décomposition des spreads pour des paniers first-to-default  et structure par terme de rentabilité}
+\newline Le prix d'un first-to-default basket de maturité h, composé de n entreprises ne faisant pas défaut avant t+h est:
+\begin{displaymath}
+$C(t,t+h)=E_{t}[M_{t,t+h}\Huge1_{\tau^{*}>t+h}]$
+\end{displaymath}
+où $ \tau^{*}=min_{i=1....,n}\tau_i$ 
+
+\newline Le calcul de ce prix est le même que celui présenté dans la section précèdente. Pour simplifier les écritures nous décrirons uniquement les formules dans le cas où les sensibilités sont constantes.
+Les prix des paniers first-to-default , l’intensité de défaut et le spread sont donnés par les formules suivantes :
+\begin{displaymath}
+$C(t,t+h)=exp(\nu_{0}h-n\alpha h +\sum{j=0}^{h-1}b_{g,\nu -n\beta}(a^{oj}_{g,\nu-n\beta}(0))+(a^{oh}_{g,\nu-n\beta}(0)')Z_t
+				 =+ n\sum{j=1}^{h-1}b_{c,-\gamma}[a^{oj}_{c,-\gamma}(0)] + a^{oh}_{c,-\gamma}(0)'[Z^{1}_{t}+...+Z^{n}_{t}]$
+				 
+$S(t,t+h)=n\alpha + 1/h[\sum{j=1}^{h-1}b_{g,\nu}(a^{oj}_{g,\nu}(0))]-b_{g,\nu-n\beta}[a^{oj}_{g,\nu-n\beta}(0)]
+				 =-nb_{c,-\gamma}[a^{oj}_{c,-\gamma}(0)]+ 1/h[a^{oh}_{g,\nu}(0)-a^{oh}_{g,\nu-n\beta}(0)'Z_t
+				 =-1/ha^{oh}_{c,-\gamma}(0)'[Z^{1}_{t}+.....+Z^{n}_{t}]$
+				 
+$\Pi(t,t+h)=n\alpha -1/h\sum{j=0}^{h-1}[b_{g,n\beta}(a^{oj}_{g,-n\beta}(0))+nb_{c,-\gamma[a^{oj}_{c,-\gamma}(0)]]	
+           -1/h a^{oh}_{g,n\beta}(0)'Z_t -1/ha^{oh}_{c,-\gamma}(0)'[Z^{1}_{t}+...+Z^{n}_{t}]$	
+\end{displaymath}													
+
+\newline {\bf{Proposition 6 :}} La structure à terme des paniers first-to-default peut être décomposé comme :
+\begin{displaymath}
+$y(t,t+h)=r(t,t+h) +\Pi^{*}(t,t+h) +[\Pi(t,t+h)-\Pi^{*}(t,t+h)]+ [S(t,t+h)-\Pi(t,t+h)]$
+\end{displaymath}
+\newline Ce qui correspond à :
+\begin{itemize}
+\item La structure à terme des rendements des bons du trésor
+\item La structure à terme des défauts marginaux
+\item La structure à terme des corrélations de défaut
+\item La structure à terme de la dépendance entre le facteur d’escompte stochastique et le défaut
+\end{itemize}
+
+\subsection{Facteurs observables}
+Jusqu'ici, nous n'avons pas parlé de l'interprétation des facteurs généraux et spécifiques, en particulier de leur observabilité. Il est généralement admis que les facteurs généraux Z inclus dans le facteur d'escompte stochastique peuvent être déduits des prix des Bons du Trésor grâce à la structure affine.Certains facteurs explicatifs ne sont pas observables. \newline Toutefois, ces facteurs créant des schémas de défaut génériques, ils sont déductibles à partir des observations faites à partir des prix des Bons du Trésor et des dérivésde crédit. Cette déduction est rendue possible grâce au caractère affine du modèle.De façon équivalente, le facteur Z peut être remplacé par des facteurs simulés que l'on peut interpréter comme des rendements. Ce raisonnement effectué sur les facteurs généraux qui influencent seulement le défaut et auxfacteurs spéciques également. Ils peuvent être déduits des rendements obligataires en utilisant l'observabilité de Z. Ainsi, la problématique de l'observabilité des facteurs est équivalente à la problématique de l'observabilité de la structure par terme des rendements,c'est-à-dire du nombre et de la forme des obligations risquées liquides.
+
+\subsection{Détermination de la VaR de crédit}
+Les différents résultats obtenus ci-dessus vont être utiliser pour calculer la VaR de crédit d'un portefeuille de d'obligations d'entreprises sans taux de recouvrement.
+\newline Par exemple si nous considérons à la date t un portefeuille composé de S entreprises dont la quantité est $x_{i,t}$ et la maturité de la créance est $h=1...,H$.La valeur courante du portefeuille est :
+\begin{displaymath}
+$W_t=\sum{i\in S}\sum{h=1}^{H}x_{i,t}(h)C_{i}(t,t+h)$
+\end{displaymath}
+la valeur future est :
+\begin{displaymath}
+$W_{t+1}=\sum{i\in S\cap PaR_{t+1}\sum{h=1}^{H}x_{i,t}(h)C_{i}(t+1,t+h)$
+\end{displaymath}
+où  $S\cap PaR_{t+1}$ est l'ensemble des entreprises en vie à t+1.
+\newline En utilisant le modèle affine , on peut réecrire la valeur future du portefeuille de la manière suivante:
+\begin{displaymath}
+$W_{t+1}=\sum{i\in S\cap PaR_{t+1}\sum{h=1}^{H}exp[a(h-1)+b'(h-1)Z_{t+1}+ C'(h-1)Z^{i}_{t+1}]$
+\end{displaymath}
+où les coéfficients a,b,c sont déduits des formules de pricing.
+\newline La VaR de crédit est donc le quantile de la distribution de la valeur future du portefeuille ($W_{t+1}$)donnée à l'instant t. Cette distribution peut être approximée par la distribution de Monte-Carlo comme suit:
+\begin{enumerate}
+	\item premièrement, determiné la valeur future des facteurs spécifiques et généraux à partir de la distribution conditionnelle de $Z_{t+1}$.
+	\item deuxièmement, simulé indépendement l'occurrence de défaut entre t et t+1 pour chaque entreprise en vie et construire la valeur future des facteurs.
+	
+\end{enumerate}
+
+\section{Perte En Cas De Defaut ou LGD}\label{LGD}
+\noindent Cette section va traiter l'extension du modèle affine pour le risque de crédit,la correlation entre le défaut et la perte en cas de défaut et la distribution marginale de la "LGD"'.
+\subsection{Extension du modèle affine pour le risque de crédit}\label{emaprc}
+La perte en cas de défaut ou LGD est égale à (1-taux le recouvrement)*valeur de la créance à l'instant de défaut. La LGD et le taux de recouvrement sont deux variables stochastiques dont les valeurs sont comprises entre (0 et 1).La spécifiation affine peut aussi être facilement étendue au taux de recouvrement.
+\newline Le prix des obligations avec ou sans taux de recouvrement varie. Dans le cas d'une obligation sans taux de recouvrement son prix est défini comme suit:
+\begin{displaymath}
+$C(t,t+h)=E_{t}\left\{\Pi^{h-1}_{j=0}[M_{t+j,t+j+1}(1-D_{t+j,t+j+1})]}\right$
+\end{displaymath}
+sans taux de recouvrement son prix est:
+\begin{displaymath}
+$C(t,t+h)=\sum{k=1}^{h}E_{t}\left\{\Pi^{k-2}_{j=0}[M_{t+j,t+j+1}(1-D_{t+j,t+j+1}]M_{t+k-1,t+k}D_{t+k+1,t+k}[1-LGD_{t+k-1,t+k}}\right\\
++E_{t}\left\{\Pi^{j=0}_{k-1}[M_{t+j,t+j+1}(1-D_{t+j,t+j+1)]}\right$
+\end{displaymath}
+où $M_{t,t+1}$ représente le facteur d'escompte stochastique et $D_{t,t+1}$ l'indicateur de défaut sur la période (t,t+1).
+\newline C'est donc une évidence que le prix d'une obligation sans taux de recouvrement est plus élevé qu'une obligation avec taux de recouvrement. Cette représentation suppose que le facteur d'escompte stochastique dépend uniquement des facteurset que le défaut et la LGD sont indépendants lorsque le facteur d'escompte stochastique a une valeur donnée.
+\newline Cette approche permet un traitement similaire de la probabilité de défaut et de la LGD. Cela évite les hypothèses comme le recouvrement de la valeur de marché dans laquelle on suppose que l'espérance risque neutre du taux de recouvrement est une fraction prédeterminée de l'espérance risque neutre de la valeur de marché.
+\newline Le prix des dérivés peut être écrits à l'aide de l'intensité de défaut et de l'espérance de la LGD. 
+\begin{displaymath}
+$C(t,t+h)=E_{t}\left\{\Pi^{j=0}_{h-1}[M_{t+j,t+j+1}(1-PD_{t+j,t+j+1})]}\right\\
+				= E_{t}[\Pi^{j=0}_{h-1}(M_{t+j,t+j+1}\pi_{t+j,t+j+1})]$
+\end{displaymath}
+On peut introduire ici les spécifications affines exponentielles pour réecrire la perte attendue en cas de défaut (ELGD) ou pour le taux de recouvrement.Dans le modèle risque neutre ELGD et le taux de recouvrement sont toutes des fonctions exponentielles affines.
+\subsection{Distributin marginale et Correlation entre le defaut et la LGD}
+Le taux de recouvrement relativement faible et la probabilité de défaut élevé en cas de recession explique bien la correlatio qu'il existe entre le défaut et la perte en cas de défaut.Pour cette raison tout modèle exponentielle affine doit vérifier cette caractéristique.
+\begin{displaymath}
+$Cov(DP,LGD)=Cov(exp[-Tr(AZ)],exp(-Tr(BZ)])\\
+						=Eexp\left\{-Tr(A+B)Z)-Eexp[-Tr(AZ)]Eexp[-Tr(BZ)]\\
+						=(1/det(Id+2(A+B)))-(1/det(Id+2A))*(1/det(Id+2B))$
+\end{displaymath}
+Finallement,il est interessant de mentionner que les spécifications exponentielles affines avec ARG , la distribution marginale et conditionnelle peut admettre une variété de patterns similaires pattern standard de la beta distribution. Plus précisément, cette distribution correspond à $Y=exp(-bZ)$ où Z suit une distribution gamma avec $\nu$ degré de liberté.
+\newline la fonction de densité associée est:
+\begin{displaymath}
+$f(y)=(1/\Gamma(\nu))*(1/b^{\nu})(-log(y))^{\nu-1}y^{1/b-1}(y)$
+\end{displaymath}

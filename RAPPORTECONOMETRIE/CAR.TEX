@@ -1,0 +1,291 @@
+\chapter[Processus autorégressifs composés]{Processus autorégressifs composés}\label{Processus autorégressifs composés}
+Ce chapitre détaille les caractéristiques mathématiques des processus dits "autorégressifs composés".
+\newline Il analyse et résume les résultats de \cite{JDG}, qui s'intéresse exclusivement aux propriétés mathématiques et aux applications de ces processus autorégressifs composés.
+\section{Analyse mathématique des processus autorégressifs composés}\label{analmath}
+\noindent Nous présentons ici les motivations de l'étude de ces processus autorégressifs composés. 
+\subsection{Introduction}
+%\begin{center}
+%\epsfig{file=ddmgeometrienumerounfinal.eps,height=7.1cm,width=14.50cm}
+%\begin{displaymath}
+%\begin{array}{ll}
+%\dsp \textbf{1} : & \text{ zone de cr\'eation du bruit a\'erodynamique} \\
+%\dsp \textbf{2} : & \text{ zone de lin\'earisation} \\
+%\dsp \textbf{3} : & \text{ zone de propagation lin\'eaire sur un \'ecoulement uniforme} \\
+%\end{array}
+%\end{displaymath}
+%\end{center}
+L'article \cite{JDG} introduit un modèle de dynamique stochastique non linéaire appelé {\bf{ compound autoregressive model (CAR)}}, avec la même propriété autorégressive markovienne que les processus autorégressifs gaussiens qui spécifie une loi gaussienne conditionnellement au passé $y_t=\rho y_{t-1}+\epsilon_t, \epsilon_t IIN(0,\sigma^2)$. 
+\newline
+Les processus CAR se prêtent également à la prédiction à l'horizon h $E[y_{t+h}|y_t]$, l'opérateur d'espérance conditionnelle au passé laissant invariant les polynômes d'Hermite. La prédiction des facteurs non observables latents via un filtre de Kalman est également possible.
+\newline
+Les modèles conditionnellement gaussiens sont importants en raison de la simple expression du premier moment conditionnel $E[exp(-uy_t)|y_{t-1}]=exp[-u\rho y_{t-1}+\frac{u^2\sigma^2}{2}]$ et de son application au paradigme moyenne-variance pour les investisseur avec une fonction d'utilité CARA (Constant Absolute Risk Aversion).
+\newline Pour l'évaluation de produits dérivés, une expression explicite de la distribution risque-neutre peut s'obtenir à partir du théorème de Girsanov (Black-Scholes et Vasiceck modèles).
+\newline Il existe trois possibilités distinctes pour définir une relation non-linéaire entre $Y_t$ et $Y_{t-1}$ :
+\begin{itemize}
+\item La distribution jointe peut être définie par la fonction de répartition, que l'on peut écrire à l'aide d'une copule et des deux fonctions de répartition marginale $F(y_t,y_{t-1})=C(F_1(y_t),F_2(y_{t-1}))$.
+\item La distribution jointe peut s'analyser par la fonction de densité jointe et sa décomposition non-linéaire canonique :
+\begin{displaymath} f(y_t,y_{t-1})=f_1(y_t)f_2(y_{t-1})\left(1+\sum_{n=1}^{\infty}\lambda_n\phi_n(y_t)\psi_n(y_{t-1})\right)
+\end{displaymath}, où $f_1$ (resp. $f_2$) sont les densités de probabilité marginale de $Y_t$ (resp. $Y_{t-1}$) et $0\leq\lambda_n<1$ sont la suite décroissante des corrélations non linéaires et canoniques (base propre pour l'opérateur espérance conditionnelle). La spécification des $\lambda_n$ permet de spécifier complètement la densité marginale jointe.
+\item La distribution jointe peut être spécifiée par la transformée de Laplace $E[uY_t+vY_{t-1}]$
+\end{itemize}
+Nous développons une approche fondée ici sur la transformée de Laplace. Un modèle autorégressif composé définit sa loi conditionnelle au passé à partir de sa log-transformée de Laplace, qui est une fonction affine des valeurs passées du processus (nous expliquons l'appellation processus autorégressif composé).
+\newline Nous donnons la forme nécessaire vérifier par la distribution invariante du processus.
+\newline Nous traitons le problème des prédictions non linéaires à un horizon quelconque en examinant la décomposition spectrale de l'opérateur espérance-conditionnelle.
+\newline La condition de réversibilité temporelle est ensuite discutée.
+\newline Nous donnons l'exemple de de différents CAR réversible (gaussien autorégressif, gamma autorégressif et le processus de Poisson).
+\newline Les équations filtrantes et lissantes correspondantes au CAR sont présentées.
+\newline L'inférence statistique non paramétrique est appliqué à notre modèle.
+\newline L'application du modèle à l'évaluation de produits dérivés est discuté.
+\subsection{Définition des processus autorégressifs composés}
+\subsubsection{Log-Laplace transformée conditionnelle : fonction affine des valeur passées du processus}
+\begin{definition}
+Soit $(Y_t,t\geq 0)$ un processus à n dimensions et notons $\underline{Y_{t-1}}$ l'ensemble des informations jusqu'à et incluant $t-1$. Le processus Y est un processus autorégressif d'ordre p {\bf CAR(p)} si et seulement si la distribution conditionnelle de $Y_t$ sachant $\underline{Y_{t-1}}$ admet une transformée de Laplace conditionnelle du type :
+\BEQ{definitionCAROrdreP}
+E\left[exp(u'Y_t)|\underline{Y_{t-1}}\right]=exp\left[-a_1'(u)Y_{t-1}-...-a_p'(u)Y_{t-p}+b(u)\right]
+\EEQ, où $a_p \neq 0$.
+\end{definition}
+Les fonctions $a_i$ et $b$ définissent le processus, qui est markovien d'ordre p.
+La transformée de Laplace n'est pas forcément défini pour tout $u \in \mathbb{R}^n$. Nous supposerons son support défini dans un voisinage de $0$. Sous cette hypothèse, la transformée de Laplace caractérise la distribution.
+\newline On peut toujours ramener un CAR(p) à un CAR(1) d'après la proposition suivante :
+\begin{proposition}Le processus $Y$ est un CAR(p) si et seulement si le processus $(\widetilde{Y_t})=(Y'_t,Y'_{t-1},...,Y'_{t-p})$ est un CAR(1).
+\end{proposition}
+\subsubsection{Origine de la dénomination et exemples}
+{\bf Les processus à valeurs entières}
+\newline
+Supposons que $Y_{t-1}$ compte le nombre d'individus dans une queue à la fin de la période $t-1$. $\epsilon_t$ est le nombre d'individus arrivant dans la queue durant la période $t$ et $Z_t$ est le nombre d'invidus parmi ceux en attente $Y_{t-1}$ qui sont servis pendant cette période. On a $Y_t=Z_t+\epsilon_t$. Il n'est pas possible de spécifier une autorégression linéaire déterministe $Z_t=\rho Y_{t-1}$ et $Y_t=\rho Y_{t-1}+\epsilon_t$, où $\rho$ est la probabilité d'être servi. En effet, $Z_t$ doit prendre des valeurs entières.
+\newline On peut remplacer cette autorégression stochastique par une autorégression stochastique :
+\BEQ{definitionAppellationCompose}
+Y_t=\sum_{i=1}^{Y_{t-1}}Z_{i,t}+\epsilon_t
+\EEQ, où les variables $Z_{i,t}$ suivent une loi de Bernouilli
+$\mathbb{B}(1,\rho)$.
+Plus généralement, soit $Z_{i,t}, (i,t)\in \mathbb{N}^2$ des variables aléatoires indépendantes et à valeurs entières. On suppose qu'elles admettent une transformée de Laplace de la forme $E[exp(-uZ)]=exp(-a(u))$. On suppose que la transformée de Laplace de $\epsilon_t$ existe et vérifie : $E[exp(-u\epsilon)]=exp(b(u))$. Le processus défini par \ref{definitionAppellationCompose} admet la transformée de Laplace suivante conditionnellement au passé :
+\begin{displaymath}
+E[exp(-uY_t)|Y^{t-1}]=exp(-a(u)Y_{t-1}+b(u))
+\end{displaymath}
+$Y_t$ s'analysse comme la somme d'un nombre aléatoire de variables aléatoires indépendantes de même loi. C'est pourquoi ce processus est appelé un {\bf "compound process"}.
+\newline
+{\bf Les processus à valeurs positives}
+On constate que l'on peut facilement générer des processus à valeurs positives, si l'on sait charactériser la positivité d'une variable aléatoire par des propriétés sur sa log-Laplace transformée. On peut montrer la proposition suivante :
+\begin{proposition}
+Soit $Y$ une variable aléatoire dont la transformée de Laplace est définie et s'écrit :$exp(b(u))$. Le fait que Y soit à valeur positive est charactérisée par les propriétés suivante sur $b$ : $b$ une fonction $C^\infty$ à valeurs dans $\mathbb{R}^+$ telles que $b(0)=0$ et b vérifie la propriété de complète monotonicité :
+\BEQ{completeMonotinicite}
+\forall j\in \mathbb{N}, (-1)^j\frac{\ud^j}{\ud u^j}\left[exp(b(u))\right]\geq 0
+\EEQ 
+\end{proposition}
+\subsubsection{Distribution invariante}
+\begin{proposition}
+La log-Laplace transformée de la distribution invariante d'un processus CAR(1) vérifie :
+\begin{displaymath}
+b(u)=c(u)-c(a(u))
+\end{displaymath}
+\end{proposition}
+Par conséquent, si la distribution invariante existe, on peut paramétrer la transformée de Laplace soit par $a$ et $b$, soit par $a$ et $c$ : $E[exp(-uY_t)|Y^{t-1}]=exp(-a(u)Y_{t-1}+c(u)-c(a(u)))$
+\subsubsection{Prédiction à un horizon quelconque}
+\begin{proposition}
+Un processus stochastique CAR(1) vérifie :
+\BEQ{previsionHorizonQuelconque}
+E[exp(-uY_{t+h})|Y^{t}]=exp(-a^{oh}(u)Y_{t}+\sum_{k=0}^{h-1}b(a^{ok}(u)))\\
+=exp(-a^{oh}(u)Y_{t}+c(u)-c(a^{oh}(u)))
+\EEQ
+\end{proposition}
+, où l'on remarque  $\sum_{k=0}^{h-1}b(a^{oh}(u))=\sum_{k=0}^{h-1}c(a^{ok}(u))-c(a^{o(k+1)}(u))=c(u)-c(a^{oh}(u))$.
+On déduit la condition nécessaire et suffisante d'ergodicité pour le processus stochastique :
+\begin{corollary}
+Soit un processus CAR(1) admettant une log-Laplace transformée invariante c.
+La transformée de Laplace conditionnelle tend vers une limite indépendante de la variable conditionnante si et seulement si :
+\BEQ{ergodicite}
+\lim_{h\rightarrow \infty}a^{oh}(u)=0, \ \forall u.
+\EEQ
+\end{corollary}
+\subsubsection{Invariance par aggrégation}
+\begin{proposition}
+Soit $Y_{t,j}$, $j=1,...,J$, dont la transformée de Laplace vérifie :
+\BEQ{aggregatedLaplace}
+E[exp(u'Y_{t,j})|Y_{j,t-1}]=exp[-a(u)'Y_{t,j}+b_j(u)]
+\EEQ
+La transformée de Laplace du processus $Y_t=\sum_{j=1}^{J}Y_{t,j}$ vérifie également \ref{aggregatedLaplace}.
+\end{proposition}
+\subsection{Analyse de l'opérateur espérance conditionnelle}
+\subsubsection{Moments conditionnelles}
+\begin{proposition}
+On a :
+\BEQ{momentsConditionnels}
+E[Y_t^n|Y_{t-1}]=P_n(Y_{t-1})
+\EEQ
+, où $P_n$ est un polynôme de degré n dont le coefficient de plus haut degré est $[\frac{\ud a}{\ud u}(0)]^n$
+\end{proposition}
+\subsubsection{Décomposition spectrale de l'opérateur d'espérance conditionnelle}
+\begin{proposition}
+Considérons l'opérateur d'espérance conditionnelle $\psi \rightarrow T\psi $ défini par :
+\BEQ{definitionOperateurConditionnel}
+T\psi(y)=E[\psi(Y_t)|Y_{t-1}=y]
+\EEQ
+Cet opérateur admet les valeurs propres réels $\lambda_n=[\frac{\ud a}{\ud u}(0)]^n$, $n\geq 0$ et pour fonctions propres associées des polynômes $P_n$ de degré $n$.
+\end{proposition}
+L'opérateur espérance conditionnelle se décompose donc sur cette base propre de fonctions polynômiales. A chaque fonction $\psi(Y_t)\sum_{n=0}^{\infty}<\psi, P_n>P_n(Y_t)$, l'opérateur associe la fonction de $Y_t$ : $E[\psi(Y_t)|Y_{t-1}]= \sum_{n=0}^{\infty}[\frac{\ud a}{\ud u}(0)]^n<\psi, P_n>P_n(Y_t)$.
+\newline On déduit la condition nécessaire pour la stationnarité du processus CAR(1) :
+\BEQ{condnecessairestationnarite}
+\vert \frac{\ud a}{\ud u}(0) \vert \leq 1
+\EEQ
+\subsubsection{Processus réversibles}
+{\bf{Définition et caractérisation}}
+\begin{proposition}
+Le processus CAR(1) est réversible si et seulement si la fonction $\psi(u,v)=c(a(u)+v)+c(u)-c(a(u))$ est une fonction symétrique de u et v.
+\end{proposition}
+La démonstration est immédiate en exprimant la symétrie de la transformée de Laplace de la distribution jointe de ($Y_t,Y_{t-1}$) par la propriété de Markov.
+\begin{proposition}
+Quand le processus $Y_t$ est réversible :
+\begin{displaymath}
+i) a(u) =\left( \frac{\ud c}{\ud u}\right)^{-1}\left[\frac{\ud a}{\ud u}(0)\left(\frac{\ud c}{\ud u}(u)-\frac{\ud c}{\ud u}(0) \right)+\frac{\ud c}{\ud u}(0)\right]
+\end{displaymath}
+ii) La fonction $\gamma(u)=\frac{\ud^2 c}{\ud u^2}o(\frac{\ud c}{\ud u})^{-1}$ est quadratique.
+\end{proposition}
+\begin{proposition}
+Supposons $\vert \frac{\ud a}{\ud u}(0) \vert < 1$. Pour un processus CAR(1) stationnaire et réversible, les fonctions propres $P_n$, $n\geq 0$, de l'opérateur espérance conditionnelle sont orthogonales pour le produit scalaire associé à la distribution invariante $f$.
+\end{proposition}
+\begin{proposition}
+Si $\vert \frac{\ud a}{\ud u}(0) \vert < 1$ et si le processus CAR(1) est stationnaire et réversible, alors :
+\BEQ{densiteReversibleStationnaire}
+f\left(y_t\vert y_{t-1}\right)=f(y_t)\left[1+\sum_{n=1}^{\infty}\left[\frac{\ud a}{\ud u}(0)\right]^n P_n(y_t)P_n(y_{t-1})\right]
+\EEQ, où $P_n$ est la base orthogonale des fonctions polynômiales propre de l'opérateur conditionnel d'espérance.
+\end{proposition}
+\begin{corollary}
+\BEQ{densiteReversibleStationnaireHorizonH}
+f_h\left(y_t\vert y_{t-h}\right)=f(y_t)\left[1+\sum_{n=1}^{\infty}\left[\frac{\ud a}{\ud u}(0)\right]^{hn} P_n(y_t)P_n(y_{t-h})\right]
+\EEQ
+\end{corollary}
+\subsubsection{Les différents processus CAR réversibles}
+Nous décrivons ici différents types de processus {\bf CAR} classé selon les propriétés de l'équation caractéristique et ses racines $\beta_0+\beta_1 x + \beta_2 x^2 = 0$ associé à l'équation de Riccati. 
+\newline
+{\bf {Les processus gaussiens autorégressifs}}
+\newline
+Les processus gaussiens autorégressifs sont obtenus avec $\beta_1=\beta_2=0$ : la fonction $\gamma$ est constante. Alors $Y_t = \rho Y_{t-1}+\epsilon_t$, où $\epsilon_t$ est un bruit blanc gaussien et nous obtenons :
+\begin{itemize}
+\item Distribution conditionnelle : $N(\rho y_{t-1},1)$
+\item Distribution marginale : $N(0,\frac{1}{1-\rho^2})$
+\item Log-Laplace transformée : $a(u)=u\rho$, $b(u)=\frac{u^2}{2}$, $c(u)=\frac{u^2}{2(1-\rho^2)}$
+\item Condition de stationnarité : $\vert\frac{da}{du}(0) \vert=\vert\rho\vert<1$
+\item Fonctions propres polynômiales : les polynômes d'Hermite.
+\item Distribution pour la prévision à l'horizon $h$ : $N(\rho^hy_{t-h},\frac{1-\rho^{2h}}{1-\rho^2})$
+\item Fonction composée : $a^{oh}(u)=\rho^h u$
+\item Fonction $\gamma(u)=\frac{1}{1-\rho^2}$
+\item Log-Laplace transformée jointe $\psi(u,v)=\frac{1}{2(1-\rho^2)}(u^2+v^2+2\rho uv)$
+\end{itemize}
+{\bf {Les processus de Poisson composés}}
+\newline
+Les processus de Poisson composés sont obtenus avec $\beta_2=0$ : la fonction $\gamma$ est affine. Alors $Y_t = \sum_{i=1}^{Y_{t-1}}Z_{i,t} +\epsilon_t$, où $Z_{i,t}~P(\lambda(1-\alpha))$ et $\epsilon_t B(1,\alpha)$ est un bruit blanc gaussien et nous obtenons :
+\begin{itemize}
+\item Distribution conditionnelle : $B(1,\alpha)*P(\lambda(1-\alpha))$
+\item Distribution marginale : $P(\lambda)$
+\item Log-Laplace transformée : $a(u)=-\log [\alpha\exp(-u)+1-\alpha]$, $b(u)=-\lambda(1-\alpha)[1-\exp(-u)]$, $c(u)=-\lambda[1-\exp(-u)]$
+\item Condition de stationnarité : $0<\alpha<1$
+\item Fonctions propres polynômiales : les polynômes de Charlier
+\item Distribution pour la prévision à l'horizon $h$ : $B(y_{t-h},\alpha^h)*P(\lambda(1-\alpha^h))$
+\item Fonction composée : $a^{oh}(u)=-\log[\alpha^h\exp(-u)+1-\alpha^h]$
+\item Fonction $\gamma(u)=-u$
+\item Log-Laplace transformée jointe $\psi(u,v)=\lambda(2-\alpha)+\lambda\alpha\exp(-u-v)+\lambda(1-\alpha)[\exp(-u)+\exp(-v)]$
+Cette distribution jointe est connue comme la distribution corrélée, bivariée jointe de Poisson. 
+\end{itemize}
+{\bf {Les processus $\gamma$ composés}}
+\newline
+Les processus $\gamma$ composés sont obtenus avec $\beta_2\neq 0$ et une racine double $\beta_1^2-4\beta_0\beta_2 =0$. Alors la distribution conditionnelle $Y_t\vert Y_{t-1}$ est défini par $Y_t \vert X_t \gamma =(\delta + X_t)$ et $X_t\vert Y_{t-1} P(\beta Y_{t-1})$. C'est la contre-partie en temps discret du modèle du processus de diffusion de Cox, Ingersoll et Ross.  
+\begin{itemize}
+\item Distribution conditionnelle : $\gamma(\delta,\beta y_{t-1})$
+\item Distribution marginale de $Y_t$ : $\frac{1}{1-\beta}\gamma(\delta)$
+\item Log-Laplace transformée : $a(u)=\frac{\beta u}{1+u}$, $b(u)=-\delta\log (1+u)$, $c(u)=-\delta\log (1\frac{u}{1-\beta})$
+\item Condition de stationnarité : $\vert\frac{da}{du}(0) \vert=\vert \beta \vert < 1 $
+\item Fonctions propres polynômiales : les polynômes de Laguerre
+\item Distribution pour la prévision à l'horizon $h$ : $\frac{1-\beta^h}{1-\beta}\gamma (\delta,\beta^h \frac{1-\beta}{1-\beta^h}y_{t-h})$
+\item Fonction composée : $a^{oh}(u)=\beta^h u[1+\frac{1-\beta^h}{1-\beta}u]^{-1}$
+\item Fonction $\gamma(u)=\frac{u^2}{\delta}$
+\item Log-Laplace transformée jointe $\psi(u,v)=\delta\log [1+\frac{uv+u+v}{1-\beta}]$
+\end{itemize}
+{\bf {Les processus de Bernoulli à régime changeant}}
+\newline
+Les processus de Bernoulli à régime changeant composés sont obtenus avec $\beta_2\neq 0$ et deux racines réelles distinctes $\beta_1^2-4\beta_0\beta_2 > 0$. Le processus est qualitatif avec deux valeurs admissibles O et 1, et correspond à une chaîne de Markov à deux états. Nous obtenons :
+\begin{itemize}
+\item Distribution conditionnelle : $B(1,\alpha(1-\gamma)+\gamma y_{t-1})$
+\item Distribution marginale : $B(1,\alpha )$
+\item Log-Laplace transformée : $a(u)=-\log[\frac{(1-(1-\alpha)(1-\gamma))\exp (-u)+(1-\alpha)(1-\gamma)}{\alpha(1-\gamma)\exp(-u)+1-\alpha (1-\gamma)}]$, $b(u)=\log (1-\alpha (1-\gamma)+\alpha (1-\gamma)\exp (-u))$, $c(u)=log (\alpha \exp (-u))+1-\alpha$
+\item Condition de stationnarité : $\vert\frac{da}{du}(0) \vert=\vert \gamma \vert < 1 $
+\item Fonctions propres polynômiales : les premiers polynômes de Krawtchouk
+\item Distribution pour la prévision à l'horizon $h$ : $B(1,\alpha(1-\gamma^h)+\gamma^h y_{t-1})$
+\item Fonction composée : $a^{oh}(u)=-\log[\frac{(1-(1-\alpha)(1-\gamma^h))\exp (-u)+(1-\alpha)(1-\gamma^h)}{\alpha(1-\gamma^h)\exp(-u)+1-\alpha (1-\gamma^h)}]$
+\item Fonction $\gamma(u)=-u(1+u)$
+\item Log-Laplace transformée jointe $\psi(u,v)=\log [(1-\alpha)(1-\alpha (1-\gamma))+\alpha (1-\alpha)(1-\gamma)(\exp(-u)+\exp(-v))+\alpha(1-(1-\alpha)(1-\gamma))\exp (-(u+v))] $
+\end{itemize}
+{\bf {Les processus avec la $\gamma$-fonction quadratique avec racines complexe conjuguées}}
+\newline
+Ces processus sont obtenus avec $\beta_2\neq 0$ et deux racines complexes conjuguées $\beta_1^2-4\beta_0\beta_2 < 0$. Nous obtenons :
+\begin{itemize}
+\item Log-Laplace transformée : $a(u)=\arctan [\gamma \tan u]$, $b(u)=-\log\cos u +\log\cos\arctan [\gamma \tan u]$, $c(u)=-\log\cos u$
+\item Condition de stationnarité : $\vert\frac{da}{du}(0) \vert=\vert \gamma \vert < 1 $
+\item Fonction composée : $a^{oh}(u)=\arctan [\gamma ^h \tan u]$
+\item Fonction $\gamma(u)=1+u^2$
+\item Log-Laplace transformée jointe $\psi(u,v)=-\log[\cos (u+v)+(1-\gamma)\sin u\sin v] $
+\end{itemize}
+\subsubsection{Représentation espace-états}
+{\bf Un processus stochastique autorégressif non linéaire}
+Quand à la fois $\exp [-a(u) Y_{t-1}]$ et $\exp [b(u)]$ sont des transformées de Laplace, on introduit la représentation non-linéaire des {\bf processus CAR(1)}. On définit le processus $(Z_t)$ tel que la distribution conditionnelle de $Z_t$ sachant $Y_{t-1}$ admet une transformée de Laplace $\exp [-a(u) Y_{t-1}]$ et $\epsilon_t$ une variable conditionnellement indépendante de $Z_t$ avec une transformée de Laplace $\exp (b(u))$. Il vient :
+\BEQ{nonlinearrepresentation}
+Y_t = Z_t + \epsilon_t 
+\EEQ
+\BEQ{nonlinearrepresentationdeux}
+Z_t=\alpha (Y_{t-1},\eta_t)
+\EEQ
+{\bf Filtrage et lissage}
+Nous nous intéressons à la prédiction des processus $(Z_t)$ et $(\epsilon_t)$ connaissant le processus observable $(Y_t)$. On note $g(z_t \vert y_{t-1})$ la distribution conditionnelle de $Z_t$ sachant $Y_{t-1}$, dont la transformée de Laplace s'écrit $\exp[-a(u)y_{t-1}]$ et par $h(\epsilon_t)$ la distribution marginale du bruit de transformée de Laplace $\exp [b(u)]$.
+\begin{proposition}
+\begin{enumerate}
+\item Les variables $Z_t$, $t$ variant, sont indépendants conditionnellement au processus observable.
+\item La distribution conditionnelle de $Z_t$ sachant toutes les valeurs de $Y_t$ coïncide avec la distribution conditionnelle de $Z_t$ sachant $Y_{t-1}$ et $Y_t$ seulement (réversibilité et propriété de Markov). Cette distribution filtrante est donnée par :
+\BEQ{filteringdistribution}
+l(z_t \vert y_{t-1},y_t)= \frac{g(z_t\vert y_{t-1}) h(y_t-z_t)}{\int g(z\vert y_{t-1}) h(y_t-z)\ud z}
+\EEQ
+\item La distribution lissante de $\epsilon_t$ suit directement puisque $\epsilon_t=y_t-z_t$.
+\end{enumerate}
+\end{proposition}
+{\bf Les différents exemples des processus CAR réversibles}
+\newline
+{\bf Les processus gaussiens autorégressifs}
+\begin{itemize}
+\item Distribution conditionnelle de $Z_t$ : la masse de Dirac en $\rho Y_{t-1}$
+\item Distribution marginale de $\epsilon_t$ : $N(0,1)$
+\item Distribution lissante de $Z_t$ : la masse de Dirac en $\rho Y_{t-1}$
+\item Distribution lissante de $Z_t$ : la masse de Dirac en $Y_t - \rho Y_{t-1}$ 
+\end{itemize}
+{\bf Les processus gamma autorégressifs}
+\begin{itemize}
+\item Distribution conditionnelle de $Z_t \vert X_t \gamma(X_t)$ et $X_t\vert Y_{t-1} P(\beta Y_{t-1})$ : c'est un mélange d'un masse de Dirac en zéro de point $\exp(-\beta Y_{t-1})$ et d'une distribution continue de densité de probabilité :
+\BEQ{densiteProbaContinu}
+[1-\exp (-\beta Y_{t-1})]^{-1}\sum_{x=1}^{\infty}\left\{\exp(-\beta Y_{t-1}\frac{(\beta Y_{t-1})^x}{x!}\frac{1}{\Gamma(x)}\exp(-z)z^{x-1})\right\}1_{z>0}
+\EEQ
+\item Distribution marginale de $\epsilon_t$ : $\gamma\left(\delta\right)$ de densité de probabilité :
+\begin{displaymath}
+h(\epsilon)=\frac{1}{\gamma (\delta)\exp (-\epsilon)\epsilon^{\delta -1}}1_{\epsilon >0}
+\end{displaymath}
+\item Distribution lissante de $Z_t$ : c'est un mélange d'une masse de Dirac en zéro de poids 
+\begin{displaymath}
+Y_t^{\delta-1}\slash\Gamma(\delta)\left(\sum_{x=0}^{\infty}\frac{Y_t^{\delta+x-1}(\beta Y_{t-1})^x\Gamma(x+\delta)}{x!} \right)^{-1}
+\end{displaymath} et d'une distribution de probabilité continue de densité de probabilité suivante :
+\begin{displaymath}
+\left[\sum_{x=1}^{\infty}\frac{(\beta Y_{t-1})^x Y_t^{\delta+x-1}}{x!\Gamma(x+\delta)} \Gamma(\delta)\right]^{-1}\sum_{x=1}^{\infty}\left\{\frac{(\beta Y_{t-1})^x Y_t^{\delta+x-1}}{x!\Gamma(x)} \frac{1}{Y_t}\left(\frac{z}{Y_t}\right)^{x-1}\left(1-\frac{z}{Y_t}\right)1_{1>z/\slash Y_t > 0}  \right\}
+\end{displaymath}
+\end{itemize}
+{\bf Les processus de Poisson composés}
+\begin{itemize}
+\item Distribution conditionnelle de $Z_t$ : $B(Y_{t-1},\alpha)$
+\item Distribution marginale de $\epsilon_t$ : $P(\lambda(1-\alpha))$
+\item Distribution lissante de $Z_t$ : 
+\begin{displaymath}
+l(z_t\vert y_{t-1},y_t)=\frac{\alpha^z(1-\alpha)^{y_{t-1}-z}[\lambda(1-\alpha)]^{y_t-z}}{z!(y_{t-1}-z)!(y_t-z)!}, \ \ 0 \leq z\leq min(y_{t-1},y_t)
+\end{displaymath}
+\end{itemize}
+\subsection{Ordre d'autorégressivité}
+Il est facile de montrer que tout processus autorégressif d'ordre p CAR(p) peut s'écrire comme un processus autorégressif d'ordre 1 CAR(1). Réciproquement, il est facile de construire un CAR(p) à partir d'un CAR(1). 
+\subsubsection{Définition}
+Considérons un processus CAR(1) de transformée de Laplace :
+\begin{displaymath}
+E[\exp(-u_1 Y_t)\vert Y_{t-1}] = \exp[-a(u_1)Y_{t-1}+b(u_1)]
+\end{displaymath}, où $b(u_1)=c(u_1)-c(a(u_1))$
+\subsubsection{Définition}

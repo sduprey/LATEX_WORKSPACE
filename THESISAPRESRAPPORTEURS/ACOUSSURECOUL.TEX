@@ -1,0 +1,95 @@
+\subsection{Acoustique potentielle}\label{acoussurecoulsubsection16}
+\subsubsection{Equation aux d\'eriv\'ees partielles du potentiel acoustique}\label{acoussurecoulsubsectionsub161}
+\noindent Les domaines consid\'er\'es ici sont tridimensionnels et cart\'esiens.
+\newline L'\'equation aux d\'eriv\'ees partielles d'ordre 2 \`a coefficients variables du potentiel acoustique d\'ecoule imm\'ediatement des \'equations (\ref{irrotac}), (\ref{entroparfac}),  (\ref{eulac}) et (\ref{bernouac}) :
+\BEQ{eqac} 
+\dsp {\rm div}\left(\rho_0\left(I-\ovra{M_0}.^t\ovra{M_0}\right)\ovra{\nabla}\phi_a\right)+\rho_0k_0^2\phi_a+ik_0\rho_0
+\ovra{M_0}.\ovra{\nabla}\phi_a+{\rm div}\left(ik_0\rho_0\phi_a\ovra{M_0}\right)=0,
+\EEQ
+où $\dsp k_0=\frac{\omega}{a_0}$ est le nombre d'ondes modul\'{e} par l'\'{e}coulement et $\dsp \ovra{M_0}=\frac{\ovra{u_0}}{a_0}$ est le nombre de Mach vectoriel. L'\'equation aux d\'eriv\'ees partielles (\ref{eqac}) est elliptique en r\'egime subsonique. On note $A_0$ l'op\'erateur diff\'erentiel elliptique associ\'e :
+\BEQ{opdifvolphysequivalent}
+ \dsp A_0\left(\phi_a\right)=0,
+\EEQ
+et l'on note $ \dsp \frac{\partial \phi_a}{ \dsp \partial n_{A_0}}= \dsp \rho_0\frac{ \dsp \partial \phi_a}{ \dsp \partial n} \dsp -\left( \dsp -ik_0 \phi_a+\ovra{M_0}.\ovra{\nabla}\phi_a\right) \dsp \rho_0\ovra{M_0}.\ovra{n}$ la d\'eriv\'ee conormale de bord associ\'e \`a l'op\'erateur $A_0$.
+\subsubsection{Conditions de bords}\label{acoussurecoulsubsectionsub162}
+\noindent
+$\bullet$ Sur les parois non trait\'{e}es, les ondes acoustiques se
+r\'{e}fl\'{e}chissent totalement : 
+\BEQ{borref}
+\frac{\partial\phi_a}{\partial n_{A_0}}=0, \ \ \forall x \in \Gamma_R
+\EEQ
+\newline
+$\bullet$ Au niveau de la surface fictive $\Gamma_M$ du moteur, l'\'ecoulement est uniforme. Le moteur est assimil\'e \`a un conduit uniforme infini, d'o\`u provient la source sonore \`a diffracter sous forme de modes incidents. La démarche est identique à la partie sans \'ecoulement (\ref{equationintegralesubsectionsub94}) et d\'etaill\'ee pr\'ecis\'ement dans le paragraphe (\ref{youplamodetheorie}) (une condition d'onde sortante au potentiel acoustique diffracté $\phi_a - \phi_{a,inc}$ sous la forme d'une condition de Sommerfeld ou d'un opérateur Dirichlet-Neumann est impos\'ee) :
+\BEQ{conditionsortanteauniveaudelasurfacemodale}
+\dsp \phi_a-\phi_{a,inc} \text{ est réfléchi dans le guide d'ondes} 
+\EEQ
+\newline
+$\bullet$ A l'infini, l'\'{e}coulement porteur est uniforme. Il faut imposer une condition de type Sommerfeld s\'{e}lectionnant les ondes sortantes pour le potentiel acoustique total \`a l'infini. L'obtention de cette condition est d\'etaill\'ee dans la sous-section (\ref{unicitesommerfeldsubsectionsub2}) (elle est obtenue \`a partir de la classique condition de Sommerfeld pour l'\'equation de Helmholtz (\ref{conditiondesommerfeldsansecoulementdutout}) que l'on a appliqu\'ee au potentiel acoustique transform\'e par Lorentz (\ref{lorentzfrequent}), (\ref{nouvelleinconnue})) et ramen\'ee \`a l'espace physique). Cette condition est toujours d\'esign\'ee par abus de notation comme la condition de Sommerfeld.
+\subsubsection{Adimensionnement}\label{acoussurecoulsubsectionsub163}
+\noindent Chaque variable physique acoustique est adimensionn\'ee par la valeur homog\`ene correspondante obtenue \`a partir des trois valeurs fondamentales : $R$ la grandeur caract\'eristique de la nacelle, $a_\infty$ la vitesse du son \`a l'infini et $\rho_\infty$ la densit\'e volumique de l'\'ecoulement porteur \`a l'infini : 
+\BEQ{acadim}
+ \dsp \omega^*=\frac{ \dsp R}{ \dsp a_\infty} \dsp \omega, \ t^*=\frac{ \dsp a_\infty}{R}t, \ \overrightarrow{x}^*= \dsp \frac{\overrightarrow{x}}{R},
+ \ \phi_a^*= \dsp \frac{\phi_a}{ \dsp R a_\infty},  \dsp \ \rho_a^*=\frac{\rho_a}{\rho_\infty}, \ p_a^*=\frac{R  \dsp p_a}{\rho_\infty
+ \dsp a_\infty^2}
+\EEQ
+Par abus de notation, l'indice * des param\`etres adimensionn\'es est oublié. L'unique invariant d'\'echelle est le nombre de Mach.
+\subsubsection{Probl\`eme acoustique complet}\label{acoussurecoulsubsectionsub164}
+\noindent Le probl\`eme acoustique complet s'\'ecrit dans le domaine cart\'esien $\mathbb{R}^3\backslash\overline{\Omega_i}$ :
+\BEQ{probacoustiquecompletavecconditionsauxbords}
+\left\lbrace
+\begin{array}{ll}
+\text{ Trouver }\phi_a \in H^1_{loc}\left(\mathbb{R}^3\backslash\overline{\Omega_i}\right) &  \\
+\dsp A_0\left(\phi_a\right)=0  , & \forall \overrightarrow{x} \in  \mathbb{R}^3\backslash\overline{\Omega_i} \\
+\dsp \frac{\partial \phi_a}{\partial n_{A_0}}=0  , & \forall \overrightarrow{x} \in \Gamma_R \\
+\dsp \phi_a - \phi_{a,inc} \text{ est réfléchi dans le guide d'ondes } &  \\
+\dsp \phi_a \text{ v\'erifie la condition de Sommerfeld \`a l'infini}  \\
+\end{array},
+\right.
+\EEQ
+\subsubsection{Formulation axisym\'{e}trique}\label{acoussurecoulsubsectionsub165}
+\noindent 
+\noindent Les domaines consid\'er\'es sont maintenant bidimensionnels : ce sont les domaines de coupe transverses, qui sont not\'es par abus de notation comme les pr\'ec\'edents domaines tridimensionnels.
+\newline L'axisym\'etrie de la nacelle permet de d\'ecomposer $\phi_a$ en modes azimutaux de Fourier :
+\BEQ{decompazimutfourierpotac}
+\phi_a(r,z,\theta)=\sum_{m\in \mathbb{Z}}\phi_{am}(r,z)e^{i m \theta}, \ \forall (r,z,\theta)\in\mathbb{R}^2\backslash\overline{\Omega_i}\times\left[0,2\pi\right]
+\EEQ
+Le mode azimutal $m$ du potentiel acoustique est solution de l'\'equation aux d\'eriv\'ees partielles suivante dans le domaine transverse bidimensionnelle $\mathbb{R}^2\backslash\overline{\Omega_i}$ :
+\BEQ{probacmod}
+\left\{
+\begin{array}{lll}
+\dsp \frac{1}{r}\frac{\partial}{\partial r}\left(r\rho_0\frac{\partial\phi_{am}}{\partial r}\right)-\displaystyle \frac{m^2\rho_0}{r^2}\phi_{am}+\frac{\partial}{\partial z}\left(\rho_0\frac{\partial\phi_{am}}{\partial z}\right)+k_0^2\rho_0\phi_{am} & &  \\
+\dsp+ik_0\rho_0\left(M_{0r}.\frac{\partial
+\phi_{am}}{\partial r}+M_{0z}.\frac{\partial
+\phi_{am}}{\partial z}\right) & & \\
+\dsp -\frac{1}{r}\left(\rho_0M_{0r}(-ik_0\phi_{am}+M_{0r}.\frac{\partial
+\phi_{am}}{\partial r}+M_{0z}.\frac{\partial
+\phi_{am}}{\partial z})\right) & & \\
+\dsp -\frac{\partial}{\partial
+r}\left(\rho_0M_{0r}(-ik_0\phi_{am}+M_{0r}.\frac{\partial
+\phi_{am}}{\partial r}+M_{0z}.\frac{\partial
+\phi_{am}}{\partial z})\right)& & \\
+\dsp -\frac{\partial}{\partial
+z}\left(\rho_0M_{0z}(-ik_0\phi_{am}+M_{0r}.\frac{\partial
+\phi_{am}}{\partial r}+M_{0z}.\frac{\partial
+\phi_{am}}{\partial z})\right)=0, &  \ \ \forall (r,z) \in \mathbb{R}^2\backslash\overline{\Omega_i} & \\
+\dsp\frac{\partial\phi_{am}}{\partial n_{A_{0m}}}=0, &  \ \ \forall (r,z) \in \Gamma_R &\\
+\dsp \phi_{am}-\phi_{am,inc}\text{ est réfléchi dans le guide d'ondes }  \\
+\dsp \phi_{am}\text{ v\'erifie la condition de Sommerfeld \`a l'infini }\\
+\end{array}
+\right. ,
+\EEQ
+que l'on note \`a l'aide de l'op\'erateur volumique elliptique : $A_{0m}\left(\phi_{am}\right)=0$.
+\begin{remark}
+{\rm 
+\text{\newline}
+\newline
+$\bullet$ Les modes acoustiques azimutaux sont découplés. Le problème tridimensionnel se décompose en un nombre dénombrable de problèmes axisymétriques.
+\newline
+$\bullet$ L'\'ecoulement porteur stationnaire est axisym\'etrique et le nombre de Mach vectoriel n'a pas de composante angulaire : $\ovra{M_0}=M_{0r}\ovra{e_r}+M_{0z}\ovra{e_z}$. 
+\newline $\bullet$ L'\'equation (\ref{probacmod}) en pr\'esence d'un \'ecoulement potentiel quelconque non axisym\'etrique (avec une composante angulaire) poss\`ede des termes suppl\'ementaires. De plus, les modes acoustiques azimutaux de Fourier sont couplés par la non-axisymétrie de l'écoulement porteur.
+}
+\end{remark}
+
+
+
+

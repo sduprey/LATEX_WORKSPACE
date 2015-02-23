@@ -1,0 +1,106 @@
+\section{Cas-tests analytiques}\label{numeriquecastestdebugsection2}
+\noindent Ce paragraphe présente les différents cas-tests analytiques, qui permettent de valider séparément la condition intégrale de rayonnement à l'infini et les conditions modales à l'entrée de la nacelle. Ces cas-tests valident également la propagation acoustique sur un écoulement uniforme. 
+\subsection{Validation des conditions int\'egrales}
+\subsubsection{Probl\'ematique}\label{fopiajerpoijagt}
+\begin{center}
+\epsfig{file=castestharmo.eps,height=5.cm,width=14.cm}
+Géométrie
+\end{center}
+\noindent Les notations de ce paragraphe ont d\'ej\`a \'et\'e introduites au paragraphe (\ref{reductionborneetexistencesubsectionsubsub1}) du chapitre (\ref{ecoulementpotentielpart}).
+\newline On propose ici un probl\`eme physique, élaboré de telle sorte, que le problème transformé associé soit un problème de Helmholtz avec une condition de Neumann sur la sph\`ere unit\'e. L'expression analytique de la solution transformée est ainsi connue. On se propose de r\'esoudre num\'eriquement ce probl\`eme {\it{via}} un traitement volumique par \'el\'ements finis et un couplage avec l'infini par les \'equations int\'egrales validant ainsi le couplage volumique-int\'egral en présence d'\'ecoulement. La surface fictive $\Gamma$, o\`u les \'equations int\'egrales sont pos\'ees, est plac\'ee \`a $z=4\sqrt{1-M^2}$.
+\subsubsection{Expression analytique}\label{numeriquecastestdebugsectionsub21}
+\paragraph{Cas g\'en\'eral : }
+\noindent \\
+Le problème suivant dans l'espace physique de référence $\Omega$ :
+\BEQ{problemedanslespacephysiquededepart}
+\left\lbrace
+\begin{array}{ll}
+\dsp \text{ Trouver } \phi_a\in H^1\left(\Omega\right)\text{ tel que }& \\
+\dsp \Delta\phi_a-M^2\frac{\partial^2\phi_a}{\partial
+z^2}-2ikM\frac{\partial\phi_a}{\partial z
+}+k^2\phi_a=0, &\forall x\in \Omega\\
+\dsp \frac{\partial \phi_a}{\partial n_{A_0}}=\sqrt{1-\frac{M^2}{2}}\sum_{l=0}^{+\infty}\sum_{m=-l}^{m=+l}\phi_{l,m}Y_{l,m}\left({\rm arctan}\left(\sqrt{1-M^2}{\rm tan}\left(\theta\right)\right),\phi\right), & \forall x\in \partial \Omega\\
+\end{array}
+\right. ,
+\EEQ o\`u $\dsp \left(r,\theta,\phi\right)$ désignent les coordonnées sphériques de $\dsp x$. Le domaine $\dsp \Omega$ est choisi de telle sorte qu'il devienne le domaine $\dsp \Omega '=\mathbb{R}^3\backslash B$ dans l'espace de Lorentz ($\dsp B$ désigne la boule unité et $\dsp \partial \Omega '=S$ avec $\dsp S$ désignant la sphère unité). Le nouveau problème dans l'espace transformé s'explicite :  
+\BEQ{problemehelmholtzneumanndanslespacetransforme}
+\left\lbrace
+\begin{array}{ll}
+\dsp  \Delta \widetilde{\phi}'_a+ k'^2 \widetilde{\phi}'_a= 0 , & \forall x'\in \Omega ' \\
+\dsp  \frac{\partial \widetilde{\phi}'_a}{\partial n'}=\sum_{l=0}^{+\infty}\sum_{m=-l}^{m=+l}\phi_{l,m}Y_{l,m}\left(\theta',\phi'\right), & \forall x'\in \partial \Omega '\\
+\end{array}
+\right. ,
+\EEQ
+où $ \dsp k'=\frac{k}{\sqrt{1-M^2}}$ et $\dsp \left(r',\theta',\phi'\right)$ désignent les coordonnées polaires de $x'$ dans l'espace de Lorentz. La solution de ce problème auquel on a ajouté la condition de Sommerfeld $\dsp \lim_{R\rightarrow \infty}\int_{S_R}\vert \frac{\partial \widetilde{\phi}'_a}{\partial n'}-i k'\widetilde{\phi}'_a\vert^2\rightarrow 0$ existe et est unique. Son expression analytique est connue :
+\BEQ{expressionanalytiquesolutionproblemehelmholtzneumann}
+\widetilde{\phi}'_a=\sum_{l=0}^{+\infty}\sum_{m=-l}^{m=+l}\phi_{l,m}\frac{h_{l}^{(1)}\left(k'r'\right)}{k'\left[\frac{d}{dr'}h_{l}^{(1)}\right]\left(k'\right)}\left(r'\right)Y_{l,m}\left(\theta',\phi'\right),
+\EEQ
+On en déduit l'expression analytique du potentiel acoustique dans l'espace physique de référence :\BEQ{expressionanalytiquesolutionproblemehelmholtzneumanndanslebonespacececoupci}
+\phi_a=\sum_{l=0}^{+\infty}\sum_{m=-l}^{m=+l}\phi_{l,m}\frac{h_{l}^{(1)}\left(k'r'\right)}{k'\left[\frac{d}{dr'}h_{l}^{(1)}\right]\left(k'\right)}\left(r'\right)Y_{l,m}\left({\rm arctan}\left(\sqrt{1-M^2}{\rm tan}\left(\theta\right)\right),\phi\right)e^{\frac{ik'Mz}{\sqrt{1-M^2}}},
+\EEQ avec $\dsp r'=\sqrt{\dsp x^2+y^2+\dsp \frac{z^2}{1-M^2}}$
+\paragraph{Premier cas-Test : }
+\noindent \\
+Le probl\`eme suivant :
+\BEQ{problemehelmholtzneumannprobpratiquepremier}
+\left\lbrace
+\begin{array}{l}
+\dsp \Delta\phi_a-M^2\frac{\partial^2\phi_a}{\partial
+z^2}-2ikM\frac{\partial\phi_a}{\partial z
+}+k^2\phi_a=0, \ \forall x\in \Omega\\
+\dsp \frac{\partial \phi_a}{\partial n_{A_0}}=\sqrt{1-\frac{M^2}{2}}Y_{0,0}\left({\rm arctan}\left(\sqrt{1-M^2}{\rm tan}\left(\theta\right)\right),\phi\right)\\
+\dsp \widetilde{\phi}'_a\text{ v\'erifie la condition de Sommerfeld}\\
+\end{array}
+\right.
+\EEQ
+a pour solution :
+\BEQ{ecrituredelafonctionupourlepremierproblemepratique}
+\begin{array}{l}
+\dsp \phi_a=-\frac{h_0^{(1)}\left(k'r'\right)}{k'h_0^{(1)'(k')}}Y_{0,0}\left({\rm arctan}\left(\sqrt{1-M^2}{\rm tan}\left(\theta\right)\right),\phi\right)e^{\frac{ik'Mz}{\sqrt{1-M^2}}}\\
+\dsp \phi_a=\frac{e^{ik'(r'-1)}}{r'}\left[1+ik'\right]\sqrt{\frac{1}{4\pi}}\frac{1}{1+k'^2}e^{\frac{ik'Mz}{\sqrt{1-M^2}}} \\
+\end{array}
+\EEQ
+\paragraph{Deuxi\`eme cas-Test : }
+\noindent \\
+Le probl\`eme suivant :
+\BEQ{problemehelmholtzneumannprobpratiquesecond}
+\left\lbrace
+\begin{array}{l}
+\dsp \Delta\phi_a-M^2\frac{\partial^2\phi_a}{\partial
+z^2}-2ikM\frac{\partial\phi_a}{\partial z
+}+k^2\phi_a=0, \ \forall x\in \Omega\\
+\dsp \frac{\partial \phi_a}{\partial n_{A_0}}=\sqrt{1-\frac{M^2}{2}}Y_{1,1}\left({\rm arctan}\left(\sqrt{1-M^2}{\rm tan}\left(\theta\right)\right),\phi\right)\\
+\dsp \widetilde{\phi}'_a\text{ v\'erifie la condition de Sommerfeld}\\
+\end{array}
+\right.
+\EEQ
+a pour solution :
+\BEQ{ecrituredelafonctionupourlesecondproblemepratique}
+\begin{array}{l}
+\dsp \phi_a=-\frac{h_1^{(1)}\left(k'r'\right)}{k'h_1^{(1)'(k')}}Y_{1,1}\left(\theta',\phi'\right)e^{\frac{ik'Mz}{\sqrt{1-M^2}}}\\
+\dsp \phi_a=\sqrt{\frac{3}{8 \pi}}e^{i\phi}{\rm sin}\theta' e^{ik(r'-1)}\left(\frac{i}{r'^2}+\frac{k'}{r'}\right)\frac{\left[(2-k'^2)+2ik'\right]}{\left[(2-k'^2)^2+4k'^2\right]}e^{\frac{ik'Mz}{\sqrt{1-M^2}}}\\
+\end{array},
+\EEQ
+\subsubsection{R\'esultats num\'eriques sans \'ecoulement}\label{numeriquecastestdebugsectionsub22}
+\begin{center}
+\epsfig{file=analsphersansecoulfinal.eps,height=8.5cm,width=14.cm}
+\end{center}
+Les r\'esultats de cette figure ont \'et\'e obtenus sur un maillage non structur\'e de diam\`etre inf\'erieur \`a 15 cm (la sph\`ere de Neumann du problème transformée a un diam\`etre unitaire).
+\newline
+Le cas-test est effectué avec un nombre de Mach nul et avec un nombre d'ondes $kR=2$.
+\newline
+La première ligne concerne le premier cas-test détaillé ci-dessus avec l'harmonique sphérique $Y_{0,0}$ comme condition de Neumann. Cette configuration ne possède pas le terme volumique singulier du laplacien axisymétrique.
+\newline La deuxième ligne concerne le deuxième cas-test détaillé ci-dessus avec l'harmonique sphérique $Y_{1,1}$ comme condition de Neumann. Cette configuration possède le terme volumique singulier du laplacien axisymétrique.
+\newline
+La premi\`ere colonne pr\'esente la partie réelle du potentiel acoustique calculé numériquement. Les solutions sont renormalisées par leur maximum pour présenter des résultats unitaires (attention les couleurs changent de valeurs pour chaque graphique).
+\newline
+La dernière colonne représente la différence relative de la solution renormée avec la solution analytique renormée correspondante.
+\subsubsection{Résultats numériques en présence d'\'ecoulement}
+\begin{center}
+\epsfig{file=analspherecoulfinal.eps,height=8.5cm,width=14.cm}
+\end{center}
+Le même cas-test que précédemment est réalisé avec un nombre de Mach constant de $0.3$.
+\subsubsection{Résultats numériques en présence d'\'ecoulement avec un $kR$ élevé}
+\begin{center}
+\epsfig{file=analspherhautefrequence.eps,height=5.cm,width=14.cm}
+\end{center}
+Les m\^emes r\'esultats ont \'et\'e obtenus avec un maillage plus raffin\'e de mailles de diam\`etre inf\'erieur \`a 3 cm. On constate la convergence en maillage vers la solution analytique. Les résultats exhibés correspondent à $kR=15$.

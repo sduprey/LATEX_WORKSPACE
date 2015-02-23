@@ -1,0 +1,64 @@
+\subsection{Partie r\'eguli\`ere}\label{equationintegralesectionsub105}
+\noindent Les int\'egrales \'el\'ementaires que l'on est amen\'ees \`a estimer num\'eriquement lors de l'interaction entre les degr\'es de libert\'e de l'\'el\'ement ligne $L$ et de l'\'el\'ement colonne $K$ s'explicitent toutes en fonction de la quantit\'e suivante :
+\BEQ{deuxiemenotationsimplificatrice}
+G_{m,p}^{ij}=\int_\Gamma{\rm d} \sigma \int_{\Gamma'}{\rm
+d} \sigma '\oint_0^{\pi}{\rm d}\theta \ \  \sigma ^{i-1} \sigma '^{j-1}\frac{e^{ik
+R(r( \sigma ),r'( \sigma '),z( \sigma ),z'( \sigma '),{\rm cos}\theta)}}{ R^p
+(r( \sigma ),r'( \sigma '),z( \sigma ),z'( \sigma '),{\rm cos}(\theta))}{\rm cos}(m\theta)
+\EEQ
+Ces int\'egrales ne sont pas toujours d\'efinies : elles sont singuli\`eres dans le cas de l'autor\'eaction, o\`u l'\'el\'ement $L$ et l'\'el\'ement $K$ coïncident. Lorsque les deux \'el\'ements $K$ et $L$ sont \'eloign\'es (\`a un seuil de tol\'erance que l'on a fix\'e), ces int\'egrales ne sont plus singuli\`eres et peuvent \^etre approxim\'ees num\'eriquement par une m\'ethode de quadrature.
+\subsubsection{Quadrature}
+\noindent \\ Toute int\'egrale du type $I=\int_a^bf(x) {\rm d}x$ est ramen\'ee par un changement de variable affine sur l'intervalle ]-1,1[ :
+\begin{displaymath}
+I=\int_a^bf(x) {\rm d}x=\frac{b-a}{2}\int_{-1}^1 f(\frac{b-a}{2}u+\frac{b+a}{2}) {\rm d}u = \frac{b-a}{2}\int_{-1}^1 \phi(u) {\rm d}u
+\end{displaymath}
+Une formule de quadrature sur ]-1,1[ est la donn\'ee de $n$ points $u_i$ de ]-1,1[ et de $n$ poids $w_i$, permettant d'approximer l'int\'egrale sur ]-1,1[ : 
+\begin{displaymath}
+\int_{-1}^1 \phi(u) {\rm d}u=\sum_{i=1}^nw_i \phi(x_i)
+\end{displaymath}
+Les int\'egrales sur un intervalle ]a,b[ quelconque se d\'eduisent de cette quadrature sur ]-1,1[ :
+\begin{displaymath}
+I=\frac{b-a}{2}\sum_{i=1}^nw_i \phi(u_i)=\frac{b-a}{2}\sum_{i=1}^nw_i f(\frac{b-a}{2}u_i+\frac{b+a}{2})
+\end{displaymath}
+On choisit ici une quadrature de Gauss. Les points d'interpolation sont les z\'eros des polyn\^omes de Legendre (\ref{definitionanalytiquepolynomedelegendreassociee}), tous r\'eels et strictement contenus dans $]-1,1[$. Ces z\'eros se r\'epartissent sym\'etriquement par rapport \`a l'origine (le polyn\^ome de Legendre a m\^eme parit\'e que l'entier $n$ et pour un nombre $n$ de points impairs, le milieu de l'intervalle appartient \`a  la quadrature) et les extr\'emit\'es de l'intervalle n'appartiennent pas aux points d'interpolation. Pour $n$ points d'interpolation, cette formule est exacte pour les polyn\^omes de degr\'e $2n-1$.
+\subsubsection{M\'ethodologie Num\'erique}
+\begin{center}
+\epsfig{file=nacellenumtrois.eps,height=5.5cm,width=15cm}
+Trois boucles successives 
+\end{center}
+\paragraph{Premi\`ere \'etape}
+\noindent
+\\
+Pour chaque point de Gauss $ \dsp pG_K$ de l'\'el\'ement colonne $ \dsp K$ de   $\dsp \Gamma$ de coordonn\'ees $ \dsp (r'_{pG_K},z'_{pG_K})$ et pour chaque point de Gauss angulaire $ \dsp pG_\theta$ d'angle $ \dsp \theta_{pG_\theta}$, on calcule l'int\'egration sur l'\'el\'ement ligne $ \dsp L$ :
+\BEQ{bouclepointdegaussdeuxiemeelement}
+ \dsp g_L(p,i,pG_K,\theta_{pG_\theta})=\sum_{pG_L}w_L(pG_L)(t_{pG_L})^{i-1}\frac{e^{ikR}}{R^p}\frac{d_L}{2},
+\EEQ 
+o\`u $ \dsp t_{pG_L}$ (resp. $ \dsp w_L(pG_L)$) repr\'esente l'abscisse curviligne (resp. le poids de Gauss) du point de Gauss $ \dsp pG_L$ de l'\'el\'ement ligne $ \dsp L$ et $ \dsp R^2=(z_{pG_L}-z'_{pG_K})^2+r_{pG_L}^2+r_{pG_K}'^2-2r_{pG_L}r_{pG_K}'{\rm
+cos}(\theta_{pG_\theta})$  d\'esigne la distance entre le point de Gauss $ \dsp pG_K$ en cours pour une surface $ \dsp \Gamma '$ tourn\'ee de $ \dsp \theta_{pG_\theta}$ au le point de Gauss $ \dsp pG_L$.  
+\paragraph{Deuxi\`eme \'etape}
+\noindent \\
+On int\'egre sur le secteur angulaire :
+\BEQ{bouclepointdegaussangulaire}
+ \dsp  g_{K}(i,m,p)=\sum_{pG_\theta}w_\theta(pG_\theta){\rm cos}(m
+ \theta) g_L(p,i,pG_K,\theta_{pG_\theta})\frac{\pi}{2}
+\EEQ
+\paragraph{Troisi\`eme \'etape}
+\noindent \\ On int\'egre sur l'\'el\'ement colonne $K$:
+\BEQ{gausscompletregulier}
+ \dsp G_{m,p}^{ij}=\sum_{pG_K}(t'_{pG_K})^{j-1}w_K(pG_K)g_{K}(i,m,p)\frac{d_K}{2}
+\EEQ
+En rassemblant les trois sommations successives : 
+\BEQ{gausscompletregulier}
+ \dsp  G_{m,p}^{ij}=\sum_{pG_K}w_K(pG_K)(t'_{pG_K})^{j-1}\sum_{pG_\theta}w_\theta(pG_\theta){\rm
+cos}(m
+ \theta)\sum_{pG_L}(t_{pG_L})^{i-1}w_L(pG_L)\frac{e^{ikR}}{R^p}\frac{d_Ld_K\pi}{8}
+\EEQ
+\subsection{Int\'egrales singuli\`eres}\label{equationintegralesectionsub106}
+\noindent Lorsque les \'el\'ements $K$ et $L$ sont proches \`a un seuil $\epsilon $ fix\'e, la singularit\'e de la fonction de Green ne permet pas une int\'egration pr\'ecise par une formule de quadrature. Il faut extraire la partie singuli\`ere non oscillante de l'int\'egrale, que l'on int\`egre maintenant analytiquement. La partie r\'eguli\`ere est toujours \'evalu\'ee \`a l'aide d'une formule de quadrature.
+Les parties singuli\`eres et r\'eguli\`eres s'explicitent pour les quatres op\'erateurs int\'egraux :
+\newline
+Le d\'eveloppement limit\'e $\dsp \frac{e^{ikR}}{R}=\frac{1}{R}+ik+ \dsp o_{R\rightarrow 0}(1)$ du noyau de Green donne la partie r\'eguli\`ere $\dsp \frac{e^{ikR}}{R}-\frac{1}{R}$ pour les op\'erateurs $S$ et $N$.
+\newline
+Le d\'eveloppement limit\'e $\dsp \left(ik-\frac{1}{R}\right)\frac{e^{ikR}}{R^2}=-\frac{1}{R^3}-\frac{k^2}{2R}-\frac{ik^3}{3}+ \dsp o_{R\rightarrow 0}(1)$ donne la partie r\'eguli\`ere $\dsp \left(ik-\frac{1}{R}\right)\frac{e^{ikR}}{R^2}+\frac{1}{R^3}+\frac{k^2}{2R}$ pour les op\'erateurs $D$ et $D^*$.
+\newline Les int\'egrales suivantes des parties singuli\`eres :
+$$\dsp \int_{S_{1L}}^{S_{2L}}( \sigma  )^{i-1}\frac{1}{R}{\rm d} \sigma , \ \dsp \int_{S_{1L}}^{S_{2L}}( \sigma )^{i-1}\frac{1}{R^2}{\rm d} \sigma \text{ et }\dsp \int_{S_{1L}}^{S_{2L}}( \sigma )^{i-1}\frac{1}{R^3}{\rm d} \sigma, \text{ pour } i\in \lbrace 1,2,3 \rbrace,$$ sont estim\'ees analytiquement.

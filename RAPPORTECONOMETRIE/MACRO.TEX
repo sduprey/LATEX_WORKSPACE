@@ -1,0 +1,164 @@
+
+%---------------------- ensembles ---------------------
+
+\def\N {\mathbb{N}}
+\def\Z {\mathbb{Z}}
+\def\R {\mathbb{R}}
+\def\C {\mathbb{C}}
+\def\P {\mathbb{P}}
+\def\Un {{\rm 1\!l}}
+\def\IC {\mbox{$\subset\hspace{-1.8ex} \vspace{2ex} _>$}} % Injection continue
+%\def\eps {\varepsilon}
+%\def\vp  {\varphi}
+%--------------------- environnement -------------------
+\newtheorem{hypothese}{Hypothèse}
+\newtheorem{definition}{Définition}
+\newtheorem{theoreme}{Théorème}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollaire}{Corollaire}
+\newtheorem{lemme}{Lemme}
+\newtheorem{notation}{Notation}
+\newtheorem{rappel}{Rappel}    % à modifier car pas très joli
+\newcommand\brappel[1]{\vspace{-4.5ex} \hspace{10.5ex} #1 \\ \vspace{0.3ex}}
+\def\erappel{\vspace{1ex}}\newtheorem{remarque}{Remarque} % celui là aussi
+\newcommand\bremarque[1]{\vspace{-4.5ex} \hspace{14ex} #1 \\   \vspace{0.3ex}}
+\def\eremarque{\vspace{1ex}}
+\def\demonstration{\flushleft {\bfseries Démonstration} \\}
+\def\cqfd {\begin{flushright}$\Box$\end{flushright}}
+
+%--------------------- paragraphades -------------------
+\def\ni{\noindent}          % no indent
+\def\nl{\vspace{1ex}}       % carriage return
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\def\ds{\displaystyle}
+
+%------------------- parentheses & co. -----------------
+\renewcommand{\l}{\left}
+\renewcommand{\r}{\right}
+
+%--------------- mnemotechnie des symboles --------------
+\def\half{\frac 1 2} % demi
+\def\towards{\rightarrow } % tend vers
+\def\equivalent{\Leftrightarrow}            % équivaut à
+\def\inter{\cap} % intersection
+\def\implique{\Rightarrow} % implique
+\def\laplacian{\triangle} % laplacien
+
+%--------------- modificateurs de symboles --------------
+\def\wtilde{\widetilde} % gros tilde
+\newcommand\widevec[1] {\overset \longrightarrow {#1}} % gros vecteur
+
+%----------------------- normes -------------------------
+\newcommand\abs[1] {\l|#1\r|}
+\newcommand\normevec[1] {\l|\!\l|#1\,\r|\!\r|}
+\newcommand\normemat[1] {\l|\!\l|\!\l|{#1}\,\r|\!\r|\!\r| }
+\newcommand\norme[2] {\l|\!\l|#2\,\r|\!\r|_{#1}}
+
+%-------------- math operators w. arguments -------------
+% derivee première
+\newcommand{\derive}[2]{\,\frac{\partial#1}{\partial#2}\,}
+% derivee nième
+\newcommand{\der}[3]{\,\frac{\partial^{#1}#2}{\partial#3^{#1}}\,}
+% derivee fonctionelle
+\newcommand{\fder}[2]{\,\frac{\delta#1}{\delta#2}\,}
+% limite quand ? tend vers 0
+\newcommand{\limz}[1]{\lim_{#1 \rightarrow 0}}
+% rotationel
+\def\rot {\mathbf{rot}}
+% divergence
+\def\div{\mathbf{div}}
+
+
+
+%---------------------- divers ---------------------------
+\newcommand \situe[1]{\ref{#1} p. \pageref{#1}}    %donne la ref et la page
+
+\newcommand{\myvector}[2]{\left(\begin{matrix}#1 \\#2\end{matrix}\right)}
+
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\dn}[1]{\cfrac{\partial{#1}}{\partial y}}
+\newcommand{\dx}[1]{\cfrac{\partial{#1}}{\partial x}}
+\def\vp{\varphi}
+\newcommand{\gf}{\sss{0}}
+\newcommand{\vpi}{\varphi_{inc}}  
+\newcommand{\gft}{\sss{\gamma}}
+\def\vpt{\varphi} 
+\newcommand{\Helm}[1][\vp]{\Delta {#1} + k^2{#1} = 0}
+\newcommand{\helm}[1][\vp]{\Delta {#1} + k^2{#1}}
+\newcommand{\Fsp}[1]{\widehat{S^+{#1}}}
+\newcommand{\Fsm}[1]{\widehat{S^-{#1}}}
+\newcommand{\sss}[1]{{\scriptscriptstyle {#1}}}
+\newcommand{\alm}{d^-}
+\newcommand{\alp}{d^+}
+\newcommand{\ens}[2]{\{ {#1}\,/\, {#2} \} }
+\newcommand{\cqrt}[1][\xi^2-k^2]{\sqrt[c]{#1}}
+\newcommand{\cqrti}{\sqrt[c]{\xi^2\mathord-k_\infty^2}}
+\newcommand{\sqrti}{\sqrt{\xi^2\mathord-k_\infty^2}}
+\newcommand{\VHM}{V_{h,m}}
+\newcommand{\uhm}{u_{h,m}}
+\newcommand{\g}{g}
+\newcommand{\tg}{\tau g}
+\newcommand{\Nv}[2]{ \Vert {#1} \Vert_{#2} }
+\newcommand{\NVk}[1][v]{\Nv{#1}{V_k} }
+\newcommand{\NVkp}[1][v]{\Nv{#1}{V^+}}
+\newcommand{\NVkm}[1][v]{\Nv{#1}{V^-}}
+\newcommand{\eqv}[1]{\underset{\scriptstyle({#1})}{\sim}}
+\newcommand{\Px}{{\bf x}}
+\newcommand{\Pt}{{ \bf x'}}
+
+\newcommand{\weakto}{\rightharpoonup}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Helmeps}[1][\vp]{\Delta {#1} + k_\eps^2{#1} = 0}
+\newcommand{\Fspm}[1]{\widehat{S^\pm{#1}}}
+\newcommand{\dual}[2]{{\langle {#1}, {#2}\rangle}}
+\newcommand{\Fourier}{\mathscr{F}}
+\newcommand{\Fg}{\mathcal{F}}
+\newcommand{\DDx}{\partial ^2_{x^2}}
+\newcommand{\pf}[1][\frac{1}{i\xi}]{\mbox{\bf Pf}({#1})}
+
+\newcommand{\ui}{u_{inc}}
+
+\newcommand{\Aw}{\mathbf{A}}
+\newcommand{\ro}{\rho}
+\newcommand{\ri}{\sqrt{\lambda}}
+\newcommand{\rmi}{\sqrt{-\lambda}}
+\newcommand{\rs}{\rho_\sss{s}}
+\newcommand{\rpo}{p_\sss{0}}
+\newcommand{\rpi}{p_\sss\infty}
+\newcommand{\fgp}{w_{1}}
+\newcommand{\fgm}{w_{2}}
+\newcommand{\fgpa}{w^\sss\downarrow}
+\newcommand{\fgma}{w^\sss\uparrow}
+\newcommand{\ei}{e^{(1)}}
+\newcommand{\eii}{e^{(2)}}
+
+\newtheorem{corollary}{Corollaire}[section]
+\newtheorem{equations}[corollary]{Equations}
+\newtheorem{example}[corollary]{Exemple}
+\newtheorem{lemma}[corollary]{Lemme}
+\newtheorem{remark}[corollary]{Remarque}
+\newtheorem{theorem}[corollary]{Th\'{e}or\`{e}me}
+
+\def\raggedleft{\spaceskip=.3333em \xspaceskip=.5em
+\parfillskip=0pt \leftskip=0pt plus\hsize}
+\long\def\myquote#1#2.{\vfill
+\line{\hfil\vbox{\hsize=4in\quotext\raggedleft\baselineskip=10pt
+\noindent#1\smallskip\line{\quoteref\hfil---#2}\par}}}
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "main"
+%%% End: 
+
+% commandes de Marius
+\newcommand{\mylabel}[1]{\label{#1}
+            \ifx\undefined\stillediting
+            \else \fbox{$#1$}\fi }
+\newcommand{\BE}{\begin{equation}}
+\newcommand{\BEQ}[1]{\BE\mylabel{#1}}
+\newcommand{\EEQ}{\end{equation}}
+\newcommand{\rfb}[1]{\mbox{\rm
+   (\ref{#1})}\ifx\undefined\stillediting\else:\fbox{$#1$}\fi}
+\newcommand{\ovra}{\overrightarrow}
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\propp}{{\hskip -2.2mm{\bf .}\hskip 3mm}}

@@ -1,0 +1,669 @@
+\subsection{Equations int\'egrales}\label{equationintegralesubsection9}
+\noindent Ce paragraphe détaille la manière de ramener le problème acoustique en domaine non borné et en présence d'un écoulement partout uniforme à une équation intégrale (à l'aide du noyau de Green classique de l'équation de Helmholtz et de ses dérivées) sur la nacelle transformée $\Gamma_M'\cup\Gamma_R'$ dans l'espace de Lorentz. 
+\subsubsection{Probl\'ematique}\label{equationintegralesubsectionsub91}
+\noindent La situation g\'eom\'etrique est celle du paragraphe (\ref{lorentzsubsection8}) de la partie (\ref{Ecoulement Constant}) : les domaines sont tridimensionnels cart\'esiens et l'\'ecoulement est partout constant : $\Omega=\varnothing$ et $\overline{\Omega_e\cup\Omega_M}\backslash \Gamma_R=\mathbb{R}^3\backslash \Omega_i$. 
+\newline
+On applique la transformée de Lorentz (\ref{lorentzfrequent}), (\ref{nouvelleinconnue}) dans $\overline{\Omega_e\cup\Omega_M}\backslash \Gamma_R$. L'introduction d'une variable vectorielle $\overrightarrow{v_a}$ permet de d\'ecomposer l'\'equation aux d\'eriv\'ees partielles (\ref{nouvellequation}) en un syst\`eme diff\'erentiel d'ordre un :
+\BEQ{helmholtzdecoupleanciennenotation}
+\dsp
+\left\lbrace
+\begin{array}{ll}
+\displaystyle ik_\infty'\overrightarrow{v_a}=\widetilde{\ovra{\nabla}} \widetilde{\phi_a}'  &,\forall x'\in \overline{\Omega_e'\cup\Omega_M'}\backslash \Gamma_R' \\
+\dsp ik_\infty'\widetilde{\phi_a}'=\rm div(\overrightarrow{v_a})         &,\forall x'\in  \overline{\Omega_e'\cup\Omega_M'}\backslash \Gamma_R' \\
+\end{array}
+\right.
+\EEQ
+\begin{remark}
+{\rm
+\text{\newline}
+\newline
+Attention : la transformée de Lorentz de la vitesse acoustique n'est pas la vitesse acoustique d\'erivant de la transform\'ee de Lorentz du potentiel acoustique.
+}
+\end{remark}
+\noindent Par souci de g\'en\'eralit\'e, on choisit d'utiliser les notations suivantes pour ce paragraphe :
+\BEQ{nouvellesnotations}
+\begin{array}{c}
+ \dsp \widetilde{\phi_a}'=p,\  \dsp \overrightarrow{v_a}=\overrightarrow{v},\  \dsp k=k_\infty' \\
+\dsp \Omega_e=\Omega_e',\  \dsp \Omega_i =\overline{\Omega_i'\cup\Omega_M'}\backslash\left(\Gamma_M'\cup\Gamma_R' \right)
+,\  \dsp \Omega_M=\Omega_M' \\
+\dsp \Gamma =\Gamma_\infty'=\Gamma_R'\cup\Gamma_M' \\
+\end{array}
+\EEQ
+\begin{center}
+\epsfig{file=geoeqint2.eps,height=7cm,width=7cm}
+\newline
+Géométrie et notations
+\end{center}
+Le domaine $\Omega_i$ contient maintenant le domaine modal transform\'e $\Omega_M'$ : l'\'equation int\'egrale sera pos\'ee sur la surface transform\'ee de la nacelle $\Gamma_R'\cup\Gamma_M'$ (interface entre les nouveaux domaines $\Omega_i$ et $\Omega_e$ d\'efinis dans (\ref{nouvellesnotations})).
+\newline Le syst\`eme diff\'erentiel d'ordre un (\ref{helmholtzdecoupleanciennenotation}) se r\'e\'ecrit :
+\BEQ{helmholtzdecouple}
+\dsp
+\left\lbrace
+\begin{array}{ll}
+\displaystyle ik\overrightarrow{v}=\ovra{\nabla} p  &,\forall x\in   \Omega_e \\
+\dsp ikp=\rm div(\overrightarrow{v})         &,\forall x\in   \Omega_e \\
+\end{array}
+\right.
+\EEQ
+La combinaison de ces deux \'equations conduit soit à l'\'equation de Helmholtz pour la pression acoustique $p$, soit à 
+l'\'equation de Helmholtz vectorielle pour la vitesse acoustique $\ovra{v}$ :
+\BEQ{lesdeuxhelmholtz}
+\left\lbrace
+\begin{array}{ll}
+\dsp \Delta p + k^2 p=0,    & \forall x\in   \Omega_e  \\
+\dsp \ovra{\nabla}({\rm div}(\overrightarrow{v}))+k^2\overrightarrow{v} =0,   & \forall x\in   \Omega_e \\
+\end{array}
+\right.
+\EEQ
+\subsubsection{Projecteurs de Calder\'on}\label{equationintegralesubsectionsub92}
+\noindent Des r\'esultats classiques \`a propos de l'\'equation de Helmholtz en domaine non born\'e sont explicit\'es ici : le probl\`eme continu en domaine non borné homog\`ene $\Omega_e$ est ramené à une équation intégrale sur la surface $\Gamma$.
+\newline Ces r\'esultats peuvent \^etre trouv\'es dans le cours de DEA de J.C. N\'ed\'elec \cite{JCN}.
+\newline Toute solution de l'\'equation de Helmholtz dans $\Omega_i\cup\Omega_e$ admet une repr\'esentation int\'egrale.
+\newline La solution $p\in C^2(\overline{\Omega_i})\inter C^2(\overline{\Omega_e})$  du probl\`eme de Helmholtz suivant :
+\BEQ{hemholtzsaufsursurface}
+\left\lbrace
+\begin{array}{ll}
+\dsp \Delta p + k^2 p=0    &, \forall x\in   \Omega_i        \\
+\dsp \Delta p + k^2 p=0    &, \forall x\in   \Omega_e  \\
+\dsp \lim_{r\rightarrow +\infty}r\left(\frac{\partial p}{\partial r}-ikp \right)=0& \\ 
+\end{array}
+\right.
+\EEQ
+se repr\'esente comme somme d'un potentiel de simple et de double couche :
+\BEQ{representationintegrale}
+\dsp p(x)=\frac{1}{4\pi}\int_{\Gamma}\frac{e^{ik\vert
+x-y\vert}}{\vert
+x-y\vert}\left[\frac{\partial p(y)}{\partial n}\right]_{|\Gamma} {\rm
+d}\gamma_{y}-
+\frac{1}{4\pi}\int_{\Gamma}\frac{\partial}{\partial
+n_{y}}\left(\frac{e^{ik\vert x-y\vert}}{\vert
+x-y\vert}\right)\left[p(y)\right]_{|\Gamma}{\rm d}\gamma_{y},
+\EEQ
+\begin{displaymath}
+\forall x \in   \Omega_i\cup\Omega_e,
+\end{displaymath}
+o\`u l'on notera dor\'enavant $\dsp G\left(x,y\right)=\frac{\dsp e^{ik\vert x-y\vert}}{\dsp 4\pi\vert
+x-y\vert}$. Notons ici que la normale est prise sortante à "l'objet diffractant" (le domaine int\'erieur $ \dsp \Omega_i$), ce qui sera dorénavant toujours le cas sauf lorsque spécifié.
+ Les termes entre crochets repr\'esentent les sauts de $ \dsp p$ 
+et $ \dsp \frac{\partial p}{\partial n}$ au niveau de la surface $\Gamma$ :
+\BEQ{sautinterieurarbit}
+\left\lbrace
+\begin{array}{l}
+\dsp \left[p\right]_{\vert \Gamma}=p_{\vert x \in\Omega_i\rightarrow \Gamma}-p_{\vert x\in\Omega_e\rightarrow \Gamma}\\
+\dsp \\
+\dsp \left[\frac{\partial p}{\partial n}\right]_{\vert \Gamma}=\frac{\partial p}{\partial n}_{\vert  x \in \Omega_i\rightarrow \Gamma}-\frac{\partial p}{\partial n}_{\vert  x\in \Omega_e\rightarrow \Gamma}\\
+\end{array}
+\right.
+\EEQ
+\BEQ{definitiondesoperateursintegraux}
+\begin{array}{l}
+\dsp S\left(p\right)(x)= \dsp \int_{\Gamma}G(x,y)p(y) {\rm d}y \text{ est l'opérateur de simple couche.} \\
+\dsp D\left(p\right)(x)=\int_{\Gamma}\frac{ \dsp \partial G(x,y)}{ \dsp \partial n_{y}}p(y) {\rm d}y \text{ est l'op\'erateur de double couche.} \\
+\dsp D^*\left(p\right)(x)= \dsp \int_{\Gamma}\frac{\partial G(x,y)}{\partial n_{x}}p(y) {\rm d}y\text{ est l'op\'erateur adjoint du double couche.} \\
+\dsp N(p)(x)=\int_{\Gamma} \dsp \frac{ \dsp \partial^2 G(x,y)}{ \dsp \partial n_{x}\partial n_{y}}p(y) {\rm d}y\text{ est l'opérateur singulier dérivé du double couche.} \\
+\end{array}
+\EEQ 
+\newline Le r\'esultat suivant explicite le comportement de ces op\'erateurs sur $\Gamma$ : 
+\newline
+Le potentiel de simple couche $ \dsp p(x)= \dsp \int_{\Gamma}G(x,y)q(y){\rm d}y$ est solution du probl\`eme :
+\BEQ{problemesimplecouchehelmholtz}
+\left\lbrace
+\begin{array}{ll}
+\dsp \Delta p + k^2 p=0    &, \forall x\in   \Omega_i         \\
+\dsp \Delta p + k^2 p=0    &, \forall x\in   \Omega_e        \\
+\dsp \left[p\right]_{\vert \Gamma}=0 &,\forall x\in \Gamma     \\
+\dsp \left[\frac{\partial p}{\partial n}\right]_{\vert \Gamma}=q &,\forall x\in \Gamma \\
+\end{array}
+\right.
+\EEQ
+Le potentiel de simple couche est continu à la travers\'ee de $\Gamma$, par contre sa d\'eriv\'ee normale est discontinue :
+\BEQ{discontinuitesimplecouche}
+\begin{array}{l}
+\dsp \frac{\partial p}{\partial n}_{\vert  x \in \Omega_i\rightarrow \Gamma}=\frac{q(x)}{2}+\int_{\Gamma}\frac{\partial G(x,y)}{\partial n_{x}}q(y) {\rm d}y\\
+\dsp \frac{\partial p}{\partial n}_{\vert  x \in \Omega_e\rightarrow \Gamma}=-\frac{q(x)}{2}+\int_{\Gamma}\frac{\partial G(x,y)}{\partial n_{x}}q(y) {\rm d}y\\
+\end{array}
+\EEQ
+Le potentiel de double couche $ \dsp p(x)= \dsp \int_{\Gamma}\frac{ \dsp \partial G(x,y)}{ \dsp \partial n_{y}}\Phi(y) {\rm d}y$ est solution du probl\`eme :
+\BEQ{problemedoublecouchehelmholtz}
+\left\lbrace
+\begin{array}{ll}
+\dsp \Delta p + k^2 p=0    &, \forall x\in   \Omega_i              \\
+\dsp \Delta p + k^2 p=0    &, \forall x\in   \Omega_e        \\
+\dsp \left[p\right]_{\vert \Gamma}=-\Phi &,\forall x\in \Gamma     \\
+\dsp \left[\frac{\partial p}{\partial n}\right]_{\vert \Gamma}=0 &,\forall x\in \Gamma \\
+\end{array}
+\right.
+\EEQ
+La d\'eriv\'ee normale du potentiel de double couche est continue à la travers\'ee de $\Gamma$, par contre l'op\'erateur double couche est discontinu :
+\BEQ{discontinuitedoublecouche}
+\begin{array}{l}
+\dsp  p_{\vert  x \in \Omega_i\rightarrow \Gamma}=-\frac{\Phi(x)}{2}+\int_{\Gamma}\frac{\partial G(x,y)}{\partial n_{y}}\Phi(y) {\rm d}y \\
+\dsp  p_{\vert  x \in \Omega_e\rightarrow \Gamma}=\frac{\Phi(x)}{2}+\int_{\Gamma}\frac{\partial G(x,y)}{\partial n_{y}}\Phi(y) {\rm d}y \\
+\end{array}
+\EEQ
+La formule de repr\'esentation (\ref{representationintegrale}) et les formules de saut (\ref{discontinuitedoublecouche}) et (\ref{discontinuitesimplecouche}) permettent d'\'etablir les relations suivantes sur la surface $\Gamma$ :
+\BEQ{equationintegrale}
+\left\{
+\begin{array}{ll}
+\dsp -N\left(\Phi\right)+\left(\frac{I}{2}+D^*\right)\left(q\right)=\frac{\partial p}{\partial n}_{\vert  x \in \Omega_i\rightarrow \Gamma} &, \forall x \in \Gamma \\
+\dsp \left(\frac{I}{2}-D\right)\left(\Phi\right)+S\left(q\right)=p_{\vert  x \in \Omega_i\rightarrow \Gamma} &, \forall x \in \Gamma  \\
+\end{array}
+\right.,
+\EEQ
+ou encore sous forme matricielle :
+\BEQ{Calder\'onnumeroun}
+\left(
+\begin{array}{cc}
+ \dsp -N & \frac{I}{2}+D^* \\
+ \dsp \frac{I}{2}-D & S \\
+\end{array}\right)
+\left(
+\begin{array}{c}
+ \dsp \Phi\\
+  \dsp q \\
+\end{array}
+\right) = \left(
+\begin{array}{c}
+ \dsp \frac{\partial p}{\partial n}_{\vert  x \in \Omega_i\rightarrow \Gamma} \\
+ \dsp p_{\vert  x \in \Omega_i\rightarrow \Gamma} \\
+\end{array}
+\right)
+\EEQ
+\subsubsection{Formulation variationnelle de l'op\'erateur singulier}\label{equationintegralezubsectionsub93}
+\noindent Ce paragraphe donne une propri\'et\'e fondamentale de l'op\'erateur $N$. 
+\newline Ce r\'esultat est encore tir\'e du cours de DEA de J.C. N\'ed\'elec \cite{JCN}.
+\newline L'op\'erateur $N$ de d\'eriv\'ee normale de l'op\'erateur de double couche
+est un op\'erateur \`a noyau singulier, non int\'egrable, \`a consid\'erer au sens des distributions comme une valeur principale de Cauchy.
+\newline
+Cet opérateur $N$ est un isomorphisme de
+$H^{\frac{1}{2}}(\Gamma)$ sur $H^{-\frac{1}{2}}(\Gamma)$ lorsque $-k^2$ n'est pas
+une valeur propre du probl\`eme int\'erieur de Neumann pour le
+Laplacien. Et l'\'equation int\'egrale :
+\begin{displaymath}
+\text{Etant donn\'ee }  f\in H^{-\frac{1}{2}}(\Gamma) \text{, trouver }p
+\in H^{\frac{1}{2}}(\Gamma)\text{ tel que } -N\left(p\right)=f
+\end{displaymath}
+se formule variationnellement :
+\BEQ{formuvaropsingetdesbrouettes}
+\left\lbrace
+\begin{array}{l}
+\dsp \text{ Etant donn\'ee }f\in H^{-\frac{1}{2}}(\Gamma), \\
+\dsp \text{ Trouver }p\in H^{\frac{1}{2}}(\Gamma)\text{  tel que :  } \\
+\dsp \int_{\Gamma_x}\int_{\Gamma_y}G(x,y)\ovra{{\rm
+rot}}_{\Gamma_y}p(y).\ovra{{\rm rot}}_{\Gamma_x}\overline{p^t(x)}
+{\rm d}\Gamma_x {\rm
+d}\Gamma_y \\
+\dsp -k^2\int_{\Gamma_x}\int_{\Gamma_y}G(x,y)
+\ovra{n_x}.\ovra{n_y} p(y)\overline{p^t(x)}{\rm d}\Gamma_x {\rm
+d}\Gamma_y \\
+\dsp =\int_{\Gamma_x} f(x)p^t(x){\rm d}\Gamma_x, \ \ \ \forall p^t\in H^{\frac{1}{2}}(\Gamma)
+\end{array}
+\right.
+\EEQ
+\subsubsection{Conditions de bord transform\'ees}\label{equationintegralesubsectionsub94}
+\noindent Les notations $p$ et $\ovra{v}$ des variables physiques (\ref{nouvellesnotations}) sont oubli\'ees : on revient au vrai probl\`eme physique dans l'espace transform\'e et l'on note simplement par abus de notation les variables physiques transform\'ees comme les anciennes : $\widetilde{\phi_a}'=\phi_a$, $k_\infty'=k$, ...
+\newline Les domaines sont toujours cart\'esiens et tridimensionnels et les notations (\ref{nouvellesnotations}) pour les domaines g\'eom\'etriques sont toujours valables.
+\newline
+ L'effet de la transformation de Lorentz sur les conditions de bord est explicit\'e pr\'ecis\'ement avec les \'equations \`a la section (\ref{unicitesommerfeldsubsection1}) dans le cas g\'en\'eral d'un \'ecoulement potentiel avec un nombre de Mach moteur diff\'erent du nombre de Mach \`a l'infini.
+\newline Ce paragraphe s'inspire du manuel th\'eorique du logiciel ACTI3S \cite{ADIT} d\'evelopp\'e \`a EADS-CCR.
+\newline Ci-dessous sont \'enum\'er\'ees les conditions de bord du nouveau probl\`eme :
+\newline
+$\bullet$ La condition de r\'eflexion totale se traduit \'egalement par la nullit\'e de la d\'eriv\'ee normale dans l'espace de Lorentz.
+\newline
+$\bullet$ La transform\'ee de Lorentz annule partout l'ancien \'ecoulement constant. La condition de Sommerfeld classique permet de s\'electionner l'onde sortante \`a l'infini :
+\BEQ{conditiondesommerfeldsansecoulementdutout}
+\lim_{R\rightarrow +\infty}\int_{S_R}\vert \frac{\partial \phi_a}{\partial n} -ik\phi_a\vert^2 \ud \gamma =0,
+\EEQ
+o\`u $S_R$ (resp. $B_R$) d\'esigne la sph\`ere (resp. la boule) de rayon R et d'origine nulle avec $R$.
+\newline
+$\bullet$
+Le domaine modal $\Omega_M$ est born\'e {\it{via}} l'introduction de l'op\'erateur Dirichlet-Neumann classique pour un guide d'ondes sans \'ecoulement :
+\newline
+L'absence d'\'ecoulement pour les modes de conduit change uniquement les constantes de propagations de $\dsp \Xi_{mn}^\pm(r,\theta,z)=J_m(\frac{z_{mn}}{R}r)e^{im\theta}e^{i\beta^\pm_{mn}z}$, o\`u :
+\BEQ{constantepropagativesansecoulement}
+\left\lbrace
+\begin{array}{l}
+\dsp \forall  k_{rmn}\leq \left[k\right]
+, \ 
+\left\lbrace
+\begin{array}{l}
+\dsp\beta_{mn}^+=+\sqrt{k^2-k_{rmn}^2} \\
+\dsp\beta_{mn}^-=-\sqrt{k^2-k_{rmn}^2} \\
+\end{array}
+\right.
+\\
+\dsp \forall k_{rmn}>\left[k\right], \
+\left\lbrace
+\begin{array}{l}
+\dsp \beta_{mn}^+=+i\sqrt{k_{rmn}^2-k^2} \\
+\dsp \beta_{mn}^-=-i\sqrt{k_{rmn}^2-k^2} \\
+\end{array}
+\right.
+\\
+\end{array}
+\right.
+\EEQ
+Le probl\`eme pos\'e en domaine modal non born\'e pour le potentiel acoustique total :
+\BEQ{probacoustiqueaxisymetriquecompletavecconditionsauxbordsrappelnumerodeux}
+\left\lbrace
+\begin{array}{ll}
+\text{ Trouver }\phi_{a} \in H^1_{loc}\left(\overline{\Omega_e\cup\Omega_M}\backslash \Gamma_R\right)\text{ tel que : } &\\
+\dsp \Delta\phi_{a}+k^2\phi_a=0  , &\forall \overrightarrow{x} \in \overline{\Omega_e\cup\Omega_M}\backslash \Gamma_R \\
+\dsp \frac{\partial \phi_{a}}{\partial n}=0  , &\forall \overrightarrow{x} \in \Gamma_R \\
+\dsp \phi_{a} - \phi_{a,inc} \text{ est r\'efl\'echi dans le guide d'ondes } & \\
+\dsp \lim_{R\rightarrow +\infty}\int_{S_R}\vert \frac{\partial \phi_a}{\partial n} -ik_\infty\phi_a\vert^2 \ud \gamma =0 &\\
+\end{array}
+\right.,
+\EEQ
+est \'equivalent au probl\`eme en domaine modal born\'e :
+\BEQ{probacoustiqueaxisymetriquecompletavecconditionsauxbordsrappelnumerodeuxreduitmodal}
+\left\lbrace
+\begin{array}{ll}
+\text{ Trouver }\phi_{a} \in H^1_{loc}\left(\Omega_e\right)\text{ tel que : } & \\
+\dsp \Delta\phi_{a}+k^2\phi_a=0=0  , & \forall \overrightarrow{x} \Omega_e \\
+\dsp \frac{\partial \phi_{a}}{\partial n}=0  , & \forall \overrightarrow{x} \in \Gamma_R \\
+\dsp \frac{\partial \left(\phi_{a}- \phi_{a,inc}\right)}{\partial n}=T_M\left(\phi_{a} - \phi_{a,inc}\right)   , &\forall \overrightarrow{x} \in \Gamma_M \\\\
+\dsp \lim_{R\rightarrow +\infty}\int_{S_R}\vert \frac{\partial \phi_a}{\partial n} -ik_\infty\phi_a\vert^2 \ud \gamma =0 & \\
+\end{array},
+\right.
+\EEQ
+o\`u $T_M$ est l'op\'erateur Dirichlet-Neumann modal en l'absence d'\'ecoulement :
+\BEQ{definitionoperateurmodalespacephysique}
+\left\lbrace
+\begin{array}{c}
+T_M :H^{\frac{1}{2}}\left(\Gamma_M\right)\rightarrow H^{-\frac{1}{2}}\left(\Gamma_M\right)\\
+\phi_{a}\rightarrow \sum_{(m,n)\in \mathbb{Z}\times\mathbb{N}}\mu_{mn}^-\left(\phi_a,\Xi_{rmn}(r,\theta)\right)_{L^2\left(\Gamma_M\right)}\Xi_{rmn}(r,\theta)\\
+\end{array},
+\right.
+\EEQ
+o\`u $\mu_{mn}^\pm=-i\beta_{mn}^\pm$.
+\newline
+La source acoustique du moteur est une somme de modes incidents :
+\BEQ{sourceincidente}
+\dsp \phi_{a,inc}\text{ incident }\Leftrightarrow \dsp \phi_{a,inc}=\sum_{(m,n)\in \mathbb{Z}\times\mathbb{N}}\langle\phi_{a,inc},\Xi_{rmn}\rangle_{L^2\left(\Gamma_M\right)} \Xi_{rmn}\left(r,\theta\right)e^{i\beta_{mn}^+ z}
+\EEQ
+Les coefficients modaux incidents $a_{mn}^+=\langle\phi_{a,inc},\Xi_{rmn}\rangle_{L^2\left(\Gamma_M\right)}$ sont les données du problème.
+\subsubsection{Formulation variationnelle globale}\label{equationintegralesubsectionsub95}
+\begin{center}
+\epsfig{file=acti2rnormaleinversee.eps,height=7cm,width=14.5cm}
+Géométrie 
+\end{center}
+\noindent Les domaines sont toujours cart\'esiens et tridimensionnels. On utilise toujours les notations (\ref{nouvellesnotations}) pour les domaines g\'eom\'etriques : $\Omega_e=\Omega_e'$, $\Omega_i=\overline{\Omega_i'\cup\Omega_M'}\backslash\left(\Gamma_M'\cup\Gamma_R'\right)$, $\Omega_M=\Omega_M'$ et $\Gamma =\Gamma_\infty'=\Gamma_R'\cup\Gamma_M'$, auxquelles on ajoute la notation n\'ecessaire $\Gamma_M=\Gamma_M'$ pour faire appara\^itre l'op\'erateur Dirichlet-Neumann dans la formulation variationnelle globale.
+\newline Ce paragraphe s'inspire du manuel th\'eorique du logiciel ACTI3S \cite{ADIT} d\'evelopp\'e \`a EADS-CCR.
+\newline La normale est choisie, pour ce paragraphe uniquement, rentrante à la nacelle $\Omega_i$ (le domaine de calcul étant le domaine extérieur, la normale est choisie sortante au domaine de calcul $\Omega_e$).
+\newline On consid\`ere le vrai probl\`eme physique dans $\Omega_e$ et on pose arbitrairement un probl\`eme nul dans $\Omega_i$. 
+\newline
+Le probl\`eme global se formule variationnellement :
+\BEQ{Calder\'onsousformevariationnelle} \left\{
+\begin{array}{l}
+\dsp \text{ Etant donn\'e }\left(a_{mn}^+\right)_{m\in\mathbb{Z},n
+ \in\mathbb{N}}\in\mathbb{C}^{\mathbb{Z}\times\mathbb{N}} \\
+ \dsp \text{ Trouver } \dsp \left(\phi_a,\ \lambda,\left(a_{mn}^-\right)_{m\in\mathbb{Z},n
+ \in\mathbb{N}}\right)\in  \dsp H^{\frac{1}{2}} \dsp \left( \dsp \Gamma\right)\times H^{-\frac{1}{2}} \dsp \left(\Gamma\right)\times \mathbb{C}^{\mathbb{Z}\times\mathbb{N}},\text{ tel que : }   \\
+\dsp  \lambda=\lambda_{inc}+T_M(\phi_a-\phi_{a,inc}) \text{ sur }\Gamma_M , \  \dsp \phi_a-\phi_{a,inc}=\sum_{(m,n)\in\mathbb{Z}\times\mathbb{N}}a_{mn}^-\Xi_{rmn} \text{ sur } \Gamma_M\\
+\dsp \lambda=0 \text{ sur }\Gamma_R \\
+\dsp \dsp  \int_{ \dsp \Gamma_x}\int_{ \dsp \Gamma_y} \dsp G(x,y)\left(k^2\ovra{n_x}.\ovra{n_y}
+\phi_a(y)\overline{\phi_a^t(x)}- \dsp \ovra{{\rm rot}}_{ \dsp \Gamma_y}\phi_a(y).\ovra{{\rm
+rot}}_{ \dsp \Gamma_x}\overline{\phi_a^t(x)} \right){\rm d}\Gamma_x {\rm
+d}\Gamma_y \\
+\dsp +\int_{ \dsp \Gamma_x}\int_{ \dsp \Gamma_{My}} \frac{ \dsp \partial
+G(x,y)}{ \dsp \partial \ovra{n_x}} \dsp \left[T_M\left(\phi_a-\phi_{a,inc}\right)\right](y)\overline{\phi_a^t(x)}{\rm
+d}\Gamma_x {\rm d}\Gamma_y \\
+\dsp -\frac{1}{2}\int_{ \dsp \Gamma_{Mx}} \dsp T_M\left(\phi_a-\phi_{a,inc}\right)(x)\overline{\phi_a^t(x)}{\rm
+d}\Gamma_x \\
+\dsp = -\int_{ \dsp \Gamma_x}\int_{ \dsp \Gamma_{My}} \frac{ \dsp \partial
+G(x,y)}{ \dsp \partial \ovra{n_x}} \dsp \lambda_{inc}(y)\overline{\phi_a^t(x)}{\rm
+d}\Gamma_x {\rm d}\Gamma_y 
++\frac{1}{2}\int_{ \dsp \Gamma_{Mx}} \dsp \lambda_{inc}(x)\overline{\phi_a^t(x)}{\rm
+d}\Gamma_x \\
+\dsp \text{ et } \\
+\dsp  \dsp \int_{ \dsp \Gamma_{Mx}}\int_{ \dsp \Gamma_y} \frac{\partial
+G(x,y)}{ \dsp \partial \ovra{n_y}}\phi_a(y) \dsp \overline{\lambda^t(x)}{\rm
+d}\Gamma_x {\rm
+d}\Gamma_y
++\frac{1}{2}\int_{ \dsp \Gamma_{Mx}}\phi_a(x) \dsp \overline{\lambda^t(x)}{\rm
+d}\Gamma_x \\
+\dsp -\int_{ \dsp \Gamma_{Mx}}\int_{ \dsp \Gamma_{My}}G(x,y)
+ \dsp \left[T_M\left(\phi_a-\phi_{a,inc}\right)\right](y)\overline{\lambda^t(x)}{\rm d}\Gamma_x {\rm
+d}\Gamma_y\\
+\dsp =+\int_{ \dsp \Gamma_{Mx}}\int_{ \dsp \Gamma_{My}}G(x,y)
+ \dsp \lambda_{inc}(y)\overline{\lambda^t(x)}{\rm d}\Gamma_x {\rm
+d}\Gamma_y\\
+\dsp \forall \left(\phi_a^t,\lambda^t\right)\in \dsp   H^{\frac{1}{2}}\left(\Gamma\right)\times H^{-\frac{1}{2}}\left(\Gamma\right),\text{ tel que }\lambda^t=0 \text{ sur }\Gamma_R\\
+\end{array}
+\right. 
+\EEQ 
+\begin{remark}
+{\rm
+\text{\newline}
+\newline
+$\bullet$ L'inconnue $ \dsp \lambda$ est la d\'eriv\'ee normale du potentiel acoustique $ \dsp \frac{\partial \phi_a}{\partial n}$ et $ \dsp \lambda_{inc}=\frac{\partial \phi_{a,inc}}{\partial n}$ avec $ \dsp \phi_{a,inc}=\sum_{(m,n)\in\mathbb{Z}\times\mathbb{N}}a_{mn}^+\Xi_{rmn}$. 
+\newline
+$\bullet$ Les surfaces sur lesquelles les int\'egrales sont d\'efinies sont indic\'ees par la variable qui les parcourt.
+$ \dsp \Gamma_x$ (resp. $ \dsp \Gamma_y$) signifie que la nacelle entière est parcourue par $ \dsp x$ (resp. $ \dsp y$). $ \dsp \Gamma_{Mx}$ (resp. $ \dsp \Gamma_{My}$) signifie que seule la surface modale est parcourue par $ \dsp x$ (resp. $ \dsp y$). 
+\newline 
+$\bullet$ L'expression de la condition Dirichlet-Neumann modal s'exprime num\'eriquement par un simple produit matrice-vecteur, o\`u la matrice (resp. le vecteur) correspond \`a la discr\'etisation des op\'erateurs int\'egraux (resp. les valeurs modales au niveau des degr\'es de libert\'e modaux) : seule la discr\'etisation des op\'erateurs int\'egraux est \`a expliciter.
+\newline 
+$\bullet$ Les coefficients modaux sont en infinit\'e d\'enombrable, mais pratiquement, seuls les modes propagatifs sont considérés.
+}
+\end{remark}
+\section{Du continu au discret}\label{equationintegralesection10}
+\noindent Ce paragraphe pr\'esente la discr\'etisation num\'erique des op\'erateurs int\'egraux définis par (\ref{definitiondesoperateursintegraux}) pour une g\'eom\'etrie axisym\'etrique. Ces r\'esultats s'inspirent du manuel th\'eorique du logiciel ELFI2R \cite{ITAT} d\'evelopp\'e \`a EADS-CCR.
+\subsection{Discr\'etisation axisym\'etrique}\label{equationintegralesectionsub101}
+\subsubsection{G\'eom\'etrie axisym\'etrique}
+\smallskip  
+\begin{center}
+\qquad \qquad \qquad \epsfig{file=nacellenum.eps,height=6.5cm,width=14.5cm}
+\smallskip
+\quad Nacelle axisym\'etrique
+\smallskip
+\end{center}
+\noindent L'axisym\'etrie de la nacelle permet la d\'ecomposition des inconnues et des fonctions-tests sur les modes de Fourier de la variable angulaire :
+\BEQ{decompoaxisymcalder\'on} 
+\left\{
+\begin{array}{ll}
+\dsp
+\lambda(y)=\lambda(r',z',\theta')=\sum_{m\in\mathbb{Z}}\lambda_m(r',z')e^{im\theta
+'},  &
+ \dsp p(y)=p(r',z',\theta')=\sum_{m\in\mathbb{Z}}p_m(r',z')e^{im\theta
+'} \\
+\dsp
+\lambda^t(x)=\lambda^t(r,z,\theta)=\sum_{m\in\mathbb{Z}}\lambda^t_m(r,z)e^{im\theta
+}, &  \dsp p^t(x)=p(r,z,\theta)=\sum_{m\in\mathbb{Z}}p^t_m(r,z)e^{im\theta} \\
+\end{array}
+\right. \EEQ
+La notation $ \dsp \Gamma_x$ (resp. $ \dsp \Gamma_y$) correspond à la surface tridimensionnelle de la nacelle lorsque celle-ci est parcourue
+par la variable $ \dsp x$ (resp. $ \dsp y$). Nous notons maintenant $ \dsp \Gamma$
+(resp. $ \dsp \Gamma'$) la section axisym\'etrique de $ \dsp \Gamma_x$ (resp. $ \dsp \Gamma_y$)
+correspondant à l'angle $ \dsp \theta$ (resp. $ \dsp \theta'$).  
+ Soit $ \dsp \sigma\in I\rightarrow (r(\sigma),z(\sigma))\in
+\Gamma $ (resp. $ \dsp \sigma'\in I\rightarrow (r'(\sigma'),z'(\sigma'))\in \Gamma'$) un
+param\'etrage normal de la surface $ \dsp \Gamma$ (resp. $ \dsp \Gamma'$). $ \dsp \sigma$
+et $ \dsp \sigma'$ sont des abscisses curvilignes. Le param\'etrage est suppos\'e orient\'e de bas en haut (par rapport à l'orientation positive de l'axe $ \dsp z$), de telle sorte que la
+normale sortante au domaine de calcul soit obtenue par une
+rotation directe de $ \dsp +\frac{\pi}{2}$ dans le plan $ \dsp (r,z)$ orient\'e par
+$ \dsp \ovra{e_\theta}$. Le param\'etrage \'etant normal et orient\'e, il
+vient en notant $ \dsp \ovra{\tau}$ le vecteur tangent unitaire
+r\'esultant et $ \dsp \ovra{n}$ la normale sortante au domaine de calcul :
+\begin{displaymath}
+\left\lbrace
+\begin{array}{ll}
+\dsp \ovra{\tau}=\tau_r \ovra{e}_r+\tau_z \ovra{e}_z ,& \ovra{\tau'}=\tau'_{r'} \ovra{e}_{r'}+\tau_{z'} \ovra{e}_{z'} \\
+\dsp \frac{{\rm d}r}{{\rm d}\sigma}=\tau_r, \ \ \frac{{\rm d}z}{{\rm
+d}\sigma}=\tau_z ,& \dsp  \frac{{\rm d}r'}{{\rm
+d}\sigma'}=\tau'_{r'},\ \ \frac{{\rm d}z'}{{\rm
+d}\sigma'}=\tau'_{z'}\\
+\dsp \ovra{n}=\ovra{e}_\theta\wedge\ovra{\tau}=\tau_z \ovra{e}_r-\tau_r \ovra{e}_z ,& \dsp \ovra{n'}=\ovra{e}_{\theta'}\wedge\ovra{\tau'}=\tau'_{z'} \ovra{e}_{r'}-\tau'_{'r} \ovra{e}_{z'}\\
+\dsp \frac{{\rm d}p}{{\rm d}\sigma}=\frac{\partial p}{\partial
+r}\tau_r+\frac{\partial p}{\partial z}\tau_z ,& \dsp \frac{{\rm
+d}p'}{{\rm d}\sigma'}=\frac{\partial p'}{\partial
+r'}\tau'_{r'}+\frac{\partial p'}{\partial z'}\tau'_{z'}\\
+\end{array}
+\right.
+\end{displaymath}
+Par d\'efinition de l'op\'erateur diff\'erentiel rotationnel surfacique,
+il vient :
+\BEQ{rotorotrotorotsurfacique}
+\begin{array}{c}
+\dsp 
+\ovra{{\rm
+rot}}_{\Gamma}p^t(r(\sigma),z(\sigma))=\ovra{n}\wedge\ovra{\nabla} p^t \\
+\dsp
+=\sum_{m\in\mathbb{Z}}\left(-\frac{dp^t_m}{d\sigma}(r(\sigma),z(\sigma))\ovra{e_{\theta}}
++\frac{im}{r}p^t_m
+\ovra{n}\wedge\ovra{e_{\theta}}\right)e^{im\theta} \\
+\end{array}
+\EEQ
+\subsubsection{Discr\'etisation}
+%\begin{center}
+%\epsfig{file=nacellenumdeux.eps,height=6.cm,width=8cm}
+%\newline
+%Discrétisation
+%\end{center}
+\noindent Soit $ \dsp \mathcal{T}$ une discr\'etisation r\'eguli\`ere de $ \dsp \Gamma$ en poutres. On note $ \dsp \mathcal{T}^0$ (resp. $ \dsp \mathcal{T}^1$) l'ensemble des sommets (resp. ar\^etes) de cette discr\'etisation.
+\newline Soit $ \dsp \mathcal{T}'$ une discr\'etisation r\'eguli\`ere de $ \dsp \Gamma'$ en poutres. On note $ \dsp \mathcal{T}'^0$ (resp. $ \dsp \mathcal{T}'^1$) l'ensemble des sommets (resp. ar\^etes) de cette discr\'etisation.
+\newline
+La fonction $ \dsp p_m \in H^{\frac{1}{2}}\left(\Gamma'\right)$ est approchée par des \'{e}l\'{e}ments finis continus, $ \dsp H^1$-conformes et $ \dsp P^1$ par \'el\'ement poutre. La fonction de base discr\`ete du degr\'e de libert\'e $ \dsp s'_j\in\mathcal{T}'^0 $ est not\'ee $ \dsp p_{s'_j}$. La fonction-test discr\`ete correspondante du degr\'e de libert\'e $ \dsp s_j\in\mathcal{T}^0 $ est not\'ee $ \dsp p^t_{s_j}$.
+\newline
+La fonction $ \dsp \lambda_m \in H^{-\frac{1}{2}}\left(\Gamma'\right)$ est approchée par des \'{e}l\'{e}ments finis constants par \'el\'ement poutre $ \dsp L^2$-conformes. La fonction de base discr\`ete du degr\'e de libert\'e $\dsp a'_j\in\mathcal{T}'^1 $ est not\'ee $ \dsp \lambda_{a'_j}$. La fonction-test discr\`ete correspondante du degr\'e de libert\'e $\dsp a_j\in\mathcal{T}^1 $ est not\'ee $ \dsp \lambda^t_{a_j}$.
+\newline
+On note $K$ une ar\^ete de $ \dsp \mathcal{T}'^0$. Les deux degr\'es de libert\'e $ \dsp P^1$ de $ \dsp p_m$ sur $K$ sont not\'es $ \dsp K1$ et $ \dsp K2$. Ils correspondent aux sommets $1$ de coordonn\'ees $\dsp (r'_{1K},\ z'_{1K})$ et $2$ de coordonn\'ees $\dsp (r'_{2K},\ z'_{2K})$, not\'es de telle fa\c con que la num\'erotation croisse avec l'abscisse curviligne $ \dsp \sigma'$. On note $ \dsp d_K$ la longueur de la poutre. Les fonctions de base correspondantes se notent $ \dsp p_{K1}$ et $p_{K2}$. Le degr\'e de libert\'e $ \dsp P^0$ de $ \dsp \lambda_m$ sur $ \dsp K$ est not\'e abusivement $ \dsp K$. La fonction de base correspondante est not\'ee $ \dsp \lambda_K$.
+\newline
+On note $L$ une ar\^ete de $ \dsp \mathcal{T}^0$. Les deux degr\'es de libert\'e $ \dsp P^1$ de $ \dsp p_m^t$ sur $ \dsp L$ sont not\'es $ \dsp L1$ et $ \dsp L2$. Ils correspondent aux sommets $1$ de coordonn\'ees $\dsp (r_{1L},\ z_{1L})$ et $2$ de coordonn\'ees $\dsp (r_{2L},\ z_{2L})$, not\'es de telle fa\c con que la num\'erotation croisse avec l'abscisse curviligne $ \dsp \sigma$. On note $ \dsp d_L$ la longueur de la poutre. Les fonctions-tests correspondantes se notent $ \dsp p^t_{L1}$ et $ \dsp p^t_{L2}$. Le degr\'e de libert\'e $ \dsp P^0$ de $ \dsp \lambda^t_m$ sur $L$ est not\'e abusivement $L$. La fonction de base correspondante est not\'ee $ \dsp \lambda^t_L$.
+\newline
+Les op\'erateurs int\'egraux sont assembl\'es sur le profil discr\'etis\'e de $ \dsp \Gamma$. Explicitons les fonctions de base en fonction de l'abscisse curviligne, restreintes \`a l'\'el\'ement, des degr\'es de libert\'e des \'el\'ements $ \dsp K$ et $ \dsp L$. 
+\BEQ{discretisationfonctionP1numeroun}
+\left\{
+\begin{array}{l}
+ \dsp p_{K1}(\sigma')=1-\frac{\sigma'}{d_K}  \\
+ \dsp p_{K2}(\sigma')=\frac{\sigma'}{d_K}    \\
+\end{array}
+\right., \  
+\left\{
+\begin{array}{ll}
+ \dsp p^t_{L1}(\sigma)=1-\frac{\sigma}{d_L}  \\
+ \dsp p^t_{L2}(\sigma)=\frac{\sigma}{d_L}   \\
+\end{array}
+\right., \ 
+\lambda_K(\sigma')=
+\begin{array}{l}
+1_{|K} \\
+\end{array} ,  \
+\lambda^t_L(\sigma)=
+\begin{array}{l}
+1_{|L} \\
+\end{array}
+\EEQ 
+Les variables $r$, $z$ de la géom\'{e}trie du profil discr\'etis\'e de $\Gamma$ s'expriment simplement en fonction des abscisses curvilignes $\sigma$ et $\sigma'$ au niveau
+de chaque \'el\'ement $K$ et $L$ :
+\BEQ{distancediscrete}
+\left\lbrace
+\begin{array}{ll}
+r'(\sigma')_{|K}=r_{1K}+\sigma'\tau_{Kr} ,&  r(\sigma)_{|L}=r_{1L}+\sigma\tau_{Lr} \\
+z'(\sigma')_{|K}=z_{1K}+\sigma'\tau_{Kz} ,&  z(\sigma)_{|L}=z_{1L}+\sigma\tau_{Lz} \\
+\end{array}
+\right.
+\EEQ
+\subsection{Op\'erateur simple couche}\label{equationintegralesectionsub102}
+\subsubsection{D\'ecouplage modal}
+\noindent \\ Le probl\`eme à trois dimensions est décomposé en une
+succession d\'enombrable de probl\`emes à deux dimensions $(r,z)$ en choisissant des fonctions tests uniquement sur le mode $m$ :
+\BEQ{fonctiontestdumodem}
+\left\{
+\begin{array}{ll}
+\dsp \lambda(y)=\lambda(r',z',\theta')=\sum_{n\in\mathbb{Z}}\lambda_n(r',z')e^{in\theta'} \\
+\dsp \lambda^t(x)=\lambda^t(r,z,\theta)=\lambda^t_m(r,z)e^{im\theta} \\
+\end{array}
+\right. 
+\EEQ  
+Développons l'intégrale $S=\langle S(\lambda),\lambda^t \rangle$ en coordonnées cylindriques :
+\BEQ{simplecoucheformvaraxisym} 
+S=\oint_0^{2\pi}{\rm
+d}\theta\int_{\Gamma} r(\sigma) {\rm d} \sigma \oint_0^{2\pi}{\rm
+d}\theta'\int_{\Gamma'} r'( \sigma ') {\rm d} \sigma '\frac{e^{ikR}}{4\pi
+R}\sum_{n\in\mathbb{Z}}\lambda_n(r',z')e^{in\theta'}
+\overline{\lambda^t_m(r,z)} e^{-im\theta} 
+\EEQ 
+L'expression de $R$ montre que celui-ci ne d\'{e}pend que de la diff\'{e}rence des
+deux angles : \BEQ{rayonaxisym} \left\{
+\begin{array}{l}
+\dsp R^2=r'^2+r^2+(z'-z)^2-2rr'cos(\theta'-\theta) \\
+\dsp R=R(r,r',z,z',\theta-\theta')\\
+\end{array}
+\right. \EEQ 
+Un changement de variable imm\'ediat donne l'orthogonalit\'e des
+modes de Fourier : 
+\BEQ{simplecoucheaxiapreschangementdevariable} 
+S= 
+\dsp 2\pi\oint_0^{2\pi}{\rm d}\theta\int_{\Gamma}r( \sigma ){\rm d} \sigma  \int_{\Gamma'}r'( \sigma '){\rm d} \sigma '\left(\frac{e^{ik R(r,r',z,z',\theta) }}{4\pi R(r,r',z,z',\theta) } e^{im\theta}\lambda_m(r',z')\overline{\lambda^t_m(r,z)}\right)
+\EEQ 
+\begin{displaymath}
+S=\int_\Gamma\int_{\Gamma'}rr'G_m(r,r',z,z')\lambda_m\overline{\lambda^t_m},
+\end{displaymath}
+o\`u l'on a not\'e : 
+\BEQ{definitiongm}
+G_m=2\pi\oint_0^{2\pi}{\rm d}\theta\frac{e^{ik R(r,r',z,z',\theta)}}{
+4\pi R(r,r',z,z',\theta)}e^{im\theta}=\oint_0^{\pi}{\rm d}\theta
+\frac{e^{ik R(r,r',z,z',\theta)}} {R(r,r',z,z',\theta)}
+cos(m\theta)
+\EEQ
+\subsubsection{Interaction \'el\'ementaire}
+\noindent \\
+L'interaction \'el\'ementaire entre les deux degr\'es de libert\'e $P^0$ : $L$ de l'élément ligne $L$ et $K$ de l'élément colonne $K$ (quantit\'e assembl\'ee dans la matrice globale lors d'une double boucle sur les \'el\'ements ligne et colonne) est donn\'ee par $S_{L,K}=\dsp \langle 
+S\left(1_K\right),1_L \rangle$, assembl\'e sur le profil discr\'etis\'e de $\Gamma$ et $\Gamma'$ :
+\BEQ{termesformvardissimplecouche}
+\begin{array}{l}
+S_{L,K}=   \int_\Gamma\int_{\Gamma'}\left(rr'G_m(r,r',z,z')1_L1_K\right)\\            
+S_{L,K}=r_{1K}r_{1L}G_{m,1}^{11}+r_{1K}\tau_{Lr}G_{m,1}^{21}+r_{1L}\tau_{Kr}G_{m,1}^{12}+\tau_{Kr}\tau_{Lr}G_{m,1}^{22} \\
+\end{array},
+\EEQ 
+où les int\'egrales \'el\'ementaires \`a calculer num\'eriquement s'\'ecrivent :
+\BEQ{deuxiemenotationsimplificatrice}
+G_{m,p}^{ij}=\int_L{\rm d} \sigma \int_K{\rm d} \sigma '\oint_0^{\pi} \sigma ^{i-1} \sigma '^{j-1}\frac{e^{ik
+R(r( \sigma ),r'( \sigma '),z( \sigma ),z'( \sigma '),{\rm cos}\theta)}}{R^p
+(r( \sigma ),r'( \sigma '),z( \sigma ),z'( \sigma '),{\rm cos}(\theta))}{\rm cos}(m\theta){\rm
+d}\theta 
+\EEQ 
+\subsection{Op\'erateur singulier}\label{equationintegralesectionsub103}
+\subsubsection{D\'ecouplage modal}
+\noindent \\ Les fonctions tests sont entièrement portées par le mode $m$ :
+\BEQ{fonctiontestdumodem} \left\{
+\begin{array}{l}
+\dsp p(y)=p(r',z',\theta')=\sum_{n\in\mathbb{Z}}p_n(r',z')e^{in\theta'} \\
+\dsp p^t(x)=p(r,z,\theta)=p^t_m(r,z)e^{im\theta} \\
+\end{array}
+\right. 
+\EEQ 
+La formulation variationnelle (\ref{formuvaropsingetdesbrouettes}) et l'expression cylindrique du rotationnel surfacique (\ref{rotorotrotorotsurfacique}) permettent d'\'ecrire $-N=\langle -N(p),p^t \rangle$ en coordonnées cylindriques :
+\BEQ{operateursingulierformvaraxisym}
+\begin{array}{c}
+\dsp -N = \oint_0^{2\pi}{\rm d} \theta \int_{\Gamma} r( \sigma ){\rm
+d} \sigma \oint_0^{2\pi}{\rm d}\theta'\int_{\Gamma'} r'( \sigma ') {\rm
+d} \sigma '\frac{e^{ikR}}{4\pi R} \\
+\dsp [k^2\overrightarrow{n}.\overrightarrow{n}'
+\left(\sum_{n\in\mathbb{Z}}p_n(r',z')e^{in\theta'}\right)\overline{p^t_n(r,z)} e^{-im\theta} \\
+\dsp
+-<\left(\sum_{n\in\mathbb{Z}}(-\frac{dp_n}{d \sigma '}(r'( \sigma '),z'( \sigma '))\ovra{e_{\theta'}}
++\frac{in}{r'}p_n(r',z')
+\ovra{n'}\wedge\ovra{e_{\theta'}})e^{in\theta'}\right) \\
+\dsp
+.\left((-\frac{d\overline{p^t_m}}{d \sigma }(r( \sigma ),z( \sigma ))\ovra{e_{\theta}}
+-\frac{im}{r}\overline{p^t_m(r,z)}\ovra{n}\wedge\ovra{e_{\theta}})e^{-im\theta}\right)>] \\
+\end{array}
+\EEQ L'\'ecriture des variables g\'eom\'etriques de (\ref{operateursingulierformvaraxisym}) en coordonn\'ees cylindriques prouve le d\'ecouplage des modes (d\'ependance angulaire en $\theta'-\theta$ uniquement) :
+\BEQ{vecteursencoordonneescartesiennes}
+ \dsp \overrightarrow{\tau}=\left\{ \begin{array}{c} \tau_r {\rm
+cos}\theta \\ \tau_r {\rm sin} \theta \\ \tau_z \\ \end{array}
+\right., \ \overrightarrow{\tau}'=\left\{ \begin{array}{c} \tau'_{r'}
+{\rm cos}\theta' \\ \tau'_{r'} {\rm sin} \theta' \\ \tau'_{z'} \\
+\end{array} \right., \ \overrightarrow{e}_\theta=\left\{
+\begin{array}{c} -{\rm sin} \theta \\ {\rm cos}\theta \\ 0 \\
+\end{array} \right., \ \overrightarrow{e}'_{\theta'}=\left\{
+\begin{array}{c} -{\rm sin} \theta' \\ {\rm cos}\theta' \\ 0 \\
+\end{array} \right., \ \EEQ
+\BEQ{suitevecteurscoordonneescartesiennes}
+\overrightarrow{n}=\overrightarrow{e}_\theta\wedge\overrightarrow{\tau}=\left\{
+\begin{array}{c} \tau_z {\rm cos}\theta \\\tau_z {\rm sin} \theta
+\\ -\tau_r \\ \end{array} \right., \
+\overrightarrow{n}'=\overrightarrow{e}_\theta'\wedge\overrightarrow{\tau}'=\left\{
+\begin{array}{c} \tau'_{z'} {\rm cos}\theta' \\\tau'_{z'} {\rm sin}
+\theta' \\ -\tau'_{r'} \\ \end{array} \right., \ \EEQ
+\BEQ{formulepourlesscalaires} \left\{
+\begin{array}{l}
+\overrightarrow{n}.\overrightarrow{n}'=\tau_r\tau'_{r'}+\tau_z\tau'_{z'}{\rm cos}(\theta-\theta') \\
+\overrightarrow{\tau}.\overrightarrow{\tau'}=\tau_r\tau'_{r'}{\rm cos}(\theta-\theta')+\tau_z\tau'_{z'}\\
+\overrightarrow{\tau}'.\overrightarrow{e}_\theta=-\tau'_{r'}{\rm sin}(\theta-\theta')\\
+\overrightarrow{\tau}.\overrightarrow{e}'_{\theta'}=\tau_{r}{\rm sin}(\theta-\theta')\\
+\end{array}
+\right. \EEQ 
+\BEQ{sdfazegaegazegsfd}
+\begin{array}{c}
+\dsp -N=\int_{\Gamma}{\rm d} \sigma \int_{\Gamma'}{\rm d} \sigma '\\
+\dsp [p_n(r',z')\overline{p^t_n(r,z)}(G_m(k^2\tau_r\tau'_{r'}rr'-m^2\tau_z\tau'_{z'})+S_m(k^2\tau_z\tau'_{z'}rr'-m^2\tau_r\tau'_{r'}))\\
+\dsp +p_n(r',z')\frac{d\overline{p^t_n(r( \sigma ),z( \sigma ))}}{d \sigma }(-mr \tau'_{r'}D_m)+\overline{p^t_n(r,z)}\frac{d p_n(r'( \sigma '),z'( \sigma ')) }{d \sigma '}(-mr'\tau_rD_m)\\
+\dsp -\frac{d\overline{p^t_n(r( \sigma ),z( \sigma ))}}{d \sigma }\frac{d p_n(r'( \sigma '),z'( \sigma ')) }{d \sigma '}rr'S_m] \\
+\end{array},
+\EEQ
+où l'on a posé :
+\BEQ{pouetnumeroun}
+\left\lbrace
+\begin{array}{l} 
+\dsp  S_m=\frac{G_{m+1}+G_{m-1}}{2}=2\pi\oint_0^{2\pi}{\rm
+d}\theta\frac{e^{ik R(r,r',z,z',\theta)}}{4\pi R(r,r',z,z',\theta)}e^{im\theta}{\rm
+cos}(\theta) \\
+ \dsp -\frac{D_m}{i}=\frac{G_{m+1}-G_{m-1}}{2i}= 2\pi\oint_0^{2\pi}{\rm d}\theta\frac{e^{ik R(r,r',z,z',\theta)}}{
+4\pi R(r,r',z,z',\theta)}e^{im\theta}{\rm
+sin}(\theta) \\
+\end{array}\right.
+\EEQ 
+\subsubsection{Interaction \'el\'ementaire}
+\noindent \\
+L'interaction \'el\'ementaire entre les deux degr\'es de libert\'e $ \dsp P^1$ $K1$ de $K$ et $L1$ de $L$, restreinte aux \'el\'ements colonne $K$ et ligne $L$ (quantit\'e assembl\'ee dans la matrice globale lors d'une double boucle sur les \'el\'ements ligne et colonne), est donn\'ee par $ \dsp -N_{L1,K1}=\langle -N(p_{K1}1_K),p^t_{L1}1_L\rangle$, assembl\'e sur le profil discr\'etis\'e de $\Gamma$ et $\Gamma'$ :
+\BEQ{discretisationdoublecouche}
+\begin{array}{c}
+ \dsp  -N_{L1,K1}=(1-\frac{ \sigma  }{d_{|L}})(1-\frac{ \sigma '}{d_{|K}})[G_m(k^2\tau_r\tau'_{r'}(r_{1K}+t'\tau_{Kr})(r_{1L}+ \sigma \tau_{Kl})-m^2\tau_z\tau'_{z'})]\\
+ \dsp +(1-\frac{ \sigma }{d_{|L}})(1-\frac{ \sigma '}{d_{|K}})[S_m(k^2\tau_z\tau'_{z'}(r_{1K}+ \sigma '\tau_{Kr})(r_{1L}+ \sigma \tau_{Kl})-m^2\tau_r\tau'_{r'}))]\\
+ \dsp +(1-\frac{ \sigma '}{d_{|K}})(-\frac{1}{d_{|L}})(-(r_{1L}+ \sigma \tau_{Kl})m\tau'_{r'}D_m)
+  +(1-\frac{ \sigma }{d_{|L}})(-\frac{1}{d_{|K}})(-(r_{1K}+ \sigma '\tau_{Kr})m\tau_rD_m)\\
+ \dsp -\frac{1}{d_{|L}}\frac{1}{d_{|K}}S_m(r_{1K}+ \sigma '\tau_{Kr})(r_{1L}+ \sigma \tau_{Kl})\\
+\end{array},
+\EEQ
+o\`u les int\'egrales \'el\'ementaires \`a estimer num\'eriquement s'explicitent \`a partir des $
+G_{m,p}^{ij}$ (\ref{deuxiemenotationsimplificatrice}) ($\dsp S_{m,p}^{ij}=\dsp \frac{G_{m+1,p}^{ij}+G_{m-1,p}^{ij}}{2}$ et $\dsp D_{m,p}^{ij}=\dsp \frac{-G_{m+1,p}^{ij}+G_{m-1,p}^{ij}}{2}$).
+\subsection{Op\'erateur adjoint du double couche}\label{equationintegralesectionsub104}
+\subsubsection{D\'ecouplage modal}
+\noindent \\ Les fonctions tests sont axisym\'etriques et ne d\'ependent que du
+mode $m$ : 
+\BEQ{fonctiontestdumodem} \left\{
+\begin{array}{ll}
+\dsp \lambda(y)=\lambda(r',z',\theta')=\sum_{n\in\mathbb{Z}}\lambda_n(r',z')e^{in\theta'} \\
+\dsp p^t(x)=p^t(r,z,\theta)=p^t_m(r,z)e^{im\theta} \\
+\end{array}
+\right. \EEQ 
+$D^*=\langle D^* (\lambda), p^t \rangle $ s'\'ecrit en coordonn\'ees cylindriques :
+\BEQ{doublecoucheformvaraxisym}
+\begin{array}{l}
+\dsp D^*=\oint_0^{2\pi}{\rm d}\theta\int_{\Gamma} r{\rm
+d} \sigma \oint_0^{2\pi}{\rm d}\theta'\int_{\Gamma} r'{\rm d} \sigma ' \overrightarrow{n_X}.(ik-\frac{1}{R})\frac{e^{ikR}}{4\pi
+R}\frac{\overrightarrow{YX}}{R}\sum_{n\in\mathbb{Z}}\lambda_n(r',z')e^{in\theta'}
+\overline{p^t_m(r,z)} e^{-im\theta} \\
+\end{array}
+\EEQ 
+L'écriture des variables g\'eom\'etriques de (\ref{doublecoucheformvaraxisym}) en coordonnées cylindriques prouve le d\'ecouplage des modes (d\'ependance angulaire en $\theta'-\theta$ uniquement) :
+\BEQ{cooordonneescartesiennesdifferentsvecteursoperateurdoublecouche}
+ \dsp \overrightarrow{n}=\overrightarrow{e}_\theta\wedge\overrightarrow{\tau}=\left\{
+\begin{array}{c}  \dsp \tau_z {\rm cos}\theta \\  \dsp \tau_z {\rm sin} \theta
+\\ -\tau_r \\ \end{array} \right., \ \overrightarrow{YX}=\left\{
+\begin{array}{c}  \dsp r{\rm cos}\theta - r' {\rm cos}(\theta') \\ r{\rm
+sin}\theta - r' {\rm sin}(\theta') \\ z - z'\\ \end{array} \right.
+\EEQ \BEQ{produitscalaireoperateurdesoublcouche}
+ \dsp \overrightarrow{n}.\overrightarrow{YX}=-\tau_r(z-z')+\tau_z
+r-\tau_z r'{\rm cos}(\theta'-\theta) 
+\EEQ
+\BEQ{formvardoublecoucheapressimplification}
+ \dsp D^*=\int_{\Gamma}{\rm d} \sigma \int_{\Gamma'}{\rm d} \sigma '
+rr'\lambda_m(r',z')\overline{p^t_m(r,z)}\left(H_m (-\tau_r
+(z-z') + \tau_z r)-T_m \tau_z r' \right), \EEQ 
+où l'on a noté :
+\BEQ{definitionnumerotroissimplification} \left\{
+\begin{array}{l}
+\dsp H_m= 2\pi\oint_0^{2\pi}\frac{e^{ik R(r,r',z,z',\theta)}}{ 4\pi R(r,r',z,z',\theta)}(\frac{ik}{R}-\frac{1}{R^2})e^{im\theta} 
+=\oint_0^{\pi}\frac{e^{ik R(r,r',z,z',\theta)}}{R(r,r',z,z',\theta)}(\frac{ik}{R}-\frac{1}{R^2}){\rm cos}(m\theta)\\
+ \dsp T_m=\frac{H_{m+1}+H_{m-1}}{2}=\dsp 2\pi \oint_0^{2\pi}\frac{e^{ik R(r,r',z,z',\theta)}}{ 4\pi R(r,r',z,z',\theta)}(ik-\frac{1}{R})\frac{1}{R}e^{im\theta}{\rm cos}(\theta) \\
+\end{array}
+\right. 
+\EEQ 
+\subsubsection{Interaction \'el\'ementaire}
+\noindent \\ L'interaction \'el\'ementaire entre le degr\'e de libert\'e $P^1$ $L1$ de l'\'el\'ement ligne $L$ et le degr\'e de libert\'e $P^0$ $K$ de l'\'el\'ement colonne $K$, restreinte aux \'el\'ements $K$ et $L$ (quantit\'e assembl\'ee dans la matrice globale lors d'une double boucle sur les \'el\'ements ligne et colonne), est donn\'ee par $D^*_{L1,K}=\langle D^*(1_K), p^t_{L1}1_L \rangle$, assembl\'e sur le profil discr\'etis\'e de $\Gamma$ et $\Gamma'$ : 
+\BEQ{fonctiondiscretiseedoublecouche}
+\begin{array}{c}
+\dsp D^*_{L1,K}=(1-\frac{t}{d_L})(r_{1K}+t'\tau_{Kr})(r_{1L}+t\tau_{Lr}) \\
+\dsp (-H_m(\tau_{Lr}(z_{1L}+t\tau_{Lz}-z_{1K}-t'\tau_{Kz})-\tau_{Lz}(r_{1L}+t\tau_{Lr}))-T_m\tau_{Lz}(r_{1k}+t'\tau_{Kr})) \\
+\end{array}
+\EEQ 
+où les int\'egrales \'el\'ementaires \`a estimer num\'eriquement s'explicitent \`a partir des $
+G_{m,p}^{ij}$ (\ref{deuxiemenotationsimplificatrice}) ($\dsp H_{m,1}^{ij}=ikG_{m,2}^{ij}-G_{m,3}^{ij}$ et $\dsp T_{m,p}^{ij}=\dsp \frac{H_{m+1,p}^{ij}+H_{m-1,p}^{ij}}{2}$).
+\newline
+L'op\'erateur discret double couche est simplement le transpos\'e matriciel de cet op\'erateur.
+
+

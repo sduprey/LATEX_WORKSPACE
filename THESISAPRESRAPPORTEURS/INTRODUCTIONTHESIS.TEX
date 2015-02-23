@@ -1,0 +1,58 @@
+\begin{center}{\Huge Introduction g\'en\'erale}
+\end{center}
+Ce document présente les travaux de recherche effectués dans le cadre d'une thèse CIFRE issue d'un partenariat entre le Centre Commun de Recherche EADS-Suresnes et l'INRIA-Lorraine au sein de l'université Henri Poincaré Nancy 1. Ces travaux traitent de problèmes de propagation acoustique en présence d'écoulement et proposent une analyse mathématique et numérique du rayonnement acoustique des turboréacteurs.\\
+\newline
+Devant la r\'{e}cente explosion du trafic a\'{e}rien, les
+industriels se sont vus imposer des normes internationales de
+certification quant au bruit occasionn\'{e} par les avions au
+d\'{e}collage, dans le but de prot\'{e}ger les populations avoisinantes
+aux a\'{e}roports. Ces normes sont strictes et d\'efinies au d\'ecibel pr\`es : une att\'enuation de quelques d\'ecibels peut se r\'ev\'eler primordiale. La g\^{e}ne acoustique et sa minimisation sont donc
+maintenant une priorit\'{e}. \\
+\newline Les principales nuisances
+sonores d'un avion au d\'{e}collage sont dues aux turbor\'{e}acteurs. Le
+bruit d'origine a\'{e}rodynamique et le bruit de jet à l'arrière de la nacelle sont alors n\'{e}gligeables par rapport au
+bruit cr\'{e}\'{e} par le moteur, puis rayonn\'e par les conduits d'entr\'{e}e et
+d'\'{e}jection d'air. La source acoustique "moteur" se
+caract\'{e}rise par la pr\'{e}sence de raies \'{e}mergeant de plus de 20 dB du
+spectre \`{a} large bande, aux harmoniques de la fr\'{e}quence de rotation
+des pales. Ce bruit est qualifi\'e de tonal ou de raies.\\
+\vskip -1.cm
+\begin{center}
+\epsfig{file=legendredeux.eps,height=6.cm,width=14.50cm}
+\vskip -0.5cm
+Spectre en décibels du bruit de la soufflante en régime subsonique
+\end{center}
+\noindent Pour minimiser ce bruit, les constructeurs d'avion
+peuvent jouer
+sur plusieurs param\`{e}tres du réacteur :\\
+\begin{center}
+\epsfig{file=legendreun.eps,height=7.75cm,width=16.cm}
+Sch\'ema d'une nacelle de turbor\'eacteur
+\end{center}
+\begin{itemize}
+\item Les motoristes peuvent, par une meilleure compr\'{e}hension de
+la g\'{e}n\'{e}ration du bruit par les diff\'{e}rents constituants du moteur,
+r\'{e}agencer, traiter et minimiser la production du bruit \`{a} sa source.
+\item La présence de matériaux de type nid d'abeilles sur les parois des conduits de la nacelle est destinée à absorber le bruit tonal du moteur lors de sa propagation dans les conduits de la nacelle.
+\item Même si ces travaux d'atténuation ont porté leurs fruits, les normes internationales de certification devenant de plus en plus sévères, il faut toujours trouver de nouvelles solutions pour réduire le bruit :\\
+les nacellistes peuvent apporter des am\'{e}liorations de type g\'{e}om\'{e}trique comme l'optimisation de la forme de la lèvre de l'entrée d'air ou encore de la disposition des traitements dans les conduits...\\
+\end{itemize}
+\noindent Tester l'influence d'une nouvelle forme de nacelle ou d'un r\'{e}agencement des parties trait\'{e}es est on\'{e}reux et les mesures
+d\'{e}licates : l'int\'{e}rêt du d\'{e}veloppement d'un code de calcul
+informatique pour pr\'{e}voir et optimiser avant de construire est évident.\\
+\newline Actuellement, dans l'optique de traiter numériquement l'avion tout entier, il faut le d\'ecomposer en domaines de complexité physique croissante, optimisant ainsi la résolution numérique globale en profitant des simplifications inhérentes \`a chaque physique.
+\newline Les phénomènes physiques mis en jeu par le rayonnement acoustique tonal du moteur au décollage sont simples par rapport \`a ceux mis en jeu par la cr\'eation du bruit aérodynamique et le bruit de jet, qui n\'ecessitent un traitement num\'erique extr\^emement co\^uteux.
+\newline Le rayonnement acoustique tonal \`a l'avant de la nacelle ({\it via} le conduit d'entrée d'air) s'inscrit dans une zone physique bien cibl\'ee définissant un domaine précis dans la décomposition de domaine globale : la propagation lin\'eaire d'une perturbation acoustique sur un \'ecoulement porteur.
+\newline Le rayonnement acoustique tonal à l'arrière de la nacelle ({\it via} les conduits d'ejection d'air) n'est pas traité dans ce document : la présence d'une discontinuité de jet à l'arrière de la nacelle relève d'une physique plus compliquée.\\
+\newline
+\noindent Ce manuscrit d\'etaille l'av\`enement du mod\`ele math\'ematique d\'ecoulant du cadre physique pr\'ecis et cibl\'e de la propagation acoustique linéaire tonale \`a l'avant de la nacelle.
+\newline L'existence et l'unicit\'e de la solution globale fluide-acoustique sont d\'emontr\'ees. 
+\newline Une discr\'etisation numérique du problème continu par éléments finis est propos\'ee.
+\newline La complexit\'e des différents écoulements porteurs envisageables ramifie le probl\`eme de la propagation acoustique lin\'eaire en une suite de probl\`emes de complexit\'e croissante et il d\'ecoule naturellement le plan du document (plan explicit\'e pr\'ecis\'ement dans le chapitre \ref{Enjeux et Probl\`emes} "Enjeux et probl\`emes").
+\newline La validation du code se fait naturellement \`a partir de solutions analytiques et de codes pr\'eexistants. 
+\newline L'originalit\'e des nouveaux r\'esultats est finalement d\'etaill\'ee.\\ 
+
+
+
+
+

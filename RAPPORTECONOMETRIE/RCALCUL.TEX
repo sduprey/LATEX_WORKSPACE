@@ -1,0 +1,741 @@
+\chapter[Calcul avec le logiciel R]{Calcul avec le logiciel R}\label{Calcul avec le logiciel R}
+\section{Calcul du prix des bons du trésor-zéro coupon}\label{analmath}
+\subsection{Initialisation des variables}
+Les sensibilités sont supposées constantes dans le temps :
+
+Nous rappelons que le "{\bf stochastic discount factor}" est modélisé par :
+\BEQ{stochasticDiscountFactor}
+M_{t,t+1} =exp(\nu_0 + \nu'Z_{t+1})
+\EEQ
+Nous prenons pour valeur :
+\begin{displaymath}
+\nu_0 = -0.01\ et\ \nu=-0.2
+\end{displaymath}
+La probabilité de survie sur une période pour l'entreprise $i$ est modélisée à l'aide de sensibilités constantes dans le temps :
+\BEQ{intensitesurvie}
+P\left[\tau_i>t+1|\tau_i>t,Z,Z^i,i=1,...,n\right]= exp(-\lambda^i_{t+1}), \ \forall t,
+\EEQ
+où $\lambda^i_t= \alpha_t + \beta'_t Z_t + \gamma'_t Z^i_{t}t$ est l'intensité de survie et ici les différentes sensibilités sont supposées constantes : 
+\begin{displaymath}
+\alpha_t=\alpha=0.001,\  \beta'_t=\beta'=2\ et\ \gamma'_t=\gamma=0.1
+\end{displaymath}
+Les valeurs initiales des facteurs sont choisies égales à :
+\begin{displaymath}
+Z_0=0.003 \ et\ Z^i_0=0.3
+\end{displaymath}
+Le facteur systémique et les facteurs spécifiques suivent un processus gamma régressif, où les fonctions $a_g$, $b_g$, $a_c$ et $b_c$ ont les expresions suivantes :
+\begin{displaymath}
+a_g(u)=\frac{\rho_g u}{1-ud_g},\ \rho_g>0,\ d_g>0,\ u >1/d_g
+\end{displaymath}
+\begin{displaymath}
+b_g(u)=-\lambda_g\log (1-ud_g), \lambda_g>0
+\end{displaymath}
+\begin{displaymath}
+a_c(u)=\frac{\rho_c u}{1-ud_c},\ \rho_c>0,\ d_c>0,\ u >1/d_c
+\end{displaymath}
+\begin{displaymath}
+b_c(u)=-\lambda_c\log (1-ud_c), \lambda_c>0
+\end{displaymath}
+La dynamique des facteurs est décrite à l'aide des valeurs suivantes :
+\begin{displaymath}
+\rho_g=0.9,\ d_g=0.1\ et\ \lambda_g=0.1 
+\end{displaymath}
+\begin{displaymath}
+\rho_c=0.9,\ d_c=0.1\ et\ \lambda_c=0.1 
+\end{displaymath}
+\subsection{Treasury Bond-Zero Coupon}
+Le prix et les rendements sont donnés par :
+\begin{displaymath}
+B(t,t+h)=E_t[\prod_{j=0}^{h-1}M_{t+j,\ t+j+1}]=E[\exp(\nu_{0}h + \nu'\sum_{j=1}^{h}Z_{t+j})|Z_t]
+\end{displaymath}
+\begin{displaymath}
+B(t,t+h)=\exp[\nu_{0}h + \sum_{j=0}^{h-1}b_{g,\ \nu}[a^{oj}_{g,\ \nu}(0)] + a^{oh}_{g,\ \nu}(0)'Z_t],
+\end{displaymath}où	le rendement géométrique $r(t,t+h)$ est égal à :
+\begin{displaymath}
+r(t,t+h)=-\frac{ log[B(t,t+h)]}{h}
+\end{displaymath}
+\begin{displaymath}
+r(t,t+h)=-\nu_{0}- \frac{1}{h} \sum_{j=0}^{h-1}b_{g,\ \nu}[a^{oj}_{g,\ \nu}(0)]-\frac{1}{h} a^{oh}_{g,\ \nu}(0)'Z_t]
+\end{displaymath}
+%\subsubsection{Programme R}
+%\noindent\
+%\begin{text}
+%\noindent\#Zero coupon - treasury bond\newline
+%\#1. Calcul du prix des zeros coupons, bons du tresor\newline
+%{\bf
+%ZeroCouponTreasuryBondPrice<-function(horizon)\{\newline
+%Ag=0;\newline
+%Bg=0;\newline
+%for (i in horizon:1)\{\newline
+%Bg=bg(nu+Ag)+Bg;\newline
+%Ag=ag(nu+Ag);\newline
+%\}\newline
+%price = exp(nu0*horizon+Bg+Ag*Z0);\newline
+%\}\newline
+%}
+%\#2. Construction du vecteur des rendements des Treasury Bonds\newline
+%{\bf
+%TreasuryBondYield=rep(0,H);\newline
+%for (i in 1:H)\{\newline
+%TreasuryBondYield[i] = -log(ZeroCouponTreasuryBondPrice(i))/i;\newline
+%\}\newline
+%}
+%\#3. Graphique\newline
+%{\bf
+%mainLabel = "Treasury Bond-Zero Coupon Yields";\newline
+%ts.plot(as.ts(TreasuryBondYield), main=mainLabel, xlab="Time",ylab="Yields");
+%}
+%\end{text}
+\subsection{Corporate Bond-Zero Coupon with zero recovery rate}
+Le prix des obligations risquées d'entreprise-zéro coupon s'obtient par la formule suivante pour l'entreprise i :
+{\tiny
+\BEQ{rendementObligationsRisquees}
+C_{i}(t,t+h)=\exp\left[\nu_{0}h-\sum_{j=1}^{h}\alpha_{t+j}+B^{\nu-[\beta]}_g (t,t+h) + A^{\nu-[\beta]}_g (t,t+h)'Z_t+B^{-[\gamma]}_c (t,t+h) + A^{-[\gamma]}_c (t,t+h)'Z^{i}_t\right]
+\EEQ}
+Le rendement géométrique $c(t,t+h)$ est égal à :
+\begin{displaymath}
+c(t,t+h)=-\frac{\log(C_{i}(t,t+h))}{h} 
+\end{displaymath}
+%\subsubsection{Programmme R}
+%\noindent
+%\begin{text}
+%\#Obligations risquees zero coupon\newline
+%{\bf
+%ZeroCouponCorporateBondPrice<-function(horizon)\{\newline
+%Ag=Bg=0;\newline
+%Ac=Bc=0;\newline
+%SumAlpha=0;\newline
+%for (i in horizon:1)\{\newline
+%SumAlpha = SumAlpha + alpha[i];\newline
+%Bg=bg(nu-beta[i]+Ag)+Bg;\newline
+%Ag=ag(nu-beta[i]+Ag);\newline
+%Bc=bc(-gamma[i]+Ac)+Bc;\newline
+%Ac=ac(-gamma[i]+Ac);\newline
+%\}\newline
+%price = exp(nu0*horizon-SumAlpha+Bg+Ag*Z0+Bc+Ac*Z0i)\newline
+%\}\newline
+%}
+%\#2.Construction du vecteur des rendements des obligations risquees\newline
+%{\bf
+%ZeroCouponCorporateBondYield=rep(0,H);\newline
+%for (i in 1:H)\{\newline
+%ZeroCouponCorporateBondYield[i]=-log(ZeroCouponCorporateBondPrice(i))/i;\newline
+%\}\newline
+%}
+%\#3. Graphique\newline
+%{\bf
+%mainLabel = "Corporate Obligations Yields"\newline
+%ts.plot(as.ts(ZeroCouponCorporateBondYield),\newline main=mainLabel,xlab="time",ylab="yields");\newline
+%}
+%\end{text}
+\subsection{Décomposition du spread pour une obligation risquée d'entreprise-zéro coupon avec un taux de recouvrement nul}
+La probabilité de survie s'écrit :
+{\small
+\begin{displaymath}
+P[\tau_i >t+h|\tau_i >t, Z_t,Z^{i}_t]
+\end{displaymath}
+\begin{displaymath}
+=
+\end{displaymath}
+\begin{displaymath}
+\exp\left[-\sum_{k = 1}^{h}\alpha_{t+k} + B^{-[\beta]}_{g}(t,t+h)+A^{-[\beta]}_{g}(t,t+h)'Z_t+B^{-[\gamma]}_{c}(t,t+h)+A^{-[\gamma]}_{c}(t,t+h)'Z^{i}_{t}\right]
+\end{displaymath}
+La "average forward default intensity" se calcule par :
+\begin{displaymath}
+\pi_i(t,t+h)=-\frac{P[\tau_i >t+h|\tau_i >t, Z_t,Z^{i}_t]}{h}
+\end{displaymath}
+La décomposition du spread de crédit s'écrit alors :
+\BEQ{spreadDecompositionCorporateBond}
+y_i(t,t+h)=r(t,t+h)+[s_i(t,t+h)-\pi_i(t,t+h)]+\pi_i(t,t+h)
+\EEQ
+\subsubsection{Programme R}
+\noindent
+\begin{text}
+\#1.Parameters initialisation\newline
+\#investment horizon\newline
+{\bf
+H=40;\newline
+}
+\#different sensibilities\newline
+{\bf
+alpha=rep(0.01,H);\newline
+beta=rep(2,H);\newline
+gamma=rep(0.1,H);\newline
+}
+\#systemic dynamical factors\newline
+{\bf
+rhog=0.9;\newline
+dg=0.1;\newline
+lg=0.1;\newline
+}
+\#specific dynamical factors\newline
+{\bf
+rhoc=0.9;\newline
+dc=0.1;\newline
+lc=0.1;\newline
+}
+\#stochastic discount factor\newline
+{\bf
+nu0=-0.01;\newline
+nu=-0.2;\newline
+}
+\# initial value for observable factors\newline
+{\bf
+Z0=0.003;\newline
+Z0i=0.3;\newline
+}
+\#2.Zero coupon - treasury bond Price\newline
+{\bf
+ZeroCouponTreasuryBondPrice<-function(horizon)\{\newline
+Ag=0;\newline
+Bg=0;\newline
+for (i in horizon:1)\{\newline
+Bg=bg(nu+Ag)+Bg;\newline
+Ag=ag(nu+Ag);\newline
+\}\newline
+price = exp(nu0*horizon+Bg+Ag*Z0);\newline
+\}\newline
+}
+\#3.Vector of Treasury Bonds yields\newline
+{\bf
+TreasuryBondYield=rep(0,H);\newline
+for (i in 1:H)\{\newline
+TreasuryBondYield[i] = -log(ZeroCouponTreasuryBondPrice(i))/i;\newline
+\}\newline
+}
+\#4.zero coupon-corporate obligation price\newline
+{\bf
+ZeroCouponCorporateBondPrice<-function(horizon)\{\newline
+Ag=Bg=0;\newline
+Ac=Bc=0;\newline
+SumAlpha=0;\newline
+for (i in horizon:1)\{\newline
+SumAlpha = SumAlpha + alpha[i];\newline
+Bg=bg(nu-beta[i]+Ag)+Bg;\newline
+Ag=ag(nu-beta[i]+Ag);\newline
+Bc=bc(-gamma[i]+Ac)+Bc;\newline
+Ac=ac(-gamma[i]+Ac);\newline
+\}\newline
+price = exp(nu0*horizon-SumAlpha+Bg+Ag*Z0+Bc+Ac*Z0i)\newline
+\}\newline
+}
+\#5.Vector of corporate bond yields\newline
+{\bf
+ZeroCouponCorporateBondYield=rep(0,H);\newline
+for (i in 1:H)\{\newline
+ZeroCouponCorporateBondYield[i]=-log(ZeroCouponCorporateBondPrice(i))/i;\newline
+\}\newline
+}
+\#6. Vector of credit spread\newline
+{\bf
+creditSpread=rep(0,H);\newline
+for (i in 1:H)\{\newline
+creditSpread[i]=ZeroCouponCorporateBondYield[i]-TreasuryBondYield[i];\newline
+\}\newline
+}
+\#7. Average default probalbility\newline
+{\bf
+SurvivingDefaultProbability<-function(horizon)\{\newline
+Ag=Bg=0;\newline
+Ac=Bc=0;\newline
+SumAlpha=0;\newline
+for (i in horizon:1)\{\newline
+SumAlpha = SumAlpha + alpha[i];\newline
+Bg=bg(-beta[i]+Ag)+Bg;\newline
+Ag=ag(-beta[i]+Ag);\newline
+Bc=bc(-gamma[i]+Ac)+Bc;\newline
+Ac=ac(-gamma[i]+Ac);\newline
+\}\newline
+price = exp(-SumAlpha+Bg+Ag*Z0+Bc+Ac*Z0i)\newline
+\}\newline
+}
+\#8.Vector of default intensity\newline
+{\bf
+ZeroCouponCorporateBondSurvivingDefaultIntensity=rep(0,H);\newline
+for (i in 1:H)\{\newline
+ZeroCouponCorporateBondSurvivingDefaultIntensity[i]=\newline-log(SurvivingDefaultProbability(i))/i;\newline
+\}\newline
+}
+\#9.Default-sdf correlation effect\newline
+{\bf
+spreadDefaultStochasticDiscountFactor=rep(0,H);\newline
+for (i in 1:H)\{\newline
+spreadDefaultStochasticDiscountFactor[i]=netYield[i]\newline -ZeroCouponCorporateBondDefaultIntensity[i];\newline
+\}\newline
+}
+\#10. Graphics\newline
+{\bf
+all=cbind(netYield,ZeroCouponCorporateBondDefaultIntensity,\newline spreadDefaultStochasticDiscountFactor);\newline
+mainLabel = "Corporate Bond Spread decomposition";\newline
+subLabel="(Default-Sdf correlation effect(short dash),Default Effect(dash), Credit Spread(solid))";\newline
+ts.plot(as.ts(all),main=mainLabel,sub=subLabel, xlab="Term",ylab="Spread",lty=c(1,5,3));\newline
+}
+\end{text}
+}
+\subsection{First-to-Default Basket}
+\begin{displaymath}
+C(t,t+h)=\exp(\nu_{0}h-n\sum_{j=1}^h\alpha_{t+j}+B_g^{\nu-n[\beta]}(t,t+h)+A_g^{\nu-n[\beta]}(t,t+h)'Z_t
+\end{displaymath}
+\begin{displaymath}
++nB_c^{-[\gamma]}(t,t+h)+A_c^{-[\gamma]}(t,t+h)'[Z^1_t+...+Z^n_t]]
+\end{displaymath}
+\begin{displaymath}
+S(t,t+h)=\frac{n}{h}\sum_{j=1}^{h}\alpha_{t+j}-\frac{1}{h}B_g^{\nu-n[\beta]}(t,t+h)
+-\frac{1}{h}[A_g^{\nu-n[\beta]}(t,t+h)-a_{g,\ \nu}^{oh}(0)]'Z_t
+\end{displaymath}
+\begin{displaymath}
+-\frac{n}{h}B_c^{-[\gamma]}(t,t+h)+\frac{1}{h}\sum_{j=0}^{h-1}b_{g,\ \nu}(a^{oj}_{g,\nu}(0))
+-\frac{1}{h}A_c^{-[\gamma]}(t,t+h)'[Z^1_t+...+Z^n_t]
+\end{displaymath}
+\begin{displaymath}
+\pi(t,t+h)=\frac{n}{h}\sum_{j=1}^{h}\alpha_{t+j}-\frac{1}{h}B_g^{-n[\beta]}(t,t+h)
+-\frac{1}{h}A_g^{-n[\beta]}(t,t+h)'Z_t
+\end{displaymath}
+\begin{displaymath}
+-\frac{n}{h}B_c^{-[\gamma]}(t,t+h)-\frac{1}{h}A_c^{-[\gamma]}(t,t+h)'[Z^1_t+...+Z^n_t]
+\end{displaymath}
+%\frac{1}{h}[\sum_{j=1}^{h-1}b_{g,\nu}(a^{oj}_{g,\nu}(0))]-b_{g,\nu-n\beta}[a^{oj}_{g,\nu-n\beta}(0)]
+%\end{displaymath}
+%\begin{displaymath}
+%=-nb_{c,-\gamma}[a^{oj}_{c,-\gamma}(0)]+ %\frac{1}{h}[a^{oh}_{g,\nu}(0)-a^{oh}_{g,\nu-n\beta}(0)'Z_t
+%\end{displaymath}
+%ù\begin{displaymath}=-\frac{1}{h}a^{oh}_{c,-\gamma}(0)'[Z^{1}_{t}+.....+Z^{n}_{t}]
+%\end{displaymath}
+%\begin{displaymath}
+%\Pi(t,t+h)=n\alpha -\frac{1}{h}\sum_{j=0}^{h-1}[b_{g,n\beta}(a^{oj}_{g,-n\beta}(0))+nb_{c,-\gamma}[a^{oj}_{c,-\gamma}(0)]]	
+%-\frac{1}{h} a^{oh}_{g,n\beta}(0)'Z_t -\frac{1}{h}a^{oh}_{c,-\gamma}(0)'[Z^{1}_{t}+...+Z^{n}_{t}]	
+%\end{displaymath}													
+La structure à terme des paniers first-to-default peut être décomposé comme suit :
+\begin{displaymath}
+y(t,t+h)=r(t,t+h) +\Pi^{*}(t,t+h) +[\Pi(t,t+h)-\Pi^{*}(t,t+h)]+ [S(t,t+h)-\Pi(t,t+h)]
+\end{displaymath}
+\subsubsection{Programme R}
+\noindent
+\begin{text}
+\#Zero-Coupon-First to Default-Basket credit spread decomposition\newline
+\#1.Parameters initialisation\newline
+\#investment horizon\newline
+{\bf
+H=40;\newline
+}
+\#number of corporation in the basket\newline
+{\bf
+n=3;\newline
+}
+\#different sensibilities\newline
+\#First set of values\newline
+{\bf
+alpha=rep(0.01,H);\newline
+beta=rep(0.05,H);\newline
+gamma=rep(0.01,H);\newline
+}
+\#systemic dynamic factors\newline
+{\bf
+rhog=0.9;\newline
+dg=0.1;\newline
+lg=1;\newline
+}
+\#specific dynamic factors\newline
+{\bf
+rhoc=0.9;\newline
+dc=0.1;\newline
+lc=1;\newline
+}
+\#stochastic discount factors\newline
+{\bf
+nu0=-0.15;\newline
+nu=0.05;\newline
+}
+\# initial values of observable factors \newline
+{\bf
+Z0=1;\newline
+Z0i=1;\newline
+}
+\#2.zero-coupon-treasury bond price\newline
+{\bf
+ZeroCouponTreasuryBondPrice<-function(horizon)\{\newline
+Ag=0;\newline
+Bg=0;\newline
+for (i in horizon:1)\{\newline
+Bg=bg(nu+Ag)+Bg;\newline
+Ag=ag(nu+Ag);\newline
+\}\newline
+price = exp(nu0*horizon+Bg+Ag*Z0);\newline
+\}\newline
+}
+\#3.Treasury Bonds Yields Vector\newline
+{\bf
+TreasuryBondYield=rep(0,H);\newline
+for (i in 1:H)\{\newline
+TreasuryBondYield[i] =\newline -log(ZeroCouponTreasuryBondPrice(i))/i;\newline
+\}\newline
+}
+\#4.First To Default-zero coupon basket price\newline
+{\bf
+ZeroCouponFirstToDefaultBasketPrice<-function(horizon)\{\newline
+Ag=Bg=0;\newline
+Ac=Bc=0;\newline
+SumAlpha=0;\newline
+for (i in horizon:1)\{\newline
+SumAlpha = SumAlpha + alpha[i];\newline
+Bg=bg(nu-n*beta[i]+Ag)+Bg;\newline
+Ag=ag(nu-n*beta[i]+Ag);\newline
+Bc=bc(-gamma[i]+Ac)+Bc;\newline
+Ac=ac(-gamma[i]+Ac);\newline
+\}\newline
+price = exp(nu0*horizon-n*SumAlpha+Bg+Ag*Z0+n*Bc+Ac*Z0i*n)\newline
+\}\newline
+}
+\#5.First To Default-zero coupon basket yields vector\newline
+{\bf
+ZeroCouponFirstToDefaultBasketYield=rep(0,H);\newline
+for (i in 1:H)\{\newline
+ZeroCouponFirstToDefaultBasketYield[i]=\newline -log(ZeroCouponFirstToDefaultBasketPrice(i))/i;\newline
+\}\newline
+}
+\#6. Credit spread vector\newline
+{\bf
+creditSpread=rep(0,H);\newline
+for (i in 1:H)\{\newline
+creditSpread[i]=\newline ZeroCouponFirstToDefaultBasketYield[i]-TreasuryBondYield[i];\newline
+\}\newline
+}
+\#7. Average default probability First To Default basket\newline
+{\bf
+FirstToDefaultBasketSurvivingDefaultProbability<-function(horizon)\{\newline
+Ag=Bg=0;\newline
+Ac=Bc=0;\newline
+SumAlpha=0;\newline
+for (i in horizon:1)\{\newline
+SumAlpha = SumAlpha + alpha[i];\newline
+Bg=bg(-n*beta[i]+Ag)+Bg;\newline
+Ag=ag(-n*beta[i]+Ag);\newline
+Bc=bc(-gamma[i]+Ac)+Bc;\newline
+Ac=ac(-gamma[i]+Ac);\newline
+\}\newline
+price = exp(-n*SumAlpha+Bg+Ag*Z0+n*Bc+Ac*Z0i*n)\newline
+\}\newline
+}
+\#8. Construction du vecteur des intensites de defaut pour le panier\newline
+{\bf
+FirstToDefaultBasketDefaultIntensity=rep(0,H);\newline
+for (i in 1:H)\{\newline
+FirstToDefaultBasketSurvivingDefaultIntensity[i]=\newline-log(FirstToDefaultBasketSurvivingDefaultProbability(i))/i;\newline
+\}\newline
+}
+\#9.Marginal default surviving probability\newline
+{\bf
+FirstToDefaultBasketMarginalSurvivingProbability<-function(horizon)\{\newline
+Ag=Bg=0;\newline
+Ac=Bc=0;\newline
+SumAlpha=0;\newline
+for (i in horizon:1)\{\newline
+SumAlpha = SumAlpha + alpha[i];\newline
+Bg=bg(-beta[i]+Ag)+Bg;\newline
+Ag=ag(-beta[i]+Ag);\newline
+Bc=bc(-gamma[i]+Ac)+Bc;\newline
+Ac=ac(-gamma[i]+Ac);\newline
+\}\newline
+price = exp(-SumAlpha+Bg+Ag*Z0+Bc+Ac*Z0i)\newline
+\}\newline
+}
+\#10.Marginal default surviving intensity\newline
+{\bf
+FirstToDefaultBasketMarginalDefaultIntensity=rep(0,H);\newline
+for (i in 1:H)\{\newline
+FirstToDefaultBasketMarginalDefaultIntensity[i]=\newline-n*log(FirstToDefaultBasketMarginalSurvivingProbability(i))/i;\newline
+\}\newline
+}
+\#11.Default-stochastic discount factor correlation effect\newline
+{\bf
+spreadDefaultStochasticDiscountFactor=rep(0,H);\newline
+for (i in 1:H)\{\newline
+spreadDefaultStochasticDiscountFactor[i]=\newline creditSpread[i]-FirstToDefaultBasketDefaultIntensity[i];\newline
+\}\newline
+}
+\#12.Default Correlation Calculus\newline
+{\bf
+FirstToDefaultCorrelDefaultIntensity=rep(0,H);\newline
+for (i in 1:H)\{\newline
+FirstToDefaultCorrelDefaultIntensity[i]=\newline FirstToDefaultBasketDefaultIntensity[i]-\newline FirstToDefaultBasketMarginalDefaultIntensity[i];\newline
+\}\newline
+}
+\#13.Graphics\newline
+{\bf
+all=cbind(creditSpread,FirstToDefaultBasketMarginalDefaultIntensity,\newline FirstToDefaultCorrelDefaultIntensity,spreadDefaultStochasticDiscountFactor);\newline
+mainLabel = "First To Default Credit Spread decomposition";\newline
+subLabel ="Spread (solid), Marginal Default Effect (dash), Defaults correlation effect(short dash), Default-Sdf correlation effect(medium)";\newline
+ts.plot(as.ts(all),main=mainLabel,sub=subLabel,\newline xlab="Term",ylab="Yields",lty=c(1,5,3,2));\newline
+}
+\end{text}
+\subsection{Loss Given Default}
+Nous rappelons ici l'expression du prix pour des obligations risquées d'entreprise avec et sans taux de recouvrement.
+Sans taux de recouvrement, le prix d'une obligation risquée de l'entreprise $i$ se calcule comme suit en fonction des intensités de survie $\pi_{t+j,t+j+1}$ des différentes périodes :
+\begin{displaymath}
+C_i(t,t+h)= E_{t}\left\{\Pi_{j=0}^{h-1}(M_{t+j,t+j+1}\pi_{t+j,t+j+1})\right\},
+\end{displaymath}
+Avec taux de recouvrement, le prix d'une obligation risquée d'entreprise se calcule comme suit en fonction des intensités de survie $\pi_{t+j,t+j+1}$ et des taux de recouvrement attendus en cas de défaut ($R_{t+j,t+j+1}=1-ELGD_{t+j,t+j+1}$, où $ELGD_{t+j,t+j+1}$ désigne l'{{\it expected loss given default} pour la j-ième période) des différentes périodes :
+{\small
+\begin{displaymath}
+C*_i(t,t+h)=\sum_{k=1}^{h}E_t\left\{\Pi_{j=0}^{k-2}M_{t+j,t+j+1}\pi_{t+j,t+j+1}M_{t+k-1,t+k}\left(1-\pi_{t+k-1,t+k}\right)R_{t+k-1,t+k}\right\}
+\end{displaymath}
+\begin{displaymath}
++ E_{t}\left\{\Pi_{j=0}^{h-1}(M_{t+j,t+j+1}\pi_{t+j,t+j+1})\right\},
+\end{displaymath}
+}
+Par analogie avec le processus stochastique modélisant l'intensité de survie, on choisit de modéliser le taux de recouvrement (compris entre 0 et 1) par l'hypothèse suivante :
+\begin{hypothese}
+Les taux de recouvrement pour les différentes entreprises sont indépendants conditionnellement aux facteurs $Z$ et $Z_i$. Le taux de recouvrement pour l'entreprise i est tel que :
+\BEQ{tauxDeRecouvrement}
+R_{t+j,t+j+1}= \exp(-(\delta_{t+1} + \epsilon'_{t+1} Z_{t+1}+\theta'_{t+1}Zi_{t+1}))=\exp(-\omega'_t),
+\EEQ
+où $\omega'_t= \delta_t + \epsilon'_t Z_t + \theta'_t Zi_t$ est l'intensité de recouvrement et  $\delta_t$,  $\epsilon'_t$ , $\theta'_t$ des fonctions de l'information contenue dans les facteurs  $Z_t$ et $Z_i$. Ce sont aussi des paramètres de sensibilités pour le recouvrement.
+Les taux de recouvrement étant compris entre 0 et 1, les sensibilités de recouvrement doivent vérifier comme les intensités de survie : $\omega'_t\ge 0$. 
+\end{hypothese}
+Fort des hypothèses sur l'intensité de survie, l'intensité de recouvrement et le facteur d'escompte stochastique, nous pouvons maintenant modéliser numériquement les obligations d'entreprise risquées avec taux de recouvrement.
+$C(t,t+h)$ a été calculé précédemment. Intéressons-nous au calcul du terme de défaut pour la période k :
+\begin{displaymath}
+E_{tk}=E_t\left\{\Pi_{j=0}^{k-2}\left(M_{t+j,t+j+1}\pi_{t+j,t+j+1}\right)M_{t+k-1,t+k}\left(1-\pi_{t+k-1,t+k}\right)R_{t+k-1,t+k}\right\}
+\end{displaymath}
+On sépare cette somme en deux termes en développant le produit $\left(1-\pi_{t+k-1,t+k}\right)$ :
+\begin{displaymath}
+E_{tk}=E_{tk1}-E_{tk2},
+\end{displaymath} 
+où $E_{tk1}$ et $E_{tk2}$ ont les valeurs suivantes : 
+\begin{displaymath}
+E_{tk1}=E_t\left\{\Pi_{j=0}^{k-2}\left(M_{t+j,t+j+1}\pi_{t+j,t+j+1}\right)M_{t+k-1,t+k}R_{t+k-1,t+k}\right\}
+\end{displaymath} 
+Il vient :
+\begin{displaymath}
+E_{tk1}=
+\end{displaymath}
+{\tiny
+\begin{displaymath}
+E_t\left[\exp\left(\nu_0k+\nu'\sum_{j=1}^{k}Z_{t+j}\right)\exp\left( -\sum_{j=1}^{k-1}\left[\alpha_{t+j}+\beta'_{t+j}Z_{t+j}+\gamma'_{t+j}Z^i_{t+j}\right]\right)
+\exp\left(-\left[\delta_{t+k}+\epsilon'_{t+k}Z_{t+k}+\theta'_{t+k}Z^i_{t+k}\right]\right)\right]
+\end{displaymath}
+}
+En appliquant le calcul récursif maintenant classique, le prix des obligations risquées d'entreprise-zéro coupon s'obtient par la formule suivante pour l'entreprise $i$ :
+{\tiny
+\BEQ{rendementObligationsRisqueesAvecRecouvrement}
+E_{tk1}=\exp\left[\nu_{0}k-(\sum_{j=1}^{k-1}\alpha_{t+j}+\delta_{t+k})+B^{\nu-[\widetilde{\beta}_1]}_g (t,t+h) + A^{\nu-[\widetilde{\beta}_1]}_g (t,t+h)'Z_t+B^{-[\widetilde{\gamma}_1]}_c (t,t+h) + A^{-[\widetilde{\gamma}_1]}_c (t,t+h)'Z^{i}_t\right],
+\EEQ}
+où les deux suites $[\widetilde{\beta}_1]$ et $[\widetilde{\gamma}_1]$ sont définis par les vecteurs :
+\BEQ{vecteursETK1}
+[\widetilde{\beta}_1] = \left(
+\begin{array}{c}
+\dsp \beta_1 \\
+\dsp \beta_2 \\
+\dsp \vdots \\
+\dsp \beta_{k-1} \\
+\dsp \epsilon_{k} \\
+\end{array}
+\right)
+,\ \ \ [\widetilde{\gamma}_1] = \left(
+\begin{array}{c}
+\dsp \gamma_1 \\
+\dsp \gamma_2 \\
+\dsp \vdots \\
+\dsp \gamma_{k-1} \\
+\dsp \theta_{k} \\
+\end{array}
+\right)
+\EEQ
+\begin{displaymath}
+E_{tk2}=E_t\left\{\Pi_{j=0}^{k-2}\left(M_{t+j,t+j+1}\pi_{t+j,t+j+1}\right)\pi_{t+k-1,t+k}M_{t+k-1,t+k}R_{t+k-1,t+k}\right\}
+\end{displaymath} 
+En appliquant le calcul récursif maintenant classique, le prix des obligations risquées d'entreprise-zéro coupon s'obtient par la formule suivante pour l'entreprise $i$ :
+{\tiny
+\BEQ{rendementObligationsRisqueesAvecRecouvrement2}
+E_{tk2}=\exp\left[\nu_{0}k-(\sum_{j=1}^{k}\alpha_{t+j}+\delta_{t+k})+B^{\nu-[\widetilde{\beta}_2]}_g (t,t+h) + A^{\nu-[\widetilde{\beta}_2]}_g (t,t+h)'Z_t+B^{-[\widetilde{\gamma}_2]}_c (t,t+h) + A^{-[\widetilde{\gamma}_2]}_c (t,t+h)'Z^{i}_t\right],
+\EEQ}
+où les deux suites $[\widetilde{\beta}_2]$ et $[\widetilde{\gamma}_2]$ sont définis par les vecteurs :
+\BEQ{vecteursETK2}
+[\widetilde{\beta}_2] = \left(
+\begin{array}{c}
+\dsp \beta_1 \\
+\dsp \beta_2 \\
+\dsp \vdots \\
+\dsp \beta_{k-1} \\
+\dsp \beta_{k}+\epsilon_{k} \\
+\end{array}
+\right)
+,\ \ \ [\widetilde{\gamma}_2] = \left(
+\begin{array}{c}
+\dsp \gamma_1 \\
+\dsp \gamma_2 \\
+\dsp \vdots \\
+\dsp \gamma_{k-1} \\
+\dsp \gamma_{k}+\theta_{k} \\
+\end{array}
+\right)
+\EEQ
+Le rendement géométrique $c(t,t+h)$ est égal à :
+\begin{displaymath}
+c(t,t+h)=-\frac{\log(C_{i}(t,t+h))}{h} 
+\end{displaymath}
+\subsubsection{Programme R}
+\noindent
+\begin{text}
+\# 1. Parameters initialisation\newline
+\#horizon\newline
+H=40;\newline
+\#survival intensity sensibility\newline
+alpha=rep(0.01,H);\newline
+beta=rep(2,H);\newline
+gamma=rep(0.1,H);\newline
+\#recovery rate sensibility\newline
+delta=rep(0.01,H);\newline
+epsilon=rep(2,H);\newline
+theta=rep(0.1,H);\newline
+\#systemic dynamical factor\newline
+rhog=0.9;\newline
+dg=0.1;\newline
+lg=0.1;\newline
+\#specific dynamical factor\newline
+rhoc=0.9;\newline
+dc=0.1;\newline
+lc=0.1;\newline
+\#stochastic discount factor\newline
+nu0=-0.01;\newline
+nu=-0.2;\newline
+\# initial value for non observable factors\newline
+Z0=0.003;\newline
+Z0i=0.3;\newline
+\#2.Price calculus for zero coupon corporate bond with zero recovery rate\newline
+ZeroCouponCorporateBondPrice<-function(horizon)\{\newline
+Ag=Bg=0;\newline
+Ac=Bc=0;\newline
+SumAlpha=0;\newline
+for (i in horizon:1)\{\newline
+SumAlpha = SumAlpha + alpha[i];\newline
+Bg=bg(nu-beta[i]+Ag)+Bg;\newline
+Ag=ag(nu-beta[i]+Ag);\newline
+Bc=bc(-gamma[i]+Ac)+Bc;\newline
+Ac=ac(-gamma[i]+Ac);\newline
+\}\newline
+price = exp(nu0*horizon-SumAlpha+Bg+Ag*Z0+Bc+Ac*Z0i)\newline
+\}\newline
+\#3. zero recovery rate zero coupon corporate bond Yield vector\newline
+ZeroCouponCorporateBondYield=rep(0,H);\newline
+for (r in 0:H)\{\newline
+ZeroCouponCorporateBondYield[r]=-log(ZeroCouponCorporateBondPrice(r))/r;\newline
+\}\newline
+\#4. ETK1 Calculus\newline
+ETK1 <- function(k)\{\newline
+Ag=Bg=0;\newline
+Ac=Bc=0;\newline
+SumAlpha=0;\newline
+for (i in k:1)\{\newline
+if (i == k)\{\newline
+alphatilde=delta[i];\newline
+betatilde=epsilon[i];\newline
+gammatilde=theta[i];\newline
+\}else\{\newline
+alphatilde=alpha[i];\newline
+betatilde=beta[i];\newline
+gammatilde=gamma[i];\newline
+\}\newline
+SumAlpha = SumAlpha + alphatilde;\newline
+Bg=bg(nu-betatilde+Ag)+Bg;\newline
+Ag=ag(nu-betatilde+Ag);\newline
+Bc=bc(-gammatilde+Ac)+Bc;\newline
+Ac=ac(-gammatilde+Ac);\newline
+\}\newline
+price = exp(nu0*k-SumAlpha+Bg+Ag*Z0+Bc+Ac*Z0i)\newline
+\}\newline
+\#5. ETK2 Calculus\newline
+ETK2 <- function(k)\{\newline
+Ag=Bg=0;\newline
+Ac=Bc=0;\newline
+SumAlpha=0;\newline
+for (i in k:1)\{\newline
+if (i == k)\{\newline
+alphatilde=delta[i]+alpha[i];\newline
+betatilde=epsilon[i]+beta[i];\newline
+gammatilde=theta[i]+gamma[i];\newline
+\}else\{\newline
+alphatilde=alpha[i];\newline
+betatilde=beta[i];\newline
+gammatilde=gamma[i];\newline
+\}\newline
+SumAlpha = SumAlpha + alphatilde;\newline
+Bg=bg(nu-betatilde+Ag)+Bg;\newline
+Ag=ag(nu-betatilde+Ag);\newline
+Bc=bc(-gammatilde+Ac)+Bc;\newline
+Ac=ac(-gammatilde+Ac);\newline
+\}\newline
+price = exp(nu0*k-SumAlpha+Bg+Ag*Z0+Bc+Ac*Z0i)\newline
+\}\newline
+\#6. Calculus of the price of a zero coupon corporate bond with a not null recovery rate
+ZeroCouponCorporateBondWithRecoveryPrice <- function(horizon)\{\newline
+price=ZeroCouponCorporateBondPrice(horizon);\newline
+if (horizon > 0)\{\newline
+for (i in 1:horizon)\{\newline
+price=price+ETK1(i)-ETK2(i);\newline
+\}\newline
+\}\newline
+return (price);\newline
+\}\newline
+\#7. not null recovery rate zero coupon corporate bond Yield vector\newline
+WithRecoveryZeroCouponCorporateBondYield=rep(0,H);\newline
+for (s in 0:H)\{\newline
+WithRecoveryZeroCouponCorporateBondYield[s]=-log(ZeroCouponCorporateBondWithRecoveryPrice(s))/s;\newline
+\}\newline
+\#recovery rate sensibility\newline
+delta=rep(0.09,H);\newline
+epsilon=rep(2.1,H);\newline
+theta=rep(0.3,H);\newline
+\#8. new data : not null recovery rate zero coupon corporate bond Yield vector\newline
+SecondWithRecoveryZeroCouponCorporateBondYield=rep(0,H);\newline
+for (s in 0:H)\{\newline
+SecondWithRecoveryZeroCouponCorporateBondYield[s]=-log(ZeroCouponCorporateBondWithRecoveryPrice(s))/s;\newline
+\}\newline
+\#recovery rate sensibility\newline
+delta=rep(0.2,H);\newline
+epsilon=rep(2.6,H);\newline
+theta=rep(0.8,H);\newline
+\#9. new data : not null recovery rate zero coupon corporate bond Yield vector\newline
+ThirdWithRecoveryZeroCouponCorporateBondYield=rep(0,H);\newline
+for (s in 0:H)\{\newline
+ThirdWithRecoveryZeroCouponCorporateBondYield[s]=-log(ZeroCouponCorporateBondWithRecoveryPrice(s))/s;\newline
+\}\newline
+\#10. Graphique\newline
+all=cbind(ZeroCouponCorporateBondYield,WithRecoveryZeroCouponCorporateBondYield,SecondWithRecoveryZeroCouponCorporateBondYield,ThirdWithRecoveryZeroCouponCorporateBondYield);\newline
+mainLabel = \"Corporate Bond Yield with different recovery rate\";\newline
+subLabel =\"Zero rate (solid), Rate (95%) (dash), Rate (80%) (short dash), Rate (60%) (medium)\";\newline
+ts.plot(as.ts(all),main=mainLabel,sub=subLabel,xlab="Term",ylab="Yield",lty=c(1,5,3,2));\newline
+\end{text}
+\subsection{Résultats pour les obligations risquées d'entreprise}
+\begin{center}
+\epsfig{file=CorporateBondTermStructure.eps,height=8.cm,width=14.50cm}
+\end{center}
+\begin{center}
+\epsfig{file=CorporateBondDecomposition.eps,height=8.cm,width=14.50cm}
+\end{center}
+On constate que la forme bosselée typique des rendements d'obligation d'entreprise est facilement reproduite par le modèle même avec des sensibilités constantes.
+La décomposition du spread en un spread d'effet défaut et un spread d'effet de corrélation de défaut-facteur d'escompte stochastique montre que le spread d'effet de corrélation de défaut-facteur d'escompte stochastique est négatif et petit en valeur absolue.
+\begin{displaymath}
+s_i(t,t+h)=\pi_i(t,t+h)+(s_i(t,t+h)-\pi_i(t,t+h))
+\end{displaymath} 
+\begin{displaymath}
+s_i(t,t+h)-\pi_i(t,t+h)=-\log \left\{1+\frac{Cov_t (M_{t,t+1}1_{\tau_i >t+1})}{E_t(M_{t,t+1})E_t(1_{\tau_i >t+1})}\right\}
+\end{displaymath} 
+\subsection{Résultats pour les paniers first-to-default}
+\begin{center}
+\epsfig{file=FirstToDefaultBasketTermStructure.eps,height=8.cm,width=14.50cm}
+\end{center}
+\begin{center}
+\epsfig{file=FirstToDefaultBasketDecomposition.eps,height=8.cm,width=14.50cm}
+\end{center}
+\begin{displaymath}
+s(t,t+h)=\pi*(t,t+h)+(\pi(t,t+h)-\pi*(t,t+h))+(s(t,t+h)-\pi(t,t+h))
+\end{displaymath} 
+La composante principale de ce spread correspond à l'effet de défaut marginal. La corrélation de défaut est négative, alors que la corrélation défaut-stochastic discount factor est positive.
+\subsection{Résultats pour les obligations d'entreprise avec des taux de recouvrement distincts}
+\begin{center}
+\epsfig{file=CorporateBondRecoveryPrice.eps,height=8.cm,width=14.50cm}
+\end{center}
+\begin{center}
+\epsfig{file=CorporateBondRecoveryYield.eps,height=8.cm,width=14.50cm}
+\end{center}
