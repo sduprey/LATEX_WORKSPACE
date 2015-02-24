@@ -1,0 +1,393 @@
+\documentclass[a4, 14pts]{seminar}
+\usepackage[dvips]{pstcol}
+\usepackage{semcolor}
+\usepackage{sem-page}
+\usepackage{slidesec}
+\input{seminar.bug}
+\input{seminar.bg2}
+\usepackage{semhelv}
+\usepackage{subfigure}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{longtable,array,enumerate}
+
+
+\usepackage{multicol}
+
+\usepackage[intlimits,sumlimits,namelimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\usepackage[dvips]{graphicx}
+\usepackage{epsf}
+\usepackage{epsfig}
+\usepackage{fancyhdr}
+\usepackage{layout}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+\usepackage{url}
+\usepackage{xspace}
+
+\newtheorem{corollary}{Corollaire}[section]
+\newtheorem{definition}[corollary]{D\'{e}finition}
+\newtheorem{equations}[corollary]{Equations}
+\newtheorem{example}[corollary]{Exemple}
+\newtheorem{lemma}[corollary]{Lemme}
+\newtheorem{proposition}[corollary]{Proposition}
+\newtheorem{remark}[corollary]{Remarque}
+\newtheorem{theorem}[corollary]{Th\'{e}or\`{e}me}
+%%% The above 7 commands are used in the following way:
+%%% The definition environment, for example, is created by
+%%% \begin{definition}\label{xxx}. . .\end{definition}
+\newcommand{\mylabel}[1]{\label{#1}
+            \ifx\undefined\stillediting
+            \else \fbox{$#1$}\fi }
+\newcommand{\BE}{\begin{equation}}
+\newcommand{\BEQ}[1]{\BE\mylabel{#1}}
+\newcommand{\EEQ}{\end{equation}}
+\newcommand{\rfb}[1]{\mbox{\rm
+   (\ref{#1})}\ifx\undefined\stillediting\else:\fbox{$#1$}\fi}
+\newcommand{\half}   {{\frac{1}{2}}}
+\newenvironment{matr}[1]{\left[ \begin{array}{#1}}{\end{array}
+                         \right]}
+%
+\newfont{\Blackboard}{msbm10 scaled 1200}
+\newcommand{\bl}[1]{\mbox{\Blackboard #1}}
+\newfont{\roma}{cmr10 scaled 1200}
+
+\newcommand{\propp}{{\hskip -2.2mm{\bf .}\hskip 3mm}}
+
+\newcommand{\ovra}{\overrightarrow}
+% fin des commandes de Marius
+
+\fancyhf{}
+\renewcommand\headrulewidth{0.2mm}
+\renewcommand\footrulewidth{0.2mm}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\ROT}{{\text{Rot}}}
+\newcommand{\Rot}{\vec{\text{Rot}}}
+\newcommand{\rot}{\vec{\text{rot}}}
+
+\newcommand{\dsp}{\displaystyle}
+
+\newcommand\eads{\textsf{EADS}\xspace}
+\newcommand\eadsccr{\textsf{EADS CCR-IECN Nancy}\xspace}
+
+\fancyhead[L]{\theslideheading}
+\fancyhead[R]{\textcolor{blue}{\eadsccr \thepage }}
+\fancyfoot[R]{\textcolor{blue}{}}
+\fancyfoot[L]{\textcolor{blue}{Suresnes, le \today }}
+\renewcommand\headwidth{\textwidth}
+\autoslidemarginstrue
+
+\newslideframe{%
+   myscshadow}[\SemcolorFrameOps
+   \psset{shadowcolor=green}]{\psshadowbox{#1}}
+\newcommand{\ud}{\mathrm{d}}
+
+\newcommand{\ds}{\displaystyle}
+\slideframe{myscshadow}
+\setlength\slideframewidth{.5pt}
+\setlength\footskip{1cm}
+\setlength\headsep{1cm}
+
+%\renewcommand\makeslideheading[1]{\par
+%   \framebox{\theslidesection. #1}\par
+%}
+%\renewcommand\makeslidesubheading[1]{\par
+%   \leavevmode\hspace*{1cm}%
+%   \alph{slidesubsection}. #1\par
+%}
+
+\definecolor{Pink}{rgb}{1.,0.,0.2}
+\definecolor{Mygreen}{rgb}{0.3,0.7,0.6}
+
+\renewcommand\makeslideheading[1]{\par
+   \fcolorbox{black}{Pink}{\color{yellow}\theslidesection. #1}\par
+}
+\renewcommand\makeslidesubheading[1]{\par
+   \leavevmode\hspace*{1cm}%
+   \textcolor{Mygreen}{\alph{slidesubsection}. #1}\par
+}
+
+\makeatletter
+\renewcommand\slide@contents{\par
+   \begin{center}
+        \Large \bfseries\textcolor{blue}{Plan}
+   \end{center}
+  \def\l@slide##1##2##3{%
+    \@undottedtocline{1}{1.5em}{2.3em}{\slidenumberline{##1.}{##2}}{}}%
+  \def\l@subslide##1##2##3{%
+    \@undottedtocline{1}{1.5em}{3.3em}{\slidenumberline{\@alph{##1})}{##2}}{}}%
+  \@startlos
+}
+\makeatother
+
+\slideframe{none}
+
+%\XgrDefinitFormat{*}{line=0,mark=0,ll=1}
+%\XgrDefinitFormat{pr}{}
+%\XgrDefinitFormat{ks}{line=-1,mark=8,ll=0.4}
+
+\begin{document}
+\slidepagestyle{fancy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{slide}
+\begin{figure}[ht]\begin{center}\includegraphics[height=3cm]{logo.eps}\end{center}\end{figure}
+\begin{center}
+\textcolor{blue}{\large Analyse Mathématique et Numérique }\\
+\textcolor{blue}{\large du Rayonnement Acoustique des Turboréacteurs}\\
+\vspace{0.25 cm}
+\textbf{DUPREY Stefan}\\
+\small{\textbf{Thèse CIFRE}\\
+\textbf{EADS-CCR Suresnes}, Département Modélisation Mathématique\\
+\textbf{INRIA Lorraine}, Institut Elie Cartan, Universit\'e Henri Poincar\'e Nancy 1}
+\date{}
+%\eadsccr
+\end{center}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\small{
+\begin{slide}
+\slidecontents
+\renewcommand\theslideheading{Plan de l'Expos\'e}
+\end{slide}
+\begin{slide}
+\slideheading{Introduction et Enjeux Industriels}
+\small{
+$\bullet$\textbf{Objectif : minimiser le bruit rayonn\'e par les turbor\'eacteurs} : bruit issu du contexte précis du décollage : \textbf{pas le bruit a\'erodynamique}, ni le bruit de jet rayonn\'e \`a l'arrière, \textbf{mais le bruit de raies} (puissant et monofr\'equentiel) \'emis par les pales du moteur et \textbf{rayonn\'e \`a l'avant} principalement.
+\newline $\bullet$ Différentes techniques utilis\'ees au niveau de la nacelle (traitement des parois de la nacelle, optimisation de sa forme et de la position des traitements...), dont la mise au point est onéreuse : \textbf{n\'ecessit\'e du d\'eveloppement d'un code de calcul pour la prévision}. 
+\newline $\bullet$ \textbf{Thématique de décomposition de domaines indispensable} pour un traitement numérique abordable de l'avion entier : on se place dans le \textbf{contexte physique précis des équations de Euler linéarisées}. 
+\newline $\bullet$\textbf{Question débattue et problématique} : influence de la présence d'un écoulement porteur non linéaire par rapport à une propagation acoustique sur un écoulement constant : choix de la position des surfaces rayonnantes. 
+}
+\end{slide}
+\begin{slide}
+\textbf{Un Contexte Physique Particulier : Euler Linéarisé Potentiel}\newline
+\small{
+$\bullet$ On est loin du moteur et les nombres de Mach sont largement subsoniques : pas de non-lin\'earit\'es dues \`a des Machs transsoniques.
+ Pas de perturbations a\'erodynamiques (jet ou couche limite).
+\newline $\bullet$ M\'ecanique des milieux continus : fluide parfait.
+\newline $\bullet$ Thermodynamique : gaz parfait adiabatique et isentropique.
+\newline $\bullet$ Ecoulement porteur non-lin\'eaire et acoustique linéaire.
+\newline $\bullet$ \textbf{Hypothèse supplémentaire} : l'écoulement et l'acoustique sont \textbf{potentiels}.
+\newline $\bullet$ G\'eom\'etrie \textbf{axisym\'etrique} :}
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.3425]{geometrienumerounfinal.eps}
+\end{figure}
+\end{center}
+\end{slide}
+\begin{slide}
+\slideheading{Th\'eorie du Problème Continu}
+\textbf{Th\'eorie Ecoulement Porteur}\newline
+\small{
+$\bullet$ L'\'ecoulement d\'erive d'un potentiel et son \'equation est obtenue \`a l'ordre z\'ero des \'equations de l'\'ecoulement total.
+\newline $\bullet$ \textbf{Conditions de bord simplifi\'ees} : condition glissante+condition de flux.
+\newline $\bullet$ Le potentiel v\'erifie une \textbf{EDP non lin\'eaire}. Le r\'egime subsonique (resp. supersonique) d\'etermine le caractère elliptique (resp. hyperbolique) de l'\'equation (r\'egime transsonique complexe : ondes de choc)
+}  
+$\left\{
+\begin{array}{ll}
+\dsp {\rm div}(F_\infty(\vert\nabla\phi_0\vert^2)\nabla\phi_0)=0 &\text{ dans } \Omega\\
+\dsp F_\infty(\vert\nabla\phi_0\vert^2)\frac{\partial\phi_0}{\partial n}=q  &\text{ dans } \partial \Omega \\
+\end{array}
+\right. =$ edp du  potentiel porteur $\phi_0$, dont une \textbf{solution faible est cherch\'ee variationnellement} :
+$\left\{\begin{array}{c} \text{  Trouver  }\phi_0 \in H^1(\Omega) \slash \mathbb{R} \text{  tel que : }\\
+\dsp\int_\Omega
+F_\infty(\vert\nabla\phi_0\vert^2)\nabla\phi_0\nabla\psi\ \
+dx=\int_{\partial\Omega}q\psi \ \ d\gamma , \ \ \forall \psi \in
+H^1(\Omega)\slash\mathbb{R}\\
+\end{array}
+\right.$\newline
+$\bullet $ \textbf{Les variables de l'écoulement sont adimensionnées} par les constantes de l'écoulement à l'infini ($a_\infty$, $\rho_\infty$ et $v_\infty$).
+\end{slide}
+\begin{slide}
+\textbf{Existence et Unicit\'e pour l'Ecoulement Porteur}\newline
+{\small{
+Le problème restreint au convexe fermé non vide des régimes subsoniques $K_{\delta}=\left\{v\in H^1(\Omega) \slash
+\mathbb{R},\vert\vert\nabla v\vert\vert_{\infty}\le\delta<c_*
+\right \}$ admet une unique solution :
+\begin{displaymath}
+\left\{\begin{array}{l} \text{ Trouver }
+\phi_0 \in K_{\delta}
+\ \text{ tel que :}\\
+\dsp\int_\Omega
+F_\infty(\vert\nabla\phi_0\vert^2)\nabla\phi_0\nabla(\psi-\phi_0)\ \
+{\rm d}x\ge\int_{\partial\Omega}q\left(\psi-\phi_0\right)\ {\rm d}\gamma ,
+\ \ \forall \psi \in
+ K_{\delta} \\
+\end{array}
+\right.
+\end{displaymath}
+Cette inégalité variationnelle caractérise $\phi\in K_\delta$ minimimum de la fonctionnelle $K$ sur $K_\delta$, où $ K\left(\phi\right)=\frac{1}{2}\int_\Omega F\left(\vert\nabla\phi\vert\right)-\int_{\partial\Omega} q \phi {\rm d}\gamma $ avec $F\left(x\right)=-\int_{x^2}^{\infty}F_\infty(s){\rm
+d}s$
+\textbf{Théorème : }
+Supposons que le probl\`{e}me initial admette une unique
+solution $\phi\in H^1(\Omega)\slash\mathbb{R}$, telle que $\exists\delta_0<c_*$ et $\vert\vert \nabla \phi \vert\vert_\infty\le \delta_0<c_*$. Alors
+$\phi$ est une solution du probl\`{e}me convexifi\'{e}, pour tout $\delta\in[\delta_0,c_*[$. R\'{e}ciproquement, si \textbf{$\phi$ est une
+solution du probl\`{e}me convexifi\'{e}} pour un certain $\delta<c_*$, telle que l'on peut trouver $\delta_0<\delta$ et $\vert\vert \nabla \phi \vert\vert_\infty\le \delta_0$ (\textbf{contrainte de convexit\'e non satur\'ee}). \textbf{Alors $\phi$ est une solution du probl\`{e}me initial}.
+}}
+\end{slide}
+\begin{slide}
+\textbf{L'Ecoulement Porteur comme Limite d'un Point Fixe}\newline
+La fonctionnelle $K$ est elliptique sur $K_\delta$ :
+\BEQ{rebusdefonctionnelleavecdebitnumdeuxoriginaledupremiercru}
+\dsp\exists \alpha > 0, \ \forall \left(\phi_0,\psi\right)\in K_\delta^2,\  \ovra{\nabla}^2 K(\phi_0)(\psi,\psi)\ge  \dsp \alpha \vert\vert \psi\vert\vert^2_{ \dsp H^1\left(\Omega\right)\slash\mathbb{R}},
+\EEQ
+ce qui équivaut encore à :
+\BEQ{rebusdefonctionnelleavecdebitnumdeuxoriginaledupremiercrunumerodeuxequivalent}
+\dsp\exists \alpha > 0, \ \forall \left(\phi,\psi\right)\in K_\delta^2,\   \langle \ovra{\nabla}K(\phi)-\ovra{\nabla}K(\psi),\phi-\psi)\rangle \ge  \dsp \alpha \vert\vert\phi- \psi\vert\vert^2_{ \dsp H^1\left(\Omega\right)\slash\mathbb{R}}
+\EEQ
+\textbf{L'ellipticité de la fonctionnelle $K$ permet de prouver :}\newline
+\textbf{Théorème : }
+Pour tout $\phi\in K_\delta$, la coercivit\'e de $B(\phi;.,\ .)$ (o\`u $B(\phi;\psi,\xi)=\int_\Omega F_\infty(\vert\nabla \phi\vert^2)\nabla \psi\nabla\xi$) implique l'existence et l'unicit\'e de la solution de :  
+\begin{displaymath}
+ \dsp \forall \phi \in  K_\delta, \
+ \dsp \exists \ !   \dsp \ \zeta=\zeta\left(\phi\right)\in K_\delta \text{ tel que : }
+ \dsp \forall \psi\in K_\delta ,\  \dsp B(\phi;\zeta,\ \psi-\zeta)\ge <q,\psi-\zeta>
+\end{displaymath}
+\textbf{La suite d\'efinie par $\phi_0\in  H^1(\Omega)\slash\mathbb{R}$ et $\phi_{n+1}=\zeta(\phi_n)$ converge vers l'unique solution du problème convexifi\'e.}
+\end{slide}
+\begin{slide}
+\textbf{Th\'eorie Acoustique}\newline
+{\small{
+$\bullet$ Le potentiel acoustique est solution de l'\textbf{EDP d'ordre 2 \`a coefficients variables provenant de l'écoulement} suivante :
+\vskip -.75cm\begin{displaymath}
+\dsp {\rm div}\left(\rho_0\left(I-^t\ovra{M_0}.\ovra{M_0}\right)\nabla\phi_a\right)+\rho_0k_0^2\phi_a+ik_0\rho_0
+\ovra{M_0}.\nabla\phi_a+{\rm div}\left(ik_0\rho_0\phi_a\ovra{M_0}\right)=0
+\end{displaymath}\vskip -.35cm
+$\bullet$ \textbf{R\'efraction totale} sur les parois rigides.
+\newline $\bullet$ \textbf{Moteur=guide d'ondes cylindrique en \'ecoulement uniforme}. Source sonore=modes incidents. Condition de rayonnement appropriée permettant la sélection des modes r\'efl\'echis pour le potentiel acoustique diffract\'e. Op\'erateur Dirichlet-Neumann en \'ecoulement permettant de borner le domaine de calcul.
+\newline $\bullet$ \textbf{Les modes sont normalisés} : ils ont un flux d'énergie unitaire dans le conduit.
+\newline $\bullet$ \textbf{Condition de Sommerfeld "convectée" \`a l'infini} s\'electionnant les ondes sortantes et \'equation int\'egrale en pr\'esence d'\'ecoulement permettant de borner le domaine de calcul.
+\newline $\bullet$ \textbf{Les variables acoustiques sont adimensionnées} par les valeurs de l'écoulement porteur à l'infini ($a_\infty$, $\rho_\infty$ et $v_\infty$).
+}}
+\end{slide}
+
+\begin{slide}
+{\small{
+On note $A_{Lm}\left(\phi_{am}\right)$ l'opérateur différentiel appliqué à $\phi_{am}$ :
+\vspace{-0.25 cm}
+\begin{displaymath}
+\left\{
+\begin{array}{l}
+\dsp\frac{1}{r}\frac{\partial}{\partial r}\left(r\rho_0\frac{\partial\phi_{am}}{\partial r}\right) +\frac{1}{1-M_\infty^2}\frac{\partial}{\partial z} \left(\rho_0\frac{\partial \phi_{am}}{\partial z}\right)\\
+\dsp -\frac{1}{\sqrt{1-M_\infty^2}}\frac{\partial}{\partial r}\left(\rho_0M_{0r}M_{0z}\frac{\partial \phi_{am}}{\partial z}\right)-\frac{1}{\sqrt{1-M_\infty^2}}\frac{\partial}{\partial z}\left(\rho_0 M_{0z} M_{0r}\frac{\partial \phi_{am}}{\partial r}\right) \\
+\dsp-\frac{1}{1-M_\infty^2}\frac{\partial}{\partial z}\left(\rho_0 M_{0z}^2\frac{\partial \phi_{am}}{\partial z}\right)-\frac{\partial}{\partial r}\left(\rho_0 M_{0r}^2\frac{\partial \phi_{am}}{\partial r}\right)\\ 
+\dsp +\rho_0\left( \frac{ik_\infty M_\infty}{\left(1-M_\infty\right)^{\frac{3}{2}}}\left(1-M_{0z}^2\right)+\frac{ik_0 M_{0z}}{\sqrt{1-M_\infty^2}}-\frac{M_{0r}M_{0z}}{r \sqrt{1-M_\infty^2}}\right)\frac{\partial \phi_{am}}{\partial z}\\
+\dsp +\rho_0\left(-\frac{M_{0r}^2}{r}+ik_0M_{0r}-\frac{ik_\infty M_\infty M_{0r}M_{0z}}{1-M_\infty^2}\right)\frac{\partial \phi_{am}}{\partial r}\\
+\dsp+\frac{\partial}{\partial r}\left(i k_0\rho_0 M_{0r}\phi_{am}\right)+\frac{ik_\infty M_\infty}{\left(1-M_\infty^2\right)^{\frac{3}{2}}}\frac{\partial \left(\rho_0\phi_{am}\right)}{\partial z}-\frac{ik_\infty M_\infty}{1-M_\infty^2}\frac{\partial}{\partial r}\left(\rho_0 M_{0r}M_{0z}\phi_{am}\right)\\
+\dsp +\frac{1}{\sqrt{1-M_\infty^2}}\frac{\partial}{\partial z}\left(\rho_0 ik_0 M_{0z}\phi_{am}\right)-\frac{ik_\infty M_\infty}{\left(1-M_\infty^2\right)^{\frac{3}{2}}}\frac{\partial}{\partial z}\left(\rho_0 M_{0z}^2\phi_{am}\right)\\
+\dsp +\rho_0\left(-\frac{m^2}{r^2}-\frac{k_\infty^2 M_\infty^2}{\left(1-M_\infty^2\right)^2}\left(1-M_{0z}^2\right)
++\frac{ik_0 M_{0r}}{r}\right)\phi_{am}\\
+\dsp +\rho_0\left( -ik_\infty\frac{M_{0r}M_{0z}M_\infty}{r\left(1-M_\infty^2\right)}+k_0^2-\frac{2k_\infty M_\infty k_0 M_{0z}}{\left(1-M_\infty^2\right)}\right)\phi_{am}=0\\
+\end{array}\right.
+\end{displaymath}
+}}
+\textbf{Opérateur Dirichlet-Neumann Modal dans l'Espace de Lorentz}
+$\left\lbrace
+\begin{array}{c}
+T_{LMm} :H^{\frac{1}{2}}\left(\Gamma_M\right)\rightarrow H^{-\frac{1}{2}}\left(\Gamma_M\right)\\
+\phi_{am}\rightarrow \sum_{n\in\mathbb{N}}\mu_{mn}^-\left(\phi_a,\Xi_{rmn}\right)_{L^2\left(\Gamma_M\right)}\Xi_{rmn} \\
+\end{array}
+\right.$\small{définit l'op\'erateur Dirichlet-Neumann modal dans l'espace de Lorentz, où l'on a noté : }
+\small{\begin{displaymath}
+\left\lbrace
+\begin{array}{l}
+\dsp \mu_{mn}^\pm= i\rho_M\left(k_M M_M-\left(1-M_M^2\right)\beta^\pm_{mn}\right) \\
+\dsp\text{\small{: les coefficients de l'opérateur }}T_{LMm} \\
+\dsp \beta_{mn}^\pm= \dsp \frac{ \dsp k_MM_M\pm\sqrt{\dsp k_M^2-k^2_{rmn}(1-M_M^2)}}{ \dsp 1-M_M^2} \\
+\text{\small{: les constantes de propagation axiale dans l'espace physique}}\\
+\dsp \gamma_{mn}^\pm=-k'_\infty M_\infty+\sqrt{1-M_\infty^2}\beta^\pm_{mn} \\
+\dsp \text{\small{: les constantes de propagation axiale dans l'espace de Lorentz}} \\
+\end{array}
+\right.
+\end{displaymath}}
+\end{slide}
+\begin{slide}
+\textbf{Existence et Unicité du Problème Transformé}\newline
+{\small{
+\textbf{Théorème : }$\bullet $ \small{Le potentiel acoustique transform\'e dans l'espace de Lorentz cylindrique $\dsp \left(\overline{\Omega\cup\Omega_e}\right)\backslash\left(\Gamma_R\cup \Gamma_M\right)$ est solution de $A_{Lm} \left(\phi_{am}\right)=0$, où l'opérateur $A_{Lm}$ est elliptique.}
+\newline
+$\bullet $ \small{Les conditions aux limites du potentiel transform\'e s'\'ecrivent :}  
+\small{\vspace{-0.25 cm}
+\begin{displaymath}
+\begin{array}{ll}
+\dsp \textbf{-} & \left\{
+\begin{array}{ll}
+\dsp \frac{1}{\sqrt{1-M_\infty^2}}M_{0z} \ovra{n}.\overrightarrow{e_z}+M_{0r}\ovra{n}.\overrightarrow{e_r}=0, &\forall x\in \Gamma_R\\
+\dsp \frac{\partial \phi_{am}}{\partial n_{A_{Lm}}}=0, &\forall x\in \Gamma_R \\ 
+\end{array}
+\right. \\
+\dsp  \textbf{-} & \begin{array}{ll}
+\dsp \frac{\partial\left( \phi_{am}-\phi_{am,inc}\right)}{\partial n_{A_{Lm}}}=T_{LMm}\left(\phi_{am}-\phi_{am,inc} \right) &,\forall x\in \Gamma_M \\
+\end{array} \\
+\end{array},
+\end{displaymath}\vspace{-0.25 cm}
+}
+$\bullet $ \small{L'edp se réduit \`{a} l'\'equation de Helmholtz en dehors du domaine perturb\'e :}\vspace{-0.1 cm}
+\begin{displaymath}
+\dsp \frac{1}{r}\frac{\partial}{\partial r}\left(r \frac{\partial \phi_{am}}{\partial r}\right)-\frac{m^2}{r^2}\phi_{am}+\frac{\partial^2\phi_{am}}{\partial z^2}+\frac{k_\infty^2}{1-M_\infty^2}\phi_{am}=0
+\end{displaymath}\vspace{-0.1 cm}
+$\bullet $ Le potentiel acoustique transformé vérifiant la condition de Sommerfeld $\dsp\lim_{R\rightarrow +\infty}\int_{S_R}\vert \frac{\partial \phi_{am}}{\partial n}-i\frac{k_\infty}{\sqrt{1-M_\infty^2}}\phi_{am}\vert^2 \ud \gamma =0$ existe et est unique.
+}}
+\end{slide}
+\begin{slide}
+\textbf{Egalité d'Energie dans l'Espace Transformé}\newline
+\textbf{Lemme : }{\small{$\bullet$ On suppose donc la source sonore incidente nulle : $\phi_{a,inc}=0$. Le probl\`eme transform\'e se formule variationnellement dans $\Omega$ :
+\vskip -0.5 cm
+\begin{displaymath}
+\left\{
+\begin{array}{l}
+\dsp\text{ Trouver }  \phi_{am} \in H^1_{a}(\Omega)  \text{ tel que : }\\
+\dsp a_{Lm}(\phi_{am},\psi)=\langle T_{LMm}\left(\phi_{am}\right),\psi\rangle_{L^2\left(\Gamma_M\right)}+\int_{\Gamma_\infty} \ovra{\nabla}\phi_{am} .\ovra{n} \ \overline{\psi}, \ \forall \psi \in H^1_a(\Omega)\\
+\end{array}
+\right.,
+\end{displaymath}
+\vskip -0.3 cm
+$\bullet $
+La solution du probl\`eme transformé v\'erifie le bilan d'énergie :
+\vskip -0.5 cm
+\begin{displaymath}
+\begin{array}{c}
+\dsp\sum_{\pm, \ (m,n)\in\mathbb{Z}\times\mathbb{N}} \Im m\left(\mu_{mn}^\pm\right)\vert\langle\phi_a,\Xi_{rmn}\rangle_{L^2\left(\Gamma_M\right)}\vert^2\vert\vert \Xi_{rmn}\vert\vert^2_{L^2\left(\Gamma_M\right)}\\
+\dsp +\lim_{R\rightarrow +\infty}k'_\infty\vert\vert \phi_a \vert\vert_{L^2(S_R)}=0\\
+\end{array},
+\end{displaymath}
+\vskip -0.3 cm
+ où la somme modale ci-dessus ne se fait que sur les modes propagatifs :
+\vskip -0.5 cm
+\begin{displaymath}
+\begin{array}{l}
+\dsp \Im m\left(\mu_{mn}^\pm\right)=0 \Longleftrightarrow \text{ le mode est \'evanescent}\\
+\dsp \Im m\left(\mu_{mn}^\pm\right)<0 \Longleftrightarrow \text{ le mode est propagatif incident}\\
+\end{array}
+\end{displaymath}
+\vskip -0.35 cm
+$\bullet $
+En l'absence de modes incidents propagatifs \`a l'entr\'ee de la nacelle ($\phi_{a,inc}=0$) :
+\vskip -0.5 cm
+\begin{displaymath}
+\lim_{R\rightarrow +\infty}\vert\vert \phi_a \vert\vert_{L^2(S_R)}=0, \ 
+\lim_{R\rightarrow +\infty}\vert\vert \frac{\partial \phi_a}{\partial n} \vert\vert_{L^2(S_R)}=0
+\end{displaymath}
+}}
+\end{slide}
+\begin{slide}
+\end{document}

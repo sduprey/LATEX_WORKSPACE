@@ -1,0 +1,727 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  24 FEB 2015 15:21
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**PRESENTATIONTHESISSHORT.TEX
+(./PRESENTATIONTHESISSHORT.TEX
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 4 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/seminar/seminar.cls
+Document Class: seminar 2014/01/17, 1.61
+Documentclass: `seminar' v1.61 <2014/01/17> (tvz,hv)
+(/usr/share/texlive/texmf-dist/tex/latex/pst-ovl/pst-ovl.sty
+Package: pst-ovl 2013/07/08 v0.01 LaTeX wrapper for `pst-ovl' (HV)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pst-ovl/pst-ovl.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pstricks.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/pst-xkey.tex
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+\XKV@toks=\toks14
+\XKV@tempa@toks=\toks15
+\XKV@depth=\count79
+File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/keyval.tex))))
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pst-fp.tex
+`pst-fp' v0.05, 2010/01/17 (hv)
+\pstFP@xs=\count80
+\pstFP@xia=\count81
+\pstFP@xib=\count82
+\pstFP@xfa=\count83
+\pstFP@xfb=\count84
+\pstFP@rega=\count85
+\pstFP@regb=\count86
+\pstFP@regs=\count87
+\pstFP@times=\count88
+)
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks16
+)
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks17
+\pgfkeys@temptoks=\toks18
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks19
+))
+(/usr/share/texmf/tex/generic/pgf/utilities/pgffor.code.tex
+\pgffor@iter=\dimen102
+\pgffor@skip=\dimen103
+\pgffor@stack=\toks20
+\pgffor@toks=\toks21
+)
+\psLoopIndex=\count89
+
+`PSTricks' v2.51  <2014/02/03> (tvz)
+\pst@dima=\dimen104
+\pst@dimb=\dimen105
+\pst@dimc=\dimen106
+\pst@dimd=\dimen107
+\pst@dimg=\dimen108
+\pst@dimh=\dimen109
+\pst@dimm=\dimen110
+\pst@dimn=\dimen111
+\pst@dimo=\dimen112
+\pst@dimp=\dimen113
+\pst@hbox=\box26
+\pst@ibox=\box27
+\pst@boxg=\box28
+\pst@cnta=\count90
+\pst@cntb=\count91
+\pst@cntc=\count92
+\pst@cntd=\count93
+\pst@cntg=\count94
+\pst@cnth=\count95
+\pst@cntm=\count96
+\pst@cntn=\count97
+\pst@cnto=\count98
+\pst@cntp=\count99
+\@zero=\count100
+\pst@toks=\toks22
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pstricks.con)
+\psunit=\dimen114
+\psxunit=\dimen115
+\psyunit=\dimen116
+\pst@C@@rType=\count101
+\pslinewidth=\dimen117
+\psk@startLW=\dimen118
+\psk@endLW=\dimen119
+\pst@customdefs=\toks23
+\pslinearc=\dimen120
+\pst@symbolStep=\dimen121
+\pst@symbolWidth=\dimen122
+\pst@symbolLinewidth=\dimen123
+\everypsbox=\toks24
+\psframesep=\dimen124
+\pslabelsep=\dimen125
+\sh@wgridXunit=\dimen126
+\sh@wgridYunit=\dimen127
+\pst@shift=\dimen128
+)
+`pst-ovl' v0.04, 2013/12/28 (tvz,hv)
+\theoverlaybox=\box29
+)
+File: pst-ovl.tex 2013/07/08 v0.01 overlay macros `pst-ovl' (HV)
+)
+\slidewidth=\dimen129
+\slideheight=\dimen130
+\footheight=\dimen131
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count102
+\c@section=\count103
+\c@subsection=\count104
+\c@subsubsection=\count105
+\c@paragraph=\count106
+\c@subparagraph=\count107
+\c@figure=\count108
+\c@table=\count109
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen132
+)
+(/usr/share/texlive/texmf-dist/tex/latex/seminar/sem-page.sty)
+\before@document=\toks25
+\after@document=\toks26
+\before@enddocument=\toks27
+\c@slide=\count110
+\slide@count=\count111
+\@slidebox=\box30
+\not@slidebox=\box31
+\slide@hook=\toks28
+\after@slide=\toks29
+\slide@footins=\insert233
+\slide@listdepth=\count112
+\saved@specials=\box32
+\before@newslide=\toks30
+\after@slidepage=\toks31
+\slidesep=\skip43
+\c@note=\count113
+\slideframewidth=\dimen133
+\slideframesep=\dimen134
+\semin=\dimen135
+\semcm=\dimen136
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pstricks/pstcol.sty
+Package: pstcol 2007/04/11 v1.3 LaTeX wrapper for `PSTricks' (RN,HV)
+
+
+Package pstcol Warning: ************************************ 
+(pstcol)                The package `pstcol' is obsolet! 
+(pstcol)                You should use `pstricks' directly: 
+(pstcol)                    \usepackage{pstricks}
+(pstcol)                ************************************.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pstricks/pstricks.sty
+Package: pstricks 2013/12/12 v0.60 LaTeX wrapper for `PSTricks' (RN,HV)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 130.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+Package color Info: Redefining color black on input line 164.
+Package color Info: Redefining color white on input line 165.
+Package color Info: Redefining color red on input line 168.
+Package color Info: Redefining color green on input line 169.
+Package color Info: Redefining color blue on input line 170.
+Package color Info: Redefining color cyan on input line 173.
+Package color Info: Redefining color magenta on input line 174.
+Package color Info: Redefining color yellow on input line 175.
+)
+Package color Info: Redefining color darkgray on input line 234.
+Package color Info: Redefining color gray on input line 234.
+Package color Info: Redefining color lightgray on input line 234.
+Package color Info: Redefining color black on input line 267.
+Package color Info: Redefining color darkgray on input line 268.
+Package color Info: Redefining color gray on input line 269.
+Package color Info: Redefining color lightgray on input line 270.
+Package color Info: Redefining color white on input line 271.
+Package color Info: Redefining color red on input line 272.
+Package color Info: Redefining color green on input line 273.
+Package color Info: Redefining color blue on input line 274.
+Package color Info: Redefining color yellow on input line 278.
+Package color Info: Redefining color cyan on input line 279.
+Package color Info: Redefining color magenta on input line 280.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/seminar/semcolor.sty
+Style Option: `semcolor' for doc style `seminar' 1.02 <2014/01/17> (tvz)
+File: semcolor.sty 2014/01/17 v1.02 (tvz)
+) (/usr/share/texlive/texmf-dist/tex/latex/seminar/slidesec.sty
+File `slidesec.sty' v0.9  92/05/07  <tvz>
+\@temptokenb=\toks32
+\c@slidesection=\count114
+\c@slidesubsection=\count115
+) (/usr/share/texlive/texmf-dist/tex/latex/seminar/seminar.bug)
+(/usr/share/texlive/texmf-dist/tex/latex/seminar/seminar.bg2
+seminar.bg2: various corrections for the Seminar document class
+added since seminar.bug and few add-ons for overlays
+(Version 2.2 of <Jan 16, 2014> (DG, hv))
+\Seminar@SlideBoxBackground=\box33
+) (/usr/share/texlive/texmf-dist/tex/latex/seminar/semhelv.sty
+Style Option: `semhelv' for the `seminar' doc style 1.4 <2000/05/08> (tvz)
+Modified by Stefan (see source for details)
+LaTeX Font Info:    Font shape `OT1/helvetica/m/n' will be
+(Font)              scaled to size 8.20007pt on input line 186.
+) (/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip44
+\subfigcapskip=\skip45
+\subfigcaptopadj=\dimen137
+\subfigbottomskip=\skip46
+\subfigcapmargin=\dimen138
+\subfiglabelskip=\skip47
+\c@subfigure=\count116
+\c@lofdepth=\count117
+\c@subtable=\count118
+\c@lotdepth=\count119
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip48
+\subfig@bottom=\skip49
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks33
+\inpenc@posthook=\toks34
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+)
+LaTeX Font Info:    Font shape `T1/helvetica/m/n' will be
+(Font)              scaled to size 8.20007pt on input line 100.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip50
+\LTright=\skip51
+\LTpre=\skip52
+\LTpost=\skip53
+\LTchunksize=\count120
+\LTcapwidth=\dimen139
+\LT@head=\box34
+\LT@firsthead=\box35
+\LT@foot=\box36
+\LT@lastfoot=\box37
+\LT@cols=\count121
+\LT@rows=\count122
+\c@LT@tables=\count123
+\c@LT@chunks=\count124
+\LT@p@ftn=\toks35
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen140
+\extrarowheight=\dimen141
+\NC@list=\toks36
+\extratabsurround=\skip54
+\backup@length=\skip55
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
+\@enLab=\toks37
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
+\c@tracingmulticols=\count125
+\mult@box=\box38
+\multicol@leftmargin=\dimen142
+\c@unbalance=\count126
+\c@collectmore=\count127
+\doublecol@number=\count128
+\multicoltolerance=\count129
+\multicolpretolerance=\count130
+\full@width=\dimen143
+\page@free=\dimen144
+\premulticols=\dimen145
+\postmulticols=\dimen146
+\multicolsep=\skip56
+\multicolbaselineskip=\skip57
+\partial@page=\box39
+\last@line=\box40
+\mult@rightbox=\box41
+\mult@grightbox=\box42
+\mult@gfirstbox=\box43
+\mult@firstbox=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\@tempa=\box52
+\@tempa=\box53
+\@tempa=\box54
+\@tempa=\box55
+\@tempa=\box56
+\@tempa=\box57
+\@tempa=\box58
+\@tempa=\box59
+\@tempa=\box60
+\@tempa=\box61
+\c@columnbadness=\count131
+\c@finalcolumnbadness=\count132
+\last@try=\dimen147
+\multicolovershoot=\dimen148
+\multicolundershoot=\dimen149
+\mult@nat@firstbox=\box62
+\colbreak@box=\box63
+\multicol@sort@counter=\count133
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip58
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks38
+\ex@=\dimen150
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen151
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count134
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count135
+\leftroot@=\count136
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count137
+\DOTSCASE@=\count138
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box64
+\strutbox@=\box65
+\big@size=\dimen152
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count139
+\c@MaxMatrixCols=\count140
+\dotsspace@=\muskip10
+\c@parentequation=\count141
+\dspbrk@lvl=\count142
+\tag@help=\toks39
+\row@=\count143
+\column@=\count144
+\maxfields@=\count145
+\andhelp@=\toks40
+\eqnshift@=\dimen153
+\alignsep@=\dimen154
+\tagshift@=\dimen155
+\tagwidth@=\dimen156
+\totwidth@=\dimen157
+\lineht@=\dimen158
+\@envbody=\toks41
+\multlinegap=\skip59
+\multlinetaggap=\skip60
+\mathdisplay@stack=\toks42
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/eucal.sty
+Package: eucal 2009/06/22 v3.00 Euler Script fonts
+LaTeX Font Info:    Overwriting math alphabet `\EuScript' in version `bold'
+(Font)                  U/eus/m/n --> U/eus/b/n on input line 33.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup6
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2004/08/06 v2.20
+\thm@style=\toks43
+\thm@bodyfont=\toks44
+\thm@headfont=\toks45
+\thm@notefont=\toks46
+\thm@headpunct=\toks47
+\thm@preskip=\skip61
+\thm@postskip=\skip62
+\thm@headsep=\skip63
+\dth@everypar=\toks48
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+)
+\Gin@req@height=\dimen159
+\Gin@req@width=\dimen160
+)
+(/usr/share/texlive/texmf-dist/tex/generic/epsf/epsf.sty
+This is `epsf.tex' v2.7.4 <14 February 2011>
+\epsffilein=\read1
+\epsfframemargin=\dimen161
+\epsfframethickness=\dimen162
+\epsfrsize=\dimen163
+\epsftmp=\dimen164
+\epsftsize=\dimen165
+\epsfxsize=\dimen166
+\epsfysize=\dimen167
+\pspoints=\dimen168
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+\epsfxsize=\dimen169
+\epsfysize=\dimen170
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip64
+\f@ncyO@elh=\skip65
+\f@ncyO@erh=\skip66
+\f@ncyO@olh=\skip67
+\f@ncyO@orh=\skip68
+\f@ncyO@elf=\skip69
+\f@ncyO@erf=\skip70
+\f@ncyO@olf=\skip71
+\f@ncyO@orf=\skip72
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/layout.sty
+Package: layout 2000/09/25 v1.2c Show layout parameters
+\oneinch=\count146
+\cnt@paperwidth=\count147
+\cnt@paperheight=\count148
+\cnt@hoffset=\count149
+\cnt@voffset=\count150
+\cnt@textheight=\count151
+\cnt@textwidth=\count152
+\cnt@topmargin=\count153
+\cnt@oddsidemargin=\count154
+\cnt@evensidemargin=\count155
+\cnt@headheight=\count156
+\cnt@headsep=\count157
+\cnt@marginparsep=\count158
+\cnt@marginparwidth=\count159
+\cnt@marginparpush=\count160
+\cnt@footskip=\count161
+\fheight=\count162
+\ref@top=\count163
+\ref@hoffset=\count164
+\ref@voffset=\count165
+\ref@head=\count166
+\ref@body=\count167
+\ref@foot=\count168
+\ref@margin=\count169
+\ref@marginwidth=\count170
+\ref@marginpar=\count171
+\Interval=\count172
+\ExtraYPos=\count173
+\PositionX=\count174
+\PositionY=\count175
+\ArrowLength=\count176
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2013/12/03 3.9h The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-french/frenchb.ldf
+Language: frenchb 2013/12/30 v2.6g French support from the babel system
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2013/12/03 3.9h Babel common definitions
+\babel@savecnt=\count177
+\U@D=\dimen171
+)
+\FB@interchartokenstateORI=\count178
+Package babel Info: Making : an active character on input line 244.
+Package babel Info: Making ; an active character on input line 245.
+Package babel Info: Making ! an active character on input line 246.
+Package babel Info: Making ? an active character on input line 247.
+\FB@Mht=\dimen172
+\std@mcc=\count179
+\dec@mcc=\count180
+\listindentFB=\skip73
+\labelwidthFB=\skip74
+\leftmarginFB=\skip75
+\parindentFFN=\dimen173
+))
+(/usr/share/texlive/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+)
+\c@corollary=\count181
+
+
+LaTeX Warning: Unused global option(s):
+    [14pts].
+
+(./PRESENTATIONTHESISSHORT.aux)
+\openout1 = `PRESENTATIONTHESISSHORT.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 146.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
+)
+LaTeX Info: Redefining \degres on input line 146.
+LaTeX Info: Redefining \dots on input line 146.
+
+
+Package frenchb.ldf Warning: Setting StandardEnumerateEnv=true for
+(frenchb.ldf)                compatibility with enumerate package,
+(frenchb.ldf)                 on input line 146.
+
+LaTeX Info: Redefining \up on input line 146.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 155.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 156.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 162.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
+File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
+) [1
+
+
+]
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 170.
+
+(./PRESENTATIONTHESISSHORT.los) [2
+
+]
+LaTeX Font Info:    Try loading font information for U+msa on input line 175.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 175.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 175.
+
+(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+) [3
+
+]
+
+LaTeX Warning: Slide 4 overfull by 9.77313pt on input line 204.
+
+
+Overfull \vbox (4.41838pt too high) has occurred while \output is active []
+
+
+[4
+
+] [5
+
+]
+Overfull \hbox (4.11028pt too wide) detected at line 241
+\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10  > \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ;  \OM
+S/cmsy/m/n/10 8 [] 2 \OML/cmm/m/it/10 K[];  \OMS/cmsy/m/n/10 h[]\OML/cmm/m/it/1
+0 K\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^^\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ 
+[]\OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (\OML/cmm/m/it/10  \OT1/cmr/m/n/10 )\OML/cm
+m/m/it/10 ; ^^^ \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10  \OT1/cmr/m/n/10 )\OMS/cm
+sy/m/n/10 i ^^U \OML/cmm/m/it/10 \OMS/cmsy/m/n/10 jj\OML/cmm/m/it/10 ^^^ \OMS/
+cmsy/m/n/10 ^^@ \OML/cmm/m/it/10  \OMS/cmsy/m/n/10 jj[]
+ []
+
+
+Overfull \hbox (13.89323pt too wide) detected at line 249
+\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 ^^^ \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 K[];
+  \OMS/cmsy/m/n/10 9 \OT1/cmr/m/n/10 ! \OML/cmm/m/it/10 ^^P \OT1/cmr/m/n/10 = \
+OML/cmm/m/it/10 ^^P [] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 K[][]\OMS/cmsy/m/n/1
+0 8\OML/cmm/m/it/10   \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 K[];  B\OT1/cmr/m/n/1
+0 (\OML/cmm/m/it/10 ^^^\OT1/cmr/m/n/10 ; \OML/cmm/m/it/10 ^^P;    \OMS/cmsy/m/n
+/10 ^^@ \OML/cmm/m/it/10 ^^P\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^U\OML/cmm/m/it
+/10 < q;   \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 ^^P >
+ []
+
+
+LaTeX Warning: Slide 6 overfull by 15.64969pt on input line 251.
+
+
+Overfull \vbox (2.91483pt too high) has occurred while \output is active []
+
+
+[6
+
+]
+Overfull \hbox (0.60992pt too wide) detected at line 259
+[] [] \OT1/cmr/m/n/9 + \OML/cmm/m/it/9 ^^Z[]k[]^^^[] \OT1/cmr/m/n/9 + \OML/cmm/
+m/it/9 ik[]^^Z[][]:\OMS/cmsy/m/n/9 r\OML/cmm/m/it/9 ^^^[] \OT1/cmr/m/n/9 + [] [
+] = 0
+ []
+
+[7
+
+]
+Overfull \hbox (26.12828pt too wide) detected at line 286
+[]
+ []
+
+
+LaTeX Warning: Slide 8 overfull by 7.40483pt on input line 295.
+
+
+Overfull \vbox (5.61609pt too high) has occurred while \output is active []
+
+
+[8
+
+] [9] [10
+
+]
+Overfull \hbox (6.13573pt too wide) detected at line 347
+[] \OML/cmm/m/it/9 ;
+ []
+
+
+LaTeX Warning: Slide 11 overfull by 25.06378pt on input line 376.
+
+
+Overfull \vbox (5.83803pt too high) has occurred while \output is active []
+
+
+[11
+
+]
+\tf@los=\write3
+\openout3 = `PRESENTATIONTHESISSHORT.los'.
+
+
+
+*******************************************************
+***** !! PRINT THIS DOCUMENT IN LANDSCAPE MODE !! *****
+*******************************************************
+(./PRESENTATIONTHESISSHORT.aux) )
+(\end occurred inside a group at level 2)
+
+### simple group (level 2) entered at line 167 ({)
+### simple group (level 1) entered at line 167 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 6481 strings out of 495000
+ 92002 string characters out of 6180254
+ 182721 words of memory out of 5000000
+ 9540 multiletter control sequences out of 15000+600000
+ 33834 words of font info for 56 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 43i,24n,51p,467b,612s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on PRESENTATIONTHESISSHORT.dvi (11 pages, 26472 bytes).
