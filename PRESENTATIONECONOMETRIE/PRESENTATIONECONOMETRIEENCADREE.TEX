@@ -33,8 +33,14 @@
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
 
+
 \usepackage{url}
 \usepackage{xspace}
+
+\usepackage[landscape]{geometry}
+\usepackage{pdflscape}
+
+%\usepackage{pdflscape}
 
 \newtheorem{corollary}{Corollaire}[section]
 \newtheorem{definition}[corollary]{D\'{e}finition}
@@ -84,26 +90,27 @@
 
 \newcommand{\dsp}{\displaystyle}
 
-\newcommand\eads{\textsf{S.D}\xspace}
-\newcommand\eadsccr{\textsf{S.D}\xspace}
+\newcommand\eads{\textsf{CNAM}\xspace}
+\newcommand\eadsccr{\textsf{CNAM Paris}\xspace}
 
 \fancyhead[L]{\theslideheading}
 \fancyhead[R]{\textcolor{blue}{\eadsccr \thepage }}
 \fancyfoot[R]{\textcolor{blue}{}}
-\fancyfoot[L]{\textcolor{blue}{\today }}
+\fancyfoot[L]{\textcolor{blue}{Paris, le \today }}
 \renewcommand\headwidth{\textwidth}
 \autoslidemarginstrue
 
-\newslideframe{%
-   myscshadow}[\SemcolorFrameOps
-   \psset{shadowcolor=green}]{\psshadowbox{#1}}
+
+%\newslideframe{%
+ %  myscshadow}[\SemcolorFrameOps
+%   \psset{shadowcolor=green}]{\psshadowbox{#1}}
 \newcommand{\ud}{\mathrm{d}}
 
 \newcommand{\ds}{\displaystyle}
-\slideframe{myscshadow}
-\setlength\slideframewidth{.5pt}
-\setlength\footskip{1cm}
-\setlength\headsep{1cm}
+%\slideframe{myscshadow}
+%\setlength\slideframewidth{.5pt}
+%\setlength\footskip{1cm}
+%\setlength\headsep{1cm}
 
 %\renewcommand\makeslideheading[1]{\par
 %   \framebox{\theslidesection. #1}\par
@@ -137,13 +144,14 @@
 }
 \makeatother
 
-\slideframe{none}
+%\slideframe{none}
 
 %\XgrDefinitFormat{*}{line=0,mark=0,ll=1}
 %\XgrDefinitFormat{pr}{}
 %\XgrDefinitFormat{ks}{line=-1,mark=8,ll=0.4}
 
 \begin{document}
+%\begin{landscape}
 \slidepagestyle{fancy}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{slide}
@@ -163,11 +171,9 @@
 \end{center}
 %\end{landscape}
 \end{slide}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\small{
 \begin{slide}
 \slidecontents
 \renewcommand\theslideheading{Plan de l'Expos\'e}
@@ -434,4 +440,9 @@ Les taux de recouvrement étant compris entre 0 et 1, les sensibilités de recouvr
 \epsfig{file=CorporateBondRecoveryYield.eps,height=6.cm,width=10.750cm}
 \end{center}
 \end{slide}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{slide}
+\slideheading{Conclusion}
+\end{slide}
+%\end{landscape}
 \end{document}
