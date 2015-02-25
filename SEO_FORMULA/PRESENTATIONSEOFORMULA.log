@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  24 FEB 2015 15:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  25 FEB 2015 15:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**PRESENTATIONECONOMETRIE.TEX
-(./PRESENTATIONECONOMETRIE.TEX
+**PRESENTATIONSEOFORMULA.TEX
+(./PRESENTATIONSEOFORMULA.TEX
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 4 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/seminar/seminar.cls
@@ -550,307 +550,82 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2010/09/12 v5.6 Page Geometry
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
-Package ifvtex Info: VTeX not detected.
-)
-(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-)
-\Gm@cnth=\count181
-\Gm@cntv=\count182
-\c@Gm@tempcnt=\count183
-\Gm@bindingoffset=\dimen174
-\Gm@wd@mp=\dimen175
-\Gm@odd@mp=\dimen176
-\Gm@even@mp=\dimen177
-\Gm@layoutwidth=\dimen178
-\Gm@layoutheight=\dimen179
-\Gm@layouthoffset=\dimen180
-\Gm@layoutvoffset=\dimen181
-\Gm@dimlist=\toks49
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
-Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
-Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
-)
-Package pdflscape Info: Auto-detected driver: dvips (dvips) on input line 124.
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/atbegshi.sty
-Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)))
-\c@corollary=\count184
+\c@corollary=\count181
 
 
 LaTeX Warning: Unused global option(s):
     [14pts].
 
-(./PRESENTATIONECONOMETRIE.aux)
-\openout1 = `PRESENTATIONECONOMETRIE.aux'.
+(./PRESENTATIONSEOFORMULA.aux)
+\openout1 = `PRESENTATIONSEOFORMULA.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 153.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 146.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-LaTeX Info: Redefining \degres on input line 153.
-LaTeX Info: Redefining \dots on input line 153.
+LaTeX Info: Redefining \degres on input line 146.
+LaTeX Info: Redefining \dots on input line 146.
 
 
 Package frenchb.ldf Warning: Setting StandardEnumerateEnv=true for
 (frenchb.ldf)                compatibility with enumerate package,
-(frenchb.ldf)                 on input line 153.
+(frenchb.ldf)                 on input line 146.
 
-LaTeX Info: Redefining \up on input line 153.
-*geometry* driver: auto-detecting
-*geometry* detected driver: dvips
-*geometry* verbose mode - [ preamble ] result:
-* driver: dvips
-* paper: <default>
-* layout: <same size as paper>
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: landscape 
-* h-part:(L,W,R)=(126.75832pt, 591.5302pt, 126.75833pt)
-* v-part:(T,H,B)=(71.70166pt, 418.25368pt, 107.55254pt)
-* \paperwidth=1752.59583pt
-* \paperheight=1239.2226pt
-* \textwidth=285.20464pt
-* \textheight=201.65984pt
-* \oddsidemargin=26.2714pt
-* \evensidemargin=26.2714pt
-* \topmargin=-35.11879pt
-* \headheight=17.42238pt
-* \headsep=17.42238pt
-* \topskip=4.82147pt
-* \footskip=26.13358pt
-* \marginparwidth=0.0pt
-* \marginparsep=0.0pt
-* \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
-* \hoffset=37.43417pt
-* \voffset=37.43417pt
-* \mag=2074
-* \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
-
-\AtBeginShipoutBox=\box66
-Cannot use \thispagestyle in slide environments
-File: CNAM.eps Graphic file (type eps)
- <CNAM.eps>
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 166.
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 167.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 175.
-
+LaTeX Info: Redefining \up on input line 146.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 156.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 ) [1
 
 
 ]
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 182.
-
-(./PRESENTATIONECONOMETRIE.los) [2
-
-]
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 186.
-LaTeX Font Info:    Try loading font information for U+msa on input line 188.
+LaTeX Font Info:    Try loading font information for U+msa on input line 163.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 188.
+LaTeX Font Info:    Try loading font information for U+msb on input line 163.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 188.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 163.
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
-
-LaTeX Warning: Slide 3 overfull by 5.59497pt on input line 193.
-
-[3
-
-] [4
-
-] [5
-
-] [6
+) [2
 
 ]
-
-LaTeX Warning: Slide 7 overfull by 3.17723pt on input line 237.
-
-[7
-
-]
-
-LaTeX Warning: Slide 8 overfull by 11.82846pt on input line 254.
-
-[8
-
-] [9
-
-] [10
-
-]
-
-LaTeX Warning: Slide 11 overfull by 13.48102pt on input line 286.
-
-
-Overfull \vbox (4.30116pt too high) has occurred while \output is active []
-
-
-[11
-
-]
-
-LaTeX Warning: Slide 12 overfull by 16.62552pt on input line 306.
-
-[12
-
-] [13
-
-]
-
-LaTeX Warning: Slide 14 overfull by 16.91214pt on input line 341.
-
-
-Overfull \vbox (4.7623pt too high) has occurred while \output is active []
-
-
-[14
-
-]
-
-LaTeX Warning: Slide 15 overfull by 8.58061pt on input line 363.
-
-[15
-
-] [16
-
-]
-File: CorporateBondTermStructure.eps Graphic file (type eps)
- <CorporateBondTermStructure.eps>
-Overfull \hbox (1.31607pt too wide) in paragraph at lines 381--382
- [] 
- []
-
-[17
-
-]
-File: CorporateBondDecomposition.eps Graphic file (type eps)
- <CorporateBondDecomposition.eps>
-Overfull \hbox (1.31607pt too wide) in paragraph at lines 386--387
- [] 
- []
-
-[18
-
-]
-File: FirstToDefaultBasketTermStructure.eps Graphic file (type eps)
- <FirstToDefaultBasketTermStructure.eps>
-Overfull \hbox (1.31607pt too wide) in paragraph at lines 396--397
- [] 
- []
-
-[19
-
-]
-File: FirstToDefaultBasketDecomposition.eps Graphic file (type eps)
- <FirstToDefaultBasketDecomposition.eps>
-Overfull \hbox (1.31607pt too wide) in paragraph at lines 401--402
- [] 
- []
-
-[20
-
-]
-File: CycleCorporateBondYield.eps Graphic file (type eps)
- <CycleCorporateBondYield.eps>
-Overfull \hbox (1.31607pt too wide) in paragraph at lines 412--413
- [] 
- []
-
-[21
-
-]
-Overfull \hbox (10.03772pt too wide) detected at line 420
-\OML/cmm/m/it/5 C \OMS/cmsy/m/n/5 ^^C[] \OT1/cmr/m/n/5 (\OML/cmm/m/it/5 t; t \O
-T1/cmr/m/n/5 + \OML/cmm/m/it/5 h\OT1/cmr/m/n/5 ) = [] \OML/cmm/m/it/5 E[] []
- []
-
-[22
-
-]
-File: CorporateBondRecoveryPrice.eps Graphic file (type eps)
- <CorporateBondRecoveryPrice.eps>
-Overfull \hbox (1.31607pt too wide) in paragraph at lines 438--439
- [] 
- []
-
-[23
-
-]
-File: CorporateBondRecoveryYield.eps Graphic file (type eps)
- <CorporateBondRecoveryYield.eps>
-Overfull \hbox (1.31607pt too wide) in paragraph at lines 443--444
- [] 
- []
-
-[24
-
-] [25
-
-]
-\tf@los=\write3
-\openout3 = `PRESENTATIONECONOMETRIE.los'.
-
-
 
 *******************************************************
 ***** !! PRINT THIS DOCUMENT IN LANDSCAPE MODE !! *****
 *******************************************************
-(./PRESENTATIONECONOMETRIE.aux) ) 
-Here is how much of TeX's memory you used:
- 7279 strings out of 495000
- 104608 string characters out of 6180254
- 192239 words of memory out of 5000000
- 10296 multiletter control sequences out of 15000+600000
- 33709 words of font info for 67 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 43i,11n,51p,417b,618s stack positions out of 5000i,500n,10000p,200000b,80000s
+(./PRESENTATIONSEOFORMULA.aux) )
+(\end occurred inside a group at level 2)
 
-Output written on PRESENTATIONECONOMETRIE.dvi (25 pages, 40004 bytes).
+### simple group (level 2) entered at line 161 ({)
+### simple group (level 1) entered at line 161 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 6436 strings out of 495000
+ 91359 string characters out of 6180254
+ 174721 words of memory out of 5000000
+ 9506 multiletter control sequences out of 15000+600000
+ 16991 words of font info for 34 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 43i,11n,51p,416b,604s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on PRESENTATIONSEOFORMULA.dvi (2 pages, 2320 bytes).

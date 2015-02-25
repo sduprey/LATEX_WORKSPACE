@@ -1,5 +1,0 @@
-\beamer@endinputifotherversion {3.07pt}
-\select@language {french}
-\beamer@sectionintoc {1}{Le concept de croissance \FB@og pro-pauvres\FB@fg }{2}{0}{1}
-\beamer@sectionintoc {2}{Tester le caract\`ere \FB@og pro-pauvres\FB@fg de la croissance}{15}{0}{2}
-\beamer@sectionintoc {3}{Bibliographie}{19}{0}{3}
