@@ -170,4 +170,16 @@ Soit $\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$ la matrice adjace
 \max_{\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}}\left\{ \sum^{N}_{i=1} trafic\left(X_i\right)\times pageRank(X_i)\right\}
 \end{equation} 
 \end{slide}
+\begin{slide}
+Soit $N\in\mathbb{N}$ le nombre de noeuds de notre maillage.
+\newline
+Initialisation du page rank :
+\begin{equation}
+\forall u \ PR\left(u\right)=\frac{1}{N}
+\end{equation} 
+Calcul itératif :
+\begin{equation}
+PR\left(u\right)= \frac{\left(1-c\right)}{N} + c \times \sum_{v \rightarrow u}\frac{PR\left(v\right)}{card\left(\left\{v\rightarrow u\right\}\right)}
+\end{equation}
+\end{slide}
 \end{document}
