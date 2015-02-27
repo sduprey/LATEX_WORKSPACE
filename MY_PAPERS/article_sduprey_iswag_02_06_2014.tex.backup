@@ -81,66 +81,35 @@ Calcul itératif :
 PR\left(u\right)= \frac{\left(1-c\right)}{N} + c \times \sum_{v \rightarrow u}\frac{PR\left(v\right)}{card\left(\left\{v\rightarrow u\right\}\right)}
 \end{equation}
 
-
-
-
-Genetic algorithm is a search heuristic that mimics the process of natural selection 
-A population of individuals to an optimization problem is evolved toward better solutions. 
-
-In our case, each individual or chromosome $\left(C_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$ here represented as a bits array, which results from the vectorization of
-the adjacency matrix $\left(G_{ij}\right)$
-
-
-A candidate can either result from a crossover between two parents or from a self mutation;
-The crossover function which breeds a child from two parents is defined as follows :
-The child will keep the matching bits of the two parents and inherit randomly every other non-matching bits.
-For every two parents, we spawn two children :
-\\\newline
-\textbf{\large Child spawn from 2 parents crossover}
+We here explain the genetic algorithm crossover funcTion :
+ \\\newline
+\textbf{\large Child from 2 parents crossover}
 \begin{center}
 \epsfig{file=crossover.eps,height=2cm,width=4cm}
 \end{center}
-The mutation function is even simpler : we just switch bits whose locations are randomly chosen
-and proportions equal a fixed mutation rate : 
-\\\newline
+We here explain the genetic algorithm mutation function :
+ \\\newline
 \textbf{\large Mutation of an individual}
 \begin{center}
 \epsfig{file=mutation.eps,height=0.4cm,width=4cm}
 \end{center}
-
-The evolution usually starts from a population of randomly generated individuals, 
-and is an iterative process, with the population in each iteration called a generation.
-\\\newline
-\textbf{\large Initial population}
-\begin{center}
-\epsfig{file=initial_population.eps,height=4cm,width=4cm}
-\end{center}
-
-
-In each generation, the fitness of every individual in the population is evaluated; 
-the fitness is usually the value of the objective function in the optimization problem being solved.
- The more fit individuals are stochastically selected from the current population, 
-and each individual's genome is modified (recombined and possibly randomly mutated) to form a new generation. 
-The new generation of candidate solutions is then used in the next iteration of the algorithm. 
-Commonly, the algorithm terminates when either a maximum number of generations has been produced, 
-or a satisfactory fitness level has been reached for the population.
-
-
-
 Categorization of our links :
-
+ \\\newline
 \textbf{\large Links categorization}
 \begin{center}
 \epsfig{file=links_categorization.eps,height=1cm,width=6cm}
 \end{center}
-
+\textbf{\large Initial population}
+\begin{center}
+\epsfig{file=initial_population.eps,height=1cm,width=6cm}
+\end{center}
 \textbf{\large Population at convergence}
 \begin{center}
-\epsfig{file=converged_population.eps,height=4cm,width=4cm}
+\epsfig{file=converged_population.eps,height=1cm,width=6cm}
 \end{center}
 \textbf{\large Best chromosome fitness function evolution}
 \begin{center}
-\epsfig{file=best_element_evolution.eps,height=4cm,width=4cm}
+\epsfig{file=links_categorization.eps,height=1cm,width=6cm}
 \end{center}
 
 \section{Big data implementaino}
