@@ -1,6 +1,7 @@
 \documentclass{iSWAGArticle}
 
 %\usepackage{lipsum}
+\usepackage{amssymb}
 
 \title{In-Rank mesh optimization for URL customized promotion in SEO}
 \author{\iSWAGAuthor{Stefan Duprey\\
@@ -22,25 +23,34 @@ second.author@university2.com}}
  We here propose an algorithm to automatically compute the optimal internal mesh for our web site.
  We tackle the challenges met both at a theory and software implementation level. 
  We'll more specifically deal with big data issues for an e-commerce web site.
- Keywords : search engine, e-commerce, page rank, in rank, mesh optimization, global optimization
+ \newline
+ \indent \textbf{Keywords: }
+ \newline
+search engine, e-commerce, page rank, in rank, mesh optimization, global optimization
 \end{abstract}
 
 \section{Introduction}
 We here propose an original methodology to optimize the internal mesh of Cdiscount e-commerce site.
 The idea behind is to promote the most successful URLs (the most frequently viewed by users) by increasing their in-rank.  
-The frequency data is obtained from logs parsing tracking software and 
-the in rank is computed using the famous page rank iterative algorithm.  
+The frequency data is obtained from logs parsing tracking software and the in rank is computed using the famous page rank iterative algorithm.  
 We want to find the optimal mesh, which maximizes for all URLs the matching between their traffic and their in-rank. 
 The more successful a URL is, the more in-rank we want to give him through our optimal mesh.
+\newline
 We here detail the technical implementation of such an algorithm.
 The difficulty here is three-fold:
+\newline
+\indent
 First the structure of an e-commerce is already well-defined and it is out of question to drastically change the already existing mesh.
 Links are categorized regarding their incoming page type and position within that page and links can only be created within certain categories. 
 So we'll have strong constraints for our mesh to comply with.
+\newline
+\indent
 Second the universe we deal with is discrete and gigantic. 
 For a mesh with $N$ nodes, the number of possible meshes is $2^{N^{2}}$. 
 Our objective function is non-linear and non-convex. Exhaustive optimization would be far too computationally intensive. 
 We have to find a proper heuristic based global optimization algorithm to cleverly tweak through our universe.
+\newline
+\indent
 Third the actual size of our data makes the implementation of a real-world industrial use case a technologically difficult problem.
 Either we implement from scratch over a cluster our algorithm dealing ourselves with concurrency and inter-processor communications,
 or we try not to reinvent the wheel and plug ourselves to existing big data platform.
@@ -51,7 +61,7 @@ By allowing user programs to load data into a cluster's memory and query it repe
 We'll detail the technological implementation of a real-world use case.
 
 \section{Algorithm}
-Soit $N \in $ le nombre de noeuds de notre maillage.
+Soit $N \in \mathbb{N}$ le nombre de noeuds de notre maillage.
 Soit $$\left(X_i\right)_{i \in \left\{1,...,N\right\}}$$ les sommets de notre graphe orienté.
 Soit $$\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$$ la matrice adjacente de notre graphe orienté.
 \begin{equation}
