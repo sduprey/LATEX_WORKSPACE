@@ -63,24 +63,11 @@ By allowing user programs to load data into a cluster's memory and query it repe
 We'll detail the technological implementation of a real-world use case.
 
 \section{Algorithm}
-Soit $N \in \mathbb{N}$ le nombre de noeuds de notre maillage.
+Let $N \in \mathbb{N}$ be the number of nodes of our graph or rather the number of URLs of our site.
  \\\newline
-Soit $$\left(X_i\right)_{i \in \left\{1,...,N\right\}}$$ les sommets de notre graphe orienté.
+Let's $$\left(X_i\right)_{i \in \left\{1,...,N\right\}}$$ denote the nodes of our directed graph.
  \\\newline
-Soit $$\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$$ la matrice adjacente de notre graphe orienté.
-\begin{equation}
-\max_{\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}}\left\{ \sum^{N}_{i=1} trafic\left(X_i\right)\times PR(X_i)\right\}
-\end{equation}
- \\\newline
-Initialisation du page rank :
-\begin{equation}
-\forall u \ PR\left(u\right)=\frac{1}{N}
-\end{equation} 
-Calcul itératif :
-\begin{equation}
-PR\left(u\right)= \frac{\left(1-c\right)}{N} + c \times \sum_{v \rightarrow u}\frac{PR\left(v\right)}{card\left(\left\{v\rightarrow u\right\}\right)}
-\end{equation}
-
+Let's $$\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$$ denote the adjacency matrix of our directed graph.
 
 
 
@@ -116,17 +103,34 @@ and is an iterative process, with the population in each iteration called a gene
 \epsfig{file=initial_population.eps,height=4cm,width=4cm}
 \end{center}
 
+For each individual, we evaluate a fitness function. Our fitness function is defined as follows :
+Firs we compute the standard page rank of the individual matching mesh, which is defined as follows :
+The first stage is the page rank initialisation for all our nodes:
+\begin{equation}
+\forall u \ PR\left(u\right)=\frac{1}{N}
+\end{equation} 
+We then iterate to find the fixed point solutions of the well know equation :
+\begin{equation}
+PR\left(u\right)= \frac{\left(1-c\right)}{N} + c \times \sum_{v \rightarrow u}\frac{PR\left(v\right)}{card\left(\left\{v\rightarrow u\right\}\right)}
+\end{equation}
+
 
 In each generation, the fitness of every individual in the population is evaluated; 
 the fitness is usually the value of the objective function in the optimization problem being solved.
+ 
  The more fit individuals are stochastically selected from the current population, 
 and each individual's genome is modified (recombined and possibly randomly mutated) to form a new generation. 
 The new generation of candidate solutions is then used in the next iteration of the algorithm. 
+
+
 Commonly, the algorithm terminates when either a maximum number of generations has been produced, 
 or a satisfactory fitness level has been reached for the population.
 
 
-
+\begin{equation}
+\max_{\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}}\left\{ \sum^{N}_{i=1} trafic\left(X_i\right)\times PR(X_i)\right\}
+\end{equation}
+ \\\newline
 Categorization of our links :
 
 \textbf{\large Links categorization}
