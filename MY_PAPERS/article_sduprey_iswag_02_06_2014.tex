@@ -117,16 +117,36 @@ vector. We just end up with a vector with a smaller number of freedom degrees : 
 \begin{center}
 \epsfig{file=links_categorization.eps,height=1cm,width=6cm}
 \end{center}
-
-Our initial population is then indeed sheer randomness :
+We here present results for a small prototyping use case.
+We are provided with 39 URLs. We order and flag them as home, 2 meta lists, 4 lists and 32 products and we affect them
+the following vector of importance :
+$$
+\left(X_i\right)=\{'home','metalist1','metalist2',
+$$
+$$
+'list1','list2','list3','list4',
+$$
+$$
+'product1','product2',...,'product32'\};
+$$
+$$
+f\left(X_i\right) = [100;80;55;$$
+$$
+40;35;25;20;
+$$
+$$
+4;5;...;3]
+$$
+Notice that the importance metrics we attribute reflects the labels we gave. We hope to find back the natural arborescent structure from our algorithm.
+Let's now generate our initial population through sheer randomness. Let's visualize it with this picture where x axe represent an individual chromosome, while y runs over all our individuals :
 \begin{center}
 \textbf{\large Initial population}
 \end{center}
 \begin{center}
 \epsfig{file=initial_population.eps,height=5cm,width=5cm}
 \end{center}
-For each individual, we evaluate a fitness function. Our fitness function is defined as follows :
-First we compute the standard page rank of the individual matching mesh, which is defined as follows :
+For each generation, the fitness of every individual in the population is evaluated. Our fitness function is defined as follows :
+First we compute the standard page rank of the individual matching mesh :
 The first stage is the page rank initialisation for all our nodes:
 \begin{equation}
 \forall u \ PR\left(u\right)=\frac{1}{N}
@@ -135,12 +155,10 @@ We then iterate to find the fixed point solutions of the well know equation :
 \begin{equation}
 PR\left(u\right)= \frac{\left(1-c\right)}{N} + c \times \sum_{v \rightarrow u}\frac{PR\left(v\right)}{card\left(\left\{v\rightarrow u\right\}\right)}
 \end{equation}
-In each generation, the fitness of every individual in the population is evaluated; 
-the fitness is usually the value of the objective function in the optimization problem being solved.
+The fitness is usually the value of the objective function in the optimization problem being solved.
 The fitness function for a mesh $\left(X_i\right)$ is defined as the sum over all nodes of the product of the local importance metrics
 and the computed in rank : $\sum^{N}_{i=1} f\left(X_i\right)\times PR(X_i)$, the idea being that by weighing the local importance metrics with the in rank
-we'll find the best mesh matching in-rank and the local importance metrics and this for all nodes as the objective is the whole sum. 
- The more fit individuals are stochastically selected from the current population, 
+we'll find the best mesh matching in-rank and the local importance metrics and this for all nodes as the objective is the whole sum.  The more fit individuals are stochastically selected from the current population, 
 and each individual's genome is modified (recombined and possibly randomly mutated) to form a new generation. 
 The new generation of candidate solutions is then used in the next iteration of the algorithm. 
 Commonly, the algorithm terminates when either a maximum number of generations has been produced, 
