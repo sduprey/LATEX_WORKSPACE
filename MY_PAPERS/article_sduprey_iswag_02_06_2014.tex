@@ -83,22 +83,26 @@ Let's $$\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$$ denote the adj
  \\\newline
 $\left(G_{ij}\right)$ is either 1 or 0 if there is a link between URL $i$ and $j$.
 \begin{center}
-\textbf{\large Genetic algorithm methodology}
+\textbf{\large Genetic algorithm}
 \end{center}
 Genetic algorithm is a search heuristic that mimics the process of natural selection. 
 A population of individuals to an optimization problem is evolved toward better solutions. 
 In our case, each individual or chromosome $\left(C_{i}\right)  \in \left\{0,1\right\}^{N\times N}$ here represented as a bits array, which results from the vectorization of
-the adjacency matrix $\left(G_{ij}\right)$.
+the adjacency matrix $\left(G_{ij}\right)$. An individual is a specific mesh. 
+
 At each generation, a candidate can either result from a crossover between two parents or from a self mutation.
-The crossover function which breeds a child from two parents is defined as follows :
+\\\newline
+For each new child to be produced, a pair of parents is selected for breeding from an eugenic pool from the previous generation. 
+The newly created solution typically shares many of the characteristics of its parents. 
 The child will keep the matching bits of the two parents and inherit randomly every other non-matching bits.
-For every two parents, we spawn two children :
 \begin{center}
-\textbf{\large Child spawn from 2 parents crossover}
+\textbf{\large Child spawning from 2 parents crossover}
 \end{center}
 \begin{center}
 \epsfig{file=crossover.eps,height=2cm,width=4cm}
 \end{center}
+For each new mutant to be produced, a single parent is selected from the same eugenic pool from the previous generation. 
+The newly created mutant also shares many of the characteristics of its parent. 
 The mutation function is even simpler : we just switch bits whose locations are randomly chosen
 and proportions equal a fixed mutation rate : 
 \\\newline
@@ -108,7 +112,16 @@ and proportions equal a fixed mutation rate :
 \begin{center}
 \epsfig{file=mutation.eps,height=0.4cm,width=4cm}
 \end{center}
+New parents are selected for each new child and mutant, and the process continues until a new population of solutions of appropriate size is generated.
+These process ultimately results in the next generation population of chromosomes different from the initial generation. 
+Generally the average fitness will have increased by this procedure for the population, 
+since only the best organisms from the first generation are selected for breeding and mutating, along with a small proportion of less fit solutions.
+These less fit solutions ensure genetic diversity within the genetic pool of the parents and therefore ensure the genetic diversity of the subsequent generation of children.
+The number of newly bred fit individuals selected from the current population is a parameter to be fixed, 
+The new generation of candidate solutions is then used in the next iteration of the algorithm. 
+Commonly, the algorithm terminates when either a maximum number of generations has been produced, or a satisfactory fitness level has been reached for the population.
 The evolution usually starts from a population of randomly generated individuals and is an iterative process, with the population in each iteration called a generation.
+\\\newline
 Let's add here that taking account our mesh constraints is here trivial : we just fix the value of blocs of links between forbidden categories from our
 vector. We just end up with a vector with a smaller number of freedom degrees : our adjacency matrix is square but with large fixed null blocks resulting only from locations where links can be added.
 \begin{center}
@@ -137,7 +150,7 @@ $$
 $$
 4;5;...;3]
 $$
-Notice that the importance metrics we attribute reflects the labels we gave. We hope to find back the natural arborescent structure from our algorithm.
+Notice that the importance metrics we attribute mirrors the labels we gave. We hope to find back the natural arborescent structure from our algorithm.
 Let's now generate our initial population through sheer randomness. Let's visualize it with this picture where x axe represent an individual chromosome, while y runs over all our individuals :
 \begin{center}
 \textbf{\large Initial population}
@@ -158,14 +171,12 @@ PR\left(u\right)= \frac{\left(1-c\right)}{N} + c \times \sum_{v \rightarrow u}\f
 The fitness is usually the value of the objective function in the optimization problem being solved.
 The fitness function for a mesh $\left(X_i\right)$ is defined as the sum over all nodes of the product of the local importance metrics
 and the computed in rank : $\sum^{N}_{i=1} f\left(X_i\right)\times PR(X_i)$, the idea being that by weighing the local importance metrics with the in rank
-we'll find the best mesh matching in-rank and the local importance metrics and this for all nodes as the objective is the whole sum.  The more fit individuals are stochastically selected from the current population, 
-and each individual's genome is modified (recombined and possibly randomly mutated) to form a new generation. 
-The new generation of candidate solutions is then used in the next iteration of the algorithm. 
-Commonly, the algorithm terminates when either a maximum number of generations has been produced, 
-or a satisfactory fitness level has been reached for the population.
+we'll find the best mesh matching in-rank and the local importance metrics and this for all nodes as the objective is the whole sum. 
+So we end up with this generic optimization problem.
 \begin{equation}
 \max_{\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}}\left\{ \sum^{N}_{i=1} f\left(X_i\right)\times PR(X_i)\right\}
 \end{equation}
+This is this very same problem, which can be formulated using different global optimization algorithm.
 
 \begin{center}
 \textbf{\large Population at convergence}
