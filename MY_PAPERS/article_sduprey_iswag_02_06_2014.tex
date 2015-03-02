@@ -8,14 +8,12 @@
 \title{In-Rank mesh optimization for URL customized promotion in SEO}
 \author{\iSWAGAuthor{Stefan Duprey\\
 Cdiscount\\
-stefan.duprey@cdiscount.com} \and \iSWAGAuthor{Second Author\\
-Second University\\
-second.author@university2.com}}
+stefan.duprey@cdiscount.com} \and \iSWAGAuthor{Fabien Jaunas\\
+Cdiscount\\
+fabien.jaunas@cdiscount.com}}
 
 \begin{document}
-
 \maketitle
-
 \begin{abstract}
  Web site internal mesh optimization is at the very heart of search engine optimization. 
  One prominent way to get the best web search engine visibility for your site 
@@ -63,7 +61,7 @@ we'll have strong constraints for our mesh to comply with. That is good news : t
 \indent
 Third the actual size of an e-commerce site makes the implementation of a real-world industrial use case a technologically difficult problem.
 Either we implement it from scratch over a cluster, our algorithm dealing ourselves with concurrency and inter-processor communications,
-or we try not to reinvent the wheel and plug ourselves to existing big data platform. We'll here detail our technological choices
+or we try not to reinvent the wheel and plug ourselves to existing big data platform. We'll here detail our technological choices.
 \section{Algorithm}
 Let $N \in \mathbb{N}$ be the number of nodes of our graph or rather the number of URLs of our site.
  \\\newline
@@ -151,7 +149,9 @@ $$
 4;5;...;3]
 $$
 Notice that the importance metrics we attribute mirrors the labels we gave. We hope to find back the natural arborescent structure from our algorithm.
-Let's now generate our initial population through sheer randomness. Let's visualize it with this picture where x axe represent an individual chromosome, while y runs over all our individuals :
+Let's now generate our initial population through sheer randomness. Let's visualize this population with this picture where x axe represents an individual chromosome, 
+while y axe runs over all the individuals of our population. We here don't categorize links, so you won't see large null streaks resulting from fixed null blocks in our adjacency matrix :
+\\\newline
 \begin{center}
 \textbf{\large Initial population}
 \end{center}
@@ -178,8 +178,13 @@ So we end up with this generic optimization problem.
 \end{equation}
 This is this very same global optimization problem, which can be formulated using different algorithms : simulated annealing, global search, multistart.
 Let's here detail the results for our small case toy example of 39 URLs.
-For a population of 500 individuals, a mutation rate of $0.2 \%$
-Let's here visualize our population at convergence :
+For a population of 500 individuals, a mutation rate of $0.2 \%$ and a proportion of less fit solutions of $2\%$.
+We define our convergence threshold as the fitness function evolution tolerance : the algorithm runs until the average relative change in the fitness function value over stall generations is less than the specified 
+threshold $10^{-6}$.
+Our algorithm converges after roughly 250 iterations for our toy site example. Note here that the reached minima seems global, as multiple starts
+would lead to the same structure.
+Let's now visualize our population at convergence and the evolution of the fitness function for our best element at each generation.
+
 \begin{center}
 \textbf{\large Population at convergence}
 \end{center}
@@ -211,15 +216,21 @@ $SV\left(i\right)$ is the search volume for the keywords $i$ estimated by the se
 \\\newline
 and $CTR\left(i\right)$ is the click through rate for an URL at the position place in the search engine results.
 \\\newline
-
-
-
-Page rank thematic little topo here.
-
-
+The difficult part here is how to estimate the new position in search engine results for our new mesh.
+This is here hardly conceivable to imagine a feed-back loop with a real search engine indexation. This would drastically
+slow our algorithm. The best approach here is to build and etalonnate a machine learning algorithm to model the relationship between local in-rank $PR\left(i\right)$
+and $position(i)$.
+\\\newline
+One last remark here about a possible enhancement to our algorithm. As most e-commerce web sites tend to overlink web pages between themselves, 
+we could add a supplementary weigh to our optimization formula to rebalance link according to their semantic reliability.
+\begin{equation}
+\max_{\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}}\left\{ \sum^{N}_{i=1} CS\left(i\right)\times f\left(X_i\right)\times PR(X_i)\right\}
+\end{equation}
+where $CS(i)$ is a semantic distance between the two linked pages by $i$, for instance the cosinus of Salton. 
 \section{Big data implementaion}
 The double iterative nature of our algorithm (page rank computations and optimization are both naturally iterative)
 makes Hadoop Map/Reduce paradigm too slow for our purpose. 
+\\\newline
 In contrast to Hadoop's two-stage disk based Map/Reduce paradigm, Spark's in-memory primitives provide the needed performance.
 By allowing user programs to load data into a cluster's memory and query it repeatedly, Spark is well suited for our purpose.
 We'll detail the technological implementation of a real-world use case.
@@ -227,10 +238,11 @@ We'll detail the technological implementation of a real-world use case.
 
 
 The in rank fitness function is computed recurrently over the whole population. To improve its performance is key for an efficient
-algorithm. The idea here would be to computed an approximated in rank using \cite{}.
+algorithm. The idea here would be to computed an approximated in rank with a faster function using \cite{}.
 
-The sparsitiy of the matrix has to be addressed.
+The sparsitiy of the matrix has also to be addressed.
 
+\section{Conclusion and future works}
 
 %\lipsum
 %A citation example: \cite{donald1999art}.

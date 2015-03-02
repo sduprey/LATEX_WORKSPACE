@@ -8,14 +8,12 @@
 \title{In-Rank mesh optimization for URL customized promotion in SEO}
 \author{\iSWAGAuthor{Stefan Duprey\\
 Cdiscount\\
-stefan.duprey@cdiscount.com} \and \iSWAGAuthor{Second Author\\
-Second University\\
-second.author@university2.com}}
+stefan.duprey@cdiscount.com} \and \iSWAGAuthor{Fabien Jaunas\\
+Cdiscount\\
+fabien.jaunas@cdiscount.com}}
 
 \begin{document}
-
 \maketitle
-
 \begin{abstract}
  Web site internal mesh optimization is at the very heart of search engine optimization. 
  One prominent way to get the best web search engine visibility for your site 
@@ -23,7 +21,7 @@ second.author@university2.com}}
  The definition of popular might be the transformation rate for e-commerce, 
  the traffic from logs for a common site or even rather a specific semantic where you want to be visible. 
  We here propose an algorithm to automatically compute the optimal internal mesh for our web site. The idea
- behind being simple : the higher you value your URL (potential ROI), the more in rank you want to give it.
+ behind being simple : the higher you value your URL (potential return on investment), the more in rank you want to give it.
  We tackle the challenges met both at a theory and software implementation level. 
  We'll more specifically deal with big data issues for an e-commerce web site.
  \\\newline
@@ -63,7 +61,7 @@ we'll have strong constraints for our mesh to comply with. That is good news : t
 \indent
 Third the actual size of an e-commerce site makes the implementation of a real-world industrial use case a technologically difficult problem.
 Either we implement it from scratch over a cluster, our algorithm dealing ourselves with concurrency and inter-processor communications,
-or we try not to reinvent the wheel and plug ourselves to existing big data platform. We'll here detail our technological choices
+or we try not to reinvent the wheel and plug ourselves to existing big data platform. We'll here detail our technological choices.
 \section{Algorithm}
 Let $N \in \mathbb{N}$ be the number of nodes of our graph or rather the number of URLs of our site.
  \\\newline
@@ -152,6 +150,7 @@ $$
 $$
 Notice that the importance metrics we attribute mirrors the labels we gave. We hope to find back the natural arborescent structure from our algorithm.
 Let's now generate our initial population through sheer randomness. Let's visualize it with this picture where x axe represent an individual chromosome, while y runs over all our individuals :
+\\\newline
 \begin{center}
 \textbf{\large Initial population}
 \end{center}
@@ -178,8 +177,11 @@ So we end up with this generic optimization problem.
 \end{equation}
 This is this very same global optimization problem, which can be formulated using different algorithms : simulated annealing, global search, multistart.
 Let's here detail the results for our small case toy example of 39 URLs.
-For a population of 500 individuals, a mutation rate of $0.2 \%$
-Let's here visualize our population at convergence :
+For a population of 500 individuals, a mutation rate of $0.2 \%$ and a proportion of less fit solutions of $2\%$.
+We define our convergence threshold as the fitness function evolution tolerance : the algorithm runs until the average relative change in the fitness function value over stall generations is less than the specified 
+threshold $10^{-6}$.
+Let's here visualize our population at convergence and the evolution of the fitness function for our best element at each generation.
+Our algorithm converges after roughly 250 iterations.
 \begin{center}
 \textbf{\large Population at convergence}
 \end{center}
@@ -195,11 +197,13 @@ Let's here visualize our population at convergence :
 \section{An e-commerce approach}
 For an e-commerce web site, traffic might not always coincide with the URLs you deem as more profitable to you.
 On the very contrary, you may even actually rather want to rebalance some traffic discrepancies.
-Of course, the methodology presented above is still valid. You here just have to change the vector you want to
-optimize. In that case, you would for instance rather optimize $\frac{1}{traffic\left(\right)}$.
+Of course, the methodology presented above is still valid. You here just have to change the importance vector you want to
+optimize. In that case, you would for instance rather optimize $\frac{1}{traffic\left(i\right)}$.
 \\\newline
-to push high ROI potential URLs.
-
+But to get a real sense of potential return on investment, we must here switch to a new paradigm.
+Each page will be matched with a specific keywords expression to rank upon. And the potential return on investment for the keywords expression will
+be assessed with both search engine data (click through rate, search volume) and e-commerce tracking data (transformation rate).
+To push potentially high return on investment pages, we use the following objective function :
 \begin{equation}
  \sum_{i\in Keywords} SV\left( i\right)\times CTR\left(position\left(i\right)\right)\times CR\left(i\right)\times P\left(i\right)
 \end{equation}
@@ -209,15 +213,21 @@ $SV\left(i\right)$ is the search volume for the keywords $i$ estimated by the se
 \\\newline
 and $CTR\left(i\right)$ is the click through rate for an URL at the position place in the search engine results.
 \\\newline
-
-
-
-Page rank thematic little topo here.
-
-
+The difficult part here is how to estimate the new position in search engine results for our new mesh.
+This is here hardly conceivable to imagine a feed-back loop with a real search engine indexation. This would drastically
+slow our algorithm. The best approach here is to build and etalonnate a machine learning algorithm to model the relationship between local in-rank $PR\left(i\right)$
+and $position(i)$.
+\\\newline
+One last remark here about a possible enhancement to our algorithm. As most e-commerce web sites tend to overlink web pages between themselves, 
+we could add a supplementary weigh to our optimization formula to rebalance link according to their semantic reliability.
+\begin{equation}
+\max_{\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}}\left\{ \sum^{N}_{i=1} CS\left(i\right)\times f\left(X_i\right)\times PR(X_i)\right\}
+\end{equation}
+where $CS(i)$ is a semantic distance between the two linked pages by $i$, for instance the cosinus of Salton. 
 \section{Big data implementaion}
 The double iterative nature of our algorithm (page rank computations and optimization are both naturally iterative)
 makes Hadoop Map/Reduce paradigm too slow for our purpose. 
+\\\newline
 In contrast to Hadoop's two-stage disk based Map/Reduce paradigm, Spark's in-memory primitives provide the needed performance.
 By allowing user programs to load data into a cluster's memory and query it repeatedly, Spark is well suited for our purpose.
 We'll detail the technological implementation of a real-world use case.
@@ -225,9 +235,9 @@ We'll detail the technological implementation of a real-world use case.
 
 
 The in rank fitness function is computed recurrently over the whole population. To improve its performance is key for an efficient
-algorithm. The idea here would be to computed an approximated in rank using \cite{}.
+algorithm. The idea here would be to computed an approximated in rank with a faster function using \cite{}.
 
-The sparsitiy of the matrix has to be addressed.
+The sparsitiy of the matrix has also to be addressed.
 
 
 %\lipsum
