@@ -18,11 +18,12 @@ second.author@university2.com}}
 
 \begin{abstract}
  Web site internal mesh optimization is at the very heart of search engine optimization. 
- One prominent way to get the best web search engine visibility for our site 
- is to build the adequate internal linking to promote our naturally popular pages. 
+ One prominent way to get the best web search engine visibility for your site 
+ is to build the adequate internal linking to promote your naturally popular pages. 
  The definition of popular might be the transformation rate for e-commerce, 
- the traffic from logs for a common site or even a semantic quality rate for our page. 
- We here propose an algorithm to automatically compute the optimal internal mesh for our web site.
+ the traffic from logs for a common site or even rather a specific semantic where you want to be visible. 
+ We here propose an algorithm to automatically compute the optimal internal mesh for our web site. The idea
+ behind being simple : the higher you value your URL (potential ROI), the more in rank you want to give it.
  We tackle the challenges met both at a theory and software implementation level. 
  We'll more specifically deal with big data issues for an e-commerce web site.
  \\\newline
@@ -30,10 +31,11 @@ second.author@university2.com}}
  \\\newline
 search engine, e-commerce, page rank, in rank, mesh optimization, global optimization
 \end{abstract}
-
 \section{Introduction}
-We here propose an original methodology to optimize the internal mesh of Cdiscount e-commerce site.
-The idea behind is to promote the most successful URLs (the most frequently viewed by users) by increasing their in-rank.  
+We here propose an original methodology to optimize the internal mesh of an e-commerce site.
+The idea behind is to promote the most successful URLs by increasing their in-rank.  
+For the sake of simplicity, we define URLs successfulness in a first step as the URL traffic gathered from log.
+We'll see in a latter part how the same algorithm will extrapolate to any kind of metrics you cherish and we'll enter into e-commerce specifics.
 The frequency data is obtained from logs parsing tracking software and the in rank is computed using the famous page rank iterative algorithm.  
 We want to find the optimal mesh, which maximizes for all URLs the matching between their traffic and their in-rank. 
 The more successful a URL is, the more in-rank we want to give him through our optimal mesh.
@@ -42,39 +44,47 @@ We here detail the technical implementation of such an algorithm.
 The difficulty here is three-fold:
 \\
 \indent
-First the structure of an e-commerce is already well-defined and it is out of question to drastically change the already existing mesh.
-Links are categorized regarding their incoming page type and position within that page and links can only be created within certain categories. 
-So we'll have strong constraints for our mesh to comply with.
+First the universe we deal with is discrete and vast. For a mesh with $N$ nodes (a site with $N$ URLs), the number of possible meshes is $2^{N^{2}}$. 
+We will also see that our objective function is non-linear and non-convex.  Discrete non-linear optimization problems are among the most difficult optimization problems to solve. 
+Not only optimum existence and uniqueness results are inexistent, but those problems usually reveal to be computationnaly intensive to solve. 
+For our case, exhaustive optimization would be far too computationally intensive. We have to find a proper heuristic based global optimization algorithm to cleverly tweak through our universe.
+We here choose genetic algorithms among others. Simulated annealing, particle swarm, global search have been tested and also works on the small case to be presented.
+But of course, for a real world e-commerce example, those algorithms must not be trusted : they might get stuck into local minima. 
+And as we use parameters and randomness for our algorithm, the returned solution might change from one try to another. 
+Parameters have to be properly tweaked to proceed through our universe avoiding getting stuck into local minima.
 \\
 \indent
-Second the universe we deal with is discrete and gigantic. 
-For a mesh with $N$ nodes, the number of possible meshes is $2^{N^{2}}$. 
-Our objective function is non-linear and non-convex. Exhaustive optimization would be far too computationally intensive. 
-We have to find a proper heuristic based global optimization algorithm to cleverly tweak through our universe.
+Second the structure of a web site is usually well-defined and it is out of question to drastically change the already existing mesh.
+It is even truer for an e-commerce site : links are to be categorized regarding their incoming/targeting page type. Position within those pages
+is also relevant as most e-commerce sites dedicate specific zones for links to similar products, list of products and so on.
+So links can only be created within certain categories of pages and zones within our page. In other terms our mesh will not be totally free and 
+we'll have strong constraints for our mesh to comply with. That is good news : the less linking possibilities we got, the smaller is our optimization universe.
 \\
 \indent
-Third the actual size of our data makes the implementation of a real-world industrial use case a technologically difficult problem.
-Either we implement from scratch over a cluster our algorithm dealing ourselves with concurrency and inter-processor communications,
-or we try not to reinvent the wheel and plug ourselves to existing big data platform.
-The double iterative nature of our algorithm (page rank computations and optimization are both naturally iterative)
-makes Hadoop Map/Reduce paradigm too slow for our purpose. 
-In contrast to Hadoop's two-stage disk based Map/Reduce paradigm, Spark's in-memory primitives provide the needed performance.
-By allowing user programs to load data into a cluster's memory and query it repeatedly, Spark is well suited for our purpose.
-We'll detail the technological implementation of a real-world use case.
-
+Third the actual size of an e-commerce site makes the implementation of a real-world industrial use case a technologically difficult problem.
+Either we implement it from scratch over a cluster, our algorithm dealing ourselves with concurrency and inter-processor communications,
+or we try not to reinvent the wheel and plug ourselves to existing big data platform. We'll here detail our technological choices
 \section{Algorithm}
 Let $N \in \mathbb{N}$ be the number of nodes of our graph or rather the number of URLs of our site.
  \\\newline
 Let's $$\left(X_i\right)_{i \in \left\{1,...,N\right\}}$$ denote the nodes of our directed graph.
  \\\newline
+Let's $f$ be a function over our mesh, which gives for a URL our estimated potential value. This value is the
+very data we want to optimize our web site from.
+\begin{equation}
+\begin{array}{ccccc}
+f & : & \left(X_i\right)_{i \in \left\{1,...,N\right\}} & \to & \mathbb{R} \\
+ & & x & \mapsto & f(x) \\
+\end{array}
+\end{equation}
+Let's here say that our function is the traffic per URL. We'll see how we can improve it this metrics in the next part.
+ \\\newline
 Let's $$\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$$ denote the adjacency matrix of our directed graph.
-
-
-
+ \\\newline
 Genetic algorithm is a search heuristic that mimics the process of natural selection 
 A population of individuals to an optimization problem is evolved toward better solutions. 
 
-In our case, each individual or chromosome $\left(C_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$ here represented as a bits array, which results from the vectorization of
+In our case, each individual or chromosome $\left(C_{i}\right)  \in \left\{0,1\right\}^{N\times N}$ here represented as a bits array, which results from the vectorization of
 the adjacency matrix $\left(G_{ij}\right)$
 
 
@@ -83,23 +93,23 @@ The crossover function which breeds a child from two parents is defined as follo
 The child will keep the matching bits of the two parents and inherit randomly every other non-matching bits.
 For every two parents, we spawn two children :
 \\\newline
-\textbf{\large Child spawn from 2 parents crossover}
 \begin{center}
+\textbf{\large Child spawn from 2 parents crossover}
 \epsfig{file=crossover.eps,height=2cm,width=4cm}
 \end{center}
 The mutation function is even simpler : we just switch bits whose locations are randomly chosen
 and proportions equal a fixed mutation rate : 
 \\\newline
-\textbf{\large Mutation of an individual}
 \begin{center}
+\textbf{\large Mutation of an individual}
 \epsfig{file=mutation.eps,height=0.4cm,width=4cm}
 \end{center}
 
 The evolution usually starts from a population of randomly generated individuals, 
 and is an iterative process, with the population in each iteration called a generation.
 \\\newline
-\textbf{\large Initial population}
 \begin{center}
+\textbf{\large Initial population}
 \epsfig{file=initial_population.eps,height=4cm,width=4cm}
 \end{center}
 
@@ -128,26 +138,44 @@ or a satisfactory fitness level has been reached for the population.
 
 
 \begin{equation}
-\max_{\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}}\left\{ \sum^{N}_{i=1} trafic\left(X_i\right)\times PR(X_i)\right\}
+\max_{\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}}\left\{ \sum^{N}_{i=1} f\left(X_i\right)\times PR(X_i)\right\}
 \end{equation}
  \\\newline
 Categorization of our links :
 
-\textbf{\large Links categorization}
 \begin{center}
+\textbf{\large Links categorization}
 \epsfig{file=links_categorization.eps,height=1cm,width=6cm}
 \end{center}
 
-\textbf{\large Population at convergence}
+
 \begin{center}
+\textbf{\large Population at convergence}
 \epsfig{file=converged_population.eps,height=4cm,width=4cm}
 \end{center}
 \textbf{\large Best chromosome fitness function evolution}
 \begin{center}
+\textbf{\large Population at convergence}
 \epsfig{file=best_element_evolution.eps,height=4cm,width=4cm}
 \end{center}
 
-\section{Big data implementaino}
+\section{An e-commerce approach}
+For an e-commerce web site, traffic might not always coincide with the URLs you deem as more profitable to you.
+You indeed on the very contrary want to rebalance some traffic discrepancies to push high ROI potential URLs.
+Of course, the methodology presented above is still valid. You here just have to change the vector you want to
+optimize.
+
+
+Page rank thematic little topo here.
+
+\section{Big data implementaion}
+The double iterative nature of our algorithm (page rank computations and optimization are both naturally iterative)
+makes Hadoop Map/Reduce paradigm too slow for our purpose. 
+In contrast to Hadoop's two-stage disk based Map/Reduce paradigm, Spark's in-memory primitives provide the needed performance.
+By allowing user programs to load data into a cluster's memory and query it repeatedly, Spark is well suited for our purpose.
+We'll detail the technological implementation of a real-world use case.
+
+
 %\lipsum
 %A citation example: \cite{donald1999art}.
 
