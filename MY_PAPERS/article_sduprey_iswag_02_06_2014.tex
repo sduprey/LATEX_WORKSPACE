@@ -77,24 +77,26 @@ f & : & \left(X_i\right)_{i \in \left\{1,...,N\right\}} & \to & \mathbb{R} \\
  & & x & \mapsto & f(x) \\
 \end{array}
 \end{equation}
-Let's here say that our function is the traffic per URL. We'll see how we can improve it this metrics in the next part.
+Let's here say that our function is the traffic per URL. We'll see how we can improve this metrics in the next part.
  \\\newline
 Let's $$\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$$ denote the adjacency matrix of our directed graph.
  \\\newline
-Genetic algorithm is a search heuristic that mimics the process of natural selection 
+$\left(G_{ij}\right)$ is either 1 or 0 if there is a link between URL $i$ and $j$.
+\begin{center}
+\textbf{\large Genetic algorithm methodology}
+\end{center}
+Genetic algorithm is a search heuristic that mimics the process of natural selection. 
 A population of individuals to an optimization problem is evolved toward better solutions. 
-
 In our case, each individual or chromosome $\left(C_{i}\right)  \in \left\{0,1\right\}^{N\times N}$ here represented as a bits array, which results from the vectorization of
-the adjacency matrix $\left(G_{ij}\right)$
-
-
-A candidate can either result from a crossover between two parents or from a self mutation;
+the adjacency matrix $\left(G_{ij}\right)$.
+At each generation, a candidate can either result from a crossover between two parents or from a self mutation.
 The crossover function which breeds a child from two parents is defined as follows :
 The child will keep the matching bits of the two parents and inherit randomly every other non-matching bits.
 For every two parents, we spawn two children :
-\\\newline
 \begin{center}
 \textbf{\large Child spawn from 2 parents crossover}
+\end{center}
+\begin{center}
 \epsfig{file=crossover.eps,height=2cm,width=4cm}
 \end{center}
 The mutation function is even simpler : we just switch bits whose locations are randomly chosen
@@ -102,19 +104,29 @@ and proportions equal a fixed mutation rate :
 \\\newline
 \begin{center}
 \textbf{\large Mutation of an individual}
+\end{center}
+\begin{center}
 \epsfig{file=mutation.eps,height=0.4cm,width=4cm}
 \end{center}
-
-The evolution usually starts from a population of randomly generated individuals, 
-and is an iterative process, with the population in each iteration called a generation.
-\\\newline
+The evolution usually starts from a population of randomly generated individuals and is an iterative process, with the population in each iteration called a generation.
+Let's add here that taking account our mesh constraints is here trivial : we just fix the value of blocs of links between forbidden categories from our
+vector. We just end up with a vector with a smaller number of freedom degrees : our adjacency matrix is square but with large fixed null blocks resulting only from locations where links can be added.
 \begin{center}
-\textbf{\large Initial population}
-\epsfig{file=initial_population.eps,height=4cm,width=4cm}
+\textbf{\large Links categorization}
+\end{center}
+\begin{center}
+\epsfig{file=links_categorization.eps,height=1cm,width=6cm}
 \end{center}
 
+Our initial population is then indeed sheer randomness :
+\begin{center}
+\textbf{\large Initial population}
+\end{center}
+\begin{center}
+\epsfig{file=initial_population.eps,height=5cm,width=5cm}
+\end{center}
 For each individual, we evaluate a fitness function. Our fitness function is defined as follows :
-Firs we compute the standard page rank of the individual matching mesh, which is defined as follows :
+First we compute the standard page rank of the individual matching mesh, which is defined as follows :
 The first stage is the page rank initialisation for all our nodes:
 \begin{equation}
 \forall u \ PR\left(u\right)=\frac{1}{N}
@@ -123,40 +135,32 @@ We then iterate to find the fixed point solutions of the well know equation :
 \begin{equation}
 PR\left(u\right)= \frac{\left(1-c\right)}{N} + c \times \sum_{v \rightarrow u}\frac{PR\left(v\right)}{card\left(\left\{v\rightarrow u\right\}\right)}
 \end{equation}
-
-
 In each generation, the fitness of every individual in the population is evaluated; 
 the fitness is usually the value of the objective function in the optimization problem being solved.
- 
+The fitness function for a mesh $\left(X_i\right)$ is defined as the sum over all nodes of the product of the local importance metrics
+and the computed in rank : $\sum^{N}_{i=1} f\left(X_i\right)\times PR(X_i)$, the idea being that by weighing the local importance metrics with the in rank
+we'll find the best mesh matching in-rank and the local importance metrics and this for all nodes as the objective is the whole sum. 
  The more fit individuals are stochastically selected from the current population, 
 and each individual's genome is modified (recombined and possibly randomly mutated) to form a new generation. 
 The new generation of candidate solutions is then used in the next iteration of the algorithm. 
-
-
 Commonly, the algorithm terminates when either a maximum number of generations has been produced, 
 or a satisfactory fitness level has been reached for the population.
-
-
 \begin{equation}
 \max_{\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}}\left\{ \sum^{N}_{i=1} f\left(X_i\right)\times PR(X_i)\right\}
 \end{equation}
- \\\newline
-Categorization of our links :
-
-\begin{center}
-\textbf{\large Links categorization}
-\epsfig{file=links_categorization.eps,height=1cm,width=6cm}
-\end{center}
-
 
 \begin{center}
 \textbf{\large Population at convergence}
-\epsfig{file=converged_population.eps,height=4cm,width=4cm}
 \end{center}
+\begin{center}
+\epsfig{file=converged_population.eps,height=5cm,width=5cm}
+\end{center}
+
+\begin{center}
 \textbf{\large Best chromosome fitness function evolution}
+\end{center}
 \begin{center}
-\textbf{\large Population at convergence}
-\epsfig{file=best_element_evolution.eps,height=4cm,width=4cm}
+\epsfig{file=best_element_evolution.eps,height=5cm,width=5cm}
 \end{center}
 
 \section{An e-commerce approach}
@@ -174,6 +178,13 @@ makes Hadoop Map/Reduce paradigm too slow for our purpose.
 In contrast to Hadoop's two-stage disk based Map/Reduce paradigm, Spark's in-memory primitives provide the needed performance.
 By allowing user programs to load data into a cluster's memory and query it repeatedly, Spark is well suited for our purpose.
 We'll detail the technological implementation of a real-world use case.
+
+
+
+The in rank fitness function is computed recurrently over the whole population. To improve its performance is key for an efficient
+algorithm. The idea here would be to computed an approximated in rank using \cite{}.
+
+The sparsitiy of the matrix has to be addressed.
 
 
 %\lipsum
