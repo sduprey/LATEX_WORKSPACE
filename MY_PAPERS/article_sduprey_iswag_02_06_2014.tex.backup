@@ -48,7 +48,7 @@ First the universe we deal with is discrete and vast. For a mesh with $N$ nodes 
 We will also see that our objective function is non-linear and non-convex.  Discrete non-linear optimization problems are among the most difficult optimization problems to solve. 
 Not only optimum existence and uniqueness results are inexistent, but those problems usually reveal to be computationnaly intensive to solve. 
 For our case, exhaustive optimization would be far too computationally intensive. We have to find a proper heuristic based global optimization algorithm to cleverly tweak through our universe.
-We here choose genetic algorithms among others. Simulated annealing, particle swarm, global search have been tested and also works on the small case to be presented.
+We here choose genetic algorithms among others. Simulated annealing, global search, multistart, particle swarm have been tested and also works on the small case to be presented.
 But of course, for a real world e-commerce example, those algorithms must not be trusted : they might get stuck into local minima. 
 And as we use parameters and randomness for our algorithm, the returned solution might change from one try to another. 
 Parameters have to be properly tweaked to proceed through our universe avoiding getting stuck into local minima.
@@ -83,22 +83,26 @@ Let's $$\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$$ denote the adj
  \\\newline
 $\left(G_{ij}\right)$ is either 1 or 0 if there is a link between URL $i$ and $j$.
 \begin{center}
-\textbf{\large Genetic algorithm methodology}
+\textbf{\large Genetic algorithm}
 \end{center}
 Genetic algorithm is a search heuristic that mimics the process of natural selection. 
 A population of individuals to an optimization problem is evolved toward better solutions. 
 In our case, each individual or chromosome $\left(C_{i}\right)  \in \left\{0,1\right\}^{N\times N}$ here represented as a bits array, which results from the vectorization of
-the adjacency matrix $\left(G_{ij}\right)$.
+the adjacency matrix $\left(G_{ij}\right)$. An individual is a specific mesh. 
+
 At each generation, a candidate can either result from a crossover between two parents or from a self mutation.
-The crossover function which breeds a child from two parents is defined as follows :
+\\\newline
+For each new child to be produced, a pair of parents is selected for breeding from an eugenic pool from the previous generation. 
+The newly created solution typically shares many of the characteristics of its parents. 
 The child will keep the matching bits of the two parents and inherit randomly every other non-matching bits.
-For every two parents, we spawn two children :
 \begin{center}
-\textbf{\large Child spawn from 2 parents crossover}
+\textbf{\large Child spawning from 2 parents crossover}
 \end{center}
 \begin{center}
 \epsfig{file=crossover.eps,height=2cm,width=4cm}
 \end{center}
+For each new mutant to be produced, a single parent is selected from the same eugenic pool from the previous generation. 
+The newly created mutant also shares many of the characteristics of its parent. 
 The mutation function is even simpler : we just switch bits whose locations are randomly chosen
 and proportions equal a fixed mutation rate : 
 \\\newline
@@ -108,7 +112,16 @@ and proportions equal a fixed mutation rate :
 \begin{center}
 \epsfig{file=mutation.eps,height=0.4cm,width=4cm}
 \end{center}
+New parents are selected for each new child and mutant, and the process continues until a new population of solutions of appropriate size is generated.
+These process ultimately results in the next generation population of chromosomes different from the initial generation. 
+Generally the average fitness will have increased by this procedure for the population, 
+since only the best organisms from the first generation are selected for breeding and mutating, along with a small proportion of less fit solutions.
+These less fit solutions ensure genetic diversity within the genetic pool of the parents and therefore ensure the genetic diversity of the subsequent generation of children.
+The number of newly bred fit individuals selected from the current population is a parameter to be fixed, 
+The new generation of candidate solutions is then used in the next iteration of the algorithm. 
+Commonly, the algorithm terminates when either a maximum number of generations has been produced, or a satisfactory fitness level has been reached for the population.
 The evolution usually starts from a population of randomly generated individuals and is an iterative process, with the population in each iteration called a generation.
+\\\newline
 Let's add here that taking account our mesh constraints is here trivial : we just fix the value of blocs of links between forbidden categories from our
 vector. We just end up with a vector with a smaller number of freedom degrees : our adjacency matrix is square but with large fixed null blocks resulting only from locations where links can be added.
 \begin{center}
@@ -117,16 +130,36 @@ vector. We just end up with a vector with a smaller number of freedom degrees : 
 \begin{center}
 \epsfig{file=links_categorization.eps,height=1cm,width=6cm}
 \end{center}
-
-Our initial population is then indeed sheer randomness :
+We here present results for a small prototyping use case.
+We are provided with 39 URLs. We order and flag them as home, 2 meta lists, 4 lists and 32 products and we affect them
+the following vector of importance :
+$$
+\left(X_i\right)=\{'home','metalist1','metalist2',
+$$
+$$
+'list1','list2','list3','list4',
+$$
+$$
+'product1','product2',...,'product32'\};
+$$
+$$
+f\left(X_i\right) = [100;80;55;$$
+$$
+40;35;25;20;
+$$
+$$
+4;5;...;3]
+$$
+Notice that the importance metrics we attribute mirrors the labels we gave. We hope to find back the natural arborescent structure from our algorithm.
+Let's now generate our initial population through sheer randomness. Let's visualize it with this picture where x axe represent an individual chromosome, while y runs over all our individuals :
 \begin{center}
 \textbf{\large Initial population}
 \end{center}
 \begin{center}
-\epsfig{file=initial_population.eps,height=4cm,width=4cm}
+\epsfig{file=initial_population.eps,height=5cm,width=5cm}
 \end{center}
-For each individual, we evaluate a fitness function. Our fitness function is defined as follows :
-First we compute the standard page rank of the individual matching mesh, which is defined as follows :
+For each generation, the fitness of every individual in the population is evaluated. Our fitness function is defined as follows :
+First we compute the standard page rank of the individual matching mesh :
 The first stage is the page rank initialisation for all our nodes:
 \begin{equation}
 \forall u \ PR\left(u\right)=\frac{1}{N}
@@ -135,44 +168,52 @@ We then iterate to find the fixed point solutions of the well know equation :
 \begin{equation}
 PR\left(u\right)= \frac{\left(1-c\right)}{N} + c \times \sum_{v \rightarrow u}\frac{PR\left(v\right)}{card\left(\left\{v\rightarrow u\right\}\right)}
 \end{equation}
-
-
-In each generation, the fitness of every individual in the population is evaluated; 
-the fitness is usually the value of the objective function in the optimization problem being solved.
-We'll see latter the technical challenges behind.
-
- The more fit individuals are stochastically selected from the current population, 
-and each individual's genome is modified (recombined and possibly randomly mutated) to form a new generation. 
-The new generation of candidate solutions is then used in the next iteration of the algorithm. 
-
-
-Commonly, the algorithm terminates when either a maximum number of generations has been produced, 
-or a satisfactory fitness level has been reached for the population.
-
-
+The fitness is usually the value of the objective function in the optimization problem being solved.
+The fitness function for a mesh $\left(X_i\right)$ is defined as the sum over all nodes of the product of the local importance metrics
+and the computed in rank : $\sum^{N}_{i=1} f\left(X_i\right)\times PR(X_i)$, the idea being that by weighing the local importance metrics with the in rank
+we'll find the best mesh matching in-rank and the local importance metrics and this for all nodes as the objective is the whole sum. 
+So we end up with this generic optimization problem.
 \begin{equation}
 \max_{\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}}\left\{ \sum^{N}_{i=1} f\left(X_i\right)\times PR(X_i)\right\}
 \end{equation}
-
-
+This is this very same global optimization problem, which can be formulated using different algorithms : simulated annealing, global search, multistart.
+Let's here detail the results for our small case toy example of 39 URLs.
+For a population of 500 individuals, a mutation rate of $0.2 \%$
+Let's here visualize our population at convergence :
 \begin{center}
 \textbf{\large Population at convergence}
-\epsfig{file=converged_population.eps,height=4cm,width=4cm}
 \end{center}
+\begin{center}
+\epsfig{file=converged_population.eps,height=5cm,width=5cm}
+\end{center}
+\begin{center}
 \textbf{\large Best chromosome fitness function evolution}
-\begin{center}
-\textbf{\large Population at convergence}
-\epsfig{file=best_element_evolution.eps,height=4cm,width=4cm}
 \end{center}
-
+\begin{center}
+\epsfig{file=best_element_evolution.eps,height=5cm,width=5cm}
+\end{center}
 \section{An e-commerce approach}
 For an e-commerce web site, traffic might not always coincide with the URLs you deem as more profitable to you.
-You indeed on the very contrary want to rebalance some traffic discrepancies to push high ROI potential URLs.
+On the very contrary, you may even actually rather want to rebalance some traffic discrepancies.
 Of course, the methodology presented above is still valid. You here just have to change the vector you want to
-optimize.
+optimize. In that case, you would for instance rather optimize $\frac{1}{traffic\left(\right)}$.
+\\\newline
+to push high ROI potential URLs.
+
+\begin{equation}
+ \sum_{i\in Keywords} SV\left( i\right)\times CTR\left(position\left(i\right)\right)\times CR\left(i\right)\times P\left(i\right)
+\end{equation}
+where $position\left(i\right)$ is the estimated position in search engine results coming from the modification of our new mesh,
+\\\newline
+$SV\left(i\right)$ is the search volume for the keywords $i$ estimated by the search engine.
+\\\newline
+and $CTR\left(i\right)$ is the click through rate for an URL at the position place in the search engine results.
+\\\newline
+
 
 
 Page rank thematic little topo here.
+
 
 \section{Big data implementaion}
 The double iterative nature of our algorithm (page rank computations and optimization are both naturally iterative)
