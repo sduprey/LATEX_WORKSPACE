@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  2 MAR 2015 15:57
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  2 MAR 2015 17:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -855,12 +855,12 @@ t changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 251.
  ) 
 Here is how much of TeX's memory you used:
- 7446 strings out of 495000
- 110745 string characters out of 6180254
- 209478 words of memory out of 5000000
- 10566 multiletter control sequences out of 15000+600000
+ 7458 strings out of 495000
+ 110957 string characters out of 6180254
+ 209936 words of memory out of 5000000
+ 10578 multiletter control sequences out of 15000+600000
  8201 words of font info for 31 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  43i,13n,45p,286b,374s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on article_sduprey_iswag_02_06_2014.dvi (4 pages, 29344 bytes).
+Output written on article_sduprey_iswag_02_06_2014.dvi (4 pages, 33468 bytes).

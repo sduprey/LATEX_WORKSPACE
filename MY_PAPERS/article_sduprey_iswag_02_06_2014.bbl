@@ -1,20 +1,84 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{ab94}
-Charalambos~D. Aliprantis and Kim~C. Border.
-\newblock {\em Infinite Dimensional Analysis}.
-\newblock Springer, Berlin, 1994.
+\bibitem{apache_hive}
+{\em Apache Hive}.
+\newblock http://hadoop.apache.org/hive.
 
-\bibitem{ahu61}
-Kenneth~J. Arrow, Leonid Hurwicz, and Hirofumi Uzawa.
-\newblock Constraint qualifications in maximization problems.
-\newblock {\em Naval Research Logistics Quarterly}, 8:175--191, 1961.
+\bibitem{apache_scala}
+{\em Scala}.
+\newblock http://www.scala-lang.org.
 
-\bibitem{m85}
-Eric~S. Maskin.
-\newblock The theory of implementation in {N}ash equilibrium: a survey.
-\newblock In Leonid Hurwicz, David Schmeidler, and Hugo Sonnenschein, editors,
-  {\em Social Goals and Social Organization}, pages 173--204. Cambridge
-  University Press, 1985.
+\bibitem{page_rank}
+S.~Brin and L.~Page.
+\newblock The anatomy of a large-scale hypertextual web search engine.
+\newblock {\em WWW}, 1998.
+
+\bibitem{learning_to_rank}
+Qin T. Liu T.Y. Tsai M.F. Li~H. Cao, Z.
+\newblock Learning to rank: from pairwise approach to listwise approach.
+\newblock {\em Proc. of the 24th Intl. Conference on Machine Learning}, page
+  129136, 2007.
+
+\bibitem{sim_annealing}
+C.~Sanchez F.~Xhafa, A.~Barolli and L.~Barolli.
+\newblock A simulated annealing algorithm for router nodes placement problem in
+  wireless mesh networks.
+\newblock {\em Simulation Modelling Practice and Theory}, 19:pp. 22762284,
+  2011.
+
+\bibitem{spark_methodo_bis}
+S.~Shenker G.~Ananthanarayanan, A.~Ghodsi and I.~Stoica.
+\newblock Disk-locality in datacenter computing considered irrelevant.
+\newblock {\em HotOS}, 2011.
+
+\bibitem{gen_algo}
+D.~E. Goldberg and J.~H. Holland.
+\newblock {\em Genetic algorithms and machine learning. Machine Learning}.
+\newblock Springer, 1988.
+
+\bibitem{hadoop_spark_benchmark}
+D.~E. Goldberg and J.~H. Holland.
+\newblock {\em Big Data Benchmarks, Performance Optimization, and Emerging
+  Hardware}.
+\newblock Springer, 2014.
+
+\bibitem{gen_algo_web}
+Keivan Kianmehr Reda Alhajj Jon~Rokne Iltae~Lee, Negar~Koochakzadeh.
+\newblock {\em Integrating Genetic Algorithms and Fuzzy Logic for Web Structure
+  Optimization}, volume~12.
+\newblock Springer, 2010.
+
+\bibitem{map_reduce}
+Sanjay~Ghemawat Jeffrey~Dean.
+\newblock Mapreduce: a flexible data processing tool.
+\newblock {\em Commun. ACM}, 53:72--77, 2010.
+
+\bibitem{spark_methodo}
+Tathagata Das Ankur Dave Justin Ma Murphy McCauley Michael J. Franklin Scott
+  Shenker Ion~Stoica Matei~Zaharia, Mosharaf~Chowdhury.
+\newblock Resilient distributed datasets: A fault-tolerant abstraction for
+  in-memory cluster computing.
+\newblock {\em Journal of University of California, Berkeley}, 2012.
+
+\bibitem{incremental_ram}
+R.~Rodrigues U. A.~Acar P.~Bhatotia, A.~Wieder and R.~Pasquin.
+\newblock Mapreduce for incremental computations.
+\newblock {\em ACM SOCC}, 2011.
+
+\bibitem{stat_learning}
+Vapnik V.N.
+\newblock {\em Statistical Learning Theory}.
+\newblock Wiley, 1998.
+
+\bibitem{spark_bis_bis}
+M.~Balazinska Y.~Bu, B.~Howe and M.~D. Ernst.
+\newblock Haloop: efficient iterative data processing on large clusters.
+\newblock {\em Proc. VLDB Endow.}, 2010.
+
+\bibitem{page_rank_approx}
+Li-Tal~Mashiach Ziv Bar-Yossef.
+\newblock Local approximation of pagerank and reverse pagerank.
+\newblock {\em Proceedings of the 17th ACM Conference on Information and
+  Knowledge Management (CIKM)}, pages PP. 279--288, 2008.
 
 \end{thebibliography}

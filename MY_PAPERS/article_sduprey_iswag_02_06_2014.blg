@@ -3,44 +3,131 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: article_sduprey_iswag_02_06_2014.aux
 The style file: plain.bst
 Database file #1: article_sduprey_iswag_02_06_2014.bib
-You've used 3 entries,
+Too many commas in name 1 of "Iltae Lee, Negar Koochakzadeh, Keivan Kianmehr, Reda Alhajj, Jon Rokne" for entry gen_algo_web
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Iltae Lee, Negar Koochakzadeh, Keivan Kianmehr, Reda Alhajj, Jon Rokne" for entry gen_algo_web
+while executing---line 1049 of file plain.bst
+Warning--to sort, need author, editor, or key in apache_hive
+Warning--to sort, need author, editor, or key in apache_scala
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1049 of file plain.bst
+Name 1 in "F. Xhafa, A. Barolli, C. Sanchez, and L. Barolli" has a comma at the end for entry sim_annealing
+while executing---line 1049 of file plain.bst
+Name 1 in "G. Ananthanarayanan, A. Ghodsi, S. Shenker, and I. Stoica" has a comma at the end for entry spark_methodo_bis
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1049 of file plain.bst
+Name 1 in "P. Bhatotia, A. Wieder, R. Rodrigues, U. A. Acar, and R. Pasquin" has a comma at the end for entry incremental_ram
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "P. Bhatotia, A. Wieder, R. Rodrigues, U. A. Acar, and R. Pasquin" for entry incremental_ram
+while executing---line 1049 of file plain.bst
+Name 1 in "Y. Bu, B. Howe, M. Balazinska, and M. D. Ernst" has a comma at the end for entry spark_bis_bis
+while executing---line 1049 of file plain.bst
+Warning--empty author and editor in apache_hive
+Warning--empty year in apache_hive
+Warning--empty author and editor in apache_scala
+Warning--empty year in apache_scala
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
+while executing---line 1090 of file plain.bst
+Name 1 in "F. Xhafa, A. Barolli, C. Sanchez, and L. Barolli" has a comma at the end for entry sim_annealing
+while executing---line 1090 of file plain.bst
+Name 1 in "G. Ananthanarayanan, A. Ghodsi, S. Shenker, and I. Stoica" has a comma at the end for entry spark_methodo_bis
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Iltae Lee, Negar Koochakzadeh, Keivan Kianmehr, Reda Alhajj, Jon Rokne" for entry gen_algo_web
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Iltae Lee, Negar Koochakzadeh, Keivan Kianmehr, Reda Alhajj, Jon Rokne" for entry gen_algo_web
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Matei Zaharia, Mosharaf Chowdhury, Tathagata Das, Ankur Dave, Justin Ma, Murphy McCauley, Michael J. Franklin, Scott Shenker, Ion Stoica" for entry spark_methodo
+while executing---line 1090 of file plain.bst
+Name 1 in "P. Bhatotia, A. Wieder, R. Rodrigues, U. A. Acar, and R. Pasquin" has a comma at the end for entry incremental_ram
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "P. Bhatotia, A. Wieder, R. Rodrigues, U. A. Acar, and R. Pasquin" for entry incremental_ram
+while executing---line 1090 of file plain.bst
+Name 1 in "Y. Bu, B. Howe, M. Balazinska, and M. D. Ernst" has a comma at the end for entry spark_bis_bis
+while executing---line 1090 of file plain.bst
+You've used 15 entries,
             2118 wiz_defined-function locations,
-            517 strings with 4495 characters,
-and the built_in function-call counts, 1101 in all, are:
-= -- 104
-> -- 49
-< -- 1
-+ -- 19
-- -- 15
-* -- 70
-:= -- 185
-add.period$ -- 10
-call.type$ -- 3
-change.case$ -- 14
+            567 strings with 6047 characters,
+and the built_in function-call counts, 3954 in all, are:
+= -- 382
+> -- 135
+< -- 3
++ -- 57
+- -- 40
+* -- 203
+:= -- 652
+add.period$ -- 43
+call.type$ -- 15
+change.case$ -- 59
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 47
-empty$ -- 91
-format.name$ -- 15
-if$ -- 240
+cite$ -- 21
+duplicate$ -- 198
+empty$ -- 343
+format.name$ -- 40
+if$ -- 852
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 4
-newline$ -- 18
-num.names$ -- 8
-pop$ -- 19
+int.to.str$ -- 15
+missing$ -- 19
+newline$ -- 76
+num.names$ -- 26
+pop$ -- 89
 preamble$ -- 1
-purify$ -- 12
+purify$ -- 50
 quote$ -- 0
-skip$ -- 32
+skip$ -- 145
 stack$ -- 0
-substring$ -- 65
-swap$ -- 12
-text.length$ -- 1
+substring$ -- 188
+swap$ -- 46
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 10
-warning$ -- 0
-while$ -- 10
-width$ -- 4
-write$ -- 36
+type$ -- 48
+warning$ -- 6
+while$ -- 31
+width$ -- 17
+write$ -- 151
+(There were 40 error messages)
