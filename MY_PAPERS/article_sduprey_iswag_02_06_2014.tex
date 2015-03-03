@@ -28,7 +28,7 @@ fabien.jaunas@cdiscount.com}}
  \\\newline
  \indent \textbf{Keywords: }
  \\\newline
-search engine, e-commerce, page rank, in rank, mesh optimization, global optimization, Spark GraphX, Neo4j
+search engine, e-commerce, page rank, in rank, mesh optimization, global optimization, Hadoop, Spark GraphX, Neo4j
 \end{abstract}
 \section{Introduction}
 We here propose an original methodology to optimize the internal mesh of an e-commerce site.
@@ -232,7 +232,7 @@ where $CS(i)$ is a semantic distance between the two linked pages by $i$, for in
 \section{Big data implementation}
 We'll detail in this section the technological implementation of a real world use case.
 To be scalable is a must go for any e-commerce site which intends to grow !
-We use open source tools Apache Hadoop \cite{map_reduce} and Apache Spark \cite{spark_methodo} to solve these big data problems in a scalable way. 
+We use open source tools Apache Hadoop \cite{apache_hadoop} and Apache Spark \cite{spark} to solve these big data problems in a scalable way. 
 \begin{center}
 \textbf{\large Solutions and performances}
 \end{center}
@@ -241,14 +241,14 @@ is computed recurrently for each generation over all the population. The idea he
 \\\newline
 Second, the double iterative nature of our algorithm (page rank computations and global optimization are both naturally iterative)
 makes Hadoop Map/Reduce paradigm in \cite{map_reduce} too slow for our purpose. 
-In contrast to Hadoop's two-stage disk based Map/Reduce paradigm, Spark's in-memory primitives provide the needed performance (see \cite{spark_methodo_bis} \cite{spark_methodo}).
-By allowing user programs to load data into a cluster's memory and query it repeatedly, Spark is well suited for our purpose \cite{incremental_ram}
-\cite{spark_bis_bis}.
+In contrast to Hadoop's two-stage disk based Map/Reduce paradigm, Spark's in-memory primitives provide the needed performance.
+By allowing user programs to load data into a cluster's memory and query it repeatedly, Spark is well suited for our purpose (\cite{incremental_ram} and
+\cite{spark_methodo}).
 \\\newline
 \begin{center}
 \textbf{\large Technical implementation}
 \end{center}
-Our internal mesh is stored in Neo4j (\cite{neo4j}. It allows us to solve analytical problems
+Our internal mesh is stored in Neo4j \cite{neo4j}. It allows us to solve analytical problems
  that relational databases struggle to solve in a flexible way (mainly recursive mesh exploration with CYPHER). 
  We then use a specific in-house toolkit to create a job to export subgraphs from Neo4j to Apache Hadoop HDFS.
  It will then start a distributed graph processing algorithm using Scala \cite{scala} and Spark's GraphX module \cite{graphX}. 

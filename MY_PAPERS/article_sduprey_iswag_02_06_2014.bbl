@@ -8,9 +8,13 @@
 {\em Neo4j}.
 \newblock http://neo4j.com.
 
-\bibitem{apache_scala}
+\bibitem{scala}
 {\em Scala}.
 \newblock http://www.scala-lang.org.
+
+\bibitem{spark}
+{\em Spark}.
+\newblock https://spark.apache.org.
 
 \bibitem{graphX}
 {\em Spark GraphX}.
@@ -33,11 +37,6 @@ C.~Sanchez F.~Xhafa, A.~Barolli and L.~Barolli.
   wireless mesh networks.
 \newblock {\em Simulation Modelling Practice and Theory}, 19:pp. 22762284,
   2011.
-
-\bibitem{spark_methodo_bis}
-S.~Shenker G.~Ananthanarayanan, A.~Ghodsi and I.~Stoica.
-\newblock Disk-locality in datacenter computing considered irrelevant.
-\newblock {\em HotOS}, 2011.
 
 \bibitem{gen_algo}
 D.~E. Goldberg and J.~H. Holland.
@@ -77,11 +76,6 @@ R.~Rodrigues U. A.~Acar P.~Bhatotia, A.~Wieder and R.~Pasquin.
 Vapnik V.N.
 \newblock {\em Statistical Learning Theory}.
 \newblock Wiley, 1998.
-
-\bibitem{spark_bis_bis}
-M.~Balazinska Y.~Bu, B.~Howe and M.~D. Ernst.
-\newblock Haloop: efficient iterative data processing on large clusters.
-\newblock {\em Proc. VLDB Endow.}, 2010.
 
 \bibitem{page_rank_approx}
 Li-Tal~Mashiach Ziv Bar-Yossef.
