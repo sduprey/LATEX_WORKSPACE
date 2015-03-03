@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  2 MAR 2015 17:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  3 MAR 2015 09:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -696,11 +696,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 34--66
  []
 
 
-Underfull \hbox (badness 2653) in paragraph at lines 34--66
-\OT1/cmr/m/n/10 Sim-u-lated an-neal-ing, global search, mul-ti-start,
- []
-
-
 Underfull \hbox (badness 5403) in paragraph at lines 34--66
 \OT1/cmr/m/n/10 re-gard-ing their in-com-ing/targeting page type.
  []
@@ -721,15 +716,15 @@ Underfull \hbox (badness 2142) in paragraph at lines 69--73
 our mesh, which
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 78--81
-
- []
-
 [1
 
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 81--84
 
  []
@@ -777,82 +772,90 @@ Underfull \hbox (badness 10000) in paragraph at lines 151--156
 
  []
 
+[2]
 File: initial_population.eps Graphic file (type eps)
-<initial_population.eps> [2]
+ <initial_population.eps>
 File: converged_population.eps Graphic file (type eps)
  <converged_population.eps>
 File: best_element_evolution.eps Graphic file (type eps)
 
 <best_element_evolution.eps>
-Underfull \hbox (badness 10000) in paragraph at lines 202--211
+Underfull \hbox (badness 10000) in paragraph at lines 203--212
 
  []
 
-
-Overfull \hbox (1.94745pt too wide) detected at line 213
+[3]
+Overfull \hbox (1.94745pt too wide) detected at line 214
 [][] \OML/cmm/m/it/10 SV [] \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 CTR [] \OMS/c
 msy/m/n/10 ^^B \OML/cmm/m/it/10 CR [] \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 P [
 ][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--227
+Underfull \hbox (badness 10000) in paragraph at lines 214--228
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--227
+Underfull \hbox (badness 10000) in paragraph at lines 214--228
 
  []
 
 
-Underfull \hbox (badness 1571) in paragraph at lines 213--227
+Underfull \hbox (badness 1571) in paragraph at lines 214--228
 \OT1/cmr/m/n/10 and $\OML/cmm/m/it/10 CTR []$ \OT1/cmr/m/n/10 is the click thro
 ugh rate for an
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--227
+Underfull \hbox (badness 10000) in paragraph at lines 214--228
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--227
+Underfull \hbox (badness 10000) in paragraph at lines 214--228
 
  []
 
-[3]
-Underfull \hbox (badness 3049) in paragraph at lines 232--238
+
+Underfull \hbox (badness 3049) in paragraph at lines 233--242
 \OT1/cmr/m/n/10 rank com-pu-ta-tions and op-ti-miza-tion are both
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 232--238
+Underfull \hbox (badness 1354) in paragraph at lines 233--242
 \OT1/cmr/m/n/10 nat-u-rally it-er-a-tive) makes Hadoop Map/Reduce
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 232--238
+Underfull \hbox (badness 10000) in paragraph at lines 233--242
 
  []
 
 
-Underfull \hbox (badness 2409) in paragraph at lines 232--238
-\OT1/cmr/m/n/10 In con-trast to Hadoop's two-stage disk based
+Underfull \hbox (badness 10000) in paragraph at lines 233--242
+
  []
 
-(./article_sduprey_iswag_02_06_2014.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 251.
- [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 251.
+
+Underfull \hbox (badness 10000) in paragraph at lines 233--242
+
+ []
+
+(./article_sduprey_iswag_02_06_2014.bbl [4])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 255.
+ [5
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 255.
 
 (./article_sduprey_iswag_02_06_2014.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 251.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 251.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 255.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 255.
 Package rerunfilecheck Info: File `article_sduprey_iswag_02_06_2014.out' has no
 t changed.
-(rerunfilecheck)             Checksum: 7631619004AD3D30A3CE52C6903D3C15;267.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 251.
+(rerunfilecheck)             Checksum: 67B55B7AB38036238D4624CDD3C56F5F;268.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 255.
  ) 
 Here is how much of TeX's memory you used:
  7458 strings out of 495000
@@ -861,6 +864,6 @@ Here is how much of TeX's memory you used:
  10578 multiletter control sequences out of 15000+600000
  8201 words of font info for 31 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 43i,13n,45p,286b,374s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,13n,45p,286b,421s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on article_sduprey_iswag_02_06_2014.dvi (4 pages, 33468 bytes).
+Output written on article_sduprey_iswag_02_06_2014.dvi (5 pages, 36556 bytes).

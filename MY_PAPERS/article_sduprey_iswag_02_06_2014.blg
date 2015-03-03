@@ -7,8 +7,6 @@ Too many commas in name 1 of "Iltae Lee, Negar Koochakzadeh, Keivan Kianmehr, Re
 while executing---line 1049 of file plain.bst
 Too many commas in name 1 of "Iltae Lee, Negar Koochakzadeh, Keivan Kianmehr, Reda Alhajj, Jon Rokne" for entry gen_algo_web
 while executing---line 1049 of file plain.bst
-Warning--to sort, need author, editor, or key in apache_hive
-Warning--to sort, need author, editor, or key in apache_scala
 Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
 while executing---line 1049 of file plain.bst
 Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
@@ -22,8 +20,6 @@ while executing---line 1049 of file plain.bst
 Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
 while executing---line 1049 of file plain.bst
 Too many commas in name 1 of "Cao, Z., Qin, T., Liu, T.Y., Tsai, M.F., Li, H." for entry learning_to_rank
-while executing---line 1049 of file plain.bst
-Name 1 in "F. Xhafa, A. Barolli, C. Sanchez, and L. Barolli" has a comma at the end for entry sim_annealing
 while executing---line 1049 of file plain.bst
 Name 1 in "G. Ananthanarayanan, A. Ghodsi, S. Shenker, and I. Stoica" has a comma at the end for entry spark_methodo_bis
 while executing---line 1049 of file plain.bst
@@ -44,6 +40,10 @@ while executing---line 1049 of file plain.bst
 Too many commas in name 1 of "P. Bhatotia, A. Wieder, R. Rodrigues, U. A. Acar, and R. Pasquin" for entry incremental_ram
 while executing---line 1049 of file plain.bst
 Name 1 in "Y. Bu, B. Howe, M. Balazinska, and M. D. Ernst" has a comma at the end for entry spark_bis_bis
+while executing---line 1049 of file plain.bst
+Warning--to sort, need author, editor, or key in apache_hive
+Warning--to sort, need author, editor, or key in apache_scala
+Name 1 in "F. Xhafa, A. Barolli, C. Sanchez, and L. Barolli" has a comma at the end for entry sim_annealing
 while executing---line 1049 of file plain.bst
 Warning--empty author and editor in apache_hive
 Warning--empty year in apache_hive
