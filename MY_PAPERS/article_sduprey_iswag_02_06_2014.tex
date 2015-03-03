@@ -28,7 +28,7 @@ fabien.jaunas@cdiscount.com}}
  \\\newline
  \indent \textbf{Keywords: }
  \\\newline
-search engine, e-commerce, page rank, in rank, mesh optimization, global optimization, Hadoop, Spark GraphX, Neo4j
+search engine optimization, e-commerce, page rank, in rank, mesh optimization, global optimization, Hadoop, Spark GraphX, Neo4j
 \end{abstract}
 \section{Introduction}
 We here propose an original methodology to optimize the internal mesh of an e-commerce site.
@@ -197,8 +197,13 @@ Let's now visualize our population at convergence and the evolution of the fitne
 \begin{center}
 \epsfig{file=best_element_evolution.eps,height=5cm,width=5cm}
 \end{center}
-The structure found is as we expected : home followed by metalists, lists and then products.
-
+The structure found is as we expected arborescent : home linking to metalists, metalists linking to lists and lists to products.
+\begin{center}
+\textbf{\large Optimal site structure}
+\end{center}
+\begin{center}
+\epsfig{file=site_structure.eps,height=5cm,width=5cm}
+\end{center}
 \section{An e-commerce approach}
 For an e-commerce web site, traffic might not always coincide with the URLs you deem as more profitable to you.
 On the very contrary, you may even actually rather want to rebalance some traffic discrepancies.
@@ -256,6 +261,10 @@ Our internal mesh is stored in Neo4j \cite{neo4j}. It allows us to solve analyti
 Once Apache Spark job is done, the results are written back to HDFS as a Key-Value list of property updates to be applied back to Neo4j.
 Neo4j is then notified that a property update list is available from Apache Spark on HDFS. Neo4j batch imports the results and applies the updates back to the original graph.
 \section{Conclusion and future works}
+Mesh optimization is a key concept for SEO. Numerical experiments on a small case example show the relevance and the possibility to actually improve your site mesh
+to push forward pages accordingly to an importance metrics. This importance metrics is yours to define. The difficulty here does not lie in the
+theorical conception of the algorithm, but rather in its distributed implementation on a big data platform. The choice of open source solutions
+is here highlighted. It allows a fast ramp-up for anyone to a high level technological state without reinventing the wheel.
 \nocite{*}
 \bibliography{article_sduprey_iswag_02_06_2014}
 \bibliographystyle{plain}
