@@ -1,12 +1,20 @@
 \begin{thebibliography}{10}
 
-\bibitem{apache_hive}
-{\em Apache Hive}.
-\newblock http://hadoop.apache.org/hive.
+\bibitem{apache_hadoop}
+{\em Hadoop}.
+\newblock http://hadoop.apache.org.
+
+\bibitem{neo4j}
+{\em Neo4j}.
+\newblock http://neo4j.com.
 
 \bibitem{apache_scala}
 {\em Scala}.
 \newblock http://www.scala-lang.org.
+
+\bibitem{graphX}
+{\em Spark GraphX}.
+\newblock https://spark.apache.org/graphx/.
 
 \bibitem{page_rank}
 S.~Brin and L.~Page.

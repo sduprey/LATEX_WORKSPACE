@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  3 MAR 2015 09:02
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  3 MAR 2015 10:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -818,52 +818,64 @@ Underfull \hbox (badness 10000) in paragraph at lines 214--228
  []
 
 
-Underfull \hbox (badness 3049) in paragraph at lines 233--242
-\OT1/cmr/m/n/10 rank com-pu-ta-tions and op-ti-miza-tion are both
- []
-
-
-Underfull \hbox (badness 1354) in paragraph at lines 233--242
-\OT1/cmr/m/n/10 nat-u-rally it-er-a-tive) makes Hadoop Map/Reduce
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 233--242
+Underfull \hbox (badness 10000) in paragraph at lines 239--248
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--242
+Underfull \hbox (badness 1320) in paragraph at lines 239--248
+\OT1/cmr/m/n/10 Second, the dou-ble it-er-a-tive na-ture of our al-
+ []
+
+
+Underfull \hbox (badness 4752) in paragraph at lines 239--248
+\OT1/cmr/m/n/10 go-rithm (page rank com-pu-ta-tions and global
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--248
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--242
+Underfull \hbox (badness 10000) in paragraph at lines 239--248
 
  []
 
-(./article_sduprey_iswag_02_06_2014.bbl [4])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 255.
+
+LaTeX Warning: Citation `scala' on page 4 undefined on input line 254.
+
+(./article_sduprey_iswag_02_06_2014.bbl
+Overfull \hbox (12.01707pt too wide) in paragraph at lines 16--18
+[]\OT1/cmr/m/it/10 Spark GraphX\OT1/cmr/m/n/10 .  https://spark.apache.org/grap
+hx/. 
+ []
+
+[4])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 262.
  [5
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 255.
-
-(./article_sduprey_iswag_02_06_2014.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 255.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 255.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 262.
+ (./article_sduprey_iswag_02_06_2014.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 262.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 262.
 Package rerunfilecheck Info: File `article_sduprey_iswag_02_06_2014.out' has no
 t changed.
 (rerunfilecheck)             Checksum: 67B55B7AB38036238D4624CDD3C56F5F;268.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 255.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 262.
  ) 
 Here is how much of TeX's memory you used:
- 7458 strings out of 495000
- 110957 string characters out of 6180254
- 209936 words of memory out of 5000000
- 10578 multiletter control sequences out of 15000+600000
+ 7461 strings out of 495000
+ 110981 string characters out of 6180254
+ 209995 words of memory out of 5000000
+ 10581 multiletter control sequences out of 15000+600000
  8201 words of font info for 31 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  43i,13n,45p,286b,421s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on article_sduprey_iswag_02_06_2014.dvi (5 pages, 36556 bytes).
+Output written on article_sduprey_iswag_02_06_2014.dvi (5 pages, 39256 bytes).
