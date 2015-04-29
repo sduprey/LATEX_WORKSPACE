@@ -22,13 +22,13 @@
   The definition of popular might be the transformation rate for e-commerce, 
   the traffic from logs for a common site or even rather a specific semantic where you want to be visible. 
   We here propose an algorithm to automatically compute the optimal internal mesh for your web site. The idea
-  behind being simple : the higher you value your URL (potential return on investment), the more in rank you want to give it.
+  behind being simple : the higher you value your URL, the more in rank you want to give it.
   We tackle the challenges met both at a theory and software implementation level. 
   We'll more specifically deal with big data issues for an e-commerce web site.
   \\\newline
   \indent \textbf{Keywords: }
   \\\newline
-  search engine optimization, e-commerce, page rank, in rank, mesh optimization, global optimization, Hadoop, Spark GraphX, Neo4j
+  search engine optimization, e-commerce, page rank, in rank, mesh optimization, global optimization, tf/idf, Levenshtein, Hadoop, Spark GraphX, Neo4j
   \end{abstract}
   \section{Introduction}
   We here propose an original methodology to optimize the internal mesh of an e-commerce site.
@@ -43,14 +43,15 @@
   The difficulty here is three-fold:
   \\
   \indent
-  First the universe we deal with is discrete and vast. For a mesh with $N$ nodes (a site with $N$ URLs), the number of possible meshes is $2^{N^{2}}$. 
+  First the universe we deal with is discrete and vast. For a mesh with $N$ nodes (a site with $N$ URLs), the number of possible meshes (directed graph) is $2^{N^{2}}$. 
   We will also see that our objective function is non-linear and non-convex.  Discrete non-linear optimization problems are among the most difficult optimization problems to solve. 
   Not only optimum existence and uniqueness results are inexistent, but those problems usually reveal to be computationnaly intensive to solve. 
   For our case, exhaustive optimization would be far too computationally intensive. We have to find a proper heuristic based global optimization algorithm to cleverly tweak through our universe.
-  We here choose genetic algorithms among others following here \cite{gen_algo_web}. Simulated annealing, global search, multistart, particle swarm have been tested and also works on the small case to be presented.
-  But of course, for a real world e-commerce example, those algorithms must not be trusted : they might get stuck into local minima. 
-  And as we use parameters and randomness for our algorithm, the returned solution might change from one try to another. 
-  Parameters have to be properly tweaked to proceed through our universe avoiding getting stuck into local minima.
+  We here choose genetic algorithms among others following here \cite{gen_algo_web}. 
+  But of course, as heuristic, this algorithm must not be trusted : it might get stuck into local minima, depend upon initial set-up and randomness stream seed. 
+  Parameters also have to be properly tweaked to proceed through our universe avoiding getting stuck into local minima.
+  Other metaheuristics such as global search, multistart, particle swarm or simulated annealing as in \cite{sim_annealing} 
+  are also being tested. All seem promising. Robustness toward a general minimum, convergence fastness should here give the prevailing algorithm and its appropriate parameters. 
   \\
   \indent
   Second the structure of a web site is usually well-defined and it is out of question to drastically change the already existing mesh.
@@ -271,7 +272,7 @@
   where the fitness function can now be computed for the individual.
   \section{Conclusion and future works}
   Mesh optimization is a key concept for SEO. Numerical experiments on a small case example show the relevance and the possibility to actually improve your site mesh
-  to push forward pages accordingly to an prominence metrics which is yours to define. The difficulty here does not lie in the
+  to push forward pages accordingly to a prominence metrics which is yours to define. The difficulty here does not lie in the
   theorical conception of the algorithm, but rather in its distributed implementation on a big data platform. The choice of open source solutions
   is here highlighted. It allows a fast ramp-up for anyone to a high level technological state.
   \nocite{*}

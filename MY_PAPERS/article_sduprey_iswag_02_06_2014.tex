@@ -28,7 +28,7 @@
   \\\newline
   \indent \textbf{Keywords: }
   \\\newline
-  search engine optimization, e-commerce, page rank, in rank, mesh optimization, global optimization, Hadoop, Spark GraphX, Neo4j
+  search engine optimization, e-commerce, page rank, in rank, mesh optimization, global optimization, tf/idf, Levenshtein, Hadoop, Spark GraphX, Neo4j
   \end{abstract}
   \section{Introduction}
   We here propose an original methodology to optimize the internal mesh of an e-commerce site.
@@ -43,27 +43,27 @@
   The difficulty here is three-fold:
   \\
   \indent
-  First the universe we deal with is discrete and vast. For a mesh with $N$ nodes (a site with $N$ URLs), the number of possible meshes is $2^{N^{2}}$. 
+  First the universe we deal with is discrete and vast. For a mesh with $N$ nodes (a site with $N$ URLs), the number of possible meshes (directed graph) is $2^{N^{2}}$. 
   We will also see that our objective function is non-linear and non-convex.  Discrete non-linear optimization problems are among the most difficult optimization problems to solve. 
-  Not only optimum existence and uniqueness results are inexistent, but those problems usually reveal to be computationnaly intensive to solve. 
-  For our case, exhaustive optimization would be far too computationally intensive. We have to find a proper heuristic based global optimization algorithm to cleverly tweak through our universe.
+  Not only optimum existence and uniqueness results are inexistent, but those problems appear generally to be computationnaly intensive to solve. 
+  For our case, exhaustive optimization would be far too computationally intensive. We have to find a proper heuristic based global optimization algorithm to cleverly browse through our universe.
   We here choose genetic algorithms among others following here \cite{gen_algo_web}. 
-  But of course, as heuristic, this algorithm must not be trusted : it might get stuck into local minima, depend upon initial set-up and randomness stream seed. 
-  Parameters also have to be properly tweaked to proceed through our universe avoiding getting stuck into local minima.
+  But of course, as heuristic, this algorithm must not be trusted : it can get stuck into local minima and results will depend upon initial set-up and randomness stream seed. 
+  Parameters also have to be properly tweaked to proceed through our universe to avoid getting stuck into local minima.
   Other metaheuristics such as global search, multistart, particle swarm or simulated annealing as in \cite{sim_annealing} 
   are also being tested. All seem promising. Robustness toward a general minimum, convergence fastness should here give the prevailing algorithm and its appropriate parameters. 
   \\
   \indent
   Second the structure of a web site is usually well-defined and it is out of question to drastically change the already existing mesh.
   It is even truer for an e-commerce site : links are to be categorized regarding their incoming/targeting page type. Position within those pages
-  is also relevant as most e-commerce sites dedicate specific zones for links to similar products, list of products and so on.
-  So links can only be created within certain categories of pages and zones within our page. In other terms our mesh will not be totally free and 
+  is also relevant as most e-commerce sites dedicate specific zones for links to similar products, filtered lists and so on. Siloing navigation will also forbid links between distinct universe.
+  So links can only be created within certain categories of pages and zones within those pages. In other terms our mesh will not be totally free and 
   we'll have strong constraints for our mesh to comply with. That is good news : the less linking possibilities we got, the smaller is our optimization universe.
   \\
   \indent
   Third the actual size of an e-commerce site makes the implementation of a real-world industrial use case a technologically difficult problem.
   Either we implement it from scratch over a cluster dealing ourselves with concurrency and inter-processor communications,
-  or we try not to reinvent the wheel and plug ourselves to existing big data cluster platform. We'll here detail our technological choices.
+  or we try not to reinvent the wheel and plug ourselves to existing big data cluster platforms. We'll here detail our technological choices.
   \section{Algorithm}
   Let $N \in \mathbb{N}$ be the number of nodes of our graph or rather the number of URLs of our site.
   \\\newline
@@ -74,24 +74,24 @@
   it carries the specific metrics we want to optimize our mesh against.
   \begin{equation}
   \begin{array}{ccccc}
-  f & : & \left(X_i\right)_{i \in \left\{1,...,N\right\}} & \to & \mathbb{R} \\
+  f & : & \left(X_i\right)_{i \in \left\{1,...,N\right\}} & \to & \mathbb{R}^{+} \\
   & & x & \mapsto & f(x) \\
   \end{array}
   \end{equation}
   Let's here say that our function is the traffic per URL. We'll see how we can improve this metrics in the next part.
   \\\newline
-  Let's $$\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$$ denote the adjacency matrix of our directed graph.
+  Let's $$\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$$ denote the vectorized adjacency matrix of our directed graph.
   \\\newline
-  $\left(G_{ij}\right)$ is either 1 or 0 if there is a link between URL $i$ and $j$.
+  $\left(G_{ij}\right)$ is either 1 or 0 if there is a link between URL $i$ and $j$ and our matrix is reshaped into a vector by concatenating each row.
   \begin{center}
   \textbf{\large Genetic algorithm}
   \end{center}
   Genetic algorithm is a search heuristic that mimics the process of natural selection as explained in \cite{gen_algo}. 
   A population of individuals to an optimization problem is evolved toward better solutions. 
-  In our case, each individual or chromosome $\left(C_{i}\right)  \in \left\{0,1\right\}^{N\times N}$ here represented as a bits array, which results from the vectorization of
-  the adjacency matrix $\left(G_{ij}\right)$. An individual is a specific mesh. 
+  In our case, each individual or chromosome $\left(C_{i}\right)  \in \left\{0,1\right\}^{N\times N}$ here is represented as a bits array, which results from the very vectorization of
+  our adjacency matrix $\left(G_{ij}\right)$. An individual is a specific mesh. 
 
-  At each generation, a candidate can either result from a crossover between two parents or from a self mutation.
+  At each generation, a candidate can either results from a crossover between two parents or from a self mutation.
   \\\newline
   For each new child to be produced, a pair of parents is selected for breeding from an eugenic pool from the previous generation. 
   The newly created solution typically shares many of the characteristics of its parents. 
@@ -103,9 +103,9 @@
   \epsfig{file=crossover.eps,height=2cm,width=4cm}
   \end{center}
   For each new mutant to be produced, a single parent is selected from the same eugenic pool from the previous generation. 
-  The newly created mutant also shares many of the characteristics of its parent. 
-  The mutation function is even simpler : we just switch bits whose locations are randomly chosen
-  and proportions equal a fixed mutation rate : 
+  The newly created mutant also shares many of the characteristics of its single parent. 
+  The mutation function is here standard : we just switch bits whose locations are randomly chosen
+  and proportions equal a fixed defined mutation rate $\alpha$ : 
   \\\newline
   \begin{center}
   \textbf{\large Mutation of an individual}
@@ -123,8 +123,8 @@
   Commonly, the algorithm terminates when either a maximum number of generations has been produced, or a satisfactory fitness level has been reached for the population.
   The evolution usually starts from a population of randomly generated individuals and is an iterative process, with the population in each iteration called a generation.
   \\\newline
-  Let's add here that taking account our mesh constraints is here trivial : we just fix the value of blocs of links between forbidden categories from our
-  vector. We just end up with a vector with a smaller number of freedom degrees : our adjacency matrix is square but with large fixed null blocks resulting only from locations where links can be added.
+  Let's add here that taking into account our mesh constraints is here trivial : we just fix the value of blocs of links between forbidden categories from our
+  vector. We just end up with a vector with a smaller number of freedom degrees : our adjacency matrix is square but with large fixed null blocks resulting only from locations where links can't be added.
   \begin{center}
   \textbf{\large Links categorization}
   \end{center}

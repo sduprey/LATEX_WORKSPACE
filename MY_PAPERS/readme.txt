@@ -6,4 +6,10 @@ sudo latex article_sduprey_iswag_02_06_2014
 sudo latex article_sduprey_iswag_02_06_2014
 sudo dvips article_sduprey_iswag_02_06_2014.dvi 
 sudo ps2pdf article_sduprey_iswag_02_06_2014.ps
- 
+
+# visualizing the pdf
+sudo xpdf article_sduprey_iswag_02_06_2014.pdf 
+
+# editing the pdf
+sudo kile article_sduey_iswag_02_06_2014.tex
+
