@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  29 APR 2015 10:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  29 APR 2015 12:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -735,6 +735,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 80--83
  []
 
 
+Underfull \hbox (badness 1552) in paragraph at lines 83--86
+\OT1/cmr/m/n/10 denote the vec-tor-ized ad-ja-cency ma-trix of our
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 83--86
 
  []
@@ -746,6 +751,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 94--99
 
 File: crossover.eps Graphic file (type eps)
 <crossover.eps>
+Underfull \hbox (badness 1242) in paragraph at lines 105--110
+\OT1/cmr/m/n/10 par-ent is se-lected from the same eu-genic pool
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 105--110
 
  []
@@ -767,8 +777,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 116--128
  []
 
 
-Underfull \hbox (badness 1845) in paragraph at lines 116--128
-\OT1/cmr/m/n/10 Let's add here that tak-ing ac-count our mesh
+Underfull \hbox (badness 2980) in paragraph at lines 116--128
+\OT1/cmr/m/n/10 Let's add here that tak-ing into ac-count our
  []
 
 File: links_categorization.eps Graphic file (type eps)
@@ -797,83 +807,101 @@ File: best_element_evolution.eps Graphic file (type eps)
 <best_element_evolution.eps>
 File: site_structure.eps Graphic file (type eps)
  <site_structure.eps>
-Underfull \hbox (badness 10000) in paragraph at lines 210--219
+Underfull \vbox (badness 4156) has occurred while \output is active []
 
- []
-
-[3]
-Overfull \hbox (1.94745pt too wide) detected at line 221
+ [3]
+Overfull \hbox (1.94745pt too wide) detected at line 220
 [][] \OML/cmm/m/it/10 SV [] \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 CTR [] \OMS/c
 msy/m/n/10 ^^B \OML/cmm/m/it/10 CR [] \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 P [
 ][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--235
+Underfull \hbox (badness 10000) in paragraph at lines 220--231
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--235
+Underfull \hbox (badness 10000) in paragraph at lines 220--231
 
  []
 
 
-Underfull \hbox (badness 1571) in paragraph at lines 221--235
+Underfull \hbox (badness 1571) in paragraph at lines 220--231
 \OT1/cmr/m/n/10 and $\OML/cmm/m/it/10 CTR []$ \OT1/cmr/m/n/10 is the click thro
 ugh rate for an
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--235
+Underfull \hbox (badness 10000) in paragraph at lines 220--231
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--235
+Underfull \hbox (badness 10000) in paragraph at lines 232--240
 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 7064) in paragraph at lines 232--240
+\OT1/cmr/m/n/10 Either by in-cor-po-rat-ing our se-man-tic co-ef-fi-
+ []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--260
+Underfull \hbox (badness 10000) in paragraph at lines 232--240
 
  []
 
 
-Underfull \hbox (badness 1320) in paragraph at lines 246--260
+Underfull \hbox (badness 1675) in paragraph at lines 232--240
+\OT1/cmr/m/n/10 Or by en-forc-ing the ab-sence of links be-tween
+ []
+
+
+Underfull \vbox (badness 3209) has occurred while \output is active []
+
+
+Overfull \hbox (16.28012pt too wide) detected at line 242
+[][] [][][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 259--273
+
+ []
+
+
+Underfull \hbox (badness 1320) in paragraph at lines 259--273
 \OT1/cmr/m/n/10 Second, the dou-ble it-er-a-tive na-ture of our al-
  []
 
 
-Underfull \hbox (badness 4752) in paragraph at lines 246--260
+Underfull \hbox (badness 4752) in paragraph at lines 259--273
 \OT1/cmr/m/n/10 go-rithm (page rank com-pu-ta-tions and global
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--260
+Underfull \hbox (badness 10000) in paragraph at lines 259--273
 
  []
 
 
-Underfull \hbox (badness 2189) in paragraph at lines 246--260
+Underfull \hbox (badness 2189) in paragraph at lines 259--273
 \OT1/cmr/m/n/10 The prob-lem here is that the very same re-
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 246--260
+Underfull \hbox (badness 1360) in paragraph at lines 259--273
 \OT1/cmr/m/n/10 stric-tions that en-able graph-parallel sys-tems as
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--260
+Underfull \hbox (badness 10000) in paragraph at lines 259--273
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--260
+Underfull \hbox (badness 10000) in paragraph at lines 259--273
 
  []
 
@@ -883,25 +911,27 @@ Overfull \hbox (12.01707pt too wide) in paragraph at lines 20--22
 hx/. 
  []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 281.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 281.
+[5])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 294.
+ [6
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 294.
  (./article_sduprey_iswag_02_06_2014.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 281.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 281.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 294.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 294.
 Package rerunfilecheck Info: File `article_sduprey_iswag_02_06_2014.out' has no
 t changed.
-(rerunfilecheck)             Checksum: 67B55B7AB38036238D4624CDD3C56F5F;268.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 281.
+(rerunfilecheck)             Checksum: 3CB520772258016F2DF3CF8A76BFB667;319.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 294.
  ) 
 Here is how much of TeX's memory you used:
- 7461 strings out of 495000
- 110976 string characters out of 6180254
- 210940 words of memory out of 5000000
- 10580 multiletter control sequences out of 15000+600000
+ 7463 strings out of 495000
+ 111005 string characters out of 6180254
+ 211940 words of memory out of 5000000
+ 10582 multiletter control sequences out of 15000+600000
  8201 words of font info for 31 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 43i,13n,45p,286b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,13n,45p,346b,421s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on article_sduprey_iswag_02_06_2014.dvi (5 pages, 41360 bytes).
+Output written on article_sduprey_iswag_02_06_2014.dvi (6 pages, 45100 bytes).
