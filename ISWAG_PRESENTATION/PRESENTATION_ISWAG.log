@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  29 MAY 2015 12:11
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  29 MAY 2015 12:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -629,32 +629,15 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ]
 [6
 
+] [7
+
 ]
-
-LaTeX Warning: Slide 7 overfull by 5.44756pt on input line 235.
-
-[7
-
-] [8]
 File: page_rank.eps Graphic file (type eps)
- <page_rank.eps>
-Overfull \hbox (122.25021pt too wide) in paragraph at lines 239--240
- [] 
- []
+ <page_rank.eps> [8
 
-[9
+] [9
 
-]
-
-LaTeX Warning: Slide 10 overfull by 76.01414pt on input line 240.
-
-
-Overfull \vbox (76.01414pt too high) has occurred while \output is active []
-
-
-[10] [11
-
-] [12
+] [10
 
 ]
 \tf@los=\write3
@@ -680,4 +663,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  43i,11n,51p,412b,604s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on PRESENTATION_ISWAG.dvi (12 pages, 13180 bytes).
+Output written on PRESENTATION_ISWAG.dvi (10 pages, 12476 bytes).

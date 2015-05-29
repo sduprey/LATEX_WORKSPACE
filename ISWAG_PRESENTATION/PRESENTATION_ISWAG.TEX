@@ -205,38 +205,25 @@ PR\left(u\right)= \frac{\left(1-c\right)}{N} + c \times \sum_{v \rightarrow u}\f
 \end{equation}
 \end{slide}
 \begin{slide}
-\slideheading{In-rank computation}
-We restrain the universe to our site where we compute the standard page-rank.
-\newline
-Initialization :
-\begin{equation}
-\forall u \ PR\left(u\right)=\frac{1}{N}
-\end{equation} 
-Iterative computation :
-\begin{equation}
-PR\left(u\right)= \frac{\left(1-c\right)}{N} + c \times \sum_{v \rightarrow u}\frac{PR\left(v\right)}{card\left(\left\{v\rightarrow u\right\}\right)}
-\end{equation}
-\end{slide}
-\begin{slide}
 \slideheading{Exhaustive brute force doesn't work}
 For a $N=10^6$ millions URLs web site, we have $2^{N^{2}}$ with a 2048 bits mantissa, 256 bits exponent 
+\newline
+\scriptsize{
 $2^{{10^6}^2}=$
-\\ \newline 9.5762442314927432848050594956989483747127095675192905698213
-\\ \newline 128517073583274396016675898714705184143146468453752442806484
-\\ \newline 690561169975498415015777492655947375270159476651418975300707
-\\ \newline 658547568802353384879419803574730952480197774380552040662758
-\\ \newline 127609571333683703207910070247048194459504686986124786492353
-\\ \newline 387550318495241621572271925127288273993787778380450774809611
-\\ \newline 395810191417363401889038757182279484019203870177413318113073
-\\ \newline 911418463615759647977538478560166958988721048687854280187283
-\\ \newline 661925937530017243461145905573802314471888491758757162677684 
-\\ \newline 017424597014433418179115289463552630751896559312213624470617
-\\ \newline 4533250565836008e+301029995663
+\\ \newline 9.5762442314927432848050594956989483747127095675192905698213128517073583274396016675898
+\\ \newline 714705184143146468453752442806484690561169975498415015777492655947375270159476651418975
+\\ \newline 300707658547568802353384879419803574730952480197774380552040662758127609571333683703207
+\\ \newline 910070247048194459504686986124786492353387550318495241621572271925127288273993787778380
+\\ \newline 450774809611395810191417363401889038757182279484019203870177413318113073911418463615759
+\\ \newline 647977538478560166958988721048687854280187283661925937530017243461145905573802314471888
+\\ \newline 491758757162677684017424597014433418179115289463552630751896559312213624470617453325056
+\\ \newline 5836008e+301029995663
+}
 \end{slide}
 \begin{slide}
 \slideheading{Picturing our smallest store : jewelery }
 \begin{center}
-\epsfig{file=page_rank.eps,height=10.cm,width=15.cm}
+\epsfig{file=page_rank.eps,height=6.5cm,width=8.cm}
 \end{center}
 \end{slide}
 \begin{slide}
@@ -255,7 +242,7 @@ We want here to optimize the adequation of our mesh $\left(X_i\right)$ to our po
 \newline $\bullet$ Subsequent generations evolve from the first through selection, crossover and mutation
 \newline $\bullet$ The individual that best minimizes the given objective is returned as the ideal solution
 }
-\textbf{\textcolor{blue}{\large Why a genetic algorithm }}
+\newline \textbf{\textcolor{blue}{\large Why a genetic algorithm }}
 \small{
 \newline $\bullet$ Lots of local minima to avoid
 \newline $\bullet$ Non continuous universe, constraints and objective
