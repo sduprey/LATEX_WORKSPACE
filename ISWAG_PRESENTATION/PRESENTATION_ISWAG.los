@@ -1,7 +1,7 @@
-\l@slide {1}{\ignorespaces Introduction}{3}
-\l@slide {2}{\ignorespaces Heuristic}{4}
-\l@slide {3}{\ignorespaces Metaheuristics}{7}
-\l@slide {4}{\ignorespaces Shrinking our universe with siloing and semantic similarity}{11}
-\l@slide {5}{\ignorespaces Same problem with an e-commerce flavor}{13}
-\l@slide {6}{\ignorespaces Prototyping example}{14}
-\l@slide {7}{\ignorespaces Big data implementation : Neo4j and Spark GraphX}{19}
+\l@slide {1}{\ignorespaces Heuristic}{3}
+\l@slide {2}{\ignorespaces Metaheuristics}{6}
+\l@slide {3}{\ignorespaces Shrinking our universe with siloing and semantic similarity}{10}
+\l@slide {4}{\ignorespaces Same problem with an e-commerce flavor}{12}
+\l@slide {5}{\ignorespaces Prototyping example}{13}
+\l@slide {6}{\ignorespaces Big data implementation : Neo4j and Spark GraphX}{14}
+\l@slide {7}{\ignorespaces Video and paper link}{15}
