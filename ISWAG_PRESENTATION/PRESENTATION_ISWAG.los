@@ -1,8 +1,7 @@
 \l@slide {1}{\ignorespaces Introduction}{3}
-\l@slide {2}{\ignorespaces Some notations}{4}
-\l@slide {3}{\ignorespaces In-rank computation}{5}
-\l@slide {4}{\ignorespaces In-rank computation}{6}
-\l@slide {5}{\ignorespaces Exhaustive brute force doesn't work}{7}
-\l@slide {6}{\ignorespaces Picturing our smallest store : jewelery }{8}
-\l@slide {7}{\ignorespaces Heuristic based algorithm}{9}
-\l@slide {8}{\ignorespaces Genetic algorithm}{10}
+\l@slide {2}{\ignorespaces Heuristic}{4}
+\l@slide {3}{\ignorespaces Metaheuristics}{7}
+\l@slide {4}{\ignorespaces Shrinking our universe with siloing and semantic similarity}{11}
+\l@slide {5}{\ignorespaces Same problem with an e-commerce flavor}{13}
+\l@slide {6}{\ignorespaces Prototyping example}{14}
+\l@slide {7}{\ignorespaces Big data implementation : Neo4j and Spark GraphX}{19}
