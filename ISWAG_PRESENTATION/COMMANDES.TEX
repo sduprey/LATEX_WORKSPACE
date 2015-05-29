@@ -1,0 +1,26 @@
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{}
+\thispagestyle{plain}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+\font\mysf=ecss8
+
+%%% commandes de Marius
+
+\setlength{\textwidth}{150truemm}
+\setlength{\textheight}{230truemm}
+\setlength{\topmargin}{10truemm}
+\hoffset -10truemm    % for Nancy
+\voffset -21truemm    % for Nancy
+\parindent 4mm
+\parskip 1.2ex plus 0.5ex minus 0.5ex
+\makeatletter
+\def\section{\@startsection {section}{1}{\z@}{-3.5ex plus -1ex minus
+    -.2ex}{2.3ex plus .2ex}{\large\bf}}
+\makeatother
+\pagestyle{myheadings}
+\markboth {\centerline{ Stefan Duprey }}
+          {\centerline{ Acoustique Advective Potentielle et Rayonnement des Moteurs }}

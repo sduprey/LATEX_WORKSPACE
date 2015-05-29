@@ -1,0 +1,185 @@
+\documentclass[a4, 14pts]{seminar}
+\usepackage[dvips]{pstcol}
+\usepackage{semcolor}
+\usepackage{sem-page}
+\usepackage{slidesec}
+\input{seminar.bug}
+\input{seminar.bg2}
+\usepackage{semhelv}
+\usepackage{subfigure}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{longtable,array,enumerate}
+
+
+\usepackage{multicol}
+
+\usepackage[intlimits,sumlimits,namelimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\usepackage[dvips]{graphicx}
+\usepackage{epsf}
+\usepackage{epsfig}
+\usepackage{fancyhdr}
+\usepackage{layout}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+\usepackage{url}
+\usepackage{xspace}
+
+\newtheorem{corollary}{Corollaire}[section]
+\newtheorem{definition}[corollary]{D\'{e}finition}
+\newtheorem{equations}[corollary]{Equations}
+\newtheorem{example}[corollary]{Exemple}
+\newtheorem{lemma}[corollary]{Lemme}
+\newtheorem{proposition}[corollary]{Proposition}
+\newtheorem{remark}[corollary]{Remarque}
+\newtheorem{theorem}[corollary]{Th\'{e}or\`{e}me}
+%%% The above 7 commands are used in the following way:
+%%% The definition environment, for example, is created by
+%%% \begin{definition}\label{xxx}. . .\end{definition}
+\newcommand{\mylabel}[1]{\label{#1}
+            \ifx\undefined\stillediting
+            \else \fbox{$#1$}\fi }
+\newcommand{\BE}{\begin{equation}}
+\newcommand{\BEQ}[1]{\BE\mylabel{#1}}
+\newcommand{\EEQ}{\end{equation}}
+\newcommand{\rfb}[1]{\mbox{\rm
+   (\ref{#1})}\ifx\undefined\stillediting\else:\fbox{$#1$}\fi}
+\newcommand{\half}   {{\frac{1}{2}}}
+\newenvironment{matr}[1]{\left[ \begin{array}{#1}}{\end{array}
+                         \right]}
+%
+\newfont{\Blackboard}{msbm10 scaled 1200}
+\newcommand{\bl}[1]{\mbox{\Blackboard #1}}
+\newfont{\roma}{cmr10 scaled 1200}
+
+\newcommand{\propp}{{\hskip -2.2mm{\bf .}\hskip 3mm}}
+
+\newcommand{\ovra}{\overrightarrow}
+% fin des commandes de Marius
+
+\fancyhf{}
+\renewcommand\headrulewidth{0.2mm}
+\renewcommand\footrulewidth{0.2mm}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\ROT}{{\text{Rot}}}
+\newcommand{\Rot}{\vec{\text{Rot}}}
+\newcommand{\rot}{\vec{\text{rot}}}
+
+\newcommand{\dsp}{\displaystyle}
+
+\newcommand\eads{\textsf{}\xspace}
+\newcommand\eadsccr{\textsf{}\xspace}
+
+\fancyhead[L]{\theslideheading}
+\fancyhead[R]{\textcolor{blue}{\eadsccr \thepage }}
+\fancyfoot[R]{\textcolor{blue}{}}
+\fancyfoot[L]{\textcolor{blue}{Bordeaux, le \today }}
+\renewcommand\headwidth{\textwidth}
+\autoslidemarginstrue
+
+\newslideframe{%
+   myscshadow}[\SemcolorFrameOps
+   \psset{shadowcolor=green}]{\psshadowbox{#1}}
+\newcommand{\ud}{\mathrm{d}}
+
+\newcommand{\ds}{\displaystyle}
+\slideframe{myscshadow}
+\setlength\slideframewidth{.5pt}
+\setlength\footskip{1cm}
+\setlength\headsep{1cm}
+
+%\renewcommand\makeslideheading[1]{\par
+%   \framebox{\theslidesection. #1}\par
+%}
+%\renewcommand\makeslidesubheading[1]{\par
+%   \leavevmode\hspace*{1cm}%
+%   \alph{slidesubsection}. #1\par
+%}
+
+\definecolor{Pink}{rgb}{1.,0.,0.2}
+\definecolor{Mygreen}{rgb}{0.3,0.7,0.6}
+
+\renewcommand\makeslideheading[1]{\par
+   \fcolorbox{black}{Pink}{\color{yellow}\theslidesection. #1}\par
+}
+\renewcommand\makeslidesubheading[1]{\par
+   \leavevmode\hspace*{1cm}%
+   \textcolor{Mygreen}{\alph{slidesubsection}. #1}\par
+}
+
+\makeatletter
+\renewcommand\slide@contents{\par
+   \begin{center}
+        \Large \bfseries\textcolor{blue}{Plan}
+   \end{center}
+  \def\l@slide##1##2##3{%
+    \@undottedtocline{1}{1.5em}{2.3em}{\slidenumberline{##1.}{##2}}{}}%
+  \def\l@subslide##1##2##3{%
+    \@undottedtocline{1}{1.5em}{3.3em}{\slidenumberline{\@alph{##1})}{##2}}{}}%
+  \@startlos
+}
+\makeatother
+
+\slideframe{none}
+
+%\XgrDefinitFormat{*}{line=0,mark=0,ll=1}
+%\XgrDefinitFormat{pr}{}
+%\XgrDefinitFormat{ks}{line=-1,mark=8,ll=0.4}
+
+\begin{document}
+\slidepagestyle{fancy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{slide}
+%\begin{figure}[ht]\begin{center}\includegraphics[height=3cm]{logo.eps}\end{center}\end{figure}
+\begin{center}
+\textcolor{blue}{\large Optimisation du maillage interne}\\
+\vspace{0.25 cm}
+%\eadsccr
+\end{center}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\small{
+\begin{slide}
+Soit $N\in\mathbb{N}$ le nombre de noeuds de notre maillage.
+\newline
+%Soit $\left(X_i\right)_{i \in \left{1,N\right}}$ les sommets de notre graphe orienté.
+Soit $\left(X_i\right)_{i \in \left\{1,...,N\right\}}$ les sommets de notre graphe orienté.
+\newline
+Soit $\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}$ la matrice adjacente de notre graphe orienté.
+\begin{equation}
+\max_{\left(G_{ij}\right)  \in \left\{0,1\right\}^{N\times N}}\left\{ \sum^{N}_{i=1} trafic\left(X_i\right)\times pageRank(X_i)\right\}
+\end{equation} 
+\end{slide}
+\begin{slide}
+Soit $N\in\mathbb{N}$ le nombre de noeuds de notre maillage.
+\newline
+Initialisation du page rank :
+\begin{equation}
+\forall u \ PR\left(u\right)=\frac{1}{N}
+\end{equation} 
+Calcul itératif :
+\begin{equation}
+PR\left(u\right)= \frac{\left(1-c\right)}{N} + c \times \sum_{v \rightarrow u}\frac{PR\left(v\right)}{card\left(\left\{v\rightarrow u\right\}\right)}
+\end{equation}
+\end{slide}
+\end{document}
