@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  29 MAY 2015 10:02
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  29 MAY 2015 12:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -559,58 +559,108 @@ LaTeX Warning: Unused global option(s):
 (./PRESENTATION_ISWAG.aux)
 \openout1 = `PRESENTATION_ISWAG.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 146.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 144.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-LaTeX Info: Redefining \degres on input line 146.
-LaTeX Info: Redefining \dots on input line 146.
+LaTeX Info: Redefining \degres on input line 144.
+LaTeX Info: Redefining \dots on input line 144.
 
 
 Package frenchb.ldf Warning: Setting StandardEnumerateEnv=true for
 (frenchb.ldf)                compatibility with enumerate package,
-(frenchb.ldf)                 on input line 146.
+(frenchb.ldf)                 on input line 144.
 
-LaTeX Info: Redefining \up on input line 146.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 156.
+LaTeX Info: Redefining \up on input line 144.
+Cannot use \thispagestyle in slide environments
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 154.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 155.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 160.
+
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 ) [1
 
 
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 163.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 166.
+
+(./PRESENTATION_ISWAG.los) [2
+
+]
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 170.
+LaTeX Font Info:    Try loading font information for U+msa on input line 172.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 163.
+LaTeX Font Info:    Try loading font information for U+msb on input line 172.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 163.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 172.
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-) [2
+) [3
 
-] [3
+] [4
+
+] [5
 
 ]
+[6
+
+]
+
+LaTeX Warning: Slide 7 overfull by 5.44756pt on input line 235.
+
+[7
+
+] [8]
+File: page_rank.eps Graphic file (type eps)
+ <page_rank.eps>
+Overfull \hbox (122.25021pt too wide) in paragraph at lines 239--240
+ [] 
+ []
+
+[9
+
+]
+
+LaTeX Warning: Slide 10 overfull by 76.01414pt on input line 240.
+
+
+Overfull \vbox (76.01414pt too high) has occurred while \output is active []
+
+
+[10] [11
+
+] [12
+
+]
+\tf@los=\write3
+\openout3 = `PRESENTATION_ISWAG.los'.
+
+
 
 *******************************************************
 ***** !! PRINT THIS DOCUMENT IN LANDSCAPE MODE !! *****
@@ -618,16 +668,16 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 (./PRESENTATION_ISWAG.aux) )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 161 ({)
-### simple group (level 1) entered at line 161 ({)
+### simple group (level 2) entered at line 163 ({)
+### simple group (level 1) entered at line 163 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 6437 strings out of 495000
- 91324 string characters out of 6180254
+ 6475 strings out of 495000
+ 91762 string characters out of 6180254
  174721 words of memory out of 5000000
- 9507 multiletter control sequences out of 15000+600000
- 16991 words of font info for 34 fonts, out of 8000000 for 9000
+ 9532 multiletter control sequences out of 15000+600000
+ 30494 words of font info for 54 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  43i,11n,51p,412b,604s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on PRESENTATION_ISWAG.dvi (3 pages, 3192 bytes).
+Output written on PRESENTATION_ISWAG.dvi (12 pages, 13180 bytes).
