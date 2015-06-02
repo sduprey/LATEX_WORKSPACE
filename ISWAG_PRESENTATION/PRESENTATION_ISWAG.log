@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  1 JUN 2015 09:08
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  2 JUN 2015 09:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -628,7 +628,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 ]
 
-LaTeX Warning: Slide 6 overfull by 2.98618pt on input line 233.
+LaTeX Warning: Slide 6 overfull by 2.98618pt on input line 236.
 
 [6
 
@@ -636,7 +636,7 @@ LaTeX Warning: Slide 6 overfull by 2.98618pt on input line 233.
 File: page_rank.eps Graphic file (type eps)
  <page_rank.eps>
 
-LaTeX Warning: Slide 7 overfull by 7.6685pt on input line 239.
+LaTeX Warning: Slide 7 overfull by 7.6685pt on input line 242.
 
 
 Overfull \vbox (5.05856pt too high) has occurred while \output is active []
@@ -646,7 +646,7 @@ Overfull \vbox (5.05856pt too high) has occurred while \output is active []
 
 ]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 252.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 255.
  [8
 
 ]
@@ -670,14 +670,14 @@ File: links_categorization.eps Graphic file (type eps)
 File: prototyping_example.eps Graphic file (type eps)
  <prototyping_example.eps>
 
-LaTeX Warning: Slide 13 overfull by 5.71402pt on input line 319.
+LaTeX Warning: Slide 13 overfull by 5.71402pt on input line 322.
 
 [13
 
 ]
 File: neo4j_maze_runner.eps Graphic file (type eps)
  <neo4j_maze_runner.eps>
-Overfull \hbox (36.88918pt too wide) in paragraph at lines 323--324
+Overfull \hbox (36.88918pt too wide) in paragraph at lines 326--327
  [] 
  []
 
@@ -703,10 +703,10 @@ Overfull \hbox (36.88918pt too wide) in paragraph at lines 323--324
 Here is how much of TeX's memory you used:
  6470 strings out of 495000
  91823 string characters out of 6180254
- 174721 words of memory out of 5000000
+ 175721 words of memory out of 5000000
  9528 multiletter control sequences out of 15000+600000
  28759 words of font info for 41 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  43i,11n,51p,417b,604s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on PRESENTATION_ISWAG.dvi (15 pages, 17516 bytes).
+Output written on PRESENTATION_ISWAG.dvi (15 pages, 17644 bytes).
