@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  2 JUN 2015 09:25
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  2 JUN 2015 19:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -709,4 +709,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  43i,11n,51p,417b,604s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on PRESENTATION_ISWAG.dvi (15 pages, 17644 bytes).
+Output written on PRESENTATION_ISWAG.dvi (15 pages, 17632 bytes).
