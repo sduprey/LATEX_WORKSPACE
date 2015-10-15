@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  24 FEB 2015 09:25
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.10.15)  15 OCT 2015 09:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Maineconometry.tex
 (./Maineconometry.tex
 LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 4 languages loaded.
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/bk12.clo
@@ -758,12 +758,12 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 477 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 3251 strings out of 495000
- 39518 string characters out of 6180254
- 110517 words of memory out of 5000000
- 6388 multiletter control sequences out of 15000+600000
+ 3251 strings out of 493305
+ 39518 string characters out of 6139896
+ 114708 words of memory out of 5000000
+ 6628 multiletter control sequences out of 15000+600000
  25973 words of font info for 75 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
+ 957 hyphenation exceptions out of 8191
  28i,13n,43p,869b,309s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Maineconometry.dvi (49 pages, 133748 bytes).
+Output written on Maineconometry.dvi (49 pages, 133700 bytes).

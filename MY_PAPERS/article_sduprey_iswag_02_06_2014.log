@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.2.24)  29 APR 2015 12:32
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.10.15)  15 OCT 2015 08:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **article_sduprey_iswag_02_06_2014
 (./article_sduprey_iswag_02_06_2014.tex
 LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 4 languages loaded.
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (./iSWAGArticle.cls
 Document Class: iSWAGArticle 2014/08/21 iSWAG article class
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -926,12 +926,12 @@ t changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 294.
  ) 
 Here is how much of TeX's memory you used:
- 7463 strings out of 495000
- 111005 string characters out of 6180254
- 211940 words of memory out of 5000000
- 10582 multiletter control sequences out of 15000+600000
+ 7463 strings out of 493305
+ 111005 string characters out of 6139896
+ 216130 words of memory out of 5000000
+ 10822 multiletter control sequences out of 15000+600000
  8201 words of font info for 31 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
+ 957 hyphenation exceptions out of 8191
  43i,13n,45p,346b,421s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on article_sduprey_iswag_02_06_2014.dvi (6 pages, 45100 bytes).
