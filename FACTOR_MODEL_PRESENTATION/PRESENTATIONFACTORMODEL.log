@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.10.15)  22 OCT 2015 07:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.10.15)  30 OCT 2015 00:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -552,6 +552,37 @@ Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
 )
 \c@corollary=\count181
 
+(/usr/share/texlive/texmf-dist/tex/latex/mh/mathtools.sty
+Package: mathtools 2013/02/12 v1.13 mathematical typesetting tools
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count182
+\calc@Bcount=\count183
+\calc@Adimen=\dimen174
+\calc@Bdimen=\dimen175
+\calc@Askip=\skip76
+\calc@Bskip=\skip77
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count184
+\calc@Cskip=\skip78
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mh/mhsetup.sty
+Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count185
+\l_MT_multwidth_dim=\dimen176
+\origjot=\skip79
+\l_MT_shortvdotswithinadjustabove_dim=\dimen177
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen178
+\l_MT_above_intertext_sep=\dimen179
+\l_MT_below_intertext_sep=\dimen180
+\l_MT_above_shortintertext_sep=\dimen181
+\l_MT_below_shortintertext_sep=\dimen182
+)
 
 LaTeX Warning: Unused global option(s):
     [14pts].
@@ -559,75 +590,133 @@ LaTeX Warning: Unused global option(s):
 (./PRESENTATIONFACTORMODEL.aux)
 \openout1 = `PRESENTATIONFACTORMODEL.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 146.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 152.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-LaTeX Info: Redefining \degres on input line 146.
-LaTeX Info: Redefining \dots on input line 146.
+LaTeX Info: Redefining \degres on input line 152.
+LaTeX Info: Redefining \dots on input line 152.
 
 
 Package frenchb.ldf Warning: Setting StandardEnumerateEnv=true for
 (frenchb.ldf)                compatibility with enumerate package,
-(frenchb.ldf)                 on input line 146.
+(frenchb.ldf)                 on input line 152.
 
-LaTeX Info: Redefining \up on input line 146.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 156.
+LaTeX Info: Redefining \up on input line 152.
+Cannot use \thispagestyle in slide environments
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 163.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 164.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 169.
+
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 ) [1
 
 
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 163.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 175.
+
+(./PRESENTATIONFACTORMODEL.los) [2
+
+]
+LaTeX Font Info:    Try loading font information for U+msa on input line 183.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 163.
+LaTeX Font Info:    Try loading font information for U+msb on input line 183.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 163.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 183.
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-) [2
-
-] [3
+) [3
 
 ]
+
+LaTeX Warning: Slide 4 overfull by 15.20422pt on input line 221.
+
+[4
+
+]
+
+LaTeX Warning: Slide 5 overfull by 6.93066pt on input line 238.
+
+[5
+
+]
+Overfull \hbox (18.9334pt too wide) detected at line 250
+[] [] \OML/cmm/m/it/10 ;  becomes
+ []
+
+[6
+
+] [7] [8
+
+] [9] [10
+
+] [11]
+File: computing_factor_loading.eps Graphic file (type eps)
+ <computing_factor_loading.eps> [12
+
+]
+File: computing_factor_covariance_idiosyncratic_risk.eps Graphic file (type eps
+)
+
+<computing_factor_covariance_idiosyncratic_risk.eps> [13
+
+]
+Overfull \hbox (5.7278pt too wide) in paragraph at lines 378--378
+[][][][]  
+ []
+
+File: computing_long_short_market_neutral_constraint.eps Graphic file (type eps
+)
+<computing_long_short_market_neutral_constraint.eps> [14
+
+] [15]
+\tf@los=\write3
+\openout3 = `PRESENTATIONFACTORMODEL.los'.
+
+
 
 *******************************************************
 ***** !! PRINT THIS DOCUMENT IN LANDSCAPE MODE !! *****
 *******************************************************
 (./PRESENTATIONFACTORMODEL.aux) )
-(\end occurred inside a group at level 2)
+(\end occurred inside a group at level 4)
 
-### simple group (level 2) entered at line 161 ({)
-### simple group (level 1) entered at line 161 ({)
+### simple group (level 4) entered at line 180 ({)
+### simple group (level 3) entered at line 180 ({)
+### simple group (level 2) entered at line 172 ({)
+### simple group (level 1) entered at line 172 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 6437 strings out of 493305
- 91369 string characters out of 6139896
- 178912 words of memory out of 5000000
- 9747 multiletter control sequences out of 15000+600000
- 16991 words of font info for 34 fonts, out of 8000000 for 9000
+ 7006 strings out of 493305
+ 101255 string characters out of 6139896
+ 192806 words of memory out of 5000000
+ 10298 multiletter control sequences out of 15000+600000
+ 25367 words of font info for 39 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 43i,11n,51p,417b,604s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,15n,51p,417b,652s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on PRESENTATIONFACTORMODEL.dvi (3 pages, 3204 bytes).
+Output written on PRESENTATIONFACTORMODEL.dvi (15 pages, 20136 bytes).
