@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.10.15)  4 DEC 2015 00:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.10.15)  4 DEC 2015 07:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -662,8 +662,8 @@ Overfull \vbox (5.77037pt too high) has occurred while \output is active []
 ] [4
 
 ]
-File: weight_computation.eps Graphic file (type eps)
- <weight_computation.eps> [5
+File: my_leveraged_weights.eps Graphic file (type eps)
+ <my_leveraged_weights.eps> [5
 
 ]
 \tf@los=\write3
@@ -684,7 +684,7 @@ File: weight_computation.eps Graphic file (type eps)
 ### bottom level 
 Here is how much of TeX's memory you used:
  7028 strings out of 493305
- 101302 string characters out of 6139896
+ 101306 string characters out of 6139896
  193821 words of memory out of 5000000
  10315 multiletter control sequences out of 15000+600000
  32084 words of font info for 55 fonts, out of 8000000 for 9000
