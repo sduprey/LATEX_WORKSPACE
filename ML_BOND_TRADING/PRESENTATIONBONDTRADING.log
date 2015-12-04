@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.10.15)  3 DEC 2015 04:20
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.10.15)  4 DEC 2015 00:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -661,7 +661,9 @@ Overfull \vbox (5.77037pt too high) has occurred while \output is active []
 
 ] [4
 
-] [5
+]
+File: weight_computation.eps Graphic file (type eps)
+ <weight_computation.eps> [5
 
 ]
 \tf@los=\write3
@@ -681,12 +683,12 @@ Overfull \vbox (5.77037pt too high) has occurred while \output is active []
 ### simple group (level 1) entered at line 175 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 7025 strings out of 493305
- 101254 string characters out of 6139896
+ 7028 strings out of 493305
+ 101302 string characters out of 6139896
  193821 words of memory out of 5000000
- 10314 multiletter control sequences out of 15000+600000
+ 10315 multiletter control sequences out of 15000+600000
  32084 words of font info for 55 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  43i,13n,51p,417b,618s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on PRESENTATIONBONDTRADING.dvi (5 pages, 8604 bytes).
+Output written on PRESENTATIONBONDTRADING.dvi (5 pages, 8676 bytes).
