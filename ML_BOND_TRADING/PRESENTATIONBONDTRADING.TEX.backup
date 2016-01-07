@@ -185,7 +185,7 @@
 \slideheading{Building our pair trading signal}
 Our ML algorithm outputs us with two predictions : the return for the first bond future $x_1$ and the return for the second bond
 future return $x_2$, both for the same chosen rebalancing time period. We want to build our weights with the following properties, where T is a threshold parameter to limit our spread exposure $0<T<1$.
-$T$ and might also be seen as a guardrail when one of our prediction has low confidence : $x_1$ or $x_2$ is near zero.
+$T$ might also be seen as a guardrail when one of our prediction has low confidence : $x_1$ or $x_2$ is near zero.
 \begin{equation}
 \begin{displaystyle}
 \begin{cases}
@@ -200,197 +200,39 @@ $T$ and might also be seen as a guardrail when one of our prediction has low con
 \end{equation}
 \end{slide}
 \begin{slide}
+{\footnotesize
 \slideheading{Weights expression}
 \begin{equation}
 \begin{displaystyle}
 \begin{cases}
 x_1 > 0, x_2 > 0 \begin{cases}  \omega_1=\frac{x_1}{x_1+x_2},\ \omega_2=\frac{x_2}{x_1+x_2}  \\ \omega_1+\omega_2=1,\ 0<\omega_1<1,\ 0<\omega_2<1    \end{cases} \\
 x_1 < 0, x_2 < 0 \begin{cases}  \omega_1=-\frac{x_1}{x_1+x_2},\ \omega_2=-\frac{x_2}{x_1+x_2}  \\ \omega_1+\omega_2=-1,\ -1<\omega_1<0,\ -1<\omega_2<0    \end{cases} \\
-x_1 < 0, x_2 > 0, \left|x_1\right| > x_2 \begin{cases}  \omega_1=-\frac{x_1}{x_1+x_2},\ \omega_2=-\frac{x_2}{x_1+x_2}  \\ \omega_1+\omega_2=-1,\ -1-T<\omega_1<-1,\ 0<\omega_2<T    \end{cases} \\
-x_1 < 0, x_2 > 0, \left|x_1\right| < x_2 \begin{cases}  \omega_1=\frac{x_1}{x_1+x_2},\ \omega_2=\frac{x_2}{x_1+x_2}  \\ \omega_1+\omega_2=1,\ -T<\omega_1<0,\ 1<\omega_2<1+T    \end{cases} \\
-x_1 > 0, x_2 < 0, \left|x_2\right| > x_1 \begin{cases}  \omega_1=-\frac{x_1}{x_1+x_2},\ \omega_2=-\frac{x_2}{x_1+x_2}  \\ \omega_1+\omega_2=-1,\ -1-T<\omega_1<-1,\ 0<\omega_2<T    \end{cases} \\
-x_1 > 0, x_2 < 0, \left|x_2\right| < x_1 \begin{cases}  \omega_1=\frac{x_1}{x_1+x_2},\ \omega_2=\frac{x_2}{x_1+x_2}  \\ \omega_1+\omega_2=1,\ -T<\omega_1<0,\ 1<\omega_2<1+T    \end{cases} 
+x_1 < 0, x_2 > 0, \left|x_1\right| > x_2 \begin{cases}  \omega_2=\min(-\frac{x_2}{x_1+x_2},T),\ \omega_1=-1-\omega_2   \\ -1-T<\omega_1<-1,\ 0<\omega_2<T    \end{cases} \\
+x_1 < 0, x_2 > 0, \left|x_1\right| < x_2 \begin{cases}  \omega_1=\max(\frac{x_1}{x_1+x_2},-T),\ \omega_2=1-\omega_1  \\ -T<\omega_1<0,\ 1<\omega_2<1+T    \end{cases} \\
+x_1 > 0, x_2 < 0, \left|x_2\right| > x_1 \begin{cases}  \omega_1=\min(-\frac{x_1}{x_1+x_2},T),\ \omega_2=-1-\omega_1   \\ 0<\omega_1<T,\ -1-T<\omega_2<-1     \end{cases} \\
+x_1 > 0, x_2 < 0, \left|x_2\right| < x_1 \begin{cases}  \omega_2=\max(\frac{x_2}{x_1+x_2},-T),\ \omega_2=1-\omega_1  \\ 1<\omega_2<1+T,\ -T<\omega_2<0    \end{cases} 
 \end{cases}
 \end{displaystyle}
 \end{equation}
-
-\begin{equation}
-\Theta = \Xi + \widetilde{\Omega}\Phi\widetilde{\Omega}^{\intercal}
-\end{equation}
-where $\Xi_{ij}=\xi_{ij}^2 \delta_{ij}$ is the diagonal idiosyncratic part of the variance and $\Phi$ the $K\times K$ factor covariance matrix, $\widetilde{\Omega}$ is the $K\times K$ factor
-loading matrix.
-\newline
-Note that $K < < N$ gives more out of samples stability. Through Cholesky :
-\begin{equation}
-\Theta = \Xi + \Omega\Omega^\intercal
-\end{equation}
-where $\Omega = \widetilde{\Omega}\widetilde{\Phi}$ and $\widetilde{\Phi}\widetilde{\Phi}^\intercal=\Phi$
-\newline
-Note that the standard variance for a portfolio with weights $\omega$ decomposes as :
-\begin{equation}
-\omega^\intercal \Omega \omega =  \sum_{i=1}^{N}  \xi_{ij}^2 + f^\intercal \Phi f
-\end{equation}
-where $f = \Omega \omega$ is the factor values for our portfolio with weights $\omega$
-\end{slide}
-\begin{slide}
-\slideheading{Regressing returns over factor loading/exposure}
-At each observation time we have to regress our stock returns to our stock factors :
-\begin{equation}
-R(t) = \sum_{k=1}^{K} \beta_k(t) \times F_k(t) + \epsilon(t)
-\end{equation}
-\begin{equation}
-R(t) = \sum_{k=1}^{K} f_k(t) \times \Omega_k(t) + \epsilon(t)
-\end{equation}
-$\Omega_i$, $F_i$ is the factor exposure or loading for the stock $i$ and $\beta_i$, $f_i$ is the factor return or factor itself.
-\newline
-The variance of $\epsilon(t)$ is the idiosyncratic risk for stock $i$
-\newline
-The covariance of $(f_k(t))_{k \in \{1,\cdots,K\}}$ is the factor covariance matrix.
-\newline
-Here a proprietary strategy is to be defined to compute the factor matrix : a rolling standard deviation or garch volatility estimation for idiosyncratic variance and a rolling Ledoit-Wolf covariance matrix estimation
-\end{slide}
-{\small
-\begin{slide}
-\slideheading{Minimum variance optimization rebalancement at each date}
-\begin{equation}
-\displaystyle
-\operatornamewithlimits{argmin}_{\begin{cases}
-\omega \in \mathbb{R}^N,\omega_i > 0,\omega_i < 1\\
-\sum_{i=1}^{N}\omega_i = 1\\
-\newline \sum_{i=1}^{n} \omega_i \beta_i =\sum_{i=1}^{n} \omega_i \frac{\Cov \left(R_i,R_{market} \right)}{\Var (R_i)} = 1
-\end{cases}
-} \left\{  \omega \Sigma \omega^\intercal - q\times \mu^\intercal\omega\right\}, \ becomes 
-\end{equation}
-\begin{equation}
-\displaystyle
-\operatornamewithlimits{argmin}_{\begin{cases}
-x=(f,\omega) \in \mathbb{R}^{(N+K)},\omega_i > 0,\omega_i < 1\\
-\sum_{i=1}^{N}\omega_i = 1\\
-\sum_{i=1}^{n} \omega_i \beta_i =\sum_{i=1}^{n} \omega_i \frac{\Cov \left(R_i,R_{market} \right)}{\Var (R_i)} = 1 \\
-\Omega \omega = f
-\end{cases}
-}\left\{  x Q x^\intercal - q\times \widetilde{\mu}^\intercal x\right\}
-\end{equation}
-where :
-\begin{equation}
-\displaystyle
-Q=\left(
-\begin{array}{c|c}
-  \Phi & 0 \cdots 0 \\ \hline
-  0 & \begin{array}{cccc}
-\xi_{11}^2&& \ \ \bigzero \\
-&\ddots\\
-&&\ddots\\
-\bigzero \ &&& \xi_{nn}^2
-\end{array} \\[-4ex]
-  \vdots & \\[-0.5ex]
-  0 &
-\end{array}
-\right),\displaystyle
-\widetilde{\mu}=\left(
-\begin{array}{c}
-  0  \\
-  \mu 
-\end{array}
-\right)
-\end{equation}
-\end{slide}
 }
-\begin{slide}
-\slideheading{Long/short 130/30 portfolio}
-\begin{equation}
-\displaystyle
-\operatornamewithlimits{argmin}_{\begin{cases}
-x=(f,\omega) \in \mathbb{R}^{(N+K)}\\
-v \in \mathbb{R}^{(N)}\\
--0.1<\omega_i<0.1\\
-\sum_{i=1}^{N}\omega_i = 1\\
-\sum_{i=1}^{n} \omega_i \beta_i =\sum_{i=1}^{n} \omega_i \frac{\Cov \left(R_i,R_{market} \right)}{\Var (R_i)} = 1 \\
-\Omega \omega = f \\
--v<\omega<v \\
-v > 0 \\
-\sum_{i=1}^{N}v_i = 1.6
-\end{cases}
-}\left\{  x Q x^\intercal - q\times \widetilde{\mu}^\intercal x\right\}
-\end{equation}
-where :
-\begin{equation}
-\displaystyle
-Q=\left(
-\begin{array}{c|c}
-  \Phi & 0 \cdots 0 \\ \hline
-  0 & \begin{array}{cccc}
-\xi_{11}^2&& \ \ \bigzero \\
-&\ddots\\
-&&\ddots\\
-\bigzero \ &&& \xi_{nn}^2
-\end{array} \\[-4ex]
-  \vdots & \\[-0.5ex]
-  0 &
-\end{array}
-\right),\displaystyle
-\widetilde{\mu}=\left(
-\begin{array}{c}
-  0  \\
-  \mu 
-\end{array}
-\right)
-\end{equation}
 \end{slide}
 \begin{slide}
-\slideheading{Long/Short 100/100 Market Neutral portfolio}
-\begin{equation}
-\displaystyle
-\operatornamewithlimits{argmin}_{\begin{cases}
-x=(f,l\omega, s\omega) \in \mathbb{R}^{(N+3*K)}\\
-b \in \mathbb{R}^{(N)}\\
-0<l\omega_i<0.1, 0<s\omega_i<0.1\\
-\sum_{i=1}^{N}l\omega_i = \sum_{i=1}^{N}s\omega_i\\
-\sum_{i=1}^{N}l\omega_i + \sum_{i=1}^{N}s\omega_i = 2\\
-\sum_{i=1}^{n} l\omega_i \beta_i = \sum_{i=1}^{n} s\omega_i \beta_i \\
-\Omega l\omega - \Omega s\omega  = f \\
-l\omega < b \\
-s\omega < 1-b
-\end{cases}
-}\left\{  x Q x^\intercal - q\times \widetilde{\mu}^\intercal x\right\}
-\end{equation}
-where :
-\begin{equation}
-\displaystyle
-Q=\left(
-\begin{array}{c|ccc}
-  \Phi & 0 \cdots 0 \\ \hline
-  0 &  Q_{idio} & -Q_{idio}\\
-  0 & -Q_{idio}& Q_{idio}
-\end{array}
-\right),
-\displaystyle
-Q_{idio} = \left(\begin{array}{cccc}
-\xi_{11}^2 && \ \ \bigzero \\
-&\ddots\\
-&&\ddots\\
-\bigzero \ &&& \xi_{nn}^2
-\end{array}
-\right)
-\end{equation}
+\slideheading{Visualizing the confidence threshold}
+\begin{center}
+\epsfig{file=my_leveraged_weights.eps,height=6cm,width=6cm}
+\end{center}
 \end{slide}
+\begin{slide}
+\slideheading{Devising a sovereign debt bond futures strategy with the United States as a pivot}
+The returns for each pair trading strategy against US. US is always traded first.
+\begin{cases}
+\omega_{US/Europe}R_{US}+\omega_{Europe}R_{Europe}
+\omega_{US/Germany}R_{US}+\omega_{Germany}R_{Germany}
+\omega_{US/UK}R_{US}+\omega_{UK}R_{UK}
+\omega_{US/Japan}R_{US}+\omega_{Japan}R_{Japan}
+\end{cases}
+\begin{equation}
 
-\begin{slide}
-\slideheading{R code : computing factors loadings}
-\begin{center}
-\epsfig{file=computing_factor_loading.eps,height=6.5cm,width=7.5cm}
-\end{center}
-\end{slide}
-\begin{slide}
-\slideheading{R code : estimating factors covariance matrix and idiosyncratic risk}
-\begin{center}
-\epsfig{file=computing_factor_covariance_idiosyncratic_risk.eps,height=4.5cm,width=7.5cm}
-\end{center}
-\end{slide}
-\begin{slide}
-\slideheading{R code : quadratic programming, constraints and multi risk factor models}
-\begin{center}
-\epsfig{file=computing_long_short_market_neutral_constraint.eps,height=7cm,width=7.5cm}
-\end{center}
+\end{equation}
 \end{slide}
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.10.15)  4 DEC 2015 07:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.10.15)  7 JAN 2016 06:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -666,6 +666,19 @@ File: my_leveraged_weights.eps Graphic file (type eps)
  <my_leveraged_weights.eps> [5
 
 ]
+Overfull \hbox (9.298pt too wide) in paragraph at lines 226--226
+[][][][]  
+ []
+
+
+Overfull \hbox (10.69202pt too wide) detected at line 240
+[]\OML/cmm/m/it/10 R[] \OT1/cmr/m/n/10 + []\OML/cmm/m/it/10 R[] \OT1/cmr/m/n/10
+ + []\OML/cmm/m/it/10 R[] \OT1/cmr/m/n/10 + []\OML/cmm/m/it/10 R[]
+ []
+
+[6
+
+]
 \tf@los=\write3
 \openout3 = `PRESENTATIONBONDTRADING.los'.
 
@@ -691,4 +704,4 @@ Here is how much of TeX's memory you used:
  957 hyphenation exceptions out of 8191
  43i,13n,51p,417b,618s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on PRESENTATIONBONDTRADING.dvi (5 pages, 8676 bytes).
+Output written on PRESENTATIONBONDTRADING.dvi (6 pages, 10612 bytes).
