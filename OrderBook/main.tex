@@ -1,0 +1,160 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage[numbers]{natbib}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+\title{Risky order book detection}
+
+\author{\IEEEauthorblockN{Stefan Duprey}
+\IEEEauthorblockA{\textit{SwissBorg} \\
+stefan@swissborg.com}
+}
+
+\maketitle
+
+\begin{abstract}
+In order to prevent the occurrence of high slippage orders when executing on behalf of our retail customer, we must detect risky order book and trade accordingly.
+\begin{description}
+  \item[$\bullet$]Detect inflexion points in the order book
+  \item[$\bullet$]Cap maximum limit order price
+  \item[$\bullet$]Expand time window to pass maker below the max price
+  \item[$\bullet$]Fill with treasury the order part that would occur to big a slippage
+\end{description}
+
+\end{abstract}
+\section{Snapshot only, no comparative historical data}
+\subsection{Slippage definition}
+\begin{center}
+\begin{tabular}{||c c c||} 
+ \hline
+ Depth & Price & Quantity \\ [0.5ex] 
+ \hline\hline
+ ask depth n & \hdots & \hdots  \\ 
+ \hline
+ ... & &  \\
+ \hline
+ ask depth 2 & \hdots & \hdots  \\ 
+ \hline
+ best ask & \hdots & \hdots  \\ 
+ \hline
+ \hline
+ best bid & \hdots & \hdots  \\ 
+ \hline
+ bid depth 2 & \hdots & \hdots  \\ 
+ \hline
+ ... & &  \\
+ \hline
+ bid depth n & \hdots & \hdots  \\ 
+ \hline
+ \end{tabular}
+\end{center}
+Let's define:
+\begin{equation}
+P_{mid\ market} = \frac{P_{best\ bid} + P_{best\ ask}}{2}    
+\end{equation}
+Let's define for an amount to pass $A$ the maximal depth $d$ at which the amount to pass would be filled if we ripped the order book.
+\begin{equation}
+d^* = \sup\left\{{d / \sum\limits_{j = 1}^{d} q_j < A}\right\}+1
+\end{equation}
+The execution price is then defined by the average price over all the depth up to $d^*$ (the last depth not being totally ripped off, just enough so that the $A$ amount is reached).\\
+The execution price is then defined:
+\begin{equation}
+P_{execution}(A) =  \frac{\sum\limits_{j = 1}^{d^*(A)} q_j * p_j}{\sum\limits_{j=1}^{d^*(S)} q_j}
+\end{equation}
+And finally the slippage definition:
+\begin{equation}
+slippage(A) = \frac{P_{execution}(A) - P_{mid\ market}}{P_{mid\ market}}
+\end{equation}
+\subsection{Slippage acceleration}
+We define the slippage acceleration as :
+\begin{equation}
+slippage\_acceleration(A)=\frac{d \left(slippage(A)\right)}{dA}  
+\end{equation}
+
+\subsection{Rules and absolute thresholds for slippage}
+
+\susubbsection{Absolute threshold definition}
+Let's denote S the slippage vector for different amounts:
+$$
+S =\begin{pmatrix} 
+	S_{bid}(100) \\
+	S_{ask}(100) \\
+	S_{bid}(500) \\
+	S_{ask}(500) \\
+	\vdots\\
+	S_{bid}(50000) \\
+	S_{ask}(50000) \\
+	S_{bid}(100000) \\
+	S_{ask}(100000) \\
+	\end{pmatrix}
+$$
+We define the absolute thresholds as the x\% quantile from the S vector distribution:
+\begin{equation}
+t =\begin{pmatrix} 
+	t_{bid}(100) \\
+	t_{ask}(100) \\
+	t_{bid}(500) \\
+	t_{ask}(500) \\
+	\vdots\\
+	t_{bid}(50000) \\
+	t_{ask}(50000) \\
+	t_{bid}(100000) \\
+	t_{ask}(100000) \\
+	\end{pmatrix}
+\end{equation}
+where $$\mathbb{P}\left[\lvert S(A) \rvert < t(A) \right] = x\% = 90\%$$ where $x$ is fixed (90\%)
+\subsection{Common rule for all amounts}
+We assess the riskiness of an order book with the following metrics:
+\begin{equation}
+R = \frac{\sum\limits_{way \in bid/ask}\sum\limits_{a_i} q_i * 1_{s_{way}(a_i)\ge t(a_i)}}{\sum\limits_{bid/ask,i} q_i}
+\end{equation}
+where $ (a_i)_{i \in [1,..,n]} = [100, 500, \hdots, 50000,100000]$ is the predefined range of amount 
+and $q_i$ is a weighting here to emphasize that slower amount threshold break are more important than bigger amount. We propose first a linear weighting: if $a_i = [100,500,1000]$ then $q_i = [3,2,1]$
+$$
+q_i = range(len(a_i),1,-1)
+$$
+\subsection{Rule for one amount only}
+We assess the riskiness of an order book for a single amount to pass $a$ with the following metrics:
+\begin{equation}
+R =  1_{s(a)\ge t(a)}
+\end{equation}
+where $a$ is the predefined amount. The order book is deemed risky if its slippage for the amount a is above the x\% threshold.
+\subsection{Rule subsequent action}
+If the order book slippage for the asked amount a is above the the absolute threshold $t(a)$:\\
+Find $a^*$ such that $a^*<a$ and $slippage(a^*) = t(a)$ (possible as the slippage is an increasing function of the amount).\\
+Fill the order till $a^$*, and then 2 solutions : 
+\begin{description}
+  \item[$\bullet$] Fill the other part with the treasury.
+  \item[$\bullet$] Wait for the market maker to bring back liquidity below the last execution price
+\end{description}
+
+\section{Rolling thresholds}
+We do the exact same analysis, but do calibrate the thresholds with quantile at 90\% from a rolling distribution.\\
+The rolling window size must be defined and the quantiles recomputed dynamically.
+\section{Dynamical historical thresholds}
+Algorithmic is a tough field with really advanced and sophisticated players.\\
+Snapshot algorithms are just a first simple step.\\
+The next step would a dynamical study of the order book to assess slippage parameters due to order submissions.\\
+Order book modelisation as VAR/VEC process can allow us to 
+The dynamical part is the harder one. It implies to submit best bid/ask limit orders and inspect the repercussion of those depth quantities change over the order book.\\
+This is actually where we found the most litterature about.
+
+
+\section{Conclusion}
+
+\bibliographystyle{IEEEtranN}
+\bibliography{bib}
+\nocite{*}
+\end{document}
+
+% to do
+% Expliquer l'importance de la réduction de dimension dans ML
+% Expliquer la diff CCA PCA pour ML

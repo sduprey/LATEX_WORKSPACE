@@ -1,0 +1,426 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage[numbers]{natbib}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+\title{Curve pools multiple allocation fairness strategies}
+
+\author{\IEEEauthorblockN{Stefan Duprey, Tom Suter}
+\IEEEauthorblockA{\textit{SwissBorg} \\
+stefan@swissborg.com, tom@swissborg.com}
+}
+
+\maketitle
+
+\begin{abstract}
+Fairness in IOUs distribution. Shrimp vs whales.\\
+
+\end{abstract}
+\section{Swap invariant}
+Automate market makers or DEX do come in multiple flavours.
+\subsection{Different AMM flavours}
+\subsubsection{Constant sum}
+\begin{equation}
+\sum x_i = cte
+\end{equation}
+\subsubsection{Constant product}
+\begin{equation}
+\prod x_i = cte
+\end{equation}
+
+\subsubsection{Mix of both}
+\begin{equation}\label{eq:invariant}
+An^n \sum x_i + D = DAn^n +\frac{D^{n+1}}{n^n\prod x_i} 
+\end{equation}
+where $x_i$ represents the balance of token $i$ in the pool, $A$ is the amplification coefficient and $n$ is the number of tokens in the pool as explained in \cite{https://curve.fi/files/stableswap-paper.pdf}.
+Let's write $Ann = Ann$, the invariant equation becomes :
+\begin{equation}\label{eq:invariant}
+Ann \sum x_i + D = DAnn +\frac{D^{n+1}}{n^n\prod x_i} 
+\end{equation}\label{eq:invariant}
+
+\subsection{Curve : a mix of both}
+\subsubsection{Swapping token with Curve}\label{tokenswapping}
+When a trader wants to know the amount $x_j$ of the $j$ token he will get for swapping $dx$ token of $x_i$ of the $i$ token. The updated amount of token $i$ in the pool can be calculated as $x_i \leftarrow x_i + dx$.\\
+Since the tokens quantities always need to follow the stable swap invariant \ref{eq:invariant}, the updated quantity for $x_j$ can be found by solving : \\
+\begin{equation}
+x_j^2+(b-D)x_j-c=0
+\end{equation}
+where :
+\begin{equation}
+b=\sum_{i\neq j}^{n}x_i+\frac{D}{Ann}
+\end{equation}
+and
+\begin{equation}
+c=\frac{D^{n+1}}{\prod_{i\neq j}^{n}x_i An^n n^n} 
+\end{equation}
+This second order polynomial roots can be found easily using a discriminant and square roots. Due to blockchain limited computations abilities, an approximation can be computed easily using Newton's method.\\
+This approximation will converge to the proper root if we take as starting point the previous $x_j$ value.\\
+The converging algorithm can be written as :
+\begin{equation}
+{x_j}_{n+1} = {x_j}_{n}-\frac{{x_j}_{n}^2+(b-D){x_j}_{n}-c}{2{x_j}_n + b-D} = \frac{{x_j}_{n}^2+c}{2{x_j}_n + b-D}
+\end{equation}
+The quantity $dy = {x_j}_{0} - {x_j}_{final}$ where ${x_j}_{0}$ is the initial quantity of token $j$ in the pool and ${x_j}_{final}$ is the approximation.\\
+Check out the implementation of the above algorithm in the $get\_y(i,j,x,xp)$ function of 3poolSwap contract \cite{https://etherscan.io/address/0xbebc44782c7db0a1a60cb6fe97d0b483032ff1c7#code}. The variable naming is consistent with the code.
+
+Let's call that function :
+\begin{equation}
+D = getD(x_1, ...,x_n) 
+\end{equation}
+
+\subsubsection{The stable invariant D}
+The stable invariant $D$ is calculated by solving equation \ref{eq:invariant} for $D$, given all other parameters are constant.\\
+The function $f(D)$, which is a polynomial function of degree $n+1$ can be represented as :
+\begin{equation}\label{eq:invariantNewton}
+f(D) = \frac{D^{n+1}}{n^n \prod x_i} + (Ann-1)D-Ann S=0
+\end{equation}
+\subsubsection{Adding liquidity to a Curve pool}\label{add}
+When depositing $d$ ethers, we split the quantities according to the target allocations and deposit the matching quantities $d*\omega_i$ in each pool, and will receive IOUs Lps tokens to reflect their share of the pool.\\
+The Lps token quantity is computed as :\\
+We take the convention that token $1$ is the same for each pool and is the one that is added.\\
+We also assume there that there are $n$ tokens on each $m$ pools just for simplification purposes.\\
+For each pool the 
+$$
+\text{old balance} \leftarrow  \text{new balance}
+$$
+$$
+(x_1^1,...,x_n^1) \leftarrow  (x_1^1 + d*\omega_1,...,x_n^1)
+$$
+$$
+(x_1^i,...,x_n^i) \leftarrow  (x_1^i + d*\omega_i,...,x_n^i)
+$$
+$$
+(x_1^m,...,x_n^m) \leftarrow  (x_1^m + d*\omega_m,...,x_n^m)
+$$
+
+We compute the theoretical change in the invariant D for all $m$ pools.
+$$
+\Delta D^1 = getD(x_1^1+ d*\omega_1, ...,x_n^1)  - getD(x_1^1, ...,x_n^1)
+$$
+$$
+\Delta D^i = getD(x_1^i+ d*\omega_i, ...,x_n^i)-getD(x_1^i, ...,x_n^i) $$
+$$
+\Delta D^m = getD(x_1^m+ d*\omega_m, ...,x_n^m)-getD(x_1^m, ...,x_n^m)
+$$
+Fees are then deducted based on a comparison between this theoretical growth by comparing the actual new balances and taken directly on the token amounts in the pool.\\
+$$
+ideal\_x_i^m = \frac{( D^i + \Delta D^i)}{D^i} *x_i^m
+$$
+where $D^i = getD(x_1^i, ...,x_n^i)$.\\
+By denoting $new\_balance^m(i)$ the $i^{th}$ component of the vector\\
+$(x_1^m + D*\omega_m,x_2^m,...,x_n^m)$ of new balances and  $ideal\_balance^m(i)$ the $i^{th}$ component of the vector\\ 
+$( \frac{( D^m + \Delta D^m)}{D^m} *x_1^m,..., \frac{( D^m + \Delta D^m)}{D^m} *x_n^m)$ of ideal balances.\\
+Fees are deducted from the theoretical new balances :
+\begin{equation}
+new\_balance\_minus\_fee^m(i) 
+\end{equation}
+$$
+\leftarrow
+$$
+$$
+new\_balance^m(i) - fee*
+$$
+$$
+\lvert new\_balance^m(i) -ideal\_balance^m(i)\rvert   
+$$
+A new invariant taking the fees into account is then computed:\\
+\begin{equation}
+D\_new\_minus\_fees^m =getD(new\_balance\_minus\_fee^m)
+\end{equation}
+The awarded $l_p^m$ tokens amount for the $m$ pools is then:
+\begin{equation}
+\Delta L_p^m = L_p^m*\frac{D\_new\_minus\_fees^m - D^m}{D^m}
+\end{equation}
+where $L_p^m$ is the actual amount of Lp tokens in the $m$ pool.\\
+All this can be checked in Curve smart contract $add\_liquidity$ function.\\
+Let's call the function $get\_Lp(d, Lp_0, x_1, ...,x_n)$ which computes the provided liquidity tokens after depositing an amount $d$ in a pool with an initial amount $Lp_0$ and an initial token amount $(x_1, ...,x_n)$.\\
+\subsubsection{Valuing the Lp tokens}\label{value}
+The valuation method for the Lp tokens can be found in Curve smart contract through the get\_virtual\_price() method.
+\begin{equation}
+    lpvalue = \frac{D}{Lp}
+\end{equation}
+where $Lp$ is the total amount of liquidity provider tokens in the pool.
+\subsubsection{Withdrawing liquidity to a Curve pool}\label{withdraw}
+We will here assume that the withdrawn token is the token 1 for all pools.\\
+When withdrawing an amount $L$ of local tokens of the pool $i$, whose total lp amount is $lp^i$ the pool invariant changes to :
+\begin{equation}
+    D\_new^i = D\_previous^i*(1-\frac{L}{lp^i})  
+\end{equation}
+We then compute the new quantity $x_1^i$ of token $1$ for the pool $i$ with the same methodology as in \ref{tokenswapping}.\\
+We find the new quantity $x\_new_1^i$ that will solve equation \ref{eq:invariant} with the new invariant $D\_new^i$ and the same old balances for all tokens j other than the token to be withdrawn ($j\neq 1$).
+By denoting $new\_balance^m(i)$ the $i^{th}$ component of the vector\\
+$(x\_new_1^i,x_2^i,...,x_n^m)$ of new balances after the withdrawal and  $ideal\_balance^m(i)$ the $i^{th}$ component of the vector\\ 
+$(\frac{D\_new^m}{D^m} *x_1^m,..., \frac{D\_new^m}{D^m} *x_n^m)$ of ideal balances.\\
+Fees are deducted from the theoretical new balances to the old balances :
+\begin{equation}
+old\_balance\_minus\_fee^m(i) 
+\end{equation}
+$$
+\leftarrow
+$$
+$$
+old\_balance^m(i) - fee*
+$$
+$$
+\lvert new\_balance^m(i) -ideal\_balance^m(i)\rvert   
+$$
+We then compute the new quantity $x_1^i$ of token $1$ for the pool $i$ with the same methodology as in \ref{tokenswapping} but for the balances $old\_balance\_minus\_fee$ : we find the new quantity $x\_new_fee_1^i$ that will solve equation \ref{eq:invariant} with the new invariant $D\_new^i$ and $old\_balance\_minus\_fee$ for all tokens j other than the token to be withdrawn ($j\neq 1$).\\
+
+Stable invariant and balances and for each pool $i$ are updated to $D\_new^i$ and\\$(x\_new\_fee_1^i,x\_old\_fee_2^i,...,x\_old\_fee_^m)$
+and the returned quantity of token 1 is $x\_new\_fee_1^i - x\_old\_fee_1^i$.\\
+The exact computation can be checked in Curve smart contract function $remove\_liquidity$.\\
+Let's call the function $redeem\_Lp(L, x_1, ...,x_n)$ which computes the provided liquidity tokens after redeeming an amount $L$ in a pool with an initial token amount $(x_1, ...,x_n)$.\\
+
+\section{Mitigating slippage for the meta strategy while maintaining a target allocation}
+\subsection{Meta strategy IOUs}
+\subsubsection{Slippage in}
+For a target allocation of $(\omega_1,..,\omega_m)$ between our $m$ pools, we define the entry slippage in as :
+\begin{equation}
+slip\_in = \sum_{pools\ i} \omega_i * slip\_in_i
+\end{equation}
+where the local slippage for pool $i$ is defined as:
+\begin{equation}
+slip\_in_i = \frac{get\_Lp(\omega_i * d, lp^i, x_1^i, ...,x_n^i) *get\_virtual\_price()}{D*\omega_i}
+\end{equation}
+where the virtual price is computed with the new stable invariant and the new amount of Lps tokens after the deposit $d$.
+
+If we define the metastrategy value as :
+\begin{equation}
+V = \sum_{pools i} lp_i * get\_virtual\_price_i()
+\end{equation}
+We see that 
+$$
+d * slip\_in =\sum_i \Delta lp_i * lpvalue_i = \Delta V(d)
+$$
+
+
+\subsubsection{Slippage out}
+Let's define the slippage out for a user withdrawing a L of the metastrategy IOUs pool.\\
+For a target allocation of $(\omega_1,..,\omega_m)$ between our $m$ pools, we define the exit slippage in as :
+\begin{equation}
+slip\_out = \sum_{pools\ i} \omega_i * slip\_out_i
+\end{equation}
+where the local out slippage for pool $i$ is defined as:
+\begin{equation}
+slip\_out_i = \frac{redeem\_Lp(\omega_i * L, x_1^i, ...,x_n^i)}{L*get\_virtual\_price()*\omega_i}
+\end{equation}
+
+We see that the $get\_virtual\_price()$ is the $lp^i$ token value for the pool $i$.
+\subsubsection{Target allocation and IOUs}
+The metastrategy IOUs minting amount subsequent to a deposit $d$ and a target allocation $(\omega_1,...,\omega_m) = $ for m pools is defined by:
+\begin{equation}
+IOUs\_minted = IOUs*\frac{\Delta V}{V}
+\end{equation}
+The share of the metastrategy IOUs token following a deposit $d$ is:
+\begin{equation}\label{eq:shares}
+shares = \frac{IOUs\_minted}{IOUs + IOUs\_minted} = \frac{\Delta V}{V+\Delta V}
+\end{equation}
+
+\subsubsection{Immediate slippage in/slippage out}
+One key metrics for our meta strategy is the direct slippage the customer would incur if withdrawing directly the share he got by depositing an amount $d$.
+Let's write the value obtained as:
+\begin{equation}
+withdrawal\_value = get\_in(d)
+\end{equation}
+Where the withdrawal value is directly computed from the minted IOUs by:
+\begin{equation}
+withdrawal\_value = shares * (V+\Delta V) = \Delta V
+\end{equation}
+where shares is defined in \ref{eq:shares}.
+The customer will immediately withdraw the added value he got from the deposit.\\
+\begin{equation}
+Eths = get\_out(AV)
+\end{equation}
+The total slippage can be written as :
+\begin{equation}
+\frac{get\_out(get\_in(d))}{d} 
+\end{equation}
+
+\subsubsection{Optimal penalizer}
+In order to mitigate too big immediate in/out slippages, that would lead to the possibility of a financial attack through flash loans.\\
+The idea here is to implement a penalizing mechanism where the in/out immediate slippage estimation will come modify the minted IOUS to prevent such attacks.\\
+We modify the $get\_in$ function to add a penalizing term to the minted IOUs.\\
+The optimal penalizer is found by solving the optimization problem:
+\begin{equation}\label{eq:optimalPenalizer}
+\min_{p \in \mathopen{]}1-b\,;b\mathclose{]}} \left\lvert \frac{get\_out(get\_in(d,p))-d}{d} \right\rvert
+\end{equation}
+where $b$ is the maximal penalizing bound we are ready to implement.\\
+\subsubsection{Heuristic}
+The problem \ref{eq:optimalPenalizer} can be solved with numerical optimization algorithms. But
+as we cannot compute analytically the derivative, they tend to be computationally intensive and not appropriate to be coded in solidity on the blockchain.\\
+We therefore do propose the following heuristic, which is the simple renormalization of the minted IOUs by the slippage in and out. 
+\begin{equation}\label{eq:optimalHeuristic}
+p = \frac{1}{slip\_in * slip\_out}
+\end{equation}
+
+The problem only resides in the evaluation of the $slip\_{out}$ which is defined by the minted IOUs itself. 
+We therefore propose a recursive evaluation of the $slip\_{out}$ until reaches a stable value.
+
+\section{Optimizating allocation to keep the optimal APY when depositing}
+In the following, we describe the numerical optimization mentioned before
+When a deposit $d$ is split according to $(x_1,...,x_n)$ between multiple pools. We compute the total value using the newly minted IOUs per pool $lp\_minted^i(x_i * d)$ by the deposited amount $x_i * d$ into pool $i$.  
+\subsection{Keeping the ratios between pools constant}
+\subsubsection{Keeping the ratios between 2 pools constant}
+When depositing an amount $d$ between 2 pools with the target ratio $(x_1^*,x_2^*)$.\\
+In the case of two pools, the exact analytical solution for the equation  \ref{eq:invariant} can be found. We do not need a Newton numerical approximation as in \ref{eq:invariantNewton}, as the polynomial order for $D$ is $3$ and the Cardan formulas give us immediately the new invariant $D$.\\
+The derivatives of that function can also easily be computed.\\
+The optimal deposit allocation problem can be stipulated as follow:\\
+We have in initial allocation between the Curve pool which is optimal.\\
+$(lp^1, lp^2)$ is such that $(\frac{lp^1}{lp^1+lp^2},\frac{lp^2}{lp^1+lp^2}) = (x_1^*,x_2^*)$.\\
+We want to find the optimal deposit allocation $(x_1,x_2)$ such that newly minted $lp^i$ for each pools do keep the already optimal allocation $(\frac{lp^1}{lp^1+lp^2},\frac{lp^2}{lp^1+lp^2}) = (x_1^*,x_2^*)$.\\
+If we note $c = \frac{lp^1}{lp^2}$, we see that 
+\begin{equation}\label{eq:poolratio}
+(x_1^*,x_2^*) = (\frac{1}{1+\frac{1}{c}},\frac{1}{1+c})
+\end{equation}
+If we keep the lps ratio between the pool constant, the optimal allocation is kept.\\
+By adding $x_1*d$ ethers to the pool $1$, we note the newly added quantity of lp token for the pool $i$ : $lp\_minted^i(x_i * d )$.\\
+We see that if we keep the lp ratio constant :
+\begin{equation}\label{eq:cst}
+ \frac{lp^1 +lp\_minted^1}{lp^2 +lp\_minted^2}=c=\frac{lp^1}{lp^2}
+\end{equation}
+Then the optimal allocation is still valid after a deposit $(x_1,x_2)$.
+\begin{equation}
+    \frac{lp^1 +lp\_minted^1}{lp^1 +lp\_minted^1 + lp^2 +lp\_minted^2}  = \frac{1}{1+\frac{1}{c}} = x_1^* 
+\end{equation}
+The equation \label{eq:cst} is directly equivalent:
+\begin{equation}
+  \frac{lp\_minted^1}{lp^1}  =  \frac{lp\_minted^2}{lp^2}
+\end{equation}
+Given a deposit amount $d$, the opimization problem is then :
+\begin{equation}
+\text{Find } x_1 \text{such that }
+\end{equation}
+$$
+\frac{lp\_minted^1(x_1*d)}{lp^1}  = 
+$$
+$$
+\frac{lp\_minted^2((1-x_1)*d)}{lp^2}
+$$
+Using the analytical expression of $lp\_minted^i$ and its derivatives, one can use the Newton algorithm to find the $x_1$ root respecting the optimal allocation. $lp\_minted^i$ can be found using the share value deposited $x_i*d$ in the StableSwap invariant analytical form derived from \ref{eq:invariant}:\\
+\begin{equation}
+D = \sqrt[3]{-\frac{q}{2}+\sqrt{\frac{q^2}{4}+\frac{p^3}{27}}}- 
+    \sqrt[3]{\frac{1/27*p^3}{(\sqrt{1/27 p^3 + 1/4 q^2)} - 1/2q)}}
+\end{equation} where $p = 4*x*y*(4*A-1)$ and $q =-16*A*x*y*(x+y)$.
+ we can rewrite \ref{eq:cst}
+ \begin{equation}
+\frac{LP^1_{pool} }{LP^1_{Strat} }* ( D^1_1 -D^1_0)/D^1_0 = \frac{LP^2_{pool} }{LP^2_{Strat} }* ( D^2_1 -D^2_0)/D^2_0
+ \end{equation}
+ where 
+ $D_1$ is the StableSwap invariant evaluated with the new quantities deposited.  
+\subsubsection{Exact optimal equation between n pools}
+\subsubsubsection{Optimization}
+When depositing an amount $d$ of deposit between the pools of the meta strategy, we want to keep the initial target allocation, which optimized the global APY for the metastrategy.\\
+One must find the optimal allocation of the deposit $d$ such that the optimal allocation $(x_1^*,...,x_n^*)$ still holds.\\
+The problem in its most general form can be expressed as:
+\begin{equation}
+\min_{\sum_{i} x_i = 1} \left[  \sum_{pools\text{ }i}\left(\frac{lp^i + lp\_minted^i(x_i * d)}{\sum_{pools\text{ }j} lp^j +lp\_minted^j(x_j * d)}-x_i^* \right)^2\right]
+\end{equation}
+where 
+$$
+x_i^* = \frac{lp^i}{\sum_j lp^j}
+$$
+The optimization problem can be solved numerically with advanced non-linear solver, but those kind
+of solvers won't exist in Solidity.
+\subsubsubsection{A natural starting point}
+\begin{equation}
+({x_1}_0, ...,{x_i}_0, ...,{x_n}_0) = (x_1^*, ...,x_i^*, ... ,x_n^*)
+\end{equation}
+\subsubsubsection{Simplifying the optimization for low deposit}
+Let's write $lp^j = l_j$ and $lp\_minted^j(x_j * d) = f_j(x_j)$. The optimization problem can be rewritten:
+\begin{equation}
+\min_{\sum_{i} x_i = 1} \left[  \sum_{i}\left(\frac{l_i + f_i(x_i)}{\sum_{j} l_j +f_j(x_j)}- \frac{l_i}{\sum_{j} l_j} \right)^2\right]
+\end{equation}
+We now make the assumption that the total minted amount of tokens due to the deposit $d$ is small compared to the total strategies lp tokens.
+\begin{equation}\label{ref:bigAssumption}
+\frac{\sum_{j} f_j(x_j)}{\sum_{j} l_j} << 1
+\end{equation}
+A first order Taylor expansion gives us the following approximation:
+\begin{equation}\label{ref:approximation}
+\frac{1}{\sum_{j} (l_j +f_j(x_j))} = \frac{1}{\sum_{j} l_j} * \frac{1}{1 + \frac{\sum_{j} f_j(x_j)}{\sum_{j} l_j}}
+\end{equation}
+$$
+\approx \frac{1}{\sum_{j} l_j} * (1 - \frac{\sum_{j} f_j(x_j)}{\sum_{j} l_j})
+$$
+We obtain the simplified optimization problem:
+\begin{equation}
+    \min_{\sum_{i} x_i = 1} \left[ \sum_{i}\left(\frac{f_i(x_i)}{L} - \frac{1}{L^2}(\sum_j f_j(x_j))(l_i+f_i(x_i)) \right)^2\right]
+\end{equation}
+We see that we have another second order term $\frac{1}{L^2}(\sum_j f_j(x_j))(f_i(x_i))$ that we can drop so that the problem becomes :
+\begin{equation}\label{ref:simplifiedProblem}
+    \min_{\sum_{i} x_i = 1} \left[ \sum_{i}\left(\frac{f_i(x_i)}{L} - \frac{1}{L^2}(\sum_j f_j(x_j))(l_i)) \right)^2\right]
+\end{equation}
+By naming
+$
+f(x)
+=
+\begin{pmatrix} 
+	f_1(x_1) \\
+	\vdots\\
+	f_i(x_i) \\
+	\vdots\\
+	f_n(x_n) \\
+	\end{pmatrix} 
+$
+and 
+$
+a_i
+=
+\begin{pmatrix} 
+	-\frac{l_i}{L^2} \\
+	\vdots\\
+	-\frac{l_i}{L^2} + \frac{1}{L}\\
+	\vdots\\
+	-\frac{l_i}{L^2} \\
+	\end{pmatrix} 
+$
+
+\begin{equation}\label{ref:simplifiedProblem}
+    \min_{\sum_{i} x_i = 1} \left[ \sum_{i}\left( a_i^t * f \right)^2\right]
+\end{equation}
+
+$$
+\sum_{i}\left( a_i^t * f \right)^2 =\sum_{i}  f^t *a_i*a_i^t * f  =f^t *(\sum_{i} a_i*a_i^t)* f 
+$$
+The problem then becomes :
+\begin{equation}\label{ref:simplifiedProblem}
+    \min_{\sum_{i} x_i = 1} \left[ f^t*A*f\right]
+\end{equation}
+where $A=\sum_{i} a_i*a_i^t$. A is obviously symmetric.\\
+If we call $J(x)=f^t*A*f$, let's rewrite the new functional with Lagrange multiplier:
+\begin{equation}
+J'(x) = J(x) + \lambda (g(x)-1)
+\end{equation}
+where $g(x) = \sum_j x_j$, there comes the new functional.
+\begin{equation}
+\left\{
+\begin{array}{ll}
+  \nabla_x \left[ J(x) + \lambda * (g(x) - 1) \right] = 0\\
+  \nabla_\lambda \left[ J(x) + \lambda * (g(x) - 1) \right] = 0
+\end{array}
+\right.
+\end{equation}
+By using that 
+\begin{equation}
+\nabla_x \left[x^t*A*x\right] = (A + A^t)*x    
+\end{equation}
+There comes :
+\begin{equation}
+    2A*f(x)*\nabla_x f(x) + \lambda \nabla_x g = 0 
+\end{equation}
+
+
+\section{Conclusion}
+We have managed to simplify the optimization problem and transport it to EVM like blockchain languages.\\
+The solution can scale up to at least ten pools without being too computationally intensive.\\
+\bibliographystyle{IEEEtranN}
+\bibliography{bib}
+\nocite{*}
+\end{document}
+
